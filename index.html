@@ -2036,43 +2036,208 @@
       .attributes-grid { grid-template-columns: 1fr; }
     }
 
+    /* ========================================
+       HAMBURGER BUTTON
+    ======================================== */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      background: none;
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+      position: relative;
+      z-index: 1100;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform 0.35s var(--ease-out), opacity 0.25s, width 0.3s var(--ease-out);
+      transform-origin: center;
+    }
+
+    .nav-hamburger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.is-open span:nth-child(2) { opacity: 0; width: 0; }
+    .nav-hamburger.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ========================================
+       MOBILE MENU OVERLAY
+    ======================================== */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(13, 12, 20, 0.97);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s var(--ease-out);
+    }
+
+    .mobile-menu.is-open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mobile-menu-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 48px;
+      text-align: center;
+    }
+
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mobile-nav-link {
+      font-size: clamp(28px, 8vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .mobile-menu.is-open .mobile-nav-link {
+      opacity: 1;
+      transform: none;
+    }
+
+    .mobile-menu.is-open .mobile-nav-link:nth-child(1) { transition: opacity 0.4s 0.05s, transform 0.4s var(--ease-out) 0.05s, color 0.2s, background 0.2s; }
+    .mobile-menu.is-open .mobile-nav-link:nth-child(2) { transition: opacity 0.4s 0.1s, transform 0.4s var(--ease-out) 0.1s, color 0.2s, background 0.2s; }
+    .mobile-menu.is-open .mobile-nav-link:nth-child(3) { transition: opacity 0.4s 0.15s, transform 0.4s var(--ease-out) 0.15s, color 0.2s, background 0.2s; }
+    .mobile-menu.is-open .mobile-nav-link:nth-child(4) { transition: opacity 0.4s 0.2s, transform 0.4s var(--ease-out) 0.2s, color 0.2s, background 0.2s; }
+
+    .mobile-nav-link:hover { color: var(--gold); }
+
+    .mobile-menu-cta {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .mobile-menu.is-open .mobile-menu-cta {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.4s 0.25s var(--ease-out), transform 0.4s var(--ease-out) 0.25s;
+    }
+
+    /* ========================================
+       RESPONSIVE — 768px
+    ======================================== */
     @media (max-width: 768px) {
+      /* Nav */
       nav { padding: 20px 24px; }
       nav.scrolled { padding: 14px 24px; }
       .nav-links { display: none; }
+      .nav-cta { display: none; }
       .nav-logo-h { display: none; }
       .nav-logo-v { display: block; }
+      .nav-hamburger { display: flex; }
 
-      #hero { padding: 100px 24px 80px; }
-      .hero-headline { font-size: clamp(30px, 8vw, 52px); }
+      /* Hero */
+      #hero { padding: 100px 24px 72px; min-height: 100svh; }
+      .hero-headline { font-size: clamp(28px, 7.5vw, 48px); }
+      .hero-sub { font-size: 15px; margin-bottom: 40px; }
+      .hero-logo-mark img { width: 88px; }
+      .hero-eyebrow { font-size: 10px; margin-bottom: 32px; }
 
-      #stats { padding: 48px 24px; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0; }
-      .stat-item { padding: 24px 20px; }
+      /* Stats */
+      #stats { padding: 40px 20px; }
+      .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 0; }
+      .stat-item { padding: 16px 10px; }
       .stat-item::before { display: none !important; }
+      .stat-number { font-size: clamp(24px, 6vw, 36px); }
+      .stat-label { font-size: 10px; }
 
-      #dor, #formula, #diferenciais, #produtos, #garantia, #fundadores, #contato { padding: 80px 24px; }
+      /* Sections */
+      #dor, #formula, #diferenciais, #produtos, #garantia, #fundadores, #contato { padding: 72px 24px; }
 
-      .dor-inner, .formula-header, .garantia-inner, .fundadores-grid, .diff-header { grid-template-columns: 1fr; gap: 40px; }
-      .formula-equation { grid-template-columns: 1fr; }
-      .produtos-grid { grid-template-columns: 1fr; }
-      .attributes-grid { grid-template-columns: 1fr; }
-      .produtos-header { flex-direction: column; gap: 20px; }
-      .formula-result { flex-direction: column; gap: 28px; text-align: center; }
-      .footer-top { grid-template-columns: 1fr; gap: 48px; }
-      .footer-links-group { flex-direction: column; gap: 40px; justify-content: flex-start; }
-      .footer-bottom { flex-direction: column; text-align: center; }
+      /* Dor */
+      .dor-inner { grid-template-columns: 1fr; gap: 40px; }
+      .dor-right { padding-top: 0; }
+      .dor-quote { font-size: clamp(18px, 5vw, 24px); }
+
+      /* Formula */
+      .formula-header { grid-template-columns: 1fr; gap: 24px; margin-bottom: 40px; }
+      .formula-equation { grid-template-columns: 1fr; gap: 2px; }
+      .formula-item { margin-right: 0; padding: 32px 28px; }
+      .formula-result { flex-direction: column; gap: 24px; text-align: center; padding: 36px 28px; }
+
+      /* Diferenciais */
+      .diff-header { grid-template-columns: 1fr; gap: 24px; }
+      .attributes-grid { grid-template-columns: 1fr; gap: 2px; }
+      .attr-card { padding: 36px 28px; }
+
+      /* Produtos */
+      .produtos-header { flex-direction: column; gap: 16px; }
+      .produtos-grid { grid-template-columns: 1fr; gap: 2px; }
+      .product-card { padding: 36px 28px; }
+      .product-cta { padding: 16px 28px; min-height: 52px; }
+
+      /* Garantia */
+      .garantia-inner { grid-template-columns: 1fr; gap: 40px; align-items: center; }
+      .garantia-badge { width: 240px; height: 240px; }
+      .garantia-badge-num { font-size: 60px; }
+      .garantia-badge::before { inset: 12px; }
+
+      /* Fundadores */
+      .fundadores-grid { grid-template-columns: 1fr; gap: 2px; }
+      .founder-card { padding: 40px 28px; }
+
+      /* Footer */
+      .footer-top { grid-template-columns: 1fr; gap: 40px; }
+      footer { padding: 64px 24px 32px; }
+      .footer-links-group { flex-direction: column; gap: 32px; justify-content: flex-start; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 12px; }
       .footer-compliance { text-align: center; }
 
+      /* Cursor */
       .cursor, .cursor-ring { display: none; }
       body { cursor: auto; }
       a, button { cursor: pointer; }
     }
 
     @media (max-width: 480px) {
+      #hero { padding: 88px 20px 64px; }
       .hero-actions { flex-direction: column; width: 100%; }
-      .btn-primary, .btn-gold { width: 100%; justify-content: center; }
+      .btn-primary, .btn-gold { width: 100%; justify-content: center; min-height: 52px; }
       .contato-actions { flex-direction: column; }
+      .contato-actions .btn-gold { width: 100%; justify-content: center; }
+
+      /* Sections tighter on small phones */
+      #dor, #formula, #diferenciais, #produtos, #garantia, #fundadores, #contato { padding: 60px 20px; }
+      #stats { padding: 32px 16px; }
+
+      /* Produtos: show 1 column, reduce padding */
+      .product-card { padding: 28px 20px; }
+      .attr-card { padding: 28px 20px; }
+      .founder-card { padding: 32px 20px; }
+
+      /* Garantia badge even smaller */
+      .garantia-badge { width: 200px; height: 200px; }
+      .garantia-badge-num { font-size: 52px; }
+
+      /* Footer */
+      footer { padding: 56px 20px 28px; }
     }
 
     /* ── Tabela de comparação responsiva (WCAG + Baymard) ── */
@@ -2154,7 +2319,28 @@
     <a href="#contato" class="nav-cta" aria-label="Agendar Diagnóstico Gratuito">
       Diagnóstico Gratuito
     </a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-menu-inner">
+      <nav class="mobile-nav" aria-label="Menu mobile">
+        <a href="#formula" class="mobile-nav-link">A Fórmula</a>
+        <a href="#produtos" class="mobile-nav-link">Serviços</a>
+        <a href="#garantia" class="mobile-nav-link">Garantia</a>
+        <a href="#fundadores" class="mobile-nav-link">Time</a>
+      </nav>
+      <a href="#contato" class="btn-gold mobile-menu-cta">
+        Diagnóstico Gratuito
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
 
   <main id="conteudo-principal">
 
@@ -2796,6 +2982,43 @@
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ---- Mobile Menu (hamburger) ----
+    const hamburger = document.getElementById('navHamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = mobileMenu.querySelectorAll('.mobile-nav-link, .mobile-menu-cta');
+
+    function openMenu() {
+      hamburger.classList.add('is-open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      hamburger.setAttribute('aria-label', 'Fechar menu');
+      mobileMenu.classList.add('is-open');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      hamburger.classList.remove('is-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Abrir menu');
+      mobileMenu.classList.remove('is-open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.contains('is-open') ? closeMenu() : openMenu();
+    });
+
+    // Fechar ao clicar em um link
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Fechar com Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) closeMenu();
     });
 
     // ---- Scroll Reveal ----
