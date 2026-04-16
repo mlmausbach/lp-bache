@@ -3726,6 +3726,8 @@
       appearance: none;
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init('kKS1kxakox_qGIuXx');</script>
 </head>
 <body>
 
@@ -5290,6 +5292,12 @@
             method: 'POST', headers, body: JSON.stringify({ value: email })
           })
         ]);
+
+        // Enviar email de confirmação para o lead (falha silenciosa)
+        emailjs.send('service_xsb1jsk', 'template_2cgrq5h', {
+          to_name:  nome,
+          to_email: email
+        }).catch(() => {});
 
         // Sucesso
         diagForm.style.display = 'none';
