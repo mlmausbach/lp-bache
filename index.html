@@ -5057,7 +5057,7 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0">
             <path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <span id="modalErrorText">Ocorreu um erro. <a href="https://wa.me/5541999999999" target="_blank" rel="noopener">Fale direto pelo WhatsApp.</a></span>
+          <span id="modalErrorText">Ocorreu um erro. <a href="https://wa.me/5541998416681" target="_blank" rel="noopener">Fale direto pelo WhatsApp.</a></span>
         </div>
 
         <button type="submit" class="btn-primary btn-modal-submit" id="modalSubmitBtn">
@@ -5192,16 +5192,22 @@
 
     // WhatsApp mask: (XX) XXXXX-XXXX
     const wppInput = document.getElementById('inputWhatsapp');
+    function applyWppMask(raw) {
+      const d = raw.replace(/\D/g, '').slice(0, 11);
+      if (d.length === 0) return '';
+      if (d.length <= 2)  return `(${d}`;
+      if (d.length <= 7)  return `(${d.slice(0,2)}) ${d.slice(2)}`;
+      return `(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}`;
+    }
     wppInput.addEventListener('input', () => {
-      let v = wppInput.value.replace(/\D/g, '').slice(0, 11);
-      if (v.length > 6) {
-        v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
-      } else if (v.length > 2) {
-        v = `(${v.slice(0,2)}) ${v.slice(2)}`;
-      } else if (v.length > 0) {
-        v = `(${v}`;
-      }
-      wppInput.value = v;
+      const pos   = wppInput.selectionStart;
+      const prev  = wppInput.value;
+      const next  = applyWppMask(prev);
+      wppInput.value = next;
+      // Keep cursor in the right spot after formatting chars are inserted
+      const diff  = next.length - prev.length;
+      const newPos = Math.min(next.length, Math.max(0, pos + (diff > 0 ? diff : 0)));
+      wppInput.setSelectionRange(newPos, newPos);
     });
 
     // Form validation helper
@@ -5284,8 +5290,8 @@
 
         const isToken = CLICKUP_TOKEN === 'COLE_SEU_TOKEN_CLICKUP_AQUI';
         modalErrorText.innerHTML = isToken
-          ? 'Token do ClickUp não configurado. <a href="https://wa.me/5541999999999" target="_blank" rel="noopener">Fale pelo WhatsApp.</a>'
-          : `Erro ao enviar (${err.message}). <a href="https://wa.me/5541999999999" target="_blank" rel="noopener">Fale pelo WhatsApp.</a>`;
+          ? 'Token do ClickUp não configurado. <a href="https://wa.me/5541998416681" target="_blank" rel="noopener">Fale pelo WhatsApp.</a>'
+          : `Erro ao enviar (${err.message}). <a href="https://wa.me/5541998416681" target="_blank" rel="noopener">Fale pelo WhatsApp.</a>`;
         modalErrorBox.style.display = 'flex';
       }
     });
