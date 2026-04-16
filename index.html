@@ -5250,28 +5250,43 @@
       const wpp   = wppInp.value.trim();
       const email = emailInp.value.trim();
 
+      const FIELD_WHATSAPP = '72a107e8-d809-4417-89bf-1036ce89c88a';
+      const FIELD_EMAIL    = 'fd5e499d-be16-4941-b14d-c4bf5dcbe776';
+      const headers = { 'Authorization': CLICKUP_TOKEN, 'Content-Type': 'application/json' };
+
+      const wppDigits = wpp.replace(/\D/g, '');
+      // ClickUp phone field espera número com código do país
+      const wppForField = (wppDigits.startsWith('55') ? '+' : '+55') + wppDigits.replace(/^55/, '');
+
       const taskPayload = {
         name: `Sessão Estratégica — ${nome}`,
-        description: `Lead via Landing Page — Diagnóstico Gratuito\n\nNome: ${nome}\nWhatsApp: ${wpp}\nE-mail: ${email}`,
+        description: `Lead via Landing Page — Diagnóstico Gratuito\n\nNome: ${nome}\nE-mail: ${email}`,
         priority: 2
       };
 
       try {
+        // 1. Criar a task
         const res = await fetch(`https://api.clickup.com/api/v2/list/${CLICKUP_LIST_ID}/task`, {
-          method: 'POST',
-          headers: {
-            'Authorization': CLICKUP_TOKEN,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(taskPayload)
+          method: 'POST', headers, body: JSON.stringify(taskPayload)
         });
-
         if (!res.ok) {
           const errBody = await res.json().catch(() => ({}));
           throw new Error(errBody.err || errBody.ECODE || `HTTP ${res.status}`);
         }
+        const task = await res.json();
+        const taskId = task.id;
 
-        // Success
+        // 2. Preencher custom fields em paralelo (falha silenciosa — task já criada)
+        await Promise.allSettled([
+          fetch(`https://api.clickup.com/api/v2/task/${taskId}/field/${FIELD_WHATSAPP}`, {
+            method: 'POST', headers, body: JSON.stringify({ value: wppForField })
+          }),
+          fetch(`https://api.clickup.com/api/v2/task/${taskId}/field/${FIELD_EMAIL}`, {
+            method: 'POST', headers, body: JSON.stringify({ value: email })
+          })
+        ]);
+
+        // Sucesso
         diagForm.style.display = 'none';
         document.getElementById('modalFormSection').style.display = 'none';
         modalSuccess.style.display = 'block';
