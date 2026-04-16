@@ -3727,7 +3727,11 @@
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>emailjs.init('kKS1kxakox_qGIuXx');</script>
+  <script>
+    (function(){
+      emailjs.init({ publicKey: 'kKS1kxakox_qGIuXx' });
+    })();
+  </script>
 </head>
 <body>
 
@@ -5293,11 +5297,15 @@
           })
         ]);
 
-        // Enviar email de confirmação para o lead (falha silenciosa)
+        // Enviar email de confirmação para o lead
         emailjs.send('service_xsb1jsk', 'template_2cgrq5h', {
           to_name:  nome,
           to_email: email
-        }).catch(() => {});
+        }).then(() => {
+          console.log('[EmailJS] Email enviado para', email);
+        }).catch(err => {
+          console.warn('[EmailJS] Falha ao enviar email:', JSON.stringify(err));
+        });
 
         // Sucesso
         diagForm.style.display = 'none';
