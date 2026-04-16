@@ -1,0 +1,281 @@
+/* =============================================================================
+   BÄCHE DESIGN TOKENS — Generated 2026-04-15
+   Single source of truth for the Bäche brand system.
+   Import AFTER variables.css, BEFORE component styles.
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   BRAND PALETTE — 5 official colors
+   --------------------------------------------------------------------------- */
+:root {
+  --violeta: #7B35CE;
+  --noite:   #0D0C14;
+  --nevoa:   #E8E6F5;
+  --teal:    #00E0B8;
+  --surface: #15131E;
+
+  /* Legacy aliases — keep for backwards compat */
+  --gold:        var(--teal);
+  --gold-light:  #1FFFD0;
+  --gold-dark:   #00B898;
+  --purple:      var(--violeta);
+  --purple-dark: #5A1FA0;
+  --bg:          var(--noite);
+  --bg-surface:  var(--surface);
+  --text:        var(--nevoa);
+}
+
+/* ---------------------------------------------------------------------------
+   VIOLETA COLOR SCALE
+   --------------------------------------------------------------------------- */
+:root {
+  --violeta-50: hsl(271, 62%, 95%);
+  --violeta-100: hsl(271, 62%, 89%);
+  --violeta-200: hsl(271, 62%, 79%);
+  --violeta-300: hsl(271, 62%, 69%);
+  --violeta-400: hsl(271, 62%, 59%);
+  --violeta-500: hsl(271, 62%, 51%);
+  --violeta-600: hsl(271, 62%, 43%);
+  --violeta-700: hsl(271, 62%, 35%);
+  --violeta-800: hsl(271, 62%, 27%);
+  --violeta-900: hsl(271, 62%, 19%);
+}
+
+/* ---------------------------------------------------------------------------
+   TEAL COLOR SCALE
+   --------------------------------------------------------------------------- */
+:root {
+  --teal-50: hsl(168, 100%, 88%);
+  --teal-100: hsl(168, 100%, 82%);
+  --teal-200: hsl(168, 100%, 72%);
+  --teal-300: hsl(168, 100%, 62%);
+  --teal-400: hsl(168, 100%, 52%);
+  --teal-500: hsl(168, 100%, 44%);
+  --teal-600: hsl(168, 100%, 36%);
+  --teal-700: hsl(168, 100%, 28%);
+  --teal-800: hsl(168, 100%, 20%);
+  --teal-900: hsl(168, 100%, 12%);
+}
+
+/* ---------------------------------------------------------------------------
+   NEUTRAL SCALE (calibrated for dark backgrounds)
+   --------------------------------------------------------------------------- */
+:root {
+  --neutral-50:  hsl(246, 20%, 96%);
+  --neutral-100: hsl(246, 18%, 90%);
+  --neutral-200: hsl(246, 14%, 80%);
+  --neutral-300: hsl(246, 12%, 70%);
+  --neutral-400: hsl(246, 10%, 55%);
+  --neutral-500: hsl(246, 8%,  40%);
+  --neutral-600: hsl(246, 8%,  28%);
+  --neutral-700: hsl(246, 10%, 18%);
+  --neutral-800: hsl(246, 12%, 12%);
+  --neutral-900: hsl(246, 14%, 7%);
+}
+
+/* ---------------------------------------------------------------------------
+   TYPOGRAPHY
+   --------------------------------------------------------------------------- */
+:root {
+  /* Font families */
+  --font-headline: 'Internacional', 'Helvetica Neue', Arial, sans-serif;
+  --font-body:     'Satoshi', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:     'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Tracking (letter-spacing) — brand spec */
+  --track-headline: -0.05em;   /* Internacional: -50 tracking */
+  --track-body:     -0.025em;  /* Satoshi: -25 tracking */
+  --track-tight:    -0.04em;
+  --track-normal:   0em;
+  --track-wide:     0.04em;
+  --track-wider:    0.08em;
+  --track-widest:   0.16em;
+
+  /* Type scale — Major Third (1.250) base 16px */
+  --text-xs: 10.240px;
+  --text-sm: 12.800px;
+  --text-base: 16.000px;
+  --text-lg: 20.000px;
+  --text-xl: 25.000px;
+  --text-2xl: 31.250px;
+  --text-3xl: 39.063px;
+  --text-4xl: 48.828px;
+  --text-5xl: 61.035px;
+  --text-6xl: 76.294px;
+  --text-7xl: 95.367px;
+
+  /* Line heights */
+  --leading-none:    1;
+  --leading-tight:   1.15;
+  --leading-snug:    1.35;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.65;
+  --leading-loose:   2;
+
+  /* Font weights */
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-black:    900;
+}
+
+/* ---------------------------------------------------------------------------
+   SPACING — 8pt grid
+   --------------------------------------------------------------------------- */
+:root {
+  --space-0: 0px;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-7: 56px;
+  --space-8: 64px;
+  --space-9: 72px;
+  --space-10: 80px;
+  --space-11: 88px;
+  --space-12: 96px;
+  --space-13: 104px;
+  --space-14: 112px;
+  --space-15: 120px;
+  --space-16: 128px;
+  --space-17: 136px;
+  --space-18: 144px;
+  --space-19: 152px;
+  --space-20: 160px;
+  --space-0\.5: 4px;
+  --space-1\.5: 12px;
+  --space-2\.5: 20px;
+}
+
+/* ---------------------------------------------------------------------------
+   BORDER RADIUS
+   --------------------------------------------------------------------------- */
+:root {
+  --radius-none: 0;
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-3xl:  32px;
+  --radius-full: 9999px;
+}
+
+/* ---------------------------------------------------------------------------
+   SHADOWS — dark-background calibrated
+   --------------------------------------------------------------------------- */
+:root {
+  --shadow-xs:  0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm:  0 2px 8px rgba(0, 0, 0, 0.45);
+  --shadow-md:  0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg:  0 8px 32px rgba(0, 0, 0, 0.55);
+  --shadow-xl:  0 16px 64px rgba(0, 0, 0, 0.6);
+  --shadow-2xl: 0 32px 96px rgba(0, 0, 0, 0.65);
+
+  /* Brand glow shadows */
+  --glow-violeta-sm: 0 4px 20px rgba(123, 53, 206, 0.3);
+  --glow-violeta-md: 0 8px 40px rgba(123, 53, 206, 0.4);
+  --glow-violeta-lg: 0 16px 60px rgba(123, 53, 206, 0.5);
+  --glow-teal-sm:    0 4px 20px rgba(0, 224, 184, 0.25);
+  --glow-teal-md:    0 8px 40px rgba(0, 224, 184, 0.35);
+  --glow-teal-lg:    0 16px 60px rgba(0, 224, 184, 0.45);
+}
+
+/* ---------------------------------------------------------------------------
+   Z-INDEX SCALE
+   --------------------------------------------------------------------------- */
+:root {
+  --z-below:    -1;
+  --z-base:      0;
+  --z-raised:    10;
+  --z-overlay:   20;
+  --z-dropdown:  30;
+  --z-sticky:    40;
+  --z-fixed:     50;
+  --z-backdrop:  60;
+  --z-modal:     70;
+  --z-popover:   80;
+  --z-toast:     90;
+  --z-tooltip:   100;
+}
+
+/* ---------------------------------------------------------------------------
+   BREAKPOINTS (reference — use in JS or media queries)
+   --------------------------------------------------------------------------- */
+:root {
+  --bp-xs:  480px;
+  --bp-sm:  640px;
+  --bp-md:  768px;
+  --bp-lg:  1024px;
+  --bp-xl:  1280px;
+  --bp-2xl: 1536px;
+}
+
+/* ---------------------------------------------------------------------------
+   ANIMATION TOKENS
+   --------------------------------------------------------------------------- */
+:root {
+  /* Durations */
+  --duration-instant: 0ms;
+  --duration-fast:    150ms;
+  --duration-normal:  250ms;
+  --duration-slow:    400ms;
+  --duration-slower:  600ms;
+  --duration-slowest: 900ms;
+
+  /* Easing curves */
+  --ease-linear:     linear;
+  --ease-in:         cubic-bezier(0.4, 0, 1, 1);
+  --ease-out:        cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out:     cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce:     cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-smooth:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --ease-accelerate: cubic-bezier(0.4, 0, 1, 1);
+
+  /* Transition presets */
+  --transition-fast:   all var(--duration-fast)   var(--ease-out);
+  --transition-base:   all var(--duration-normal)  var(--ease-out);
+  --transition-slow:   all var(--duration-slow)    var(--ease-out);
+  --transition-spring: all var(--duration-slow)    var(--ease-spring);
+}
+
+/* ---------------------------------------------------------------------------
+   SEMANTIC TOKENS — component-level aliases
+   --------------------------------------------------------------------------- */
+:root {
+  /* Surfaces */
+  --surface-base:     var(--noite);
+  --surface-raised:   var(--surface);
+  --surface-overlay:  rgba(13, 12, 20, 0.92);
+
+  /* Text */
+  --text-primary:     var(--nevoa);
+  --text-secondary:   rgba(232, 230, 245, 0.65);
+  --text-muted:       rgba(232, 230, 245, 0.4);
+  --text-inverse:     var(--noite);
+  --text-accent:      var(--teal);
+  --text-brand:       var(--violeta);
+
+  /* Borders */
+  --border-subtle:    rgba(232, 230, 245, 0.06);
+  --border-default:   rgba(232, 230, 245, 0.12);
+  --border-strong:    rgba(232, 230, 245, 0.24);
+  --border-brand:     rgba(123, 53, 206, 0.4);
+  --border-accent:    rgba(0, 224, 184, 0.3);
+
+  /* Interactive */
+  --interactive-primary:       var(--teal);
+  --interactive-primary-hover: #1FFFD0;
+  --interactive-secondary:     var(--violeta);
+  --interactive-secondary-hover: #9444E8;
+
+  /* Focus ring */
+  --focus-ring: 0 0 0 3px rgba(0, 224, 184, 0.4);
+}

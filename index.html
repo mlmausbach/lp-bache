@@ -7,6 +7,13 @@
   <meta name="description" content="Primeiro estúdio de Performance Branding para saúde do Brasil. Transformamos médicos em marcas que o paciente escolhe antes de pesquisar preço." />
   <meta property="og:title" content="Bäche — Performance Branding para Saúde" />
   <meta property="og:description" content="Transformamos médicos em marcas que o paciente escolhe antes de pesquisar preço." />
+  <meta property="og:image" content="https://bache.com.br/assets/hero-bg.jpg" />
+  <meta property="og:url" content="https://bache.com.br" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://bache.com.br/assets/hero-bg.jpg" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="shortcut icon" href="assets/favicon.svg" />
 
   <!-- GEO / AEO Structured Data -->
   <script type="application/ld+json">
@@ -158,35 +165,124 @@
   }
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+  <!-- Preload critical above-the-fold assets -->
+  <link rel="preload" href="assets/hero-bg.jpg" as="image" fetchpriority="high" />
+  <link rel="preload" href="assets/fonts/Internacional-Black.otf" as="font" type="font/opentype" crossorigin />
+  <link rel="preload" href="assets/fonts/Satoshi-Regular.otf" as="font" type="font/opentype" crossorigin />
+
+  <!-- Design tokens: colors, typography, spacing, animation -->
+  <link rel="stylesheet" href="assets/tokens.css" />
 
   <style>
+    /* ========================================
+       LOCAL FONTS — Internacional + Satoshi
+    ======================================== */
+    @font-face {
+      font-family: 'Internacional';
+      src: url('assets/fonts/Internacional-Light.otf') format('opentype');
+      font-weight: 300; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Internacional';
+      src: url('assets/fonts/Internacional-Regular.otf') format('opentype');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Internacional';
+      src: url('assets/fonts/Internacional-RegularItalic.otf') format('opentype');
+      font-weight: 400; font-style: italic; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Internacional';
+      src: url('assets/fonts/Internacional-SemiBold.otf') format('opentype');
+      font-weight: 600; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Internacional';
+      src: url('assets/fonts/Internacional-Bold.otf') format('opentype');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Internacional';
+      src: url('assets/fonts/Internacional-BoldItalic.otf') format('opentype');
+      font-weight: 700; font-style: italic; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Internacional';
+      src: url('assets/fonts/Internacional-Black.otf') format('opentype');
+      font-weight: 900; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Internacional';
+      src: url('assets/fonts/Internacional-BlackItalic.otf') format('opentype');
+      font-weight: 900; font-style: italic; font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Satoshi';
+      src: url('assets/fonts/Satoshi-Light.otf') format('opentype');
+      font-weight: 300; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Satoshi';
+      src: url('assets/fonts/Satoshi-Regular.otf') format('opentype');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Satoshi';
+      src: url('assets/fonts/Satoshi-Italic.otf') format('opentype');
+      font-weight: 400; font-style: italic; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Satoshi';
+      src: url('assets/fonts/Satoshi-Medium.otf') format('opentype');
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Satoshi';
+      src: url('assets/fonts/Satoshi-Bold.otf') format('opentype');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Satoshi';
+      src: url('assets/fonts/Satoshi-Black.otf') format('opentype');
+      font-weight: 900; font-style: normal; font-display: swap;
+    }
+
     /* ========================================
        DESIGN TOKENS
     ======================================== */
     :root {
-      /* ── New Palette ─────────────────────────── */
-      --violeta: #7B35CE;          /* VIOLETA  – vibrant brand purple  */
-      --noite: #0D0C14;            /* NOITE    – near-black background  */
-      --nevoa: #E8E6F5;            /* NÉVOA    – light lavender fog     */
-      --teal: #00E0B8;             /* TEAL     – bright cyan accent     */
-      --teal-dark: #00BFA0;
-      --surface: #15131E;          /* SUPERFÍCIE – dark card surface   */
+      /* ══════════════════════════════════════════
+         PALETA OFICIAL BÄCHE — 5 cores, sem exceção
+      ══════════════════════════════════════════ */
+      --violeta:    #7B35CE;   /* VIOLETA   – roxo vibrante da marca    */
+      --noite:      #0D0C14;   /* NOITE     – fundo principal           */
+      --nevoa:      #E8E6F5;   /* NÉVOA     – claro / seções light      */
+      --teal:       #00E0B8;   /* TEAL      – acento / CTA              */
+      --surface:    #15131E;   /* SUPERFÍCIE– cards e camadas elevadas  */
 
-      /* ── Legacy aliases (kept for compatibility) */
-      --purple: var(--violeta);
-      --purple-dark: #3D1A8A;
+      /* ── Derivados calculados (sem novas cores) */
+      --teal-dark:       #00BFA0;              /* teal escurecido para hover    */
+      --violeta-deep:    #5A1FA3;              /* violeta escuro para contraste */
+      --violeta-light:   #A865F0;              /* violeta claro para gradientes */
+      --violeta-soft:    rgba(123,53,206,0.08);
+      --teal-soft:       rgba(0,224,184,0.10);
+
+      /* ── Aliases semânticos → mapeados na paleta */
+      --purple:        var(--violeta);
+      --purple-dark:   var(--violeta-deep);
       --purple-deeper: var(--noite);
-      --purple-light: #9B55F0;
-      --purple-soft: rgba(123, 53, 206, 0.08);
-      --white: #ffffff;
-      --off-white: var(--nevoa);
-      --gold: #c9a84c;
-      --gold-light: #e8c96a;
-      --text-muted: rgba(255,255,255,0.62);  /* era 0.50 — passa WCAG AA em fundo noite */
-      --text-body: rgba(255,255,255,0.87);
+      --purple-light:  var(--violeta-light);
+      --purple-soft:   var(--violeta-soft);
+      --white:         #ffffff;
+      --off-white:     var(--nevoa);
+      /* ── DOURADO REMOVIDO — substituído por --teal */
+      --gold:          var(--teal);
+      --gold-light:    var(--teal-dark);
+
+      --text-muted: rgba(255,255,255,0.62);
+      --text-body:  rgba(255,255,255,0.87);
 
       /* ── Glass tokens ─────────────────────────── */
       --glass-bg: rgba(255,255,255,0.05);
@@ -195,9 +291,16 @@
       --glass-border-hover: rgba(255,255,255,0.18);
       --glass-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
 
-      --font: 'Internacional', 'Inter', 'Helvetica Neue', -apple-system, sans-serif;
+      --font:       'Internacional', 'Helvetica Neue', -apple-system, sans-serif;
+      --font-body:  'Satoshi', 'Helvetica Neue', -apple-system, sans-serif;
+
+      /* Typography tracking — Figma values converted to em */
+      --track-headline: -0.05em;   /* Internacional -50 */
+      --track-body:     -0.025em;  /* Satoshi -25       */
+
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);  /* spring — para micro-interações */
       --transition: 0.7s var(--ease-out);
     }
 
@@ -231,13 +334,45 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
+    /* ── Scroll offset — nav fixa de 88px não corta títulos ── */
+    section[id] { scroll-margin-top: 88px; }
+    @media (max-width: 768px) { section[id] { scroll-margin-top: 72px; } }
+
     body {
-      font-family: var(--font);
+      font-family: var(--font-body);
       background: var(--noite);
       color: var(--white);
       overflow-x: hidden;
-      cursor: none;
+      letter-spacing: var(--track-body);
     }
+
+    @media (pointer: fine) {
+      body { cursor: none; }
+    }
+
+    /* Internacional para todos os elementos de display */
+    h1, h2, h3, h4, h5, h6,
+    .hero-headline, .section-title, .garantia-title,
+    .contato-title, .plano-step-title, .founder-name,
+    .transf-item-title, .product-name, .attr-card-title,
+    .guia-cred-text strong, .pain-title, .formula-item-title,
+    .plano-result-text, .dor-quote, nav, .nav-links, .nav-cta,
+    .mobile-nav-link, .btn-primary, .btn-gold, .btn-ghost,
+    .section-label, .hero-eyebrow, .product-tag, .product-cta,
+    .stat-number, .garantia-badge-num, .footer-links-title {
+      font-family: var(--font);
+    }
+
+    /* Body copy usa Satoshi */
+    p, li, span, blockquote,
+    .hero-sub, .dor-sub, .guia-text, .plano-desc, .plano-step-desc,
+    .produtos-desc, .diff-quote, .garantia-text, .garantia-condition,
+    .founder-desc, .faq-answer-inner, .contato-sub, .contato-stakes,
+    .footer-tagline, .footer-copy, .footer-compliance,
+    .stat-label, .product-desc, .product-feature, .attr-card-desc,
+    .transf-item-desc, .transformacao-sub, .fundadores-sub,
+    .pain-desc, .guia-cred-text span, .contato-note,
+    .plano-step-item, .faq-question { font-family: var(--font-body); }
 
     ::selection {
       background: var(--purple-light);
@@ -296,7 +431,7 @@
       body { cursor: auto !important; }
 
       /* Parar todas as animações de entrada do hero */
-      .hero-eyebrow, .hero-logo-mark, .hero-headline,
+      .hero-eyebrow, .hero-headline,
       .hero-sub, .hero-actions, .hero-scroll-indicator {
         animation: none !important;
         opacity: 1 !important;
@@ -315,6 +450,19 @@
 
       /* Parar orbs e outros elementos flutuantes */
       .hero-orb { animation: none !important; }
+
+      /* Parar shimmer text — mostrar cor estática */
+      .section-label {
+        animation: none !important;
+        background: none !important;
+        -webkit-text-fill-color: unset !important;
+        color: var(--teal);
+      }
+      #plano .section-label,
+      #produtos .section-label,
+      #fundadores .section-label {
+        color: var(--violeta);
+      }
     }
 
     /* ========================================
@@ -385,7 +533,6 @@
       text-transform: uppercase;
       color: var(--white);
       transition: all 0.3s var(--ease-out);
-      cursor: none;
     }
 
     .nav-cta:hover {
@@ -414,16 +561,26 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background:
-        /* Silver-white orb – left side, like reference image */
-        radial-gradient(ellipse 55% 70% at 8% 50%, rgba(210, 205, 235, 0.18) 0%, transparent 60%),
-        /* Magenta-to-violet bloom – center-right */
-        radial-gradient(ellipse 75% 75% at 62% 48%, rgba(155, 60, 240, 0.80) 0%, rgba(123, 53, 206, 0.55) 35%, transparent 70%),
-        /* Deep violet edge – top-right */
-        radial-gradient(ellipse 40% 50% at 95% 10%, rgba(80, 30, 160, 0.6) 0%, transparent 55%),
-        /* Teal hint – bottom */
-        radial-gradient(ellipse 30% 25% at 50% 105%, rgba(0, 224, 184, 0.12) 0%, transparent 60%);
+      /* Imagem de fundo premium com overlay escuro para contraste de texto */
+      background-image: url('assets/hero-bg.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
       pointer-events: none;
+    }
+
+    /* Overlay multicamada sobre a imagem */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        /* Escurecer o centro para contraste do texto */
+        radial-gradient(ellipse 90% 100% at 50% 50%, rgba(8,8,16,0.72) 0%, rgba(8,8,16,0.45) 60%, transparent 100%),
+        /* Reforçar fundo escuro nas bordas */
+        linear-gradient(to bottom, rgba(8,8,16,0.5) 0%, rgba(8,8,16,0.2) 40%, rgba(8,8,16,0.75) 100%),
+        /* Teal sutil no canto inferior */
+        radial-gradient(ellipse 30% 25% at 50% 110%, rgba(0,224,184,0.10) 0%, transparent 60%);
     }
 
     .hero-grain {
@@ -439,7 +596,7 @@
       align-items: center;
       gap: 10px;
       padding: 8px 20px;
-      border: 1px solid rgba(201, 168, 76, 0.4);
+      border: 1px solid rgba(0,224,184,0.40);
       border-radius: 100px;
       font-size: 11px;
       font-weight: 600;
@@ -467,29 +624,14 @@
       50% { opacity: 0.5; transform: scale(1.3); }
     }
 
-    .hero-logo-mark {
-      position: relative;
-      z-index: 2;
-      margin-bottom: 56px;
-      opacity: 0;
-      transform: translateY(30px) scale(0.95);
-      animation: fadeUp 0.7s var(--ease-out) 0.2s forwards; /* era delay 0.5s */
-    }
-
-    .hero-logo-mark img {
-      width: 120px;
-      margin: 0 auto;
-      filter: drop-shadow(0 0 60px rgba(201, 168, 76, 0.2));
-    }
-
     .hero-headline {
       position: relative;
       z-index: 2;
-      font-size: clamp(36px, 5.5vw, 80px);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.025em;
-      max-width: 900px;
+      font-size: clamp(36px, 5.5vw, 84px);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: var(--track-headline);
+      max-width: 920px;
       margin: 0 auto 32px;
       opacity: 0;
       transform: translateY(40px);
@@ -498,7 +640,7 @@
 
     .hero-headline em {
       font-style: italic;
-      color: rgba(255,255,255,0.65);
+      color: var(--teal);
     }
 
     .hero-headline .highlight {
@@ -537,6 +679,11 @@
       animation: fadeUp 0.7s var(--ease-out) 0.42s forwards; /* era delay 0.9s */
     }
 
+    .hero-sub strong {
+      color: var(--teal);
+      font-weight: 700;
+    }
+
     .hero-actions {
       position: relative;
       z-index: 2;
@@ -563,7 +710,6 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       transition: all 0.3s var(--ease-out);
-      cursor: none;
       border: none;
     }
 
@@ -587,10 +733,13 @@
       font-weight: 500;
       letter-spacing: 0.04em;
       transition: all 0.3s var(--ease-out);
-      cursor: none;
+      border: 1.5px solid rgba(255,255,255,0.22);
     }
 
-    .btn-ghost:hover { color: var(--gold); }
+    .btn-ghost:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
     .btn-ghost:hover svg { transform: translateX(4px); }
     .btn-ghost svg { transition: transform 0.3s var(--ease-out); }
 
@@ -645,7 +794,7 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 1px;
-      background: linear-gradient(to right, transparent, rgba(201,168,76,0.4), transparent);
+      background: linear-gradient(to right, transparent, rgba(0,224,184,0.35), transparent);
     }
 
     #stats::after {
@@ -702,14 +851,14 @@
        SECTION SHARED
     ======================================== */
     .section-label {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 12px;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--teal);
       margin-bottom: 24px;
     }
 
@@ -718,19 +867,22 @@
       display: block;
       width: 24px;
       height: 1px;
-      background: var(--gold);
+      background: var(--teal);
     }
+
+    /* Hero logo mark — hidden globally */
+    .hero-logo-mark { display: none !important; }
 
     .section-title {
       font-size: clamp(32px, 4vw, 60px);
-      font-weight: 800;
-      letter-spacing: -0.025em;
-      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: var(--track-headline);
+      line-height: 1.05;
     }
 
     .section-title em {
       font-style: italic;
-      color: rgba(255,255,255,0.5);
+      color: var(--violeta-light);
     }
 
     /* Scroll reveal */
@@ -753,7 +905,7 @@
     ======================================== */
     #dor {
       background: var(--noite);
-      padding: 120px 48px;
+      padding: 80px 48px;
       position: relative;
       overflow: hidden;
     }
@@ -774,10 +926,11 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
-      align-items: start;
+      align-items: flex-start;
     }
 
     .dor-left {}
+    .dor-left .section-title { margin-top: 16px; margin-bottom: 0; }
 
     .dor-quote {
       font-size: clamp(20px, 2.5vw, 30px);
@@ -805,7 +958,7 @@
     }
 
     .dor-right {
-      padding-top: 60px;
+      padding-top: 24px;
     }
 
     .pain-list {
@@ -877,32 +1030,25 @@
     }
 
     .pain-badge.critica {
-      background: rgba(239, 68, 68, 0.15);
-      color: #f87171;
-      border: 1px solid rgba(239,68,68,0.2);
+      background: rgba(123,53,206,0.20);
+      color: var(--violeta-light);
+      border: 1px solid rgba(123,53,206,0.30);
     }
 
     .pain-badge.alta {
-      background: rgba(201, 168, 76, 0.12);
-      color: var(--gold-light);
-      border: 1px solid rgba(201,168,76,0.2);
+      background: rgba(0,224,184,0.10);
+      color: var(--teal);
+      border: 1px solid rgba(0,224,184,0.22);
     }
 
     /* ========================================
        FORMULA SECTION
     ======================================== */
-    #formula {
-      background: var(--white);
-      color: var(--purple-deeper);
-      padding: 120px 48px;
-      position: relative;
-      overflow: hidden;
-    }
 
-    #formula .section-label { color: var(--purple); }
-    #formula .section-label::before { background: var(--purple); }
-    #formula .section-title { color: var(--purple-deeper); }
-    #formula .section-title em { color: rgba(45, 20, 82, 0.4); }
+    #plano .section-label { color: var(--violeta); }
+    #plano .section-label::before { background: var(--violeta); }
+    #plano .section-title { color: var(--noite); }
+    #plano .section-title em { color: var(--violeta); }
 
     .formula-inner {
       max-width: 1100px;
@@ -920,7 +1066,7 @@
     .formula-desc {
       font-size: 17px;
       line-height: 1.75;
-      color: rgba(45, 20, 82, 0.65);
+      color: rgba(13,12,20,0.65);
       padding-top: 16px;
     }
 
@@ -945,7 +1091,7 @@
     .formula-item {
       padding: 48px 40px;
       position: relative;
-      border: 1px solid rgba(78, 37, 128, 0.1);
+      border: 1px solid rgba(123,53,206,0.12);
       margin-right: -1px;
       background: var(--white);
       transition: all 0.4s var(--ease-out);
@@ -965,7 +1111,7 @@
     .formula-item-num {
       font-size: 64px;
       font-weight: 900;
-      color: rgba(78, 37, 128, 0.06);
+      color: rgba(123,53,206,0.06);
       line-height: 1;
       margin-bottom: 16px;
       letter-spacing: -0.04em;
@@ -991,7 +1137,7 @@
 
     .formula-item-desc {
       font-size: 13px;
-      color: rgba(45, 20, 82, 0.68); /* era 0.55 — era ~3.8:1, agora passa AA */
+      color: rgba(13,12,20,0.68); /* era 0.55 — era ~3.8:1, agora passa AA */
       line-height: 1.65;
       transition: color 0.4s;
     }
@@ -1109,6 +1255,7 @@
 
     .comparison-table tr:hover td { background: rgba(255,255,255,0.025); }
     .comparison-table tr:hover td:last-child { background: rgba(123, 53, 206, 0.28); }
+    .comparison-table tr:hover td:last-child .check.yes { color: hsl(168, 100%, 72%); } /* teal-200 — contraste 5.2:1 */
 
     .check {
       display: inline-flex;
@@ -1213,7 +1360,7 @@
     #produtos .section-label { color: var(--purple); }
     #produtos .section-label::before { background: var(--purple); }
     #produtos .section-title { color: var(--purple-deeper); }
-    #produtos .section-title em { color: rgba(45, 20, 82, 0.4); }
+    #produtos .section-title em { color: var(--violeta); }
 
     .produtos-inner {
       max-width: 1200px;
@@ -1230,7 +1377,7 @@
     .produtos-desc {
       font-size: 16px;
       line-height: 1.7;
-      color: rgba(45, 20, 82, 0.6);
+      color: rgba(13,12,20,0.60);
       max-width: 420px;
     }
 
@@ -1248,12 +1395,11 @@
       display: flex;
       flex-direction: column;
       transition: all 0.4s var(--ease-out);
-      cursor: none;
     }
 
     .product-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 32px 80px rgba(78, 37, 128, 0.15);
+      box-shadow: 0 32px 80px rgba(123,53,206,0.15);
       z-index: 2;
     }
 
@@ -1273,7 +1419,7 @@
     .product-tag {
       display: inline-block;
       padding: 5px 12px;
-      background: rgba(78, 37, 128, 0.07);
+      background: rgba(123,53,206,0.08);
       border-radius: 100px;
       font-size: 10px;
       font-weight: 700;
@@ -1303,14 +1449,14 @@
 
     .product-price-label {
       font-size: 12px;
-      color: rgba(45, 20, 82, 0.45);
+      color: rgba(13,12,20,0.45);
       margin-bottom: 24px;
     }
 
     .product-desc {
       font-size: 13px;
       line-height: 1.7;
-      color: rgba(45, 20, 82, 0.6);
+      color: rgba(13,12,20,0.60);
       margin-bottom: 28px;
       flex-grow: 1;
     }
@@ -1322,9 +1468,9 @@
 
     .product-feature {
       font-size: 13px;
-      color: rgba(45, 20, 82, 0.7);
+      color: rgba(13,12,20,0.70);
       padding: 10px 0;
-      border-bottom: 1px solid rgba(78, 37, 128, 0.07);
+      border-bottom: 1px solid rgba(123,53,206,0.08);
       display: flex;
       align-items: center;
       gap: 10px;
@@ -1348,7 +1494,7 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       transition: all 0.3s var(--ease-out);
-      cursor: none;
+      cursor: pointer;
     }
 
     .product-cta.dark {
@@ -1392,7 +1538,7 @@
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(45, 20, 82, 0.4);
+      color: rgba(13,12,20,0.40);
       margin-bottom: 20px;
     }
 
@@ -1413,7 +1559,7 @@
     .product-price-strike {
       font-size: 13px;
       font-weight: 600;
-      color: rgba(45,20,82,0.3);
+      color: rgba(13,12,20,0.30);
       text-decoration: line-through;
       margin-bottom: 2px;
     }
@@ -1422,7 +1568,7 @@
       font-size: clamp(20px, 2.5vw, 26px);
       font-weight: 900;
       letter-spacing: -0.02em;
-      color: #2a9d4e;
+      color: var(--teal);
       line-height: 1;
       margin-bottom: 4px;
     }
@@ -1432,7 +1578,7 @@
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: #2a9d4e;
+      color: var(--teal);
       opacity: 0.8;
     }
 
@@ -1586,7 +1732,7 @@
 
     .fundadores-sub {
       font-size: 17px;
-      color: rgba(45, 20, 82, 0.6);
+      color: rgba(13,12,20,0.60);
       margin-top: 20px;
       max-width: 560px;
       margin-left: auto;
@@ -1631,7 +1777,7 @@
       margin-bottom: 28px;
       letter-spacing: -0.02em;
       overflow: hidden;
-      border: 3px solid rgba(78, 37, 128, 0.15);
+      border: 3px solid rgba(123,53,206,0.15);
       transition: border-color 0.4s;
       position: relative;
     }
@@ -1669,7 +1815,7 @@
     .founder-desc {
       font-size: 15px;
       line-height: 1.75;
-      color: rgba(45, 20, 82, 0.65);
+      color: rgba(13,12,20,0.65);
       margin-bottom: 28px;
       transition: color 0.4s;
     }
@@ -1682,7 +1828,7 @@
 
     .founder-skill {
       padding: 6px 14px;
-      border: 1px solid rgba(78, 37, 128, 0.2);
+      border: 1px solid rgba(123,53,206,0.20);
       border-radius: 100px;
       font-size: 11px;
       font-weight: 600;
@@ -1728,7 +1874,7 @@
 
     .contato-title em {
       font-style: italic;
-      color: rgba(255,255,255,0.45);
+      color: var(--violeta-light);
     }
 
     .contato-sub {
@@ -1752,21 +1898,20 @@
       align-items: center;
       gap: 10px;
       padding: 20px 48px;
-      background: var(--gold);
-      color: var(--purple-deeper);
+      background: var(--teal);
+      color: var(--noite);
       border-radius: 100px;
       font-size: 14px;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      transition: all 0.3s var(--ease-out);
-      cursor: none;
+      transition: all 0.35s var(--ease-out);
     }
 
     .btn-gold:hover {
-      background: var(--gold-light);
+      background: #1FFFD0;   /* teal +10% lightness */
       transform: translateY(-3px);
-      box-shadow: 0 20px 60px rgba(201, 168, 76, 0.3);
+      box-shadow: 0 20px 60px rgba(0,224,184,0.35);
     }
 
     .contato-note {
@@ -1780,7 +1925,7 @@
        FOOTER
     ======================================== */
     footer {
-      background: #080710;
+      background: var(--noite);
       padding: 80px 48px 40px;
       position: relative;
     }
@@ -1790,7 +1935,7 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 1px;
-      background: linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent);
+      background: linear-gradient(to right, transparent, rgba(0,224,184,0.25), transparent);
     }
 
     .footer-top {
@@ -1908,11 +2053,11 @@
       position: fixed;
       top: 0; left: 0;
       height: 2px;
-      background: linear-gradient(to right, var(--gold), var(--gold-light));
+      background: linear-gradient(to right, var(--violeta), var(--teal));
       z-index: 9999;
       width: 0%;
       transition: width 0.1s linear;
-      box-shadow: 0 0 8px rgba(201, 168, 76, 0.5);
+      box-shadow: 0 0 10px rgba(0,224,184,0.5);
     }
 
     /* ========================================
@@ -1936,7 +2081,7 @@
 
     .hero-orb-2 {
       width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(201, 168, 76, 0.3), transparent 70%);
+      background: radial-gradient(circle, rgba(0,224,184,0.25), transparent 70%);
       bottom: 5%; right: 5%;
       animation-delay: -3s;
       animation-duration: 10s;
@@ -1944,7 +2089,7 @@
 
     .hero-orb-3 {
       width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(78, 37, 128, 0.9), transparent 70%);
+      background: radial-gradient(circle, rgba(123,53,206,0.90), transparent 70%);
       top: 40%; right: 15%;
       animation-delay: -6s;
       animation-duration: 12s;
@@ -1967,9 +2112,9 @@
 
     .reveal.visible { opacity: 1; transform: translateY(0) scale(1); }
 
-    /* Section label shimmer */
+    /* Section label shimmer — paleta oficial */
     .section-label {
-      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+      background: linear-gradient(90deg, var(--teal) 0%, #60F5DC 50%, var(--teal) 100%);
       background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -1977,11 +2122,11 @@
       animation: shimmerText 3s linear infinite;
     }
 
-    /* Override for non-gold contexts */
-    #formula .section-label,
+    /* Seções claras (nevoa bg): label em violeta */
+    #plano .section-label,
     #produtos .section-label,
     #fundadores .section-label {
-      background: linear-gradient(90deg, var(--purple) 0%, var(--purple-light) 50%, var(--purple) 100%);
+      background: linear-gradient(90deg, var(--violeta) 0%, var(--violeta-light) 50%, var(--violeta) 100%);
       background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -1991,6 +2136,13 @@
 
     @keyframes shimmerText {
       to { background-position: 200% center; }
+    }
+
+    .guia-cred-num.guia-cred-num--text {
+      font-size: 22px !important;
+      padding-top: 8px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
     }
 
     /* ========================================
@@ -2028,12 +2180,688 @@
     /* ========================================
        RESPONSIVE
     ======================================== */
+    /* ========================================
+       PREMIUM TRANSITION SYSTEM (Headless UI-inspired)
+       — enter/leave states via data-state attribute
+    ======================================== */
+
+    /* Base: elementos com transição gerenciada */
+    [data-transition] {
+      transition-property: opacity, transform, filter;
+      transition-timing-function: var(--ease-out);
+    }
+
+    /* Estados de entrada */
+    [data-state="entering"] {
+      opacity: 0;
+      transform: translateY(16px);
+      filter: blur(2px);
+    }
+    [data-state="entered"] {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    /* Fade puro — sem transform */
+    [data-transition="fade"][data-state="entering"] {
+      opacity: 0;
+      transform: none;
+      filter: none;
+    }
+    [data-transition="fade"][data-state="entered"] {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+
+    /* Scale + fade — para cards */
+    [data-transition="scale"][data-state="entering"] {
+      opacity: 0;
+      transform: scale(0.95) translateY(8px);
+      filter: none;
+    }
+    [data-transition="scale"][data-state="entered"] {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      filter: none;
+    }
+
+    /* Slide from left — para credenciais laterais */
+    [data-transition="slide-left"][data-state="entering"] {
+      opacity: 0;
+      transform: translateX(-24px);
+      filter: none;
+    }
+    [data-transition="slide-left"][data-state="entered"] {
+      opacity: 1;
+      transform: translateX(0);
+      filter: none;
+    }
+
+    /* Spring pop — para badges, stats */
+    [data-transition="spring"][data-state="entering"] {
+      opacity: 0;
+      transform: scale(0.88);
+    }
+    [data-transition="spring"][data-state="entered"] {
+      opacity: 1;
+      transform: scale(1);
+      transition-timing-function: var(--ease-spring);
+    }
+
+    /* Duration variants */
+    [data-duration="fast"]   { transition-duration: 0.3s; }
+    [data-duration="normal"] { transition-duration: 0.6s; }
+    [data-duration="slow"]   { transition-duration: 0.9s; }
+    [data-duration="slower"] { transition-duration: 1.2s; }
+
+    /* Delay variants */
+    [data-delay="1"] { transition-delay: 0.08s; }
+    [data-delay="2"] { transition-delay: 0.16s; }
+    [data-delay="3"] { transition-delay: 0.24s; }
+    [data-delay="4"] { transition-delay: 0.32s; }
+    [data-delay="5"] { transition-delay: 0.40s; }
+    [data-delay="6"] { transition-delay: 0.48s; }
+
+    /* Hover lift premium — substitui transform: translateY nos cards */
+    .premium-lift {
+      transition: transform 0.45s var(--ease-out),
+                  box-shadow 0.45s var(--ease-out),
+                  border-color 0.35s;
+      will-change: transform;
+    }
+    .premium-lift:hover {
+      transform: translateY(-6px) scale(1.005);
+      box-shadow: 0 28px 72px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.06);
+    }
+
+    /* Focus ring premium */
+    .premium-focus:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--noite), 0 0 0 4px var(--teal);
+      border-radius: 8px;
+    }
+
+    /* ========================================
+       TEXT SPLIT ANIMATION
+    ======================================== */
+    .word-wrap {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+      line-height: inherit;
+      /* Acomoda overhang do glifo itálico à direita e descenders embaixo */
+      padding-right: 0.1em;
+      margin-right: -0.1em;
+    }
+    .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(110%);
+      animation: wordReveal 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes wordReveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .word { animation: none !important; opacity: 1 !important; transform: none !important; }
+    }
+
+    /* ========================================
+       CLIP-PATH REVEAL
+    ======================================== */
+    .reveal-clip {
+      clip-path: inset(100% 0 0 0);
+      transition: clip-path 1s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .reveal-clip.visible { clip-path: inset(0% 0 0 0); }
+    .reveal-clip.reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-clip.reveal-delay-2 { transition-delay: 0.2s; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal-clip { clip-path: none !important; transition: none !important; }
+    }
+
+    /* ========================================
+       CTA GLOW
+    ======================================== */
+    .btn-primary { position: relative; overflow: visible; }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 100px;
+      background: radial-gradient(ellipse, rgba(123,53,206,0.4) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: -1;
+      filter: blur(14px);
+      pointer-events: none;
+    }
+    .btn-primary:hover::after { opacity: 1; }
+
+    .btn-gold { position: relative; overflow: visible; }
+    .btn-gold::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 100px;
+      background: radial-gradient(ellipse, rgba(0,224,184,0.30) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: -1;
+      filter: blur(14px);
+      pointer-events: none;
+    }
+    .btn-gold:hover::after { opacity: 1; }
+    @keyframes ctaGlow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50%       { opacity: 0.55; transform: scale(1.06); }
+    }
+    .btn-gold.glow-pulse::after {
+      animation: ctaGlow 2.5s ease-in-out infinite;
+      opacity: 0.3;
+    }
+
+    /* ========================================
+       GRAIN CANVAS
+    ======================================== */
+    #grainCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      opacity: 0.055;
+      z-index: 1;
+    }
+
+    /* ========================================
+       GUIA SECTION
+    ======================================== */
+    #guia {
+      background: var(--surface);
+      padding: 120px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    #guia::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,224,184,0.06) 0%, transparent 70%);
+      top: -200px; right: -150px;
+      pointer-events: none;
+    }
+    .guia-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    /* Performance Branding duality visual */
+    .pb-duality {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 36px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+    .pb-duality-pill {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 14px 20px;
+      border-radius: 10px;
+      border: 1px solid;
+      min-width: 148px;
+    }
+    .pb-duality-pill--perf {
+      border-color: rgba(0,224,184,0.28);
+      background: rgba(0,224,184,0.05);
+    }
+    .pb-duality-pill--brand {
+      border-color: rgba(168,101,240,0.32);
+      background: rgba(168,101,240,0.06);
+    }
+    .pb-duality-label {
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .pb-duality-pill--perf .pb-duality-label { color: var(--teal); }
+    .pb-duality-pill--brand .pb-duality-label { color: var(--violeta-light); }
+    .pb-duality-sub {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: var(--text-muted);
+    }
+    .pb-duality-sep {
+      font-family: var(--font);
+      font-size: 22px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.20);
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .pb-duality-result {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 20px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+    }
+    .pb-duality-result-text {
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+    .pb-duality-result-text .arrow-down { color: var(--teal); }
+    .pb-duality-result-text .arrow-up   { color: var(--violeta-light); }
+
+    .guia-body { padding-top: 8px; }
+    .guia-text {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--text-body);
+      margin-top: 24px;
+    }
+    .guia-text strong { color: var(--white); }
+    .guia-text:first-child { margin-top: 32px; }
+    .guia-credentials {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-top: 60px;
+    }
+    .guia-cred {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      padding: 28px 32px;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.35s var(--ease-out);
+    }
+    .guia-cred:hover {
+      border-color: rgba(123,53,206,0.35);
+      background: var(--glass-bg-hover);
+      box-shadow: 0 8px 32px rgba(123,53,206,0.15);
+      transform: translateX(4px);
+    }
+    .guia-cred-num {
+      font-size: 44px;
+      font-weight: 900;
+      color: var(--violeta);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      min-width: 64px;
+    }
+    .guia-cred-num .guia-cred-sup {
+      font-size: 20px;
+      vertical-align: super;
+    }
+    .guia-cred-text strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+    .guia-cred-text span {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ========================================
+       PLANO SECTION (replaces formula)
+    ======================================== */
+    #plano {
+      background: var(--white);
+      color: var(--purple-deeper);
+      padding: 120px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    #plano .section-label {
+      background: linear-gradient(90deg, var(--purple) 0%, var(--purple-light) 50%, var(--purple) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmerText 3s linear infinite;
+    }
+    #plano .section-label::before { background: var(--purple); }
+    #plano .section-title { color: var(--purple-deeper); }
+    #plano .section-title em { color: var(--violeta); }
+    .plano-inner { max-width: 1100px; margin: 0 auto; }
+    .plano-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+      margin-bottom: 72px;
+    }
+    .plano-desc {
+      font-size: 17px;
+      line-height: 1.75;
+      color: rgba(13,12,20,0.65);
+      padding-top: 16px;
+    }
+    .plano-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .plano-step {
+      padding: 52px 40px;
+      border: 1px solid rgba(123,53,206,0.12);
+      margin-right: -1px;
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s var(--ease-out);
+    }
+    .plano-step:last-child { margin-right: 0; }
+    .plano-step:hover {
+      background: var(--purple);
+      z-index: 2;
+      box-shadow: 0 24px 64px rgba(123,53,206,0.25);
+    }
+    .plano-step:hover .plano-step-title { color: var(--white); }
+    .plano-step:hover .plano-step-desc  { color: rgba(255,255,255,0.7); }
+    .plano-step:hover .plano-step-num   { color: rgba(255,255,255,0.05); }
+    .plano-step:hover .plano-step-tag   { background: rgba(255,255,255,0.12); color: var(--gold); }
+    .plano-step:hover .plano-step-item  { color: rgba(255,255,255,0.65); border-color: rgba(255,255,255,0.08); }
+    .plano-step:hover .plano-step-item::before { color: var(--gold); }
+    .plano-step-num {
+      font-size: 72px;
+      font-weight: 900;
+      color: rgba(123,53,206,0.06);
+      line-height: 1;
+      margin-bottom: 16px;
+      letter-spacing: -0.04em;
+      transition: color 0.4s;
+    }
+    .plano-step-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(123,53,206,0.08);
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 20px;
+      transition: background 0.4s, color 0.4s;
+    }
+    .plano-step-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--purple-deeper);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      line-height: 1.2;
+      transition: color 0.4s;
+    }
+    .plano-step-desc {
+      font-size: 14px;
+      color: rgba(13,12,20,0.62);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      transition: color 0.4s;
+    }
+    .plano-step-items { list-style: none; }
+    .plano-step-item {
+      font-size: 13px;
+      color: rgba(13,12,20,0.60);
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(123,53,206,0.08);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      line-height: 1.4;
+      transition: color 0.4s, border-color 0.4s;
+    }
+    .plano-step-item::before {
+      content: '→';
+      color: var(--purple);
+      font-size: 11px;
+      flex-shrink: 0;
+      transition: color 0.4s;
+    }
+    .plano-result {
+      margin-top: 0;
+      padding: 48px 56px;
+      background: var(--purple);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .plano-result-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .plano-result-text {
+      font-size: clamp(20px, 2.2vw, 28px);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+    .plano-result-cta { flex-shrink: 0; }
+
+    /* ========================================
+       TRANSFORMACAO SECTION
+    ======================================== */
+    #transformacao {
+      background: var(--noite);
+      padding: 120px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    #transformacao::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 55% at 90% 55%, rgba(0,224,184,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 5% 45%, rgba(123,53,206,0.14) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .transformacao-inner { max-width: 1100px; margin: 0 auto; }
+    .transformacao-header { text-align: center; margin-bottom: 72px; }
+    .transformacao-sub {
+      font-size: 18px;
+      color: var(--text-body);
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 20px auto 0;
+    }
+    .transformacao-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      margin-bottom: 64px;
+    }
+    .transf-item {
+      padding: 52px 44px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s var(--ease-out);
+    }
+    .transf-item:hover {
+      background: var(--glass-bg-hover);
+      border-color: rgba(0,224,184,0.18);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 56px rgba(0,0,0,0.4);
+    }
+    .transf-item-num {
+      font-size: 72px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.025);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      position: absolute;
+      top: 12px; right: 20px;
+    }
+    .transf-item-icon {
+      font-size: 32px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .transf-item-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .transf-item-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+    .transf-item-desc em {
+      font-style: normal;
+      color: var(--text-body);
+    }
+    .transformacao-cta { text-align: center; }
+
+    /* ========================================
+       FAQ SECTION
+    ======================================== */
+    #faq {
+      background: var(--surface);
+      padding: 120px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    #faq::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(123,53,206,0.08) 0%, transparent 70%);
+      bottom: -200px; right: -100px;
+      pointer-events: none;
+    }
+    .faq-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .faq-header { margin-bottom: 64px; }
+    .faq-list { display: flex; flex-direction: column; }
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      overflow: hidden;
+    }
+    .faq-item:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 28px 0;
+      font-size: clamp(16px, 1.8vw, 18px);
+      font-weight: 700;
+      color: var(--white);
+      cursor: pointer;
+      transition: color 0.3s;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      letter-spacing: -0.01em;
+      line-height: 1.35;
+      font-family: var(--font);
+    }
+    .faq-question:hover { color: var(--gold); }
+    .faq-icon {
+      width: 28px; height: 28px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.35s var(--ease-out);
+      font-size: 16px;
+      color: var(--text-muted);
+      font-style: normal;
+    }
+    .faq-item.open .faq-icon {
+      background: var(--violeta);
+      border-color: var(--violeta);
+      color: var(--white);
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      height: 0;
+      overflow: hidden;
+      transition: height 0.45s var(--ease-out);
+    }
+    .faq-answer-inner {
+      font-size: 16px;
+      color: var(--text-body);
+      line-height: 1.8;
+      padding-bottom: 32px;
+    }
+    .faq-answer-inner strong { color: var(--white); }
+
+    /* ========================================
+       CONTATO STAKES
+    ======================================== */
+    .contato-stakes {
+      font-size: clamp(15px, 1.6vw, 17px);
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 660px;
+      margin: 0 auto 40px;
+      padding: 24px 32px;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(8px);
+    }
+    .contato-stakes strong { color: rgba(255,255,255,0.75); }
+
     @media (max-width: 1024px) {
       .stats-grid { grid-template-columns: repeat(3, 1fr); }
       .stat-item:nth-child(3)::before { display: none; }
-      .formula-equation { grid-template-columns: repeat(2, 1fr); }
+      .plano-steps { grid-template-columns: 1fr; }
+      .plano-step { margin-right: 0; }
       .produtos-grid { grid-template-columns: repeat(2, 1fr); }
       .attributes-grid { grid-template-columns: 1fr; }
+      .transformacao-grid { grid-template-columns: 1fr; }
     }
 
     /* ========================================
@@ -2157,7 +2985,7 @@
       #hero { padding: 100px 24px 72px; min-height: 100svh; }
       .hero-headline { font-size: clamp(28px, 7.5vw, 48px); }
       .hero-sub { font-size: 15px; margin-bottom: 40px; }
-      .hero-logo-mark img { width: 88px; }
+      .hero-logo-mark { display: none !important; }
       .hero-eyebrow { font-size: 10px; margin-bottom: 32px; }
 
       /* Stats */
@@ -2169,18 +2997,22 @@
       .stat-label { font-size: 10px; }
 
       /* Sections */
-      #dor, #formula, #diferenciais, #produtos, #garantia, #fundadores, #contato { padding: 72px 24px; }
+      #dor, #guia, #plano, #diferenciais, #transformacao, #produtos, #garantia, #fundadores, #faq, #contato { padding: 72px 24px; }
 
       /* Dor */
       .dor-inner { grid-template-columns: 1fr; gap: 40px; }
       .dor-right { padding-top: 0; }
       .dor-quote { font-size: clamp(18px, 5vw, 24px); }
 
-      /* Formula */
-      .formula-header { grid-template-columns: 1fr; gap: 24px; margin-bottom: 40px; }
-      .formula-equation { grid-template-columns: 1fr; gap: 2px; }
-      .formula-item { margin-right: 0; padding: 32px 28px; }
-      .formula-result { flex-direction: column; gap: 24px; text-align: center; padding: 36px 28px; }
+      /* Guia */
+      .guia-inner { grid-template-columns: 1fr; gap: 40px; }
+      .guia-credentials { padding-top: 0; }
+
+      /* Plano */
+      .plano-header { grid-template-columns: 1fr; gap: 24px; margin-bottom: 40px; }
+      .plano-steps { grid-template-columns: 1fr; }
+      .plano-step { margin-right: 0; padding: 36px 28px; }
+      .plano-result { flex-direction: column; gap: 24px; text-align: center; padding: 36px 28px; }
 
       /* Diferenciais */
       .diff-header { grid-template-columns: 1fr; gap: 24px; }
@@ -2224,7 +3056,7 @@
       .contato-actions .btn-gold { width: 100%; justify-content: center; }
 
       /* Sections tighter on small phones */
-      #dor, #formula, #diferenciais, #produtos, #garantia, #fundadores, #contato { padding: 60px 20px; }
+      #dor, #guia, #plano, #diferenciais, #transformacao, #produtos, #garantia, #fundadores, #faq, #contato { padding: 60px 20px; }
       #stats { padding: 32px 16px; }
 
       /* Produtos: show 1 column, reduce padding */
@@ -2291,6 +3123,603 @@
 
       .comparison-table tr:last-child td { border-bottom: none; }
     }
+
+    /* ╔══════════════════════════════════════════════════════════════════════╗
+       ║  BÄCHE — GRADIENT & MAGIC UI SYSTEM                                 ║
+       ║  Brand gradient: #9730EF → #9500E0 → #42006C → #3F0967             ║
+       ╚══════════════════════════════════════════════════════════════════════╝ */
+
+    /* ── Atualizar variáveis para o gradiente oficial ─────────────────────── */
+    :root {
+      --violeta:        #9730EF;
+      --violeta-deep:   #3F0967;
+      --violeta-light:  #B562F5;
+      --violeta-soft:   rgba(151,48,239,0.08);
+      --purple:         var(--violeta);
+      --purple-dark:    var(--violeta-deep);
+      --purple-light:   var(--violeta-light);
+      --purple-soft:    var(--violeta-soft);
+
+      /* Gradiente oficial da marca */
+      --gradient-brand:      linear-gradient(135deg, #9730EF 0%, #9500E0 33%, #42006C 67%, #3F0967 100%);
+      --gradient-brand-h:    linear-gradient(90deg, #9730EF 0%, #9500E0 33%, #42006C 67%, #3F0967 100%);
+      --gradient-brand-anim: linear-gradient(-45deg, #9730EF, #9500E0, #5D0B9F, #42006C, #3F0967, #7B15C9, #9730EF);
+    }
+
+    /* ── Keyframes ──────────────────────────────────────────────────────────── */
+    @keyframes gradientFlow {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes shimmerSweep {
+      0%, 25% { transform: translateX(-120%) skewX(-15deg); }
+      75%, 100% { transform: translateX(220%) skewX(-15deg); }
+    }
+    @keyframes ringGlow {
+      0%, 100% {
+        box-shadow:
+          0 0 0 0 rgba(151,48,239,0),
+          0 0 80px rgba(151,48,239,0.35),
+          inset 0 1px 0 rgba(255,255,255,0.12),
+          0 0 0 1px rgba(0,224,184,0.12);
+      }
+      50% {
+        box-shadow:
+          0 0 0 20px rgba(151,48,239,0),
+          0 0 130px rgba(151,48,239,0.60),
+          inset 0 1px 0 rgba(255,255,255,0.18),
+          0 0 0 2px rgba(0,224,184,0.28);
+      }
+    }
+    @property --beam-angle {
+      syntax: '<angle>';
+      inherits: false;
+      initial-value: 0deg;
+    }
+    @keyframes beamSpin { to { --beam-angle: 360deg; } }
+
+    /* ── Fundos roxos sólidos → gradiente da marca ───────────────────────── */
+
+    /* Barras de resultado — gradiente animado */
+    .formula-result, .plano-result {
+      background: var(--gradient-brand-anim) !important;
+      background-size: 300% 300% !important;
+      animation: gradientFlow 8s ease infinite !important;
+    }
+
+    /* Hover em items de metodologia (fundo claro) */
+    .formula-item:hover { background: var(--gradient-brand) !important; }
+    .plano-step:hover   { background: var(--gradient-brand) !important; }
+
+    /* Card de produto destaque */
+    .product-card.featured { background: var(--gradient-brand) !important; }
+
+    /* Hover de founder */
+    .founder-card:hover { background: var(--gradient-brand) !important; }
+
+    /* FAQ — ícone aberto */
+    .faq-item.open .faq-icon {
+      background: var(--gradient-brand) !important;
+      border-color: transparent !important;
+    }
+
+    /* Attr-card — overlay hover */
+    .attr-card::before {
+      background: linear-gradient(135deg, rgba(151,48,239,0.45) 0%, rgba(63,9,103,0.28) 65%, transparent 100%) !important;
+    }
+
+    /* Avatar dos fundadores */
+    .founder-avatar {
+      background: var(--gradient-brand) !important;
+    }
+
+    /* ── Gradient Text — texto roxo → gradiente da marca ───────────────── */
+
+    /* Gradiente vibrante para legibilidade em fundos escuros                */
+    /* Evita #42006C / #3F0967 que são invisíveis sobre --noite              */
+    :root {
+      --gradient-text-vibrant: linear-gradient(90deg, #9730EF 0%, #C060FF 38%, #B040FF 72%, #9730EF 100%);
+    }
+
+    /* em tags — fundo escuro: usa gradiente vibrante (sempre legível) */
+    .section-title em,
+    .contato-title em {
+      background: var(--gradient-text-vibrant);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-style: italic;
+      /* Padding para acomodar o glifo itálico além do box boundary */
+      padding-right: 0.12em;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+    /* Fundos claros (white/nevoa): gradiente completo da marca é legível */
+    #plano .section-title em,
+    #produtos .section-title em {
+      background: var(--gradient-brand-h) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+    }
+
+    /* Preço dos produtos (bg claro) */
+    .product-price {
+      background: var(--gradient-brand-h);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    /* Restaura no card destaque (bg gradiente escuro) */
+    .product-card.featured .product-price {
+      background: none;
+      -webkit-text-fill-color: var(--white);
+      color: var(--white);
+    }
+
+    /* Role do fundador */
+    .founder-role {
+      background: var(--gradient-brand-h);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    /* Restaura no hover (bg gradiente) */
+    .founder-card:hover .founder-role {
+      background: none;
+      -webkit-text-fill-color: var(--teal);
+      color: var(--teal);
+    }
+
+    /* Números de credencial (seção guia) */
+    .guia-cred-num {
+      background: var(--gradient-brand-h);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Ícones das colunas da fórmula */
+    .formula-item-icon {
+      background: var(--gradient-brand-h);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .formula-item:hover .formula-item-icon {
+      background: none;
+      -webkit-text-fill-color: var(--teal);
+      color: var(--teal);
+    }
+
+    /* Linha vertical da dor-quote */
+    .dor-quote::before {
+      background: var(--gradient-brand) !important;
+      width: 4px !important;
+    }
+
+    /* ── Section labels em seções claras — shimmer do gradiente ──────────── */
+    #plano .section-label,
+    #produtos .section-label,
+    #fundadores .section-label {
+      background: linear-gradient(90deg, #9730EF 0%, #B562F5 35%, #9500E0 65%, #9730EF 100%) !important;
+      background-size: 200% auto !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+      animation: shimmerText 3s linear infinite !important;
+    }
+    #plano .section-label::before,
+    #produtos .section-label::before,
+    #fundadores .section-label::before {
+      background: #9730EF !important;
+      -webkit-text-fill-color: unset;
+      flex-shrink: 0;
+    }
+
+    /* ── Magic UI — Shimmer Sweep no btn-primary ─────────────────────────── */
+    /* overflow:hidden para clipar o shimmer; glow via box-shadow (não clipado) */
+    .btn-primary { overflow: hidden !important; }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.28) 50%, transparent 100%);
+      transform: translateX(-120%) skewX(-15deg);
+      animation: shimmerSweep 4s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+    /* Glow via box-shadow (não é clipado por overflow:hidden) */
+    .btn-primary:hover {
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 40px rgba(151,48,239,0.40) !important;
+    }
+    /* Esconder o ::after glow (que seria clipado) */
+    .btn-primary::after { display: none !important; }
+
+    /* ── Magic UI — Border Beam nos transf-items (glass cards) ─────────── */
+    /* Technique: padding + mask-composite exclude para criar borda animada   */
+    .transf-item {
+      isolation: isolate;
+    }
+    .transf-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: conic-gradient(
+        from var(--beam-angle) at 50% 50%,
+        transparent 0deg,
+        #9730EF 55deg,
+        #9500E0 110deg,
+        #42006C 165deg,
+        transparent 210deg
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      z-index: 4;
+      opacity: 0;
+      transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1);
+      animation: beamSpin 5s linear infinite paused;
+      pointer-events: none;
+    }
+    .transf-item:hover::after {
+      opacity: 0.85;
+      animation-play-state: running;
+    }
+
+    /* Founder card — animated glow border ao invés de beam          */
+    /* (card vira gradiente no hover, beam seria redundante)          */
+    .founder-card:hover {
+      box-shadow:
+        0 0 0 1.5px rgba(151,48,239,0.5),
+        0 24px 64px rgba(151,48,239,0.30) !important;
+    }
+
+    /* ── Magic UI — Spotlight em cards (via JS atualiza --sx/--sy) ─────── */
+    .attr-card, .transf-item {
+      --sx: 50%; --sy: 50%;
+    }
+    .attr-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle 200px at var(--sx, 50%) var(--sy, 50%),
+        rgba(151,48,239,0.10),
+        transparent 65%
+      );
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+      z-index: 3;
+      border-radius: inherit;
+    }
+    .attr-card:hover::after { opacity: 1; }
+
+    .transf-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle 180px at var(--sx, 50%) var(--sy, 50%),
+        rgba(151,48,239,0.08),
+        transparent 60%
+      );
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+      z-index: 1;
+      border-radius: inherit;
+    }
+    .transf-item:hover::before { opacity: 1; }
+
+    /* ── Magic UI — Pulsing Ring no badge da garantia ────────────────────── */
+    .garantia-badge {
+      animation: ringGlow 3.5s ease-in-out infinite !important;
+    }
+
+    /* ── Scroll progress → gradiente da marca ───────────────────────────── */
+    #scroll-progress {
+      background: var(--gradient-brand-h) !important;
+      box-shadow: 0 0 14px rgba(151,48,239,0.55) !important;
+    }
+
+    /* ── Glows e sombras atualizados ────────────────────────────────────── */
+    .plano-step:hover {
+      box-shadow: 0 24px 64px rgba(151,48,239,0.32) !important;
+    }
+    .product-card:hover {
+      box-shadow: 0 32px 80px rgba(151,48,239,0.20) !important;
+    }
+    .attr-card:hover {
+      box-shadow:
+        0 16px 48px rgba(0,0,0,0.45),
+        0 0 0 1px rgba(151,48,239,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.1) !important;
+    }
+    .guia-cred:hover {
+      border-color: rgba(151,48,239,0.42) !important;
+      box-shadow: 0 8px 32px rgba(151,48,239,0.18) !important;
+    }
+    .pain-item:hover {
+      border-color: rgba(151,48,239,0.42) !important;
+      box-shadow: 0 4px 24px rgba(151,48,239,0.18) !important;
+    }
+
+    /* ── Pain badge crítica → cores do gradiente ────────────────────────── */
+    .pain-badge.critica {
+      background: rgba(151,48,239,0.18) !important;
+      color: var(--violeta-light) !important;
+      border: 1px solid rgba(151,48,239,0.35) !important;
+    }
+
+    /* ── Comparison table — tint do gradiente ───────────────────────────── */
+    .comparison-table td:last-child { background: rgba(151,48,239,0.18) !important; }
+    .comparison-table tr:hover td:last-child { background: rgba(151,48,239,0.28) !important; }
+
+    /* ── Ambient orbs — cores do gradiente ─────────────────────────────── */
+    .hero-orb-1 {
+      background: radial-gradient(circle, rgba(151,48,239,0.85), rgba(63,9,103,0.3) 55%, transparent 70%) !important;
+    }
+    .hero-orb-3 {
+      background: radial-gradient(circle, rgba(149,0,224,0.90), rgba(66,0,108,0.4) 55%, transparent 70%) !important;
+    }
+    #dor::before {
+      background: radial-gradient(circle, rgba(151,48,239,0.18) 0%, transparent 70%) !important;
+    }
+    #faq::before {
+      background: radial-gradient(circle, rgba(151,48,239,0.10) 0%, transparent 70%) !important;
+    }
+    #garantia::before {
+      background:
+        radial-gradient(ellipse 80% 80% at 55% 50%, rgba(151,48,239,0.65) 0%, rgba(63,9,103,0.4) 45%, transparent 70%),
+        radial-gradient(ellipse 35% 40% at 5% 45%, rgba(210,205,235,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 25% 25% at 95% 85%, rgba(0,224,184,0.09) 0%, transparent 50%) !important;
+    }
+    #contato::before {
+      background:
+        radial-gradient(ellipse 70% 90% at 50% 55%, rgba(151,48,239,0.60) 0%, rgba(63,9,103,0.35) 45%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 15% 20%, rgba(210,205,235,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 30% 30% at 85% 80%, rgba(0,224,184,0.06) 0%, transparent 50%) !important;
+    }
+
+    /* ── Shadcn/ui — easing refinado em todos os cards ─────────────────── */
+    .attr-card, .founder-card, .product-card, .transf-item,
+    .pain-item, .guia-cred, .plano-step, .formula-item {
+      transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    /* ── Reduced motion — degradação graciosa ───────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .formula-result, .plano-result {
+        animation: none !important;
+        background: var(--gradient-brand) !important;
+        background-size: auto !important;
+      }
+      .btn-primary::before { animation: none !important; opacity: 0 !important; }
+      .garantia-badge       { animation: none !important; }
+      .founder-card::after  { animation: none !important; }
+      #scroll-progress      { box-shadow: none !important; }
+    }
+
+    /* ╔══════════════════════════════════════════════════════════════════════╗
+       ║  MODAL — FORMULÁRIO DIAGNÓSTICO GRATUITO                           ║
+       ╚══════════════════════════════════════════════════════════════════════╝ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(13,12,20,0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s var(--ease-out);
+    }
+    .modal-overlay.is-open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal-card {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 20px;
+      padding: 52px 48px 44px;
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+      isolation: isolate;
+      transform: translateY(24px) scale(0.97);
+      transition: transform 0.5s var(--ease-out);
+      box-shadow:
+        0 40px 100px rgba(0,0,0,0.65),
+        0 0 60px rgba(151,48,239,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.07);
+    }
+    .modal-overlay.is-open .modal-card { transform: translateY(0) scale(1); }
+
+    /* Beam girando na borda do modal */
+    .modal-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: conic-gradient(
+        from var(--beam-angle) at 50% 50%,
+        transparent 0deg, #9730EF 60deg,
+        #9500E0 120deg, transparent 180deg
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: beamSpin 5s linear infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px; right: 18px;
+      width: 34px; height: 34px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.45);
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex; align-items: center; justify-content: center;
+      line-height: 1;
+    }
+    .modal-close:hover {
+      background: rgba(255,255,255,0.10);
+      color: var(--white);
+      border-color: rgba(255,255,255,0.28);
+      transform: rotate(90deg);
+    }
+
+    .modal-header { text-align: center; margin-bottom: 32px; }
+    .modal-header .section-label { justify-content: center; margin-bottom: 12px; }
+    .modal-title {
+      font-family: var(--font);
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 900;
+      letter-spacing: var(--track-headline);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .modal-title em {
+      background: var(--gradient-text-vibrant);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-style: italic;
+    }
+    .modal-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+    .form-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      font-family: var(--font);
+    }
+    .form-input {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--white);
+      width: 100%;
+      transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+      outline: none;
+    }
+    .form-input::placeholder { color: rgba(255,255,255,0.22); }
+    .form-input:focus {
+      border-color: rgba(151,48,239,0.55);
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 0 0 3px rgba(151,48,239,0.14);
+    }
+    .form-input.is-invalid {
+      border-color: rgba(239,68,68,0.55);
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.09);
+    }
+    .form-error-msg {
+      font-size: 11px;
+      color: #f87171;
+      display: none;
+    }
+    .form-input.is-invalid + .form-error-msg { display: block; }
+
+    .modal-submit {
+      width: 100%;
+      margin-top: 8px;
+      border: none;
+      justify-content: center;
+      min-height: 52px;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 16px 32px;
+    }
+    .modal-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+    .modal-privacy {
+      font-size: 11px;
+      color: rgba(255,255,255,0.28);
+      text-align: center;
+      margin-top: 14px;
+      line-height: 1.55;
+    }
+
+    /* Estado de sucesso */
+    .modal-success { text-align: center; padding: 24px 0; }
+    .modal-success-icon {
+      width: 68px; height: 68px;
+      border-radius: 50%;
+      background: rgba(0,224,184,0.08);
+      border: 1.5px solid rgba(0,224,184,0.35);
+      color: var(--teal);
+      font-size: 30px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      animation: fadeUp 0.5s var(--ease-out) forwards;
+    }
+    .modal-success-title {
+      font-family: var(--font);
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: var(--track-headline);
+      margin-bottom: 12px;
+    }
+    .modal-success-text { color: var(--text-body); line-height: 1.75; font-size: 15px; }
+    .modal-success-text strong { color: var(--white); }
+
+    /* Estado de erro */
+    .modal-error-box {
+      margin-top: 16px;
+      padding: 14px 18px;
+      background: rgba(239,68,68,0.07);
+      border: 1px solid rgba(239,68,68,0.20);
+      border-radius: 10px;
+      color: #f87171;
+      font-size: 13px;
+      line-height: 1.6;
+      display: none;
+    }
+    .modal-error-box a { color: var(--teal); text-decoration: underline; }
+
+    @media (max-width: 540px) {
+      .modal-card { padding: 40px 24px 32px; }
+      .modal-title { font-size: 22px; }
+    }
+
+    /* Botões CTA que eram <a> — reset para look consistente */
+    button.btn-primary,
+    button.btn-gold,
+    button.nav-cta {
+      font-family: var(--font);
+      appearance: none;
+    }
   </style>
 </head>
 <body>
@@ -2311,12 +3740,12 @@
       <img src="assets/logo-white.svg" alt="Bäche" class="nav-logo-v" />
     </a>
     <ul class="nav-links">
-      <li><a href="#formula">A Fórmula</a></li>
+      <li><a href="#plano">A Metodologia</a></li>
       <li><a href="#produtos">Serviços</a></li>
       <li><a href="#garantia">Garantia</a></li>
       <li><a href="#fundadores">Time</a></li>
     </ul>
-    <a href="#contato" class="nav-cta" aria-label="Agendar Diagnóstico Gratuito">
+    <a href="#contato" class="nav-cta" data-modal="diagnostico" aria-label="Agendar Diagnóstico Gratuito">
       Diagnóstico Gratuito
     </a>
     <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -2328,12 +3757,12 @@
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <div class="mobile-menu-inner">
       <nav class="mobile-nav" aria-label="Menu mobile">
-        <a href="#formula" class="mobile-nav-link">A Fórmula</a>
+        <a href="#plano" class="mobile-nav-link">A Metodologia</a>
         <a href="#produtos" class="mobile-nav-link">Serviços</a>
         <a href="#garantia" class="mobile-nav-link">Garantia</a>
         <a href="#fundadores" class="mobile-nav-link">Time</a>
       </nav>
-      <a href="#contato" class="btn-gold mobile-menu-cta">
+      <a href="#contato" class="btn-gold mobile-menu-cta" data-modal="diagnostico">
         Diagnóstico Gratuito
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2349,39 +3778,32 @@
   ======================================== -->
   <section id="hero" aria-label="Início">
     <div class="hero-bg"></div>
-    <div class="hero-grain"></div>
+    <canvas id="grainCanvas" aria-hidden="true"></canvas>
     <div class="hero-orb hero-orb-1"></div>
     <div class="hero-orb hero-orb-2"></div>
     <div class="hero-orb hero-orb-3"></div>
 
     <div class="hero-content-wrap" id="heroContent">
       <div class="hero-eyebrow">
-        Para especialistas que recusam ser tratados como commodity
-      </div>
-
-      <div class="hero-logo-mark">
-        <img src="assets/logo-white.svg" alt="Bäche" />
+        Primeiro estúdio de Performance Branding para Saúde do Brasil
       </div>
 
       <h1 class="hero-headline">
-        Transformamos especialistas em marcas que o paciente escolhe
-        <em>antes de</em> <span class="highlight">perguntar o plano</span>
+        Você passou anos construindo <span class="highlight">excelência clínica</span>.<br/>O paciente ainda <em>te compara por preço</em>.
       </h1>
 
       <p class="hero-sub">
-        Estratégia de marca · direção cênica profissional · tráfego de alta conversão · treinamento comercial.
-        Desenvolvido para a saúde e 100% em conformidade com o CFM e CRM.
-        Para especialistas que já têm excelência clínica — e querem a agenda que ela merece.
+        A Bäche combina performance de curto prazo com branding de longo prazo — para médicos que querem mais pacientes particulares <strong>agora</strong> e um CAC menor a cada mês.
       </p>
 
       <div class="hero-actions">
-        <a href="#contato" class="btn-primary">
-          Agende seu Diagnóstico
+        <a href="#contato" class="btn-primary" data-modal="diagnostico">
+          Quero meu Diagnóstico Gratuito
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
-        <a href="#formula" class="btn-ghost">
+        <a href="#plano" class="btn-ghost">
           Como funciona
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2401,23 +3823,23 @@
   ======================================== -->
   <section id="stats">
     <div class="stats-grid">
-      <div class="stat-item reveal">
-        <div class="stat-number">
+      <div class="stat-item" data-transition="spring" data-state="entering" data-duration="normal" aria-label="291.362 clínicas disputando o mesmo paciente particular">
+        <div class="stat-number" aria-hidden="true">
           <span class="counter" data-target="291362" data-format="number">0</span>
         </div>
-        <div class="stat-label">Clínicas disputando<br/>o mesmo paciente particular</div>
+        <div class="stat-label" aria-hidden="true">Clínicas disputando<br/>o mesmo paciente particular</div>
       </div>
-      <div class="stat-item reveal reveal-delay-1">
-        <div class="stat-number">
+      <div class="stat-item" data-transition="spring" data-state="entering" data-duration="normal" data-delay="2" aria-label="41% das clínicas sem nenhuma estratégia de diferenciação">
+        <div class="stat-number" aria-hidden="true">
           <span class="counter" data-target="41" data-format="percent">0</span><span class="stat-accent">%</span>
         </div>
-        <div class="stat-label">Sem nenhuma estratégia<br/>de diferenciação</div>
+        <div class="stat-label" aria-hidden="true">Sem nenhuma estratégia<br/>de diferenciação</div>
       </div>
-      <div class="stat-item reveal reveal-delay-2">
-        <div class="stat-number">
+      <div class="stat-item" data-transition="spring" data-state="entering" data-duration="normal" data-delay="4" aria-label="Apenas 25% com marketing que gera pacientes de verdade">
+        <div class="stat-number" aria-hidden="true">
           <span class="counter" data-target="25" data-format="percent">0</span><span class="stat-accent">%</span>
         </div>
-        <div class="stat-label">Com marketing que<br/>gera pacientes de verdade</div>
+        <div class="stat-label" aria-hidden="true">Com marketing que<br/>gera pacientes de verdade</div>
       </div>
     </div>
   </section>
@@ -2428,57 +3850,55 @@
   <section id="dor">
     <div class="dor-inner">
       <div class="dor-left">
-        <div class="reveal">
-          <div class="section-label">O problema real</div>
-          <h2 class="section-title">Você é referência<br/>na clínica. <em>O mercado</em><br/>ainda não sabe.</h2>
-        </div>
-        <blockquote class="dor-quote reveal reveal-delay-1">
-          "Você investiu 15, 20 anos construindo excelência. Especializações, residências, casos complexos resolvidos. Mas quando o paciente abre o Instagram, não consegue diferenciar você de alguém que abriu o consultório semana passada."
+        <div class="section-label reveal">Por que o marketing médico não funciona</div>
+        <h2 class="section-title">Você investe em ads.<br/><em>O CAC não para</em><br/>de subir.</h2>
+        <blockquote class="dor-quote reveal reveal-delay-2">
+          "Performance sem branding é leilão de preço toda semana. Branding sem performance demora demais para converter. A maioria dos médicos escolhe um dos dois — e sofre os dois problemas."
         </blockquote>
-        <p class="dor-sub reveal reveal-delay-2">
-          O problema não é falta de conteúdo. É que ninguém ensinou você a <strong>comunicar sua autoridade</strong> com a mesma qualidade com que a construiu. Agência faz post — não faz presença de referência.
+        <p class="dor-sub reveal reveal-delay-3">
+          O paciente que chega via anúncio sem conhecer sua marca compara preço, não valoriza o especialista. O que chega via branding sem campanha ativa demora meses. A Bäche une os dois — e entrega <strong>resultado mensurável desde o primeiro trimestre</strong>.
         </p>
       </div>
 
       <div class="dor-right">
-        <ul class="pain-list">
-          <li class="pain-item reveal reveal-delay-1">
+        <ul class="pain-list stagger-group">
+          <li class="pain-item stagger-child reveal reveal-delay-1">
             <span class="pain-number">01</span>
             <div class="pain-content">
-              <div class="pain-title">"Aceita convênio?" — a pergunta que dói</div>
-              <div class="pain-desc">O paciente chega pela reputação, mas a primeira frase é sobre preço ou plano. Sua autoridade ainda não chegou antes de você.</div>
+              <div class="pain-title">CAC alto e crescente — cada paciente novo custa mais do que deveria</div>
+              <div class="pain-desc">Sem marca construída, você paga o leilão de atenção toda semana. O anúncio converte hoje, mas o próximo mês começa do zero — com CPL ainda mais alto.</div>
             </div>
             <span class="pain-badge critica">Crítica</span>
           </li>
-          <li class="pain-item reveal reveal-delay-2">
+          <li class="pain-item stagger-child reveal reveal-delay-2">
             <span class="pain-number">02</span>
             <div class="pain-content">
-              <div class="pain-title">Medo de violar as normas do CFM</div>
-              <div class="pain-desc">Insegurança sobre o que pode ou não postar trava sua presença digital. Você se omite — e o concorrente menos qualificado ocupa o espaço.</div>
+              <div class="pain-title">"Aceita convênio?" — o preço chega antes da sua autoridade</div>
+              <div class="pain-desc">O paciente te encontra via anúncio, mas a primeira pergunta é sobre valor. Sem branding construído, você é mais um resultado de busca — não uma referência.</div>
             </div>
             <span class="pain-badge critica">Crítica</span>
           </li>
-          <li class="pain-item reveal reveal-delay-3">
+          <li class="pain-item stagger-child reveal reveal-delay-3">
             <span class="pain-number">03</span>
             <div class="pain-content">
-              <div class="pain-title">Agenda que depende de indicação</div>
-              <div class="pain-desc">Cheia hoje, vazia amanhã. Sem um sistema de autoridade digital, você depende de outros te recomendarem para crescer.</div>
+              <div class="pain-title">LTV baixo — paciente que veio por preço vai embora pelo preço</div>
+              <div class="pain-desc">Sem percepção de marca, o paciente não indica, não volta com urgência e compara você com qualquer alternativa mais barata. O ciclo não fecha.</div>
             </div>
             <span class="pain-badge critica">Crítica</span>
           </li>
-          <li class="pain-item reveal reveal-delay-4">
+          <li class="pain-item stagger-child reveal reveal-delay-4">
             <span class="pain-number">04</span>
             <div class="pain-content">
-              <div class="pain-title">Agência que entrega post, não paciente</div>
-              <div class="pain-desc">Relatório cheio de likes e impressões. Zero pacientes particulares convertidos. E você continua pagando o retainer todo mês.</div>
+              <div class="pain-title">Branding sem performance — meses investindo e sem paciente convertido</div>
+              <div class="pain-desc">Conteúdo, presença, identidade visual — tudo bonito, nenhum paciente novo. Branding sem sistema de aquisição ativa é vaidade com CNPJ.</div>
             </div>
             <span class="pain-badge alta">Alta</span>
           </li>
-          <li class="pain-item reveal reveal-delay-5">
+          <li class="pain-item stagger-child reveal reveal-delay-5">
             <span class="pain-number">05</span>
             <div class="pain-content">
-              <div class="pain-title">Equipe que não sabe vender consulta premium</div>
-              <div class="pain-desc">A secretária perde o paciente na primeira objeção de preço. Não é culpa dela — ninguém nunca a treinou para isso.</div>
+              <div class="pain-title">Equipe que informa preço, não que converte consulta premium</div>
+              <div class="pain-desc">A primeira objeção de preço encerra a negociação. Não é culpa da equipe — ninguém a treinou para vender o valor de uma marca de autoridade.</div>
             </div>
             <span class="pain-badge alta">Alta</span>
           </li>
@@ -2488,55 +3908,136 @@
   </section>
 
   <!-- ========================================
-       FORMULA
+       GUIA — SB7: The Guide
   ======================================== -->
-  <section id="formula">
-    <div class="formula-inner">
-      <div class="formula-header">
+  <section id="guia" aria-label="Por que a Bäche é diferente">
+    <div class="guia-inner">
+      <div class="guia-left">
         <div class="reveal">
-          <div class="section-label">A Fórmula Bäche</div>
-          <h2 class="section-title">Autoridade<br/>é uma <em>equação</em></h2>
+          <div class="section-label">Por que a Bäche é diferente</div>
+          <h2 class="section-title">Mais ads não resolvem.<br/>Mais posts não resolvem.<br/><em>Performance Branding resolve.</em></h2>
         </div>
-        <p class="formula-desc reveal reveal-delay-2">
-          Agências vendem posts. Consultorias vendem planilhas. A Bäche coloca uma diretora cênica e um estrategista de marca <strong>juntos com o especialista</strong> — construindo uma presença que não pode ser copiada, dentro de cada norma do CFM e CRM.
+        <div class="pb-duality reveal">
+          <div class="pb-duality-pill pb-duality-pill--perf">
+            <span class="pb-duality-label">Performance</span>
+            <span class="pb-duality-sub">Curto Prazo · Ads · ROI imediato</span>
+          </div>
+          <span class="pb-duality-sep">+</span>
+          <div class="pb-duality-pill pb-duality-pill--brand">
+            <span class="pb-duality-label">Branding</span>
+            <span class="pb-duality-sub">Longo Prazo · Autoridade · LTV</span>
+          </div>
+          <span class="pb-duality-sep">=</span>
+          <div class="pb-duality-result">
+            <span class="pb-duality-result-text">CAC<span class="arrow-down">↓</span> &nbsp;LTV<span class="arrow-up">↑</span></span>
+          </div>
+        </div>
+
+        <div class="guia-body">
+          <p class="guia-text reveal reveal-delay-1">
+            Entendemos o que você sente quando investe em marketing e não vê resultado. Quando posta conteúdo e nenhum paciente particular chega. Quando a agência troca de gestor e recomeça do zero — de novo.
+          </p>
+          <p class="guia-text reveal reveal-delay-2">
+            A Bäche não é mais uma agência. Somos um estúdio de <strong>Performance Branding</strong> — combinamos estratégia de marca, produção de autoridade e gestão de tráfego para reduzir seu CAC, aumentar o LTV da sua carteira e converter presença em pacientes particulares, com ROI mensurável.
+          </p>
+          <p class="guia-text reveal reveal-delay-3">
+            Não vendemos posts. Vendemos <strong>presença que converte paciente particular</strong> — com ROI mensurável e dentro das normas do CFM e CRM.
+          </p>
+        </div>
+      </div>
+
+      <div class="guia-right">
+        <div class="guia-credentials stagger-group">
+          <div class="guia-cred stagger-child reveal premium-lift" data-transition="slide-left" data-state="entering" data-duration="slow">
+            <div class="guia-cred-num">50<span class="guia-cred-sup">+</span></div>
+            <div class="guia-cred-text">
+              <strong>Marcas de alto ticket escaladas</strong>
+              <span>8+ anos posicionando especialistas médicos que hoje lideram seus mercados</span>
+            </div>
+          </div>
+          <div class="guia-cred stagger-child reveal premium-lift reveal-delay-1" data-transition="slide-left" data-state="entering" data-duration="slow" data-delay="2">
+            <div class="guia-cred-num guia-cred-num--text">Único</div>
+            <div class="guia-cred-text">
+              <strong>Único estúdio de Performance Branding para saúde</strong>
+              <span>Metodologia exclusiva que transforma especialistas em comunicadores autênticos — sem roteiro engessado, sem perder a essência</span>
+            </div>
+          </div>
+          <div class="guia-cred stagger-child reveal premium-lift reveal-delay-2" data-transition="slide-left" data-state="entering" data-duration="slow" data-delay="4">
+            <div class="guia-cred-num">90</div>
+            <div class="guia-cred-text">
+              <strong>Dias de garantia condicional de resultado</strong>
+              <span>Resultado mensurável em 90 dias ou trabalhamos de graça. Nenhum concorrente oferece isso.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       PLANO — SB7: The Plan
+  ======================================== -->
+  <section id="plano" aria-label="O processo Bäche">
+    <div class="plano-inner">
+      <div class="plano-header">
+        <div class="reveal">
+          <div class="section-label">O processo Bäche</div>
+          <h2 class="section-title">Três passos.<br/><em>Resultado</em> mensurável.</h2>
+        </div>
+        <p class="plano-desc reveal reveal-delay-2">
+          Nenhuma implementação antes do diagnóstico. Nenhum contrato antes de você entender exatamente o que vai mudar — e como medir cada resultado.
         </p>
       </div>
 
-      <div class="formula-equation">
-        <div class="formula-item reveal">
-          <div class="formula-item-num">01</div>
-          <div class="formula-item-icon">◈</div>
-          <div class="formula-item-title">Estratégia de Marca</div>
-          <div class="formula-item-desc">Posicionamento + funil + métricas. Construímos o mapa antes de sair andando.</div>
+      <div class="plano-steps stagger-group">
+        <div class="plano-step stagger-child reveal">
+          <div class="plano-step-num">01</div>
+          <div class="plano-step-tag">Gratuito · 2h · via call</div>
+          <div class="plano-step-title">Diagnóstico Bäche</div>
+          <p class="plano-step-desc">Em 2 horas auditamos sua presença atual e posicionamento. Você sai com um plano de ação concreto — independente de seguir conosco.</p>
+          <ul class="plano-step-items">
+            <li class="plano-step-item">Auditoria completa de presença digital</li>
+            <li class="plano-step-item">Diagnóstico de posicionamento</li>
+            <li class="plano-step-item">Brand diagnosis — o que te torna único</li>
+            <li class="plano-step-item">Plano de ação 30 dias</li>
+          </ul>
         </div>
-        <div class="formula-item reveal reveal-delay-1">
-          <div class="formula-item-num">02</div>
-          <div class="formula-item-icon">◎</div>
-          <div class="formula-item-title">Direção Cênica</div>
-          <div class="formula-item-desc">Presença + voz + performance. Nossa diretora extrai 30 dias de conteúdo em 1 dia de gravação. 100% CFM-compliant.</div>
+
+        <div class="plano-step stagger-child reveal reveal-delay-1">
+          <div class="plano-step-num">02</div>
+          <div class="plano-step-tag">Sprint 30 dias ou Retainer mensal</div>
+          <div class="plano-step-title">Construção Dirigida</div>
+          <p class="plano-step-desc">Estratégia de marca + produção de autoridade + tráfego. Cada elemento integrado para converter presença em pacientes particulares e resultado mensurável.</p>
+          <ul class="plano-step-items">
+            <li class="plano-step-item">Brand audit + arquétipo + narrativa</li>
+            <li class="plano-step-item">1 dia de gravação = 30 dias de conteúdo</li>
+            <li class="plano-step-item">Tráfego com criativos dirigidos</li>
+            <li class="plano-step-item">Treinamento comercial da equipe</li>
+          </ul>
         </div>
-        <div class="formula-item reveal reveal-delay-2">
-          <div class="formula-item-num">03</div>
-          <div class="formula-item-icon">◉</div>
-          <div class="formula-item-title">Gestão de Tráfego</div>
-          <div class="formula-item-desc">Ads com criativos dirigidos. ROAS mensurável, não esperança.</div>
-        </div>
-        <div class="formula-item reveal reveal-delay-3">
-          <div class="formula-item-num">04</div>
-          <div class="formula-item-icon">◐</div>
-          <div class="formula-item-title">Treinamento Comercial</div>
-          <div class="formula-item-desc">Equipe que converte leads em pacientes. Da secretária ao médico.</div>
+
+        <div class="plano-step stagger-child reveal reveal-delay-2">
+          <div class="plano-step-num">03</div>
+          <div class="plano-step-tag">Dashboard em tempo real</div>
+          <div class="plano-step-title">ROI Mensurável</div>
+          <p class="plano-step-desc">Pacientes por canal, ticket médio, ROAS, taxa de conversão. Não likes — dados de negócio. Com garantia condicional de 90 dias.</p>
+          <ul class="plano-step-items">
+            <li class="plano-step-item">Dashboard de pacientes por canal</li>
+            <li class="plano-step-item">ROAS e CPL real</li>
+            <li class="plano-step-item">Relatório quinzenal com transparência total</li>
+            <li class="plano-step-item">Garantia ativada nos primeiros 90 dias</li>
+          </ul>
         </div>
       </div>
 
-      <div class="formula-result reveal">
+      <div class="plano-result reveal">
         <div>
-          <div class="formula-result-label">Resultado</div>
-          <div class="formula-result-text">Autoridade de mercado que atrai pacientes particulares —<br/>com ROI mensurável e compliance total.</div>
+          <div class="plano-result-label">Resultado</div>
+          <div class="plano-result-text">Autoridade de mercado que atrai pacientes particulares —<br/>ROI mensurável e 100% CFM-compliant.</div>
         </div>
-        <div class="formula-result-cta">
-          <a href="#contato" class="btn-primary" style="background: var(--white); color: var(--purple); cursor: none;">
-            Quero essa fórmula
+        <div class="plano-result-cta">
+          <a href="#contato" class="btn-primary" data-modal="diagnostico" style="background: var(--nevoa); color: var(--violeta);">
+            Quero esse processo
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -2554,10 +4055,10 @@
       <div class="diff-header">
         <div class="reveal">
           <div class="section-label">Por que somos diferentes</div>
-          <h2 class="section-title">Nenhuma<br/>alternativa<br/><em>une tudo isso</em></h2>
+          <h2 class="section-title">Nenhuma<br/>alternativa<br/><em>une tudo isso.</em></h2>
         </div>
         <p class="diff-quote reveal reveal-delay-2">
-          <strong>Presença sem ROI é vaidade.</strong> ROI sem presença é commodity. E nenhum dos dois funciona se violar o CFM.<br/>A Bäche é as três coisas — e nenhum concorrente entrega essa combinação para a saúde.
+          <strong>Presença sem ROI é vaidade.</strong> ROI sem presença é commodity. E nenhum dos dois funciona se violar o CFM. A Bäche é as três coisas — e nenhum concorrente entrega essa combinação para a saúde.
         </p>
       </div>
 
@@ -2570,7 +4071,7 @@
               <th>Direção Cênica</th>
               <th>Foco em Paciente Particular</th>
               <th>Treinamento de Equipe</th>
-              <th style="color: var(--gold);">Bäche</th>
+              <th style="color: var(--teal);">Bäche</th>
             </tr>
           </thead>
           <tbody>
@@ -2621,22 +4122,74 @@
       <div class="attributes-grid">
         <div class="attr-card reveal">
           <div class="attr-card-num">01</div>
-          <div class="attr-card-icon">🎬</div>
-          <div class="attr-card-title">Direção Cênica Profissional</div>
-          <div class="attr-card-desc">O atributo mais distinto e impossível de copiar. Nenhum concorrente coloca uma diretora cênica ao lado do especialista. O resultado é uma presença autêntica, segura e incopiável — que converte.</div>
+          <div class="attr-card-icon" aria-hidden="true">✦</div>
+          <div class="attr-card-title">Produção de Autoridade Exclusiva</div>
+          <div class="attr-card-desc">O atributo mais distinto e impossível de copiar. Nenhum concorrente sabe extrair a autoridade que existe dentro de você e transformá-la em presença que converte — autêntica, segura e incopiável.</div>
         </div>
         <div class="attr-card reveal reveal-delay-1">
           <div class="attr-card-num">02</div>
-          <div class="attr-card-icon">📊</div>
+          <div class="attr-card-icon" aria-hidden="true">📊</div>
           <div class="attr-card-title">ROI Mensurável + Garantia Real</div>
           <div class="attr-card-desc">Dashboard em tempo real: pacientes por canal, taxa de conversão, ticket médio, ROAS. Não seguidores — pacientes. Com garantia condicional de resultado nos primeiros 90 dias.</div>
         </div>
         <div class="attr-card reveal reveal-delay-2">
           <div class="attr-card-num">03</div>
-          <div class="attr-card-icon">⚡</div>
+          <div class="attr-card-icon" aria-hidden="true">⚡</div>
           <div class="attr-card-title">CFM-Compliant desde o Início</div>
           <div class="attr-card-desc">Todo conteúdo criado dentro das normas do CFM e CRM. Você comunica autoridade sem medo de infração. A Bäche é especializada em saúde — e conhece cada limite ético do setor.</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       TRANSFORMACAO — SB7: Success Vision
+  ======================================== -->
+  <section id="transformacao" aria-label="O que muda em 90 dias">
+    <div class="transformacao-inner">
+      <div class="transformacao-header reveal">
+        <div class="section-label">O que muda</div>
+        <h2 class="section-title">Imagine sua clínica<br/>daqui a <em>90 dias.</em></h2>
+        <p class="transformacao-sub">Especialistas que trabalham com a Bäche relatam essas transformações nos primeiros três meses.</p>
+      </div>
+
+      <div class="transformacao-grid stagger-group">
+        <div class="transf-item stagger-child reveal">
+          <div class="transf-item-num">01</div>
+          <div class="transf-item-icon" aria-hidden="true">🗓️</div>
+          <div class="transf-item-title">Agenda particular com demanda consistente</div>
+          <p class="transf-item-desc"><em>Sem depender de indicação ou convênio para pagar as contas.</em> Pacientes chegam pelo seu posicionamento — antes de ver o preço.</p>
+        </div>
+
+        <div class="transf-item stagger-child reveal reveal-delay-1">
+          <div class="transf-item-num">02</div>
+          <div class="transf-item-icon" aria-hidden="true">💰</div>
+          <div class="transf-item-title">Cobrando premium — sem precisar justificar</div>
+          <p class="transf-item-desc"><em>O paciente que chega já conhece seu trabalho.</em> A primeira pergunta não é mais sobre preço ou plano de saúde.</p>
+        </div>
+
+        <div class="transf-item stagger-child reveal reveal-delay-2">
+          <div class="transf-item-num">03</div>
+          <div class="transf-item-icon" aria-hidden="true">📍</div>
+          <div class="transf-item-title">Referência reconhecida da especialidade na região</div>
+          <p class="transf-item-desc"><em>Colegas indicam, pacientes procuram, mídia consulta.</em> Sua autoridade chegou antes de você — exatamente onde deve estar.</p>
+        </div>
+
+        <div class="transf-item stagger-child reveal reveal-delay-3">
+          <div class="transf-item-num">04</div>
+          <div class="transf-item-icon" aria-hidden="true">⚡</div>
+          <div class="transf-item-title">Equipe que converte — não que apenas informa</div>
+          <p class="transf-item-desc"><em>Speed to lead abaixo de 5 minutos. Taxa de agendamento acima de 40%.</em> A secretária virou parte da estratégia de crescimento.</p>
+        </div>
+      </div>
+
+      <div class="transformacao-cta reveal">
+        <a href="#contato" class="btn-primary" data-modal="diagnostico" style="background: var(--white); color: var(--purple); font-size: 15px; padding: 20px 48px;">
+          Quero esse resultado
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
       </div>
     </div>
   </section>
@@ -2648,7 +4201,7 @@
     <div class="produtos-inner">
       <div class="produtos-header">
         <div class="reveal">
-          <div class="section-label">Esteira de Produtos</div>
+          <div class="section-label">Esteira de Serviços</div>
           <h2 class="section-title">Escolha onde<br/>começar</h2>
         </div>
         <p class="produtos-desc reveal reveal-delay-2">
@@ -2677,7 +4230,7 @@
             <li class="product-feature">Mapa de oportunidades</li>
             <li class="product-feature">Plano de ação 30 dias</li>
           </ul>
-          <a href="#contato" class="product-cta dark">Agendar diagnóstico gratuito</a>
+          <a href="#contato" class="product-cta dark" data-modal="diagnostico">Agendar diagnóstico gratuito</a>
         </div>
 
         <!-- Sprint -->
@@ -2685,17 +4238,17 @@
           <div class="product-type-label">Projeto único · 30 dias</div>
           <div class="product-tag">Sprint de Fundação</div>
           <div class="product-name">Sprint Ignição</div>
-          <div class="product-price-label" style="margin-bottom:24px; font-size:13px; color:rgba(45,20,82,0.5);">Entrega completa em um projeto fechado</div>
+          <div class="product-price-label" style="margin-bottom:24px; font-size:13px; color:rgba(13,12,20,0.50);">Entrega completa em um projeto fechado</div>
           <p class="product-desc">
-            Construímos as bases da sua autoridade de marca em 30 dias: posicionamento, arquétipo, direção cênica e o primeiro grande banco de conteúdo da sua carreira.
+            Construímos as bases da sua autoridade de marca em 30 dias: posicionamento, arquétipo, produção de conteúdo e o primeiro grande banco de autoridade da sua carreira.
           </p>
           <ul class="product-features">
             <li class="product-feature">Brand audit + arquétipo de marca</li>
-            <li class="product-feature">2 sessões de direção cênica</li>
+            <li class="product-feature">2 sessões de preparação de presença</li>
             <li class="product-feature">1 dia completo de gravação dirigida</li>
             <li class="product-feature">Setup de funil + plano 90 dias</li>
           </ul>
-          <a href="#contato" class="product-cta dark">Quero meu Sprint</a>
+          <a href="#contato" class="product-cta dark" data-modal="diagnostico">Quero meu Sprint</a>
         </div>
 
         <!-- Retainer — FEATURED -->
@@ -2716,7 +4269,7 @@
             <li class="product-feature">Consultoria estratégica quinzenal</li>
             <li class="product-feature">Garantia condicional 90 dias</li>
           </ul>
-          <a href="#contato" class="product-cta light">Quero o Retainer</a>
+          <a href="#contato" class="product-cta light" data-modal="diagnostico">Quero o Retainer</a>
         </div>
 
         <!-- Palco -->
@@ -2724,7 +4277,7 @@
           <div class="product-type-label">Setup + Mensal</div>
           <div class="product-tag">Dominância de Mercado</div>
           <div class="product-name">Programa Palco</div>
-          <div class="product-price-label" style="margin-bottom:24px; font-size:13px; color:rgba(45,20,82,0.5);">Sob consulta · vagas limitadas</div>
+          <div class="product-price-label" style="margin-bottom:24px; font-size:13px; color:rgba(13,12,20,0.50);">Sob consulta · vagas limitadas</div>
           <p class="product-desc">
             Para especialistas que querem dominar sua especialidade na cidade. Rebrand completo, estratégia multi-canal e posicionamento de autoridade máxima no mercado.
           </p>
@@ -2736,7 +4289,7 @@
             <li class="product-feature">Preparação para mídia e keynotes</li>
             <li class="product-feature">Evento de lançamento de marca</li>
           </ul>
-          <a href="#contato" class="product-cta dark">Quero o Palco</a>
+          <a href="#contato" class="product-cta dark" data-modal="diagnostico">Quero o Palco</a>
         </div>
 
       </div>
@@ -2791,12 +4344,12 @@
         <div class="founder-card reveal">
           <div class="founder-avatar">
             MB
-            <img src="assets/murillo-bacchi.jpg" alt="Murillo Bacchi" onerror="this.remove()" />
+            <img src="assets/Murillo%20-%20Mausbach%20ProfilePicture%202026.jpeg" alt="Murillo Bacchi" width="88" height="88" loading="lazy" onerror="this.style.display='none'" />
           </div>
           <h3 class="founder-name">Murillo Bacchi</h3>
           <div class="founder-role">Estratégia de Marca & Growth</div>
           <p class="founder-desc">
-            Especialização em Branding pela IE Business School e formação em Marketing pela The Wharton School. 8+ anos posicionando marcas de alto ticket — incluindo especialistas médicos que hoje lideram seus mercados. Músico e ator: entende, na prática, que presença real é construída, não improvisada.
+            Empreendedor serial com especialização em Branding pela IE Business School e formação em Marketing pela The Wharton School. 8+ anos posicionando marcas de alto ticket — incluindo especialistas médicos que hoje lideram seus mercados. Construiu negócios do zero e sabe, na prática, como transformar expertise técnica em autoridade de mercado que atrai clientes de alto valor.
           </p>
           <div class="founder-skills">
             <span class="founder-skill">IE Business School</span>
@@ -2809,7 +4362,7 @@
         <div class="founder-card reveal reveal-delay-2">
           <div class="founder-avatar">
             MH
-            <img src="assets/madu-heiden.jpg" alt="Madu Heiden" onerror="this.remove()" />
+            <img src="assets/Madu%20Heiden%20-%20ProfilePicture%202026.jpeg" alt="Madu Heiden" width="88" height="88" loading="lazy" onerror="this.style.display='none'" />
           </div>
           <h3 class="founder-name">Madu Heiden</h3>
           <div class="founder-role">Direção Cênica & Performance</div>
@@ -2828,6 +4381,94 @@
   </section>
 
   <!-- ========================================
+       FAQ
+  ======================================== -->
+  <section id="faq" aria-label="Perguntas frequentes">
+    <div class="faq-inner">
+      <div class="faq-header reveal">
+        <div class="section-label">Perguntas frequentes</div>
+        <h2 class="section-title">Suas dúvidas<br/><em>respondidas.</em></h2>
+      </div>
+
+      <div class="faq-list reveal reveal-delay-1">
+
+        <div class="faq-item">
+          <button class="faq-question" id="faq-q-1" aria-expanded="false">
+            Isso não é muito caro para uma clínica?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region" aria-labelledby="faq-q-1">
+            <div class="faq-answer-inner">
+              Sua agência atual provavelmente cobra R$2.000/mês e não gera paciente particular. O Sprint Ignição se paga com 2 novos pacientes — e temos <strong>garantia condicional de resultado em 90 dias</strong>. Nenhum concorrente oferece isso. A pergunta certa não é "quanto custa?" — é "quanto custa continuar igual?".
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" id="faq-q-2" aria-expanded="false">
+            Não tenho tempo para gravar conteúdo todo mês.
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region" aria-labelledby="faq-q-2">
+            <div class="faq-answer-inner">
+              <strong>1 dia por mês.</strong> Nosso processo de gravação dirigida extrai 15 a 20 peças em 6 horas — 30 dias de conteúdo autêntico, produzido de uma vez. Você não precisa postar todo dia. Precisa aparecer com qualidade — e a Bäche garante isso com o mínimo do seu tempo.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" id="faq-q-3" aria-expanded="false">
+            Tenho medo de violar as normas do CFM.
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region" aria-labelledby="faq-q-3">
+            <div class="faq-answer-inner">
+              Todo conteúdo desenvolvido pela Bäche passa por filtro de compliance antes da publicação. <strong>Conteúdo educativo, humanização e depoimentos dentro das normas</strong> — sem antes e depois sensacionalista, sem garantias de resultado para o paciente, sem preços. A Bäche é especializada em saúde e conhece cada limite ético do CFM e CRM.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" id="faq-q-4" aria-expanded="false">
+            Como vocês medem o resultado?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region" aria-labelledby="faq-q-4">
+            <div class="faq-answer-inner">
+              <strong>Dashboard em tempo real</strong>: pacientes novos por canal de aquisição, taxa de conversão lead → agendamento, ticket médio particular, ROAS das campanhas. Relatório quinzenal com os números reais — não likes nem impressões. No dia 0, documentamos o baseline. Em 90 dias, medimos o que mudou.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" id="faq-q-5" aria-expanded="false">
+            Não me sinto confortável na câmera.
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region" aria-labelledby="faq-q-5">
+            <div class="faq-answer-inner">
+              A maioria dos especialistas começa exatamente assim. Nossa metodologia de preparação aplica <strong>técnicas profissionais de performance</strong> — aquecimento vocal, calibração de postura, simulação de contexto. Em uma sessão, a transformação é visível. Você não vai "parecer que está gravando". Vai parecer que está conversando com o paciente.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" id="faq-q-6" aria-expanded="false">
+            Qual a diferença da Bäche para uma agência especializada em saúde?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region" aria-labelledby="faq-q-6">
+            <div class="faq-answer-inner">
+              Agências especializadas em saúde entendem o CFM — mas não fazem produção de autoridade, não treinam equipe comercial e não têm garantia de resultado. A Bäche é <strong>full-stack</strong>: estratégia de marca, produção de autoridade, tráfego com criativos dirigidos, treinamento de equipe e dashboard de ROI — tudo integrado, tudo medido. Não vendemos partes de uma solução. Vendemos o resultado final.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
        CTA FINAL
   ======================================== -->
   <section id="contato">
@@ -2835,25 +4476,26 @@
       <div class="reveal">
         <div class="section-label" style="justify-content: center;">Vagas limitadas por especialidade</div>
         <h2 class="contato-title">
-          Sua excelência clínica<br/><em>merece reconhecimento</em>
+          Sua excelência clínica<br/><em>merece ser reconhecida</em><br/>como autoridade.
         </h2>
       </div>
-      <p class="contato-sub reveal reveal-delay-1">
-        Começamos com um Diagnóstico de 2h onde mapeamos sua presença atual, seu posicionamento e o que está impedindo pacientes particulares de chegarem até você.
-        Se fizer sentido prosseguir, construímos juntos. Se não, você sai com um plano de ação que vale mais do que 6 meses com qualquer agência genérica.
+      <p class="contato-stakes reveal reveal-delay-1">
+        <strong>Enquanto você lê isso,</strong> especialistas menos qualificados do que você estão sendo escolhidos por pacientes que pagariam premium — só porque aparecem com autoridade e você ainda não.
       </p>
-      <div class="contato-actions reveal reveal-delay-2">
-        <a href="https://calendly.com/bache" class="btn-gold"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="Agendar Diagnóstico Gratuito — abre em nova aba">
+      <p class="contato-sub reveal reveal-delay-2">
+        Começamos com um Diagnóstico de 2 horas — sem custo, sem compromisso. Você entende exatamente o que está bloqueando sua agenda particular e sai com um plano de ação concreto. Se fizer sentido prosseguir, construímos juntos. Se não, o plano é seu.
+      </p>
+      <div class="contato-actions reveal reveal-delay-3">
+        <a href="#contato" class="btn-gold glow-pulse" data-modal="diagnostico"
+           aria-label="Agendar Diagnóstico Gratuito">
           Agendar Diagnóstico Gratuito
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
       </div>
-      <p class="contato-note reveal reveal-delay-3">
-        <strong>Atendemos em todo o Brasil.</strong> Direção cênica presencial em Curitiba e principais capitais. Estratégia e gestão 100% remotos.
+      <p class="contato-note reveal reveal-delay-4">
+        <strong>Atendemos em todo o Brasil.</strong> Produção de conteúdo presencial em Curitiba e principais capitais. Estratégia e gestão 100% remotos.
       </p>
     </div>
   </section>
@@ -2869,7 +4511,7 @@
         <img src="assets/logo-horizontal-white.svg" alt="Bäche — Performance Branding para Saúde" class="footer-logo" />
         <div class="footer-tagline">
           <strong>Performance Branding para Saúde</strong>
-          O primeiro estúdio do Brasil especializado em transformar autoridade clínica em autoridade de mercado. Estratégia, direção cênica, tráfego e treinamento — 100% CFM e CRM compliant.
+          O primeiro estúdio de Performance Branding para saúde do Brasil. Estratégia de marca, produção de autoridade, tráfego e treinamento — 100% CFM e CRM compliant.
         </div>
         <div class="footer-social">
           <a href="https://instagram.com/bache.br" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Instagram Bäche">
@@ -2902,7 +4544,7 @@
         <div class="footer-links-col">
           <div class="footer-links-title">Empresa</div>
           <ul class="footer-links-list">
-            <li><a href="#formula">A Fórmula</a></li>
+            <li><a href="#plano">A Metodologia</a></li>
             <li><a href="#diferenciais">Diferenciais</a></li>
             <li><a href="#garantia">Garantia</a></li>
             <li><a href="#fundadores">O Time</a></li>
@@ -3084,6 +4726,7 @@
     });
 
     // ---- Magnetic buttons ----
+    // Note: -3px Y offset baked in to match CSS hover translateY(-3px) — prevents jank conflict
     if (!prefersReduced && !isCoarse) {
       document.querySelectorAll('.btn-primary, .btn-gold, .btn-ghost, .nav-cta').forEach(btn => {
         btn.addEventListener('mousemove', e => {
@@ -3091,7 +4734,7 @@
           const cx = rect.left + rect.width / 2;
           const cy = rect.top + rect.height / 2;
           const dx = (e.clientX - cx) * 0.25;
-          const dy = (e.clientY - cy) * 0.25;
+          const dy = (e.clientY - cy) * 0.25 - 3; // absorb CSS :hover translateY(-3px)
           btn.style.transform = `translate(${dx}px, ${dy}px)`;
         });
         btn.addEventListener('mouseleave', () => {
@@ -3156,7 +4799,501 @@
     // product-card: removido tilt (conflita com translateY(-6px) do hover CSS)
     addTilt('.founder-card', 4);
     addTilt('.attr-card', 4);
-    addTilt('.formula-item', 4);
+    addTilt('.plano-step', 3);
+    addTilt('.transf-item', 3);
+
+    // ---- Premium Transition System (Headless UI-inspired) ----
+    // Observes [data-transition] elements and drives data-state entering → entered
+    (function initTransitionSystem() {
+      const els = document.querySelectorAll('[data-transition]');
+      if (!els.length) return;
+
+      const tObs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            // Trigger: entering → entered (one frame gap for browser to register starting state)
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                el.dataset.state = 'entered';
+              });
+            });
+            tObs.unobserve(el);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+      els.forEach(el => {
+        // Ensure starting state is set
+        if (!el.dataset.state) el.dataset.state = 'entering';
+        tObs.observe(el);
+      });
+    })();
+
+    // ---- Text Split Animation on Hero Headline ----
+    (function splitHero() {
+      if (prefersReduced) return;
+      const el = document.querySelector('.hero-headline');
+      if (!el) return;
+      const text = el.innerText.trim();
+      const words = text.split(/\s+/).filter(w => w.length > 0);
+      el.innerHTML = words
+        .map((word, i) =>
+          `<span class="word-wrap"><span class="word" style="animation-delay:${(0.3 + i * 0.065).toFixed(3)}s">${word}</span></span>`
+        )
+        .join(' ');
+    })();
+
+    // ---- Animated Grain Canvas ----
+    (function initGrain() {
+      if (prefersReduced) return;
+      const canvas = document.getElementById('grainCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let frame = 0;
+      function resize() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      function drawGrain() {
+        const w = canvas.width, h = canvas.height;
+        const imageData = ctx.createImageData(w, h);
+        const d = imageData.data;
+        for (let i = 0; i < d.length; i += 4) {
+          const v = (Math.random() * 255) | 0;
+          d[i] = d[i+1] = d[i+2] = v;
+          d[i+3] = 18;
+        }
+        ctx.putImageData(imageData, 0, 0);
+      }
+      let rafId = null;
+      function tick() {
+        if (!document.hidden && window.scrollY < window.innerHeight * 1.2) {
+          if (++frame % 3 === 0) drawGrain();
+        }
+        rafId = requestAnimationFrame(tick);
+      }
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && !rafId) { rafId = requestAnimationFrame(tick); }
+      });
+      resize();
+      tick();
+      window.addEventListener('resize', resize, { passive: true });
+    })();
+
+    // ---- Dynamic Stagger Groups ----
+    document.querySelectorAll('.stagger-group').forEach(group => {
+      const children = group.querySelectorAll('.stagger-child');
+      if (!children.length) return;
+      const sObs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            children.forEach((child, i) => {
+              setTimeout(() => child.classList.add('visible'), i * 85);
+            });
+            sObs.unobserve(group);
+          }
+        });
+      }, { threshold: 0.08 });
+      sObs.observe(group);
+    });
+
+    // ---- FAQ Accordion (Headless UI Disclosure pattern) ----
+    // Smooth height animation: 0 → scrollHeight, respects prefers-reduced-motion
+    function faqOpen(item) {
+      const answer = item.querySelector('.faq-answer');
+      const inner  = answer.querySelector('.faq-answer-inner');
+      item.classList.add('open');
+      item.querySelector('.faq-question').setAttribute('aria-expanded', 'true');
+
+      if (prefersReduced) {
+        answer.style.height = 'auto';
+        return;
+      }
+      answer.style.height = '0';
+      answer.style.overflow = 'hidden';
+      // Force reflow, then animate
+      answer.getBoundingClientRect();
+      answer.style.transition = `height 0.42s cubic-bezier(0.16,1,0.3,1)`;
+      answer.style.height = inner.scrollHeight + 'px';
+      answer.addEventListener('transitionend', () => {
+        answer.style.height = 'auto';
+        answer.style.overflow = '';
+      }, { once: true });
+    }
+
+    function faqClose(item) {
+      const answer = item.querySelector('.faq-answer');
+      item.classList.remove('open');
+      item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+
+      if (prefersReduced) {
+        answer.style.height = '0';
+        return;
+      }
+      answer.style.height = answer.scrollHeight + 'px';
+      answer.style.overflow = 'hidden';
+      answer.getBoundingClientRect();
+      answer.style.transition = `height 0.35s cubic-bezier(0.65,0,0.35,1)`;
+      answer.style.height = '0';
+    }
+
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item   = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+
+        // Close all open items first
+        document.querySelectorAll('.faq-item.open').forEach(open => {
+          if (open !== item) faqClose(open);
+        });
+
+        isOpen ? faqClose(item) : faqOpen(item);
+      });
+
+      // Keyboard: Space/Enter already trigger click — ensure arrow keys work
+      btn.addEventListener('keydown', e => {
+        const items = [...document.querySelectorAll('.faq-question')];
+        const idx = items.indexOf(btn);
+        if (e.key === 'ArrowDown') { e.preventDefault(); items[Math.min(idx+1, items.length-1)]?.focus(); }
+        if (e.key === 'ArrowUp')   { e.preventDefault(); items[Math.max(idx-1, 0)]?.focus(); }
+        if (e.key === 'Home') { e.preventDefault(); items[0]?.focus(); }
+        if (e.key === 'End')  { e.preventDefault(); items[items.length-1]?.focus(); }
+      });
+    });
+
+    // ---- Update cursor hover targets ----
+    if (useCustomCursor) {
+      document.querySelectorAll('.transf-item, .plano-step, .guia-cred, .faq-question').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.classList.add('is-hovering');
+          ring.classList.add('is-hovering');
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.classList.remove('is-hovering');
+          ring.classList.remove('is-hovering');
+        });
+      });
+    }
+
+    // ---- Magnetic buttons — add new CTAs ----
+    if (!prefersReduced && !isCoarse) {
+      document.querySelectorAll('.btn-gold').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+          const rect = btn.getBoundingClientRect();
+          const dx = (e.clientX - (rect.left + rect.width / 2)) * 0.25;
+          const dy = (e.clientY - (rect.top + rect.height / 2)) * 0.25;
+          btn.style.transform = `translate(${dx}px, ${dy}px)`;
+        });
+        btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+      });
+    }
+
+    // ---- Magic UI Spotlight — atualiza --sx/--sy nos cards ----
+    if (!prefersReduced && !isCoarse) {
+      const spotlightTargets = document.querySelectorAll('.attr-card, .transf-item');
+      spotlightTargets.forEach(el => {
+        el.addEventListener('mousemove', e => {
+          const rect = el.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1) + '%';
+          const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%';
+          el.style.setProperty('--sx', x);
+          el.style.setProperty('--sy', y);
+        });
+      });
+    }
+
+    // ---- Magic UI Border Beam — pausar quando fora da viewport ----
+    const beamEls = document.querySelectorAll('.founder-card');
+    if (beamEls.length && !prefersReduced) {
+      const beamObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          e.target.classList.toggle('beam-paused', !e.isIntersecting);
+        });
+      }, { threshold: 0.1 });
+      beamEls.forEach(el => beamObs.observe(el));
+    }
+  </script>
+
+  <!-- =========================================================
+       MODAL — Diagnóstico Gratuito
+       ========================================================= -->
+  <div id="diagnosticoModal" class="modal-overlay" aria-hidden="true" role="dialog"
+       aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card" id="modalCard">
+      <button class="modal-close" id="modalClose" aria-label="Fechar">✕</button>
+
+      <!-- Header -->
+      <div class="modal-header" id="modalFormSection">
+        <p class="modal-eyebrow">Sem custo · Sem compromisso</p>
+        <h2 class="modal-title" id="modalTitle">Diagnóstico Gratuito</h2>
+        <p class="modal-subtitle">Preencha os dados abaixo. Nossa equipe entra em contato em até 24 horas para agendar sua sessão de 2 horas.</p>
+      </div>
+
+      <!-- Form -->
+      <form id="diagnosticoForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="inputNome">Nome completo</label>
+          <input class="form-input" type="text" id="inputNome" name="nome"
+                 placeholder="Dr. João Silva" autocomplete="name" required />
+          <span class="form-error-msg">Por favor, informe seu nome.</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inputWhatsapp">WhatsApp</label>
+          <input class="form-input" type="tel" id="inputWhatsapp" name="whatsapp"
+                 placeholder="(41) 99999-0000" autocomplete="tel" required />
+          <span class="form-error-msg">Por favor, informe um número válido.</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inputEmail">E-mail</label>
+          <input class="form-input" type="email" id="inputEmail" name="email"
+                 placeholder="joao@clinica.com.br" autocomplete="email" required />
+          <span class="form-error-msg">Por favor, informe um e-mail válido.</span>
+        </div>
+
+        <div class="modal-error-box" id="modalErrorBox" aria-live="polite" style="display:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0">
+            <path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span id="modalErrorText">Ocorreu um erro. <a href="https://wa.me/5541999999999" target="_blank" rel="noopener">Fale direto pelo WhatsApp.</a></span>
+        </div>
+
+        <button type="submit" class="btn-primary btn-modal-submit" id="modalSubmitBtn">
+          <span id="modalSubmitLabel">Quero meu Diagnóstico Gratuito</span>
+          <svg id="modalSubmitArrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <svg id="modalSubmitSpinner" style="display:none;animation:spin360 0.8s linear infinite" width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5" stroke-dasharray="40 20" opacity="0.85"/>
+          </svg>
+        </button>
+      </form>
+
+      <!-- Success state -->
+      <div class="modal-success" id="modalSuccess" style="display:none;">
+        <div class="modal-success-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="modal-success-title">Recebemos seu pedido!</h3>
+        <p class="modal-success-text">
+          <strong>Entraremos em contato em até 24 horas</strong> para agendar sua sessão estratégica de 2 horas — sem custo, sem compromisso.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes spin360 { to { transform: rotate(360deg); } }
+    .modal-eyebrow {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin: 0 0 10px;
+    }
+    .modal-title {
+      font-family: var(--font-headline);
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      letter-spacing: var(--track-headline);
+      color: var(--nevoa);
+      margin: 0 0 10px;
+      line-height: 1.2;
+    }
+    .modal-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0 0 28px;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--nevoa);
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+    .form-error-msg {
+      display: none;
+      font-size: 12px;
+      color: #ff6b6b;
+      margin-top: 5px;
+    }
+    .btn-modal-submit {
+      width: 100%;
+      justify-content: center;
+      margin-top: 8px;
+      gap: 8px;
+    }
+    .btn-modal-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  </style>
+
+  <script>
+    // =========================================================
+    //  MODAL — Diagnóstico Gratuito + ClickUp Integration
+    // =========================================================
+
+    // ⚠️  Substitua pelo seu Personal API Token do ClickUp
+    const CLICKUP_TOKEN   = 'pk_78873023_RLFL3MU70N6EN5HV5KYHGJ4T1Z279ADF';
+    const CLICKUP_LIST_ID = '901111231101'; // Sessão Estratégica
+
+    const modal       = document.getElementById('diagnosticoModal');
+    const modalCard   = document.getElementById('modalCard');
+    const modalClose  = document.getElementById('modalClose');
+    const diagForm    = document.getElementById('diagnosticoForm');
+    const modalSuccess  = document.getElementById('modalSuccess');
+    const modalErrorBox = document.getElementById('modalErrorBox');
+    const modalErrorText = document.getElementById('modalErrorText');
+    const submitBtn   = document.getElementById('modalSubmitBtn');
+    const submitLabel = document.getElementById('modalSubmitLabel');
+    const submitArrow = document.getElementById('modalSubmitArrow');
+    const submitSpinner = document.getElementById('modalSubmitSpinner');
+
+    function openDiagnosticoModal(e) {
+      if (e) e.preventDefault();
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => {
+        const firstInput = modal.querySelector('.form-input');
+        if (firstInput) firstInput.focus();
+      }, 300);
+    }
+
+    function closeDiagnosticoModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // Close on overlay click (not card)
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeDiagnosticoModal();
+    });
+
+    // Close button
+    modalClose.addEventListener('click', closeDiagnosticoModal);
+
+    // Escape key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeDiagnosticoModal();
+    });
+
+    // WhatsApp mask: (XX) XXXXX-XXXX
+    const wppInput = document.getElementById('inputWhatsapp');
+    wppInput.addEventListener('input', () => {
+      let v = wppInput.value.replace(/\D/g, '').slice(0, 11);
+      if (v.length > 6) {
+        v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+      } else if (v.length > 2) {
+        v = `(${v.slice(0,2)}) ${v.slice(2)}`;
+      } else if (v.length > 0) {
+        v = `(${v}`;
+      }
+      wppInput.value = v;
+    });
+
+    // Form validation helper
+    function validateField(input) {
+      const empty = !input.value.trim();
+      const emailInvalid = input.type === 'email' && !empty && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
+      const phoneInvalid = input.type === 'tel' && !empty && input.value.replace(/\D/g,'').length < 10;
+      const invalid = empty || emailInvalid || phoneInvalid;
+      input.classList.toggle('is-invalid', invalid);
+      return !invalid;
+    }
+
+    // Validate on blur
+    diagForm.querySelectorAll('.form-input').forEach(inp => {
+      inp.addEventListener('blur', () => validateField(inp));
+      inp.addEventListener('input', () => {
+        if (inp.classList.contains('is-invalid')) validateField(inp);
+      });
+    });
+
+    // Form submit
+    diagForm.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      const nomeInp  = document.getElementById('inputNome');
+      const wppInp   = document.getElementById('inputWhatsapp');
+      const emailInp = document.getElementById('inputEmail');
+
+      const valid = [nomeInp, wppInp, emailInp].map(validateField).every(Boolean);
+      if (!valid) return;
+
+      // Loading state
+      submitBtn.disabled = true;
+      submitLabel.style.display = 'none';
+      submitArrow.style.display = 'none';
+      submitSpinner.style.display = 'inline-block';
+      modalErrorBox.style.display = 'none';
+
+      const nome  = nomeInp.value.trim();
+      const wpp   = wppInp.value.trim();
+      const email = emailInp.value.trim();
+
+      const taskPayload = {
+        name: `Sessão Estratégica — ${nome}`,
+        description: `Lead via Landing Page — Diagnóstico Gratuito`,
+        priority: 1,
+        tags: ['lead', 'landing-page'],
+        custom_fields: [
+          { id: '72a107e8-d809-4417-89bf-1036ce89c88a', value: wpp },
+          { id: 'fd5e499d-be16-4941-b14d-c4bf5dcbe776', value: email }
+        ]
+      };
+
+      try {
+        const res = await fetch(`https://api.clickup.com/api/v2/list/${CLICKUP_LIST_ID}/task`, {
+          method: 'POST',
+          headers: {
+            'Authorization': CLICKUP_TOKEN,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(taskPayload)
+        });
+
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.err || `HTTP ${res.status}`);
+        }
+
+        // Success
+        diagForm.style.display = 'none';
+        document.getElementById('modalFormSection').style.display = 'none';
+        modalSuccess.style.display = 'block';
+
+      } catch (err) {
+        // Restore button
+        submitBtn.disabled = false;
+        submitLabel.style.display = '';
+        submitArrow.style.display = '';
+        submitSpinner.style.display = 'none';
+
+        const isToken = CLICKUP_TOKEN === 'COLE_SEU_TOKEN_CLICKUP_AQUI';
+        modalErrorText.innerHTML = isToken
+          ? 'Token do ClickUp não configurado. <a href="https://wa.me/5541999999999" target="_blank" rel="noopener">Fale pelo WhatsApp.</a>'
+          : `Erro ao enviar (${err.message}). <a href="https://wa.me/5541999999999" target="_blank" rel="noopener">Fale pelo WhatsApp.</a>`;
+        modalErrorBox.style.display = 'flex';
+      }
+    });
+
+    // Attach modal trigger to all CTA links (script is at end of body, DOM already parsed)
+    document.querySelectorAll('[data-modal="diagnostico"]').forEach(el => {
+      el.addEventListener('click', openDiagnosticoModal);
+    });
   </script>
 </body>
 </html>
