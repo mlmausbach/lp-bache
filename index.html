@@ -5252,13 +5252,8 @@
 
       const taskPayload = {
         name: `Sessão Estratégica — ${nome}`,
-        description: `Lead via Landing Page — Diagnóstico Gratuito`,
-        priority: 1,
-        tags: ['lead', 'landing-page'],
-        custom_fields: [
-          { id: '72a107e8-d809-4417-89bf-1036ce89c88a', value: wpp },
-          { id: 'fd5e499d-be16-4941-b14d-c4bf5dcbe776', value: email }
-        ]
+        description: `Lead via Landing Page — Diagnóstico Gratuito\n\nNome: ${nome}\nWhatsApp: ${wpp}\nE-mail: ${email}`,
+        priority: 2
       };
 
       try {
@@ -5272,8 +5267,8 @@
         });
 
         if (!res.ok) {
-          const err = await res.json().catch(() => ({}));
-          throw new Error(err.err || `HTTP ${res.status}`);
+          const errBody = await res.json().catch(() => ({}));
+          throw new Error(errBody.err || errBody.ECODE || `HTTP ${res.status}`);
         }
 
         // Success
