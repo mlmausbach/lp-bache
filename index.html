@@ -415,6 +415,19 @@
     .cursor.is-hovering { width: 0; height: 0; }
     .cursor-ring.is-hovering { width: 60px; height: 60px; border-color: var(--gold); }
 
+    /* ── Modal: restaurar cursor nativo ──
+       O cursor custom (z-index 9999) fica ATRÁS do overlay (z-index 10000),
+       e body{cursor:none} esconde o nativo → mouse some no popup. Fix: */
+    .modal-overlay { cursor: auto; }
+    .modal-overlay input,
+    .modal-overlay textarea,
+    .modal-overlay select { cursor: text; }
+    .modal-overlay button,
+    .modal-overlay a,
+    .modal-overlay [role="button"],
+    .modal-overlay .modal-submit,
+    .modal-overlay .modal-close { cursor: pointer; }
+
     /* ── Dispositivos touch: restaurar cursor nativo ── */
     @media (pointer: coarse) {
       .cursor, .cursor-ring { display: none !important; }
