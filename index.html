@@ -57,9 +57,10 @@
             "@type": "Person",
             "name": "Murillo Bacchi",
             "jobTitle": "Estratégia de Marca & Growth",
-            "alumniOf": [
-              {"@type": "EducationalOrganization", "name": "IE Business School"},
-              {"@type": "EducationalOrganization", "name": "The Wharton School"}
+            "hasCredential": [
+              {"@type": "EducationalOccupationalCredential", "credentialCategory": "MBA em Marketing Digital"},
+              {"@type": "EducationalOccupationalCredential", "credentialCategory": "Certificação online em Branding — IE Business School"},
+              {"@type": "EducationalOccupationalCredential", "credentialCategory": "Certificação online em Marketing — Wharton Online"}
             ]
           },
           {
@@ -98,7 +99,7 @@
             {
               "@type": "Offer",
               "name": "Retainer Presença",
-              "description": "Gestão mensal completa de presença e performance para médicos e clínicas, com direção cênica mensal, tráfego pago, dashboard de ROI e treinamento de equipe comercial. Inclui garantia condicional de resultado em 90 dias."
+              "description": "Gestão mensal completa de presença e performance para médicos e clínicas, com direção cênica mensal, tráfego pago, dashboard de resultados e treinamento de equipe comercial. Inclui garantia de resultado em 90 dias."
             },
             {
               "@type": "Offer",
@@ -116,7 +117,7 @@
             "name": "O que é Performance Branding para médicos?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Performance Branding para médicos é a combinação de estratégia de marca, direção cênica profissional, gestão de tráfego pago e treinamento comercial, desenvolvida especificamente para especialistas que querem atrair pacientes particulares e construir autoridade de mercado — com ROI mensurável e compliance total com CFM e CRM."
+              "text": "Performance Branding para médicos é a combinação de estratégia de marca, direção cênica profissional, gestão de tráfego pago e treinamento comercial, desenvolvida especificamente para especialistas que querem atrair pacientes particulares e construir autoridade de mercado — com resultado acompanhado de perto e compliance total com CFM e CRM."
             }
           },
           {
@@ -1331,7 +1332,10 @@
       font-size: 36px;
       margin-bottom: 24px;
       position: relative;
+      color: var(--teal);
+      line-height: 0;
     }
+    .attr-card-icon svg { width: 34px; height: 34px; stroke-width: 1.5; }
 
     .attr-card-title {
       font-size: 20px;
@@ -2741,7 +2745,10 @@
       font-size: 32px;
       margin-bottom: 20px;
       position: relative;
+      color: var(--teal);
+      line-height: 0;
     }
+    .transf-item-icon svg { width: 30px; height: 30px; stroke-width: 1.5; }
     .transf-item-title {
       font-size: 22px;
       font-weight: 800;
@@ -3804,7 +3811,7 @@
       </h1>
 
       <p class="hero-sub">
-        A Bäche combina performance de curto prazo com branding de longo prazo — para médicos que querem mais pacientes particulares <strong>agora</strong> e um CAC menor a cada mês.
+        A Bäche combina performance de curto prazo com branding de longo prazo — para médicos que querem mais pacientes particulares <strong>agora</strong> — e que cada novo paciente custe menos a cada mês.
       </p>
 
       <div class="hero-actions">
@@ -3836,23 +3843,24 @@
     <div class="stats-grid">
       <div class="stat-item" data-transition="spring" data-state="entering" data-duration="normal" aria-label="291.362 clínicas disputando o mesmo paciente particular">
         <div class="stat-number" aria-hidden="true">
-          <span class="counter" data-target="291362" data-format="number">0</span>
+          <span class="counter" data-target="291362" data-format="number">291.362</span>
         </div>
         <div class="stat-label" aria-hidden="true">Clínicas disputando<br/>o mesmo paciente particular</div>
       </div>
       <div class="stat-item" data-transition="spring" data-state="entering" data-duration="normal" data-delay="2" aria-label="41% das clínicas sem nenhuma estratégia de diferenciação">
         <div class="stat-number" aria-hidden="true">
-          <span class="counter" data-target="41" data-format="percent">0</span><span class="stat-accent">%</span>
+          <span class="counter" data-target="41" data-format="percent">41</span><span class="stat-accent">%</span>
         </div>
         <div class="stat-label" aria-hidden="true">Sem nenhuma estratégia<br/>de diferenciação</div>
       </div>
       <div class="stat-item" data-transition="spring" data-state="entering" data-duration="normal" data-delay="4" aria-label="Apenas 25% com marketing que gera pacientes de verdade">
         <div class="stat-number" aria-hidden="true">
-          <span class="counter" data-target="25" data-format="percent">0</span><span class="stat-accent">%</span>
+          <span class="counter" data-target="25" data-format="percent">25</span><span class="stat-accent">%</span>
         </div>
         <div class="stat-label" aria-hidden="true">Com marketing que<br/>gera pacientes de verdade</div>
       </div>
     </div>
+    <p class="stats-source" style="text-align:center;margin-top:28px;font-size:12px;letter-spacing:.04em;color:var(--text-muted);">Estimativas internas Bäche.</p>
   </section>
 
   <!-- ========================================
@@ -3862,7 +3870,7 @@
     <div class="dor-inner">
       <div class="dor-left">
         <div class="section-label reveal">Por que o marketing médico não funciona</div>
-        <h2 class="section-title">Você investe em ads.<br/><em>O CAC não para</em><br/>de subir.</h2>
+        <h2 class="section-title">Você investe em ads.<br/><em>O custo de cada paciente</em><br/>não para de subir.</h2>
         <blockquote class="dor-quote reveal reveal-delay-2">
           "Performance sem branding é leilão de preço toda semana. Branding sem performance demora demais para converter. A maioria dos médicos escolhe um dos dois — e sofre os dois problemas."
         </blockquote>
@@ -3876,8 +3884,8 @@
           <li class="pain-item stagger-child reveal reveal-delay-1">
             <span class="pain-number">01</span>
             <div class="pain-content">
-              <div class="pain-title">CAC alto e crescente — cada paciente novo custa mais do que deveria</div>
-              <div class="pain-desc">Sem marca construída, você paga o leilão de atenção toda semana. O anúncio converte hoje, mas o próximo mês começa do zero — com CPL ainda mais alto.</div>
+              <div class="pain-title">Cada novo paciente custa mais caro — e o custo só sobe</div>
+              <div class="pain-desc">Sem marca construída, você paga o leilão de atenção toda semana. O anúncio converte hoje, mas o próximo mês começa do zero — com cada paciente novo custando ainda mais caro.</div>
             </div>
             <span class="pain-badge critica">Crítica</span>
           </li>
@@ -3892,7 +3900,7 @@
           <li class="pain-item stagger-child reveal reveal-delay-3">
             <span class="pain-number">03</span>
             <div class="pain-content">
-              <div class="pain-title">LTV baixo — paciente que veio por preço vai embora pelo preço</div>
+              <div class="pain-title">Pouco valor ao longo do tempo — paciente que veio por preço vai embora pelo preço</div>
               <div class="pain-desc">Sem percepção de marca, o paciente não indica, não volta com urgência e compara você com qualquer alternativa mais barata. O ciclo não fecha.</div>
             </div>
             <span class="pain-badge critica">Crítica</span>
@@ -3931,16 +3939,16 @@
         <div class="pb-duality reveal">
           <div class="pb-duality-pill pb-duality-pill--perf">
             <span class="pb-duality-label">Performance</span>
-            <span class="pb-duality-sub">Curto Prazo · Ads · ROI imediato</span>
+            <span class="pb-duality-sub">Curto Prazo · Ads · retorno imediato</span>
           </div>
           <span class="pb-duality-sep">+</span>
           <div class="pb-duality-pill pb-duality-pill--brand">
             <span class="pb-duality-label">Branding</span>
-            <span class="pb-duality-sub">Longo Prazo · Autoridade · LTV</span>
+            <span class="pb-duality-sub">Longo Prazo · Autoridade · valor recorrente</span>
           </div>
           <span class="pb-duality-sep">=</span>
           <div class="pb-duality-result">
-            <span class="pb-duality-result-text">CAC<span class="arrow-down">↓</span> &nbsp;LTV<span class="arrow-up">↑</span></span>
+            <span class="pb-duality-result-text">Custo<span class="arrow-down">↓</span> &nbsp;Valor<span class="arrow-up">↑</span></span>
           </div>
         </div>
 
@@ -3949,10 +3957,10 @@
             Entendemos o que você sente quando investe em marketing e não vê resultado. Quando posta conteúdo e nenhum paciente particular chega. Quando a agência troca de gestor e recomeça do zero — de novo.
           </p>
           <p class="guia-text reveal reveal-delay-2">
-            A Bäche não é mais uma agência. Somos um estúdio de <strong>Performance Branding</strong> — combinamos estratégia de marca, produção de autoridade e gestão de tráfego para reduzir seu CAC, aumentar o LTV da sua carteira e converter presença em pacientes particulares, com ROI mensurável.
+            A Bäche não é mais uma agência. Somos um estúdio de <strong>Performance Branding</strong> — combinamos estratégia de marca, produção de autoridade e gestão de tráfego para reduzir o custo de atrair cada paciente, aumentar o valor da sua carteira ao longo do tempo e converter presença em pacientes particulares.
           </p>
           <p class="guia-text reveal reveal-delay-3">
-            Não vendemos posts. Vendemos <strong>presença que converte paciente particular</strong> — com ROI mensurável e dentro das normas do CFM e CRM.
+            Não vendemos posts. Vendemos <strong>presença que converte paciente particular</strong> — com resultado que você acompanha no painel, dentro das normas do CFM e CRM.
           </p>
         </div>
       </div>
@@ -3962,8 +3970,8 @@
           <div class="guia-cred stagger-child reveal premium-lift" data-transition="slide-left" data-state="entering" data-duration="slow">
             <div class="guia-cred-num">50<span class="guia-cred-sup">+</span></div>
             <div class="guia-cred-text">
-              <strong>Marcas de alto ticket escaladas</strong>
-              <span>8+ anos posicionando especialistas médicos que hoje lideram seus mercados</span>
+              <strong>Marcas de alto ticket na trajetória do fundador</strong>
+              <span>8+ anos posicionando marcas premium ao longo da carreira — metodologia agora aplicada exclusivamente à saúde</span>
             </div>
           </div>
           <div class="guia-cred stagger-child reveal premium-lift reveal-delay-1" data-transition="slide-left" data-state="entering" data-duration="slow" data-delay="2">
@@ -3976,8 +3984,8 @@
           <div class="guia-cred stagger-child reveal premium-lift reveal-delay-2" data-transition="slide-left" data-state="entering" data-duration="slow" data-delay="4">
             <div class="guia-cred-num">90</div>
             <div class="guia-cred-text">
-              <strong>Dias de garantia condicional de resultado</strong>
-              <span>Resultado mensurável em 90 dias ou trabalhamos de graça. Nenhum concorrente oferece isso.</span>
+              <strong>Dias de garantia de resultado</strong>
+              <span>Mais pacientes particulares em 90 dias ou trabalhamos de graça. Nenhum concorrente oferece isso.</span>
             </div>
           </div>
         </div>
@@ -4018,7 +4026,7 @@
           <div class="plano-step-num">02</div>
           <div class="plano-step-tag">Sprint 30 dias ou Retainer mensal</div>
           <div class="plano-step-title">Construção Dirigida</div>
-          <p class="plano-step-desc">Estratégia de marca + produção de autoridade + tráfego. Cada elemento integrado para converter presença em pacientes particulares e resultado mensurável.</p>
+          <p class="plano-step-desc">Estratégia de marca + produção de autoridade + tráfego. Cada elemento integrado para converter presença em pacientes particulares — com resultado que você acompanha no painel.</p>
           <ul class="plano-step-items">
             <li class="plano-step-item">Brand audit + arquétipo + narrativa</li>
             <li class="plano-step-item">1 dia de gravação = 30 dias de conteúdo</li>
@@ -4030,12 +4038,12 @@
         <div class="plano-step stagger-child reveal reveal-delay-2">
           <div class="plano-step-num">03</div>
           <div class="plano-step-tag">Dashboard em tempo real</div>
-          <div class="plano-step-title">ROI Mensurável</div>
-          <p class="plano-step-desc">Pacientes por canal, ticket médio, ROAS, taxa de conversão. Não likes — dados de negócio. Com garantia condicional de 90 dias.</p>
+          <div class="plano-step-title">Resultados que você acompanha</div>
+          <p class="plano-step-desc">Pacientes por canal, ticket médio, retorno sobre a mídia, taxa de conversão. Não likes — dados de negócio. Com garantia de 90 dias.</p>
           <ul class="plano-step-items">
             <li class="plano-step-item">Dashboard de pacientes por canal</li>
-            <li class="plano-step-item">ROAS e CPL real</li>
-            <li class="plano-step-item">Relatório quinzenal com transparência total</li>
+            <li class="plano-step-item">Retorno real sobre a mídia e custo real por paciente</li>
+            <li class="plano-step-item">Relatório quinzenal com os números reais</li>
             <li class="plano-step-item">Garantia ativada nos primeiros 90 dias</li>
           </ul>
         </div>
@@ -4044,7 +4052,7 @@
       <div class="plano-result reveal">
         <div>
           <div class="plano-result-label">Resultado</div>
-          <div class="plano-result-text">Autoridade de mercado que atrai pacientes particulares —<br/>ROI mensurável e 100% CFM-compliant.</div>
+          <div class="plano-result-text">Autoridade de mercado que atrai pacientes particulares —<br/>com resultado acompanhado de perto e 100% CFM-compliant.</div>
         </div>
         <div class="plano-result-cta">
           <a href="#contato" class="btn-primary" data-modal="diagnostico" style="background: var(--nevoa); color: var(--violeta);">
@@ -4069,7 +4077,7 @@
           <h2 class="section-title">Nenhuma<br/>alternativa<br/><em>une tudo isso.</em></h2>
         </div>
         <p class="diff-quote reveal reveal-delay-2">
-          <strong>Presença sem ROI é vaidade.</strong> ROI sem presença é commodity. E nenhum dos dois funciona se violar o CFM. A Bäche é as três coisas — e nenhum concorrente entrega essa combinação para a saúde.
+          <strong>Presença sem retorno é vaidade.</strong> Retorno sem presença é commodity. E nenhum dos dois funciona se violar o CFM. A Bäche é as três coisas — e nenhum concorrente entrega essa combinação para a saúde.
         </p>
       </div>
 
@@ -4133,19 +4141,19 @@
       <div class="attributes-grid">
         <div class="attr-card reveal">
           <div class="attr-card-num">01</div>
-          <div class="attr-card-icon" aria-hidden="true">✦</div>
+          <div class="attr-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg></div>
           <div class="attr-card-title">Produção de Autoridade Exclusiva</div>
           <div class="attr-card-desc">O atributo mais distinto e impossível de copiar. Nenhum concorrente sabe extrair a autoridade que existe dentro de você e transformá-la em presença que converte — autêntica, segura e incopiável.</div>
         </div>
         <div class="attr-card reveal reveal-delay-1">
           <div class="attr-card-num">02</div>
-          <div class="attr-card-icon" aria-hidden="true">📊</div>
-          <div class="attr-card-title">ROI Mensurável + Garantia Real</div>
-          <div class="attr-card-desc">Dashboard em tempo real: pacientes por canal, taxa de conversão, ticket médio, ROAS. Não seguidores — pacientes. Com garantia condicional de resultado nos primeiros 90 dias.</div>
+          <div class="attr-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div>
+          <div class="attr-card-title">Resultados Reais + Garantia de Verdade</div>
+          <div class="attr-card-desc">Dashboard em tempo real: pacientes por canal, taxa de conversão, ticket médio, retorno sobre a mídia. Não seguidores — pacientes. Com garantia de resultado nos primeiros 90 dias.</div>
         </div>
         <div class="attr-card reveal reveal-delay-2">
           <div class="attr-card-num">03</div>
-          <div class="attr-card-icon" aria-hidden="true">⚡</div>
+          <div class="attr-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
           <div class="attr-card-title">CFM-Compliant desde o Início</div>
           <div class="attr-card-desc">Todo conteúdo criado dentro das normas do CFM e CRM. Você comunica autoridade sem medo de infração. A Bäche é especializada em saúde — e conhece cada limite ético do setor.</div>
         </div>
@@ -4167,30 +4175,30 @@
       <div class="transformacao-grid stagger-group">
         <div class="transf-item stagger-child reveal">
           <div class="transf-item-num">01</div>
-          <div class="transf-item-icon" aria-hidden="true">🗓️</div>
+          <div class="transf-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></div>
           <div class="transf-item-title">Agenda particular com demanda consistente</div>
           <p class="transf-item-desc"><em>Sem depender de indicação ou convênio para pagar as contas.</em> Pacientes chegam pelo seu posicionamento — antes de ver o preço.</p>
         </div>
 
         <div class="transf-item stagger-child reveal reveal-delay-1">
           <div class="transf-item-num">02</div>
-          <div class="transf-item-icon" aria-hidden="true">💰</div>
+          <div class="transf-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg></div>
           <div class="transf-item-title">Cobrando premium — sem precisar justificar</div>
           <p class="transf-item-desc"><em>O paciente que chega já conhece seu trabalho.</em> A primeira pergunta não é mais sobre preço ou plano de saúde.</p>
         </div>
 
         <div class="transf-item stagger-child reveal reveal-delay-2">
           <div class="transf-item-num">03</div>
-          <div class="transf-item-icon" aria-hidden="true">📍</div>
+          <div class="transf-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.4-5.5 9.3-7.3 10.8a1 1 0 0 1-1.4 0C9.5 19.3 4 14.4 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div>
           <div class="transf-item-title">Referência reconhecida da especialidade na região</div>
           <p class="transf-item-desc"><em>Colegas indicam, pacientes procuram, mídia consulta.</em> Sua autoridade chegou antes de você — exatamente onde deve estar.</p>
         </div>
 
         <div class="transf-item stagger-child reveal reveal-delay-3">
           <div class="transf-item-num">04</div>
-          <div class="transf-item-icon" aria-hidden="true">⚡</div>
+          <div class="transf-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></div>
           <div class="transf-item-title">Equipe que converte — não que apenas informa</div>
-          <p class="transf-item-desc"><em>Speed to lead abaixo de 5 minutos. Taxa de agendamento acima de 40%.</em> A secretária virou parte da estratégia de crescimento.</p>
+          <p class="transf-item-desc"><em>Resposta ao paciente em menos de 5 minutos. Mais de 40% dos contatos viram consulta agendada.</em> A secretária virou parte da estratégia de crescimento.</p>
         </div>
       </div>
 
@@ -4216,7 +4224,7 @@
           <h2 class="section-title">Escolha onde<br/>começar</h2>
         </div>
         <p class="produtos-desc reveal reveal-delay-2">
-          Uma jornada desenhada para especialistas sérios — do primeiro diagnóstico até a autoridade total na sua especialidade, com cada etapa validada e mensurável.
+          Uma jornada desenhada para especialistas sérios — do primeiro diagnóstico até a autoridade total na sua especialidade, com cada etapa validada e acompanhada de perto.
         </p>
       </div>
 
@@ -4264,7 +4272,7 @@
 
         <!-- Retainer — FEATURED -->
         <div class="product-card featured reveal reveal-delay-2">
-          <div class="product-badge">Mais contratado</div>
+          <div class="product-badge">Recomendado para começar</div>
           <div class="product-type-label">Retainer mensal</div>
           <div class="product-tag">Gestão Contínua</div>
           <div class="product-name">Retainer Presença</div>
@@ -4274,11 +4282,11 @@
           </p>
           <ul class="product-features">
             <li class="product-feature">1 dia/mês de gravação dirigida</li>
-            <li class="product-feature">Tráfego pago + ROAS mensurável</li>
-            <li class="product-feature">Dashboard de ROI em tempo real</li>
+            <li class="product-feature">Tráfego pago + retorno sobre a mídia acompanhado</li>
+            <li class="product-feature">Dashboard de resultados em tempo real</li>
             <li class="product-feature">Treinamento da equipe comercial</li>
             <li class="product-feature">Consultoria estratégica quinzenal</li>
-            <li class="product-feature">Garantia condicional 90 dias</li>
+            <li class="product-feature">Garantia de resultado 90 dias</li>
           </ul>
           <a href="#contato" class="product-cta light" data-modal="diagnostico">Quero o Retainer</a>
         </div>
@@ -4322,17 +4330,18 @@
 
       <div class="garantia-content">
         <div class="reveal">
-          <div class="section-label">Garantia Bäche — sem asterisco</div>
+          <div class="section-label">Garantia Bäche — clara e por escrito</div>
           <h2 class="garantia-title">Resultado<br/>mensurável ou<br/>trabalhamos de graça.</h2>
         </div>
         <p class="garantia-text reveal reveal-delay-1">
-          Se nos primeiros 90 dias do Retainer não houver aumento mensurável de pacientes particulares, a Bäche <strong>trabalha o mês 4 sem nenhum custo</strong> ou devolve integralmente o fee do mês 3. Sem letras miúdas.
+          Se em 90 dias a meta de novos pacientes particulares acordada em contrato não for atingida, <strong>você escolhe</strong>: a Bäche trabalha o mês seguinte sem custo, ou devolve integralmente o último fee.
         </p>
+        <p class="garantia-conditions-title reveal reveal-delay-2" style="font-weight:700;margin:28px 0 14px;font-size:14px;letter-spacing:.01em;">O que faz a garantia valer — acordado no dia 0:</p>
         <ul class="garantia-conditions reveal reveal-delay-2">
           <li class="garantia-condition">Baseline documentado e meta acordada em contrato no dia 0</li>
           <li class="garantia-condition">Investimento em mídia conforme o plano aprovado</li>
-          <li class="garantia-condition">Gravação e implementação dos roteiros desenvolvidos</li>
-          <li class="garantia-condition">Dashboard atualizado — transparência total em cada etapa</li>
+          <li class="garantia-condition">Gravação e implementação dos roteiros desenvolvidos no prazo</li>
+          <li class="garantia-condition">Dashboard atualizado — você acompanha os números em cada etapa</li>
         </ul>
       </div>
     </div>
@@ -4360,11 +4369,12 @@
           <h3 class="founder-name">Murillo Bacchi</h3>
           <div class="founder-role">Estratégia de Marca & Growth</div>
           <p class="founder-desc">
-            Empreendedor serial com especialização em Branding pela IE Business School e formação em Marketing pela The Wharton School. 8+ anos posicionando marcas de alto ticket — incluindo especialistas médicos que hoje lideram seus mercados. Construiu negócios do zero e sabe, na prática, como transformar expertise técnica em autoridade de mercado que atrai clientes de alto valor.
+            Empreendedor serial e MBA em Marketing Digital, com certificações online em Branding (IE Business School) e Marketing (Wharton Online). Ao longo da carreira, mais de 8 anos e 50+ marcas de alto ticket posicionadas. Construiu negócios do zero e sabe, na prática, como transformar expertise técnica em autoridade de mercado que atrai clientes de alto valor.
           </p>
           <div class="founder-skills">
-            <span class="founder-skill">IE Business School</span>
-            <span class="founder-skill">Wharton School</span>
+            <span class="founder-skill">MBA Marketing Digital</span>
+            <span class="founder-skill">IE Business School (online)</span>
+            <span class="founder-skill">Wharton Online</span>
             <span class="founder-skill">Brand Strategy</span>
             <span class="founder-skill">Alto Ticket</span>
           </div>
@@ -4410,7 +4420,7 @@
           </button>
           <div class="faq-answer" role="region" aria-labelledby="faq-q-1">
             <div class="faq-answer-inner">
-              Sua agência atual provavelmente cobra R$2.000/mês e não gera paciente particular. O Sprint Ignição se paga com 2 novos pacientes — e temos <strong>garantia condicional de resultado em 90 dias</strong>. Nenhum concorrente oferece isso. A pergunta certa não é "quanto custa?" — é "quanto custa continuar igual?".
+              Sua agência atual provavelmente cobra R$2.000/mês e não gera paciente particular. O Sprint Ignição se paga com 2 novos pacientes — e temos <strong>garantia de resultado em 90 dias</strong>. Nenhum concorrente oferece isso. A pergunta certa não é "quanto custa?" — é "quanto custa continuar igual?".
             </div>
           </div>
         </div>
@@ -4446,7 +4456,7 @@
           </button>
           <div class="faq-answer" role="region" aria-labelledby="faq-q-4">
             <div class="faq-answer-inner">
-              <strong>Dashboard em tempo real</strong>: pacientes novos por canal de aquisição, taxa de conversão lead → agendamento, ticket médio particular, ROAS das campanhas. Relatório quinzenal com os números reais — não likes nem impressões. No dia 0, documentamos o baseline. Em 90 dias, medimos o que mudou.
+              <strong>Dashboard em tempo real</strong>: pacientes novos pelos canais de aquisição que conseguimos atribuir com confiança, taxa de conversão de contato → agendamento, ticket médio particular, retorno sobre a mídia. Relatório quinzenal com os números reais — não likes nem impressões. No dia 0, documentamos o baseline; em 90 dias, medimos o que mudou. Atribuição em saúde tem limites (boca a boca, decisão fora do digital) — somos transparentes sobre o que dá para medir com segurança.
             </div>
           </div>
         </div>
@@ -4470,7 +4480,7 @@
           </button>
           <div class="faq-answer" role="region" aria-labelledby="faq-q-6">
             <div class="faq-answer-inner">
-              Agências especializadas em saúde entendem o CFM — mas não fazem produção de autoridade, não treinam equipe comercial e não têm garantia de resultado. A Bäche é <strong>full-stack</strong>: estratégia de marca, produção de autoridade, tráfego com criativos dirigidos, treinamento de equipe e dashboard de ROI — tudo integrado, tudo medido. Não vendemos partes de uma solução. Vendemos o resultado final.
+              Agências especializadas em saúde entendem o CFM — mas não fazem produção de autoridade, não treinam equipe comercial e não têm garantia de resultado. A Bäche é <strong>full-stack</strong>: estratégia de marca, produção de autoridade, tráfego com criativos dirigidos, treinamento de equipe e dashboard de resultados — tudo integrado, tudo medido. Não vendemos partes de uma solução. Vendemos o resultado final.
             </div>
           </div>
         </div>
@@ -4692,6 +4702,8 @@
 
     function animateCounter(el) {
       const target = parseInt(el.dataset.target);
+      // Valor final já vem estático no HTML (fallback). Animação é melhoria progressiva.
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       const duration = 1800;
       const start = performance.now();
 
