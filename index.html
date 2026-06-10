@@ -754,9 +754,11 @@
     }
 
     .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 50px rgba(201,168,106,0.26);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(201,168,106,0.28);
+      filter: brightness(1.05);
     }
+    .btn-primary:active { transform: translateY(0); filter: brightness(0.97); }
 
     .btn-primary svg { transition: transform 0.3s var(--ease-out); }
     .btn-primary:hover svg { transform: translateX(4px); }
@@ -778,46 +780,11 @@
 
     .btn-ghost:hover {
       color: var(--gold);
-      border-color: var(--gold);
+      border-color: rgba(201,168,106,0.55);
+      background: rgba(201,168,106,0.06);
     }
     .btn-ghost:hover svg { transform: translateX(4px); }
     .btn-ghost svg { transition: transform 0.3s var(--ease-out); }
-
-    .hero-scroll-indicator {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      opacity: 0;
-      animation: fadeIn 1s ease 1.8s forwards;
-    }
-
-    .hero-scroll-indicator span {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes scrollPulse {
-      0% { transform: scaleY(0); transform-origin: top; }
-      50% { transform: scaleY(1); transform-origin: top; }
-      51% { transform: scaleY(1); transform-origin: bottom; }
-      100% { transform: scaleY(0); transform-origin: bottom; }
-    }
 
     /* ========================================
        STATS BAND
@@ -2381,7 +2348,7 @@
       position: absolute;
       inset: -6px;
       border-radius: 100px;
-      background: radial-gradient(ellipse, rgba(123,53,206,0.4) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(201,168,106,0.28) 0%, transparent 70%);
       opacity: 0;
       transition: opacity 0.4s;
       z-index: -1;
@@ -2768,24 +2735,106 @@
     .metodo-rigor p { font-size: 14.5px; line-height: 1.7; color: var(--text-muted); }
     .metodo-rigor p strong { color: var(--nevoa); font-weight: 700; }
 
-    .metodo-fases { border-top: 1px solid rgba(255,255,255,0.08); }
+    .metodo-cap { text-align: center; position: relative; z-index: 2; }
+    .metodo-cap span {
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .metodo-cap-start { margin-bottom: 48px; }
+    .metodo-cap-start span {
+      color: var(--text-muted);
+      border: 1px dashed rgba(255,255,255,0.25);
+    }
+    .metodo-cap-end { margin-top: 4px; }
+    .metodo-cap-end span {
+      color: #1a1410;
+      background: linear-gradient(135deg, #D8C087, var(--ouro));
+      box-shadow: 0 8px 32px rgba(201,168,106,0.25);
+    }
+
+    .metodo-fases { position: relative; padding-top: 8px; }
+    .metodo-fases::before {
+      content: '';
+      position: absolute;
+      top: -48px;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      margin-left: -1px;
+      background: linear-gradient(180deg,
+        rgba(123,53,206,0.40) 0%,
+        rgba(160,128,88,0.35) 50%,
+        var(--ouro) 100%);
+    }
     .metodo-fase {
+      position: relative;
       display: grid;
-      grid-template-columns: 290px 1fr;
-      gap: 56px;
-      padding: 56px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      grid-template-columns: 1fr 1fr;
+      padding-bottom: 64px;
     }
-    .metodo-fase-num {
-      font-size: 60px;
+    .metodo-fase:last-of-type { padding-bottom: 56px; }
+    .metodo-node {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--noite);
+      border: 1px solid rgba(201,168,106,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
       font-weight: 900;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      color: rgba(201,168,106,0.22);
-      margin-bottom: 18px;
-      transition: color 0.4s var(--ease-out);
+      letter-spacing: 0.02em;
+      color: var(--ouro);
+      box-shadow: 0 0 0 8px var(--noite);
+      z-index: 2;
+      transition: border-color 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
     }
-    .metodo-fase:hover .metodo-fase-num { color: var(--ouro); }
+    .metodo-fase:hover .metodo-node {
+      border-color: var(--ouro);
+      box-shadow: 0 0 0 8px var(--noite), 0 0 28px rgba(201,168,106,0.30);
+    }
+    .metodo-card {
+      grid-column: 1;
+      margin-right: 64px;
+      padding: 36px 36px 32px;
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      transition: border-color 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+    }
+    .metodo-card::after {
+      content: '';
+      position: absolute;
+      top: 27px;
+      right: -64px;
+      width: 64px;
+      height: 1px;
+      background: linear-gradient(270deg, rgba(201,168,106,0.45), transparent);
+    }
+    .metodo-fase--right .metodo-card {
+      grid-column: 2;
+      margin-right: 0;
+      margin-left: 64px;
+    }
+    .metodo-fase--right .metodo-card::after {
+      right: auto;
+      left: -64px;
+      background: linear-gradient(90deg, rgba(201,168,106,0.45), transparent);
+    }
+    .metodo-fase:hover .metodo-card {
+      border-color: rgba(201,168,106,0.30);
+      transform: translateY(-3px);
+    }
     .metodo-fase-tag {
       display: inline-block;
       padding: 4px 12px;
@@ -2811,6 +2860,9 @@
       font-style: italic;
       line-height: 1.6;
       color: var(--ouro);
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
     }
     .metodo-fase-why {
       font-size: 15px;
@@ -2829,8 +2881,8 @@
     .metodo-entregas {
       list-style: none;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px 32px;
+      grid-template-columns: 1fr;
+      gap: 12px;
     }
     .metodo-entrega {
       font-size: 13.5px;
@@ -2933,9 +2985,30 @@
       #metodo { padding: 72px 24px; }
       .metodo-header { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
       .metodo-rigor { margin-bottom: 48px; }
-      .metodo-fase { grid-template-columns: 1fr; gap: 28px; padding: 44px 0; }
-      .metodo-fase-num { font-size: 48px; margin-bottom: 14px; }
-      .metodo-entregas { grid-template-columns: 1fr; }
+      .metodo-cap { text-align: left; }
+      .metodo-fases::before { left: 24px; margin-left: 0; }
+      .metodo-fase { grid-template-columns: 1fr; padding-bottom: 48px; }
+      .metodo-node {
+        left: 24px;
+        width: 48px;
+        height: 48px;
+        font-size: 14px;
+        box-shadow: 0 0 0 6px var(--noite);
+      }
+      .metodo-card,
+      .metodo-fase--right .metodo-card {
+        grid-column: 1;
+        margin: 0 0 0 64px;
+        padding: 28px 24px;
+      }
+      .metodo-card::after,
+      .metodo-fase--right .metodo-card::after {
+        right: auto;
+        left: -40px;
+        width: 40px;
+        top: 23px;
+        background: linear-gradient(90deg, rgba(201,168,106,0.45), transparent);
+      }
       .metodo-loops-grid { grid-template-columns: 1fr; }
     }
 
@@ -3586,28 +3659,6 @@
       flex-shrink: 0;
     }
 
-    /* ── Magic UI — Shimmer Sweep no btn-primary ─────────────────────────── */
-    /* overflow:hidden para clipar o shimmer; glow via box-shadow (não clipado) */
-    .btn-primary { overflow: hidden !important; }
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 45%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.28) 50%, transparent 100%);
-      transform: translateX(-120%) skewX(-15deg);
-      animation: shimmerSweep 4s ease-in-out infinite;
-      pointer-events: none;
-      z-index: 2;
-    }
-    /* Glow via box-shadow (não é clipado por overflow:hidden) */
-    .btn-primary:hover {
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 40px rgba(151,48,239,0.40) !important;
-    }
-    /* Esconder o ::after glow (que seria clipado) */
-    .btn-primary::after { display: none !important; }
-
     /* ── Magic UI — Border Beam nos transf-items (glass cards) ─────────── */
     /* Technique: padding + mask-composite exclude para criar borda animada   */
     .transf-item {
@@ -4103,10 +4154,6 @@
       </div>
     </div>
 
-    <div class="hero-scroll-indicator">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
   </section>
 
   <!-- ========================================
@@ -4361,16 +4408,16 @@
         <p><strong>Rigor clínico.</strong> Nenhum médico prescreve sem examinar — mas é exatamente o que o mercado faz com você quando vende post e tráfego sem diagnóstico. Aqui, seu crescimento é tratado com o mesmo rigor que você aplica aos seus pacientes.</p>
       </div>
 
+      <div class="metodo-cap metodo-cap-start reveal"><span>Hoje: mais um nome na busca</span></div>
+
       <div class="metodo-fases">
 
-        <div class="metodo-fase reveal">
-          <div class="metodo-fase-meta">
-            <div class="metodo-fase-num">01</div>
+        <div class="metodo-fase metodo-fase--left reveal">
+          <div class="metodo-node"><span>01</span></div>
+          <div class="metodo-card">
             <div class="metodo-fase-tag">Gratuito · 2h · via call</div>
             <div class="metodo-fase-title">Diagnóstico Bäche</div>
             <p class="metodo-fase-virada">"Paro de adivinhar — sei exatamente onde minha agenda particular trava."</p>
-          </div>
-          <div class="metodo-fase-body">
             <p class="metodo-fase-why">Sem diagnóstico, qualquer ação é tiro no escuro. Nesta fase isolamos onde sua receita está vazando — posicionamento, percepção, aquisição ou conversão — para que cada movimento seguinte seja mirado, não chutado.</p>
             <div class="metodo-fase-recebe-label">O que você recebe</div>
             <ul class="metodo-entregas">
@@ -4383,14 +4430,12 @@
           </div>
         </div>
 
-        <div class="metodo-fase reveal">
-          <div class="metodo-fase-meta">
-            <div class="metodo-fase-num">02</div>
+        <div class="metodo-fase metodo-fase--right reveal">
+          <div class="metodo-node"><span>02</span></div>
+          <div class="metodo-card">
             <div class="metodo-fase-tag">Base de autoridade</div>
             <div class="metodo-fase-title">Marca &amp; Mensagem</div>
             <p class="metodo-fase-virada">"Paro de soar como todo mundo — ocupo um lugar que é só meu."</p>
-          </div>
-          <div class="metodo-fase-body">
             <p class="metodo-fase-why">Quando todos os perfis dizem as mesmas palavras — "humanização", "excelência", "cuidado" — sobra um único critério de escolha: o preço. Esta fase traduz o que te torna genuinamente único para a língua do paciente, dentro dos limites do CFM.</p>
             <div class="metodo-fase-recebe-label">O que você recebe</div>
             <ul class="metodo-entregas">
@@ -4403,14 +4448,12 @@
           </div>
         </div>
 
-        <div class="metodo-fase reveal">
-          <div class="metodo-fase-meta">
-            <div class="metodo-fase-num">03</div>
+        <div class="metodo-fase metodo-fase--left reveal">
+          <div class="metodo-node"><span>03</span></div>
+          <div class="metodo-card">
             <div class="metodo-fase-tag">O diferencial incopiável</div>
             <div class="metodo-fase-title">Direção Cênica &amp; Produção</div>
             <p class="metodo-fase-virada">"Paro de travar na câmera — transmito a autoridade que já tenho."</p>
-          </div>
-          <div class="metodo-fase-body">
             <p class="metodo-fase-why">Autoridade percebida não é o que você sabe — é como você comunica o que sabe. Entregar uma câmera e mandar "ser natural" produz o oposto. Direção cênica vem do palco: técnica de voz, postura e ritmo que revelam o comunicador que já existe em você.</p>
             <div class="metodo-fase-recebe-label">O que você recebe</div>
             <ul class="metodo-entregas">
@@ -4424,14 +4467,12 @@
           </div>
         </div>
 
-        <div class="metodo-fase reveal">
-          <div class="metodo-fase-meta">
-            <div class="metodo-fase-num">04</div>
+        <div class="metodo-fase metodo-fase--right reveal">
+          <div class="metodo-node"><span>04</span></div>
+          <div class="metodo-card">
             <div class="metodo-fase-tag">Presença que converte</div>
             <div class="metodo-fase-title">Aquisição &amp; Tráfego</div>
             <p class="metodo-fase-virada">"Paro de pagar para falar com estranhos — sou encontrado por quem já me conhece."</p>
-          </div>
-          <div class="metodo-fase-body">
             <p class="metodo-fase-why">Tráfego sobre estranho é leilão de preço. Tráfego sobre a marca construída nas fases anteriores alcança quem já te reconhece — e quem reconhece não compara: agenda. Meta cria demanda no topo; Google colhe quem já procura por você.</p>
             <div class="metodo-fase-recebe-label">O que você recebe</div>
             <ul class="metodo-entregas">
@@ -4445,14 +4486,12 @@
           </div>
         </div>
 
-        <div class="metodo-fase reveal">
-          <div class="metodo-fase-meta">
-            <div class="metodo-fase-num">05</div>
+        <div class="metodo-fase metodo-fase--left reveal">
+          <div class="metodo-node"><span>05</span></div>
+          <div class="metodo-card">
             <div class="metodo-fase-tag">O contato vira paciente</div>
             <div class="metodo-fase-title">Conversão &amp; Mensuração</div>
             <p class="metodo-fase-virada">"Paro de torcer — vejo cada real virar paciente, em tempo real."</p>
-          </div>
-          <div class="metodo-fase-body">
             <p class="metodo-fase-why">O gargalo raramente está na mídia: está no último metro — o lead que morre no WhatsApp — e na cegueira de dados. Esta fase treina sua equipe para converter e instala o painel que mostra onde cada paciente entrou e onde cada um se perde.</p>
             <div class="metodo-fase-recebe-label">O que você recebe</div>
             <ul class="metodo-entregas">
@@ -4465,14 +4504,12 @@
           </div>
         </div>
 
-        <div class="metodo-fase reveal">
-          <div class="metodo-fase-meta">
-            <div class="metodo-fase-num">06</div>
+        <div class="metodo-fase metodo-fase--right reveal">
+          <div class="metodo-node"><span>06</span></div>
+          <div class="metodo-card">
             <div class="metodo-fase-tag">O paciente vira defensor</div>
             <div class="metodo-fase-title">Fidelização &amp; Multiplicação</div>
             <p class="metodo-fase-virada">"Paro de recomeçar do zero — colho a base que já conquistei."</p>
-          </div>
-          <div class="metodo-fase-body">
             <p class="metodo-fase-why">O paciente mais barato é o que você já tem. Quem volta sustenta a receita; quem indica derruba seu custo de captação; quem avalia publicamente vira prova social que realimenta o tráfego — e o método inteiro fica mais barato a cada mês.</p>
             <div class="metodo-fase-recebe-label">O que você recebe</div>
             <ul class="metodo-entregas">
@@ -4486,6 +4523,8 @@
         </div>
 
       </div>
+
+      <div class="metodo-cap metodo-cap-end reveal"><span>Protagonista da sua especialidade</span></div>
 
       <div class="metodo-loops reveal">
         <div class="metodo-loops-label">Por que é ciclo — não linha</div>
@@ -5208,24 +5247,6 @@
       });
     });
 
-    // ---- Magnetic buttons ----
-    // Note: -3px Y offset baked in to match CSS hover translateY(-3px) — prevents jank conflict
-    if (!prefersReduced && !isCoarse) {
-      document.querySelectorAll('.btn-primary, .btn-gold, .btn-ghost, .nav-cta').forEach(btn => {
-        btn.addEventListener('mousemove', e => {
-          const rect = btn.getBoundingClientRect();
-          const cx = rect.left + rect.width / 2;
-          const cy = rect.top + rect.height / 2;
-          const dx = (e.clientX - cx) * 0.25;
-          const dy = (e.clientY - cy) * 0.25 - 3; // absorb CSS :hover translateY(-3px)
-          btn.style.transform = `translate(${dx}px, ${dy}px)`;
-        });
-        btn.addEventListener('mouseleave', () => {
-          btn.style.transform = '';
-        });
-      });
-    }
-
     // ---- Scroll Progress Bar ----
     const progressBar = document.getElementById('scroll-progress');
     window.addEventListener('scroll', () => {
@@ -5234,32 +5255,6 @@
       const progress = (scrollTop / docHeight) * 100;
       progressBar.style.width = progress + '%';
     }, { passive: true });
-
-    // ---- Hero Parallax (mouse tracking) ----
-    const heroSection = document.getElementById('hero');
-    const heroContent = document.getElementById('heroContent');
-    const heroOrbs = document.querySelectorAll('.hero-orb');
-
-    if (!prefersReduced && !isCoarse && heroSection) {
-      document.addEventListener('mousemove', e => {
-        if (window.scrollY > window.innerHeight) return;
-        const cx = window.innerWidth / 2;
-        const cy = window.innerHeight / 2;
-        const dx = (e.clientX - cx) / cx;
-        const dy = (e.clientY - cy) / cy;
-
-        heroContent.style.transform = `translate(${dx * -8}px, ${dy * -8}px)`;
-        heroOrbs.forEach((orb, i) => {
-          const depth = (i + 1) * 0.6;
-          orb.style.transform = `translate(${dx * depth * 20}px, ${dy * depth * 20}px)`;
-        });
-      });
-
-      heroSection.addEventListener('mouseleave', () => {
-        if (heroContent) heroContent.style.transform = '';
-        heroOrbs.forEach(orb => orb.style.transform = '');
-      });
-    }
 
     // ---- 3D Card Tilt ----
     function addTilt(selector, strength = 8) {
@@ -5456,19 +5451,6 @@
           cursor.classList.remove('is-hovering');
           ring.classList.remove('is-hovering');
         });
-      });
-    }
-
-    // ---- Magnetic buttons — add new CTAs ----
-    if (!prefersReduced && !isCoarse) {
-      document.querySelectorAll('.btn-gold').forEach(btn => {
-        btn.addEventListener('mousemove', e => {
-          const rect = btn.getBoundingClientRect();
-          const dx = (e.clientX - (rect.left + rect.width / 2)) * 0.25;
-          const dy = (e.clientY - (rect.top + rect.height / 2)) * 0.25;
-          btn.style.transform = `translate(${dx}px, ${dy}px)`;
-        });
-        btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
       });
     }
 
