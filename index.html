@@ -2835,6 +2835,29 @@
       border-color: rgba(201,168,106,0.30);
       transform: translateY(-3px);
     }
+    .metodo-card-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+    .metodo-icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(201,168,106,0.25);
+      background: rgba(201,168,106,0.05);
+      color: var(--ouro);
+      transition: border-color 0.4s var(--ease-out), background 0.4s var(--ease-out);
+    }
+    .metodo-icon svg { width: 22px; height: 22px; }
+    .metodo-fase:hover .metodo-icon {
+      border-color: rgba(201,168,106,0.50);
+      background: rgba(201,168,106,0.10);
+    }
     .metodo-fase-tag {
       display: inline-block;
       padding: 4px 12px;
@@ -2845,7 +2868,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--ouro);
-      margin-bottom: 16px;
+      margin-bottom: 10px;
     }
     .metodo-fase-title {
       font-size: 23px;
@@ -2853,7 +2876,6 @@
       color: var(--nevoa);
       letter-spacing: -0.02em;
       line-height: 1.2;
-      margin-bottom: 14px;
     }
     .metodo-fase-virada {
       font-size: 14.5px;
@@ -4415,8 +4437,15 @@
         <div class="metodo-fase metodo-fase--left reveal">
           <div class="metodo-node"><span>01</span></div>
           <div class="metodo-card">
-            <div class="metodo-fase-tag">Gratuito · 2h · via call</div>
-            <div class="metodo-fase-title">Diagnóstico Bäche</div>
+            <div class="metodo-card-head">
+              <div class="metodo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>
+              </div>
+              <div>
+                <div class="metodo-fase-tag">Gratuito · 2h · via call</div>
+                <div class="metodo-fase-title">Diagnóstico Bäche</div>
+              </div>
+            </div>
             <p class="metodo-fase-virada">"Paro de adivinhar — sei exatamente onde minha agenda particular trava."</p>
             <p class="metodo-fase-why">Sem diagnóstico, qualquer ação é tiro no escuro. Nesta fase isolamos onde sua receita está vazando — posicionamento, percepção, aquisição ou conversão — para que cada movimento seguinte seja mirado, não chutado.</p>
             <div class="metodo-fase-recebe-label">O que você recebe</div>
@@ -4433,8 +4462,15 @@
         <div class="metodo-fase metodo-fase--right reveal">
           <div class="metodo-node"><span>02</span></div>
           <div class="metodo-card">
-            <div class="metodo-fase-tag">Base de autoridade</div>
-            <div class="metodo-fase-title">Marca &amp; Mensagem</div>
+            <div class="metodo-card-head">
+              <div class="metodo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"/></svg>
+              </div>
+              <div>
+                <div class="metodo-fase-tag">Base de autoridade</div>
+                <div class="metodo-fase-title">Marca &amp; Mensagem</div>
+              </div>
+            </div>
             <p class="metodo-fase-virada">"Paro de soar como todo mundo — ocupo um lugar que é só meu."</p>
             <p class="metodo-fase-why">Quando todos os perfis dizem as mesmas palavras — "humanização", "excelência", "cuidado" — sobra um único critério de escolha: o preço. Esta fase traduz o que te torna genuinamente único para a língua do paciente, dentro dos limites do CFM.</p>
             <div class="metodo-fase-recebe-label">O que você recebe</div>
@@ -4451,8 +4487,15 @@
         <div class="metodo-fase metodo-fase--left reveal">
           <div class="metodo-node"><span>03</span></div>
           <div class="metodo-card">
-            <div class="metodo-fase-tag">O diferencial incopiável</div>
-            <div class="metodo-fase-title">Direção Cênica &amp; Produção</div>
+            <div class="metodo-card-head">
+              <div class="metodo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"/><path d="m6.2 5.3 3.1 3.9"/><path d="m12.4 3.4 3.1 4"/><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>
+              </div>
+              <div>
+                <div class="metodo-fase-tag">O diferencial incopiável</div>
+                <div class="metodo-fase-title">Direção Cênica &amp; Produção</div>
+              </div>
+            </div>
             <p class="metodo-fase-virada">"Paro de travar na câmera — transmito a autoridade que já tenho."</p>
             <p class="metodo-fase-why">Autoridade percebida não é o que você sabe — é como você comunica o que sabe. Entregar uma câmera e mandar "ser natural" produz o oposto. Direção cênica vem do palco: técnica de voz, postura e ritmo que revelam o comunicador que já existe em você.</p>
             <div class="metodo-fase-recebe-label">O que você recebe</div>
@@ -4470,8 +4513,15 @@
         <div class="metodo-fase metodo-fase--right reveal">
           <div class="metodo-node"><span>04</span></div>
           <div class="metodo-card">
-            <div class="metodo-fase-tag">Presença que converte</div>
-            <div class="metodo-fase-title">Aquisição &amp; Tráfego</div>
+            <div class="metodo-card-head">
+              <div class="metodo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              </div>
+              <div>
+                <div class="metodo-fase-tag">Presença que converte</div>
+                <div class="metodo-fase-title">Tráfego &amp; Aquisição</div>
+              </div>
+            </div>
             <p class="metodo-fase-virada">"Paro de pagar para falar com estranhos — sou encontrado por quem já me conhece."</p>
             <p class="metodo-fase-why">Tráfego sobre estranho é leilão de preço. Tráfego sobre a marca construída nas fases anteriores alcança quem já te reconhece — e quem reconhece não compara: agenda. Meta cria demanda no topo; Google colhe quem já procura por você.</p>
             <div class="metodo-fase-recebe-label">O que você recebe</div>
@@ -4489,8 +4539,15 @@
         <div class="metodo-fase metodo-fase--left reveal">
           <div class="metodo-node"><span>05</span></div>
           <div class="metodo-card">
-            <div class="metodo-fase-tag">O contato vira paciente</div>
-            <div class="metodo-fase-title">Conversão &amp; Mensuração</div>
+            <div class="metodo-card-head">
+              <div class="metodo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+              </div>
+              <div>
+                <div class="metodo-fase-tag">O contato vira paciente</div>
+                <div class="metodo-fase-title">Conversão &amp; Mensuração</div>
+              </div>
+            </div>
             <p class="metodo-fase-virada">"Paro de torcer — vejo cada real virar paciente, em tempo real."</p>
             <p class="metodo-fase-why">O gargalo raramente está na mídia: está no último metro — o lead que morre no WhatsApp — e na cegueira de dados. Esta fase treina sua equipe para converter e instala o painel que mostra onde cada paciente entrou e onde cada um se perde.</p>
             <div class="metodo-fase-recebe-label">O que você recebe</div>
@@ -4507,8 +4564,15 @@
         <div class="metodo-fase metodo-fase--right reveal">
           <div class="metodo-node"><span>06</span></div>
           <div class="metodo-card">
-            <div class="metodo-fase-tag">O paciente vira defensor</div>
-            <div class="metodo-fase-title">Fidelização &amp; Multiplicação</div>
+            <div class="metodo-card-head">
+              <div class="metodo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+              </div>
+              <div>
+                <div class="metodo-fase-tag">O paciente vira defensor</div>
+                <div class="metodo-fase-title">Fidelização &amp; Multiplicação</div>
+              </div>
+            </div>
             <p class="metodo-fase-virada">"Paro de recomeçar do zero — colho a base que já conquistei."</p>
             <p class="metodo-fase-why">O paciente mais barato é o que você já tem. Quem volta sustenta a receita; quem indica derruba seu custo de captação; quem avalia publicamente vira prova social que realimenta o tráfego — e o método inteiro fica mais barato a cada mês.</p>
             <div class="metodo-fase-recebe-label">O que você recebe</div>
