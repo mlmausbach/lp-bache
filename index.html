@@ -260,15 +260,15 @@
       --violeta:    #7B35CE;   /* VIOLETA   – roxo vibrante da marca    */
       --noite:      #0D0C14;   /* NOITE     – fundo principal           */
       --nevoa:      #E8E6F5;   /* NÉVOA     – claro / seções light      */
-      --teal:       #00E0B8;   /* TEAL      – acento / CTA              */
+      --ouro:       #C9A86A;   /* OURO/CHAMPANHE – acento sóbrio alto ticket */
       --surface:    #15131E;   /* SUPERFÍCIE– cards e camadas elevadas  */
 
       /* ── Derivados calculados (sem novas cores) */
-      --teal-dark:       #00BFA0;              /* teal escurecido para hover    */
+      --ouro-dark:       #AC8C50;              /* ouro escurecido para hover    */
       --violeta-deep:    #5A1FA3;              /* violeta escuro para contraste */
       --violeta-light:   #A865F0;              /* violeta claro para gradientes */
       --violeta-soft:    rgba(123,53,206,0.08);
-      --teal-soft:       rgba(0,224,184,0.10);
+      --ouro-soft:       rgba(224,169,59,0.10);
 
       /* ── Aliases semânticos → mapeados na paleta */
       --purple:        var(--violeta);
@@ -278,11 +278,11 @@
       --purple-soft:   var(--violeta-soft);
       --white:         #ffffff;
       --off-white:     var(--nevoa);
-      /* ── DOURADO REMOVIDO — substituído por --teal */
-      --gold:          var(--teal);
-      --gold-light:    var(--teal-dark);
+      /* ── OURO SOLAR é o acento oficial — --gold aponta para ele */
+      --gold:          var(--ouro);
+      --gold-light:    var(--ouro-dark);
 
-      --text-muted: rgba(255,255,255,0.62);
+      --text-muted: rgba(255,255,255,0.72);
       --text-body:  rgba(255,255,255,0.87);
 
       /* ── Glass tokens ─────────────────────────── */
@@ -314,7 +314,7 @@
     :focus { outline: none; }
 
     :focus-visible {
-      outline: 2px solid var(--teal);
+      outline: 2px solid var(--ouro);
       outline-offset: 3px;
       border-radius: 4px;
     }
@@ -324,7 +324,7 @@
     .btn-gold:focus-visible,
     .nav-cta:focus-visible,
     .product-cta:focus-visible {
-      outline: 2px solid var(--teal);
+      outline: 2px solid var(--ouro);
       outline-offset: 5px;
       border-radius: 100px;
     }
@@ -470,7 +470,7 @@
         animation: none !important;
         background: none !important;
         -webkit-text-fill-color: unset !important;
-        color: var(--teal);
+        color: var(--ouro);
       }
       #plano .section-label,
       #produtos .section-label,
@@ -589,12 +589,12 @@
       position: absolute;
       inset: 0;
       background:
-        /* Escurecer o centro para contraste do texto */
-        radial-gradient(ellipse 90% 100% at 50% 50%, rgba(8,8,16,0.72) 0%, rgba(8,8,16,0.45) 60%, transparent 100%),
+        /* Véu escuro forte — fundo quase-preto sóbrio, roxo vira atmosfera sutil */
+        radial-gradient(ellipse 100% 100% at 50% 45%, rgba(8,8,14,0.80) 0%, rgba(8,8,14,0.68) 55%, rgba(8,8,14,0.58) 100%),
         /* Reforçar fundo escuro nas bordas */
-        linear-gradient(to bottom, rgba(8,8,16,0.5) 0%, rgba(8,8,16,0.2) 40%, rgba(8,8,16,0.75) 100%),
-        /* Teal sutil no canto inferior */
-        radial-gradient(ellipse 30% 25% at 50% 110%, rgba(0,224,184,0.10) 0%, transparent 60%);
+        linear-gradient(to bottom, rgba(8,8,14,0.62) 0%, rgba(8,8,14,0.42) 45%, rgba(8,8,14,0.84) 100%),
+        /* Champanhe sutil no canto inferior */
+        radial-gradient(ellipse 30% 25% at 50% 110%, rgba(201,168,106,0.08) 0%, transparent 60%);
     }
 
     .hero-grain {
@@ -610,7 +610,7 @@
       align-items: center;
       gap: 10px;
       padding: 8px 20px;
-      border: 1px solid rgba(0,224,184,0.40);
+      border: 1px solid rgba(224,169,59,0.40);
       border-radius: 100px;
       font-size: 11px;
       font-weight: 600;
@@ -654,7 +654,7 @@
 
     .hero-headline em {
       font-style: italic;
-      color: var(--teal);
+      color: var(--ouro);
     }
 
     .hero-headline .highlight {
@@ -694,7 +694,7 @@
     }
 
     .hero-sub strong {
-      color: var(--teal);
+      color: var(--ouro);
       font-weight: 700;
     }
 
@@ -711,13 +711,39 @@
       animation: fadeUp 0.7s var(--ease-out) 0.52s forwards; /* era delay 1.1s — CTA visível em ~0.52s */
     }
 
+    /* Barra de confiança — sinais de legitimidade abaixo do CTA */
+    .hero-trust {
+      position: relative;
+      z-index: 2;
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      opacity: 0;
+      animation: fadeUp 0.7s var(--ease-out) 0.68s forwards;
+    }
+    .hero-trust-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      letter-spacing: 0.02em;
+      color: var(--text-muted);
+    }
+    .hero-trust-item svg { width: 15px; height: 15px; color: var(--ouro); flex-shrink: 0; }
+    .hero-trust-sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.20); }
+    @media (max-width: 600px) { .hero-trust-sep { display: none; } .hero-trust { gap: 8px 18px; } }
+
     .btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       padding: 18px 40px;
-      background: var(--white);
-      color: var(--purple);
+      background: linear-gradient(135deg, #D8C087, var(--ouro));
+      color: #1a1410;
       border-radius: 100px;
       font-size: 14px;
       font-weight: 700;
@@ -729,7 +755,7 @@
 
     .btn-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      box-shadow: 0 18px 50px rgba(201,168,106,0.26);
     }
 
     .btn-primary svg { transition: transform 0.3s var(--ease-out); }
@@ -808,7 +834,7 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 1px;
-      background: linear-gradient(to right, transparent, rgba(0,224,184,0.35), transparent);
+      background: linear-gradient(to right, transparent, rgba(224,169,59,0.35), transparent);
     }
 
     #stats::after {
@@ -872,7 +898,7 @@
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--teal);
+      color: var(--ouro);
       margin-bottom: 24px;
     }
 
@@ -881,7 +907,7 @@
       display: block;
       width: 24px;
       height: 1px;
-      background: var(--teal);
+      background: var(--ouro);
     }
 
     /* Hero logo mark — hidden globally */
@@ -1050,9 +1076,9 @@
     }
 
     .pain-badge.alta {
-      background: rgba(0,224,184,0.10);
-      color: var(--teal);
-      border: 1px solid rgba(0,224,184,0.22);
+      background: rgba(224,169,59,0.10);
+      color: var(--ouro);
+      border: 1px solid rgba(224,169,59,0.22);
     }
 
     /* ========================================
@@ -1202,7 +1228,7 @@
       position: absolute;
       width: 700px; height: 700px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,224,184,0.06) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(224,169,59,0.06) 0%, transparent 70%);
       bottom: -200px; left: -150px;
       pointer-events: none;
     }
@@ -1269,7 +1295,7 @@
 
     .comparison-table tr:hover td { background: rgba(255,255,255,0.025); }
     .comparison-table tr:hover td:last-child { background: rgba(123, 53, 206, 0.28); }
-    .comparison-table tr:hover td:last-child .check.yes { color: hsl(168, 100%, 72%); } /* teal-200 — contraste 5.2:1 */
+    .comparison-table tr:hover td:last-child .check.yes { color: hsl(40, 85%, 72%); } /* ouro claro — contraste no roxo */
 
     .check {
       display: inline-flex;
@@ -1281,8 +1307,8 @@
     }
 
     .check.yes {
-      background: rgba(0,224,184,0.12);
-      color: var(--teal);
+      background: rgba(224,169,59,0.12);
+      color: var(--ouro);
     }
 
     .check.no {
@@ -1345,7 +1371,7 @@
       font-size: 36px;
       margin-bottom: 24px;
       position: relative;
-      color: var(--teal);
+      color: var(--ouro);
       line-height: 0;
     }
     .attr-card-icon svg { width: 34px; height: 34px; stroke-width: 1.5; }
@@ -1585,7 +1611,7 @@
       font-size: clamp(20px, 2.5vw, 26px);
       font-weight: 900;
       letter-spacing: -0.02em;
-      color: var(--teal);
+      color: var(--ouro);
       line-height: 1;
       margin-bottom: 4px;
     }
@@ -1595,7 +1621,7 @@
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--teal);
+      color: var(--ouro);
       opacity: 0.8;
     }
 
@@ -1616,7 +1642,7 @@
       background:
         radial-gradient(ellipse 80% 80% at 55% 50%, rgba(123,53,206,0.60) 0%, transparent 65%),
         radial-gradient(ellipse 35% 40% at 5% 45%, rgba(210,205,235,0.10) 0%, transparent 55%),
-        radial-gradient(ellipse 25% 25% at 95% 85%, rgba(0,224,184,0.09) 0%, transparent 50%);
+        radial-gradient(ellipse 25% 25% at 95% 85%, rgba(224,169,59,0.09) 0%, transparent 50%);
     }
 
     .garantia-inner {
@@ -1640,7 +1666,7 @@
       background: rgba(255,255,255,0.07);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      box-shadow: 0 0 80px rgba(123,53,206,0.35), inset 0 1px 0 rgba(255,255,255,0.12), 0 0 0 1px rgba(0,224,184,0.12);
+      box-shadow: 0 0 80px rgba(123,53,206,0.35), inset 0 1px 0 rgba(255,255,255,0.12), 0 0 0 1px rgba(224,169,59,0.12);
       position: relative;
       margin: 0 auto;
     }
@@ -1877,7 +1903,7 @@
       background:
         radial-gradient(ellipse 70% 90% at 50% 55%, rgba(123, 53, 206, 0.55) 0%, transparent 65%),
         radial-gradient(ellipse 40% 40% at 15% 20%, rgba(210,205,235,0.08) 0%, transparent 50%),
-        radial-gradient(ellipse 30% 30% at 85% 80%, rgba(0,224,184,0.06) 0%, transparent 50%);
+        radial-gradient(ellipse 30% 30% at 85% 80%, rgba(224,169,59,0.06) 0%, transparent 50%);
     }
 
     .contato-inner {
@@ -1920,7 +1946,7 @@
       align-items: center;
       gap: 10px;
       padding: 20px 48px;
-      background: var(--teal);
+      background: var(--ouro);
       color: var(--noite);
       border-radius: 100px;
       font-size: 14px;
@@ -1933,7 +1959,7 @@
     .btn-gold:hover {
       background: #1FFFD0;   /* teal +10% lightness */
       transform: translateY(-3px);
-      box-shadow: 0 20px 60px rgba(0,224,184,0.35);
+      box-shadow: 0 20px 60px rgba(224,169,59,0.35);
     }
 
     .contato-note {
@@ -1957,7 +1983,7 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 1px;
-      background: linear-gradient(to right, transparent, rgba(0,224,184,0.25), transparent);
+      background: linear-gradient(to right, transparent, rgba(224,169,59,0.25), transparent);
     }
 
     .footer-top {
@@ -2075,11 +2101,11 @@
       position: fixed;
       top: 0; left: 0;
       height: 2px;
-      background: linear-gradient(to right, var(--violeta), var(--teal));
+      background: linear-gradient(to right, var(--violeta), var(--ouro));
       z-index: 9999;
       width: 0%;
       transition: width 0.1s linear;
-      box-shadow: 0 0 10px rgba(0,224,184,0.5);
+      box-shadow: 0 0 10px rgba(224,169,59,0.5);
     }
 
     /* ========================================
@@ -2089,21 +2115,21 @@
       position: absolute;
       border-radius: 50%;
       pointer-events: none;
-      filter: blur(80px);
-      opacity: 0.35;
+      filter: blur(90px);
+      opacity: 0.20;
       animation: orbFloat 8s ease-in-out infinite;
     }
 
     .hero-orb-1 {
       width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(107, 53, 176, 0.8), transparent 70%);
+      background: radial-gradient(circle, rgba(88, 60, 124, 0.55), transparent 70%);
       top: -10%; left: 5%;
       animation-delay: 0s;
     }
 
     .hero-orb-2 {
       width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(0,224,184,0.25), transparent 70%);
+      background: radial-gradient(circle, rgba(201,168,106,0.16), transparent 70%);
       bottom: 5%; right: 5%;
       animation-delay: -3s;
       animation-duration: 10s;
@@ -2111,7 +2137,7 @@
 
     .hero-orb-3 {
       width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(123,53,206,0.90), transparent 70%);
+      background: radial-gradient(circle, rgba(88,60,124,0.55), transparent 70%);
       top: 40%; right: 15%;
       animation-delay: -6s;
       animation-duration: 12s;
@@ -2136,7 +2162,7 @@
 
     /* Section label shimmer — paleta oficial */
     .section-label {
-      background: linear-gradient(90deg, var(--teal) 0%, #60F5DC 50%, var(--teal) 100%);
+      background: linear-gradient(90deg, var(--ouro) 0%, #E8D9B8 50%, var(--ouro) 100%);
       background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -2301,7 +2327,7 @@
     /* Focus ring premium */
     .premium-focus:focus-visible {
       outline: none;
-      box-shadow: 0 0 0 2px var(--noite), 0 0 0 4px var(--teal);
+      box-shadow: 0 0 0 2px var(--noite), 0 0 0 4px var(--ouro);
       border-radius: 8px;
     }
 
@@ -2370,7 +2396,7 @@
       position: absolute;
       inset: -6px;
       border-radius: 100px;
-      background: radial-gradient(ellipse, rgba(0,224,184,0.30) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(224,169,59,0.30) 0%, transparent 70%);
       opacity: 0;
       transition: opacity 0.4s;
       z-index: -1;
@@ -2413,7 +2439,7 @@
       position: absolute;
       width: 700px; height: 700px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,224,184,0.06) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(224,169,59,0.06) 0%, transparent 70%);
       top: -200px; right: -150px;
       pointer-events: none;
     }
@@ -2444,8 +2470,8 @@
       min-width: 148px;
     }
     .pb-duality-pill--perf {
-      border-color: rgba(0,224,184,0.28);
-      background: rgba(0,224,184,0.05);
+      border-color: rgba(224,169,59,0.28);
+      background: rgba(224,169,59,0.05);
     }
     .pb-duality-pill--brand {
       border-color: rgba(168,101,240,0.32);
@@ -2457,7 +2483,7 @@
       font-weight: 800;
       letter-spacing: -0.01em;
     }
-    .pb-duality-pill--perf .pb-duality-label { color: var(--teal); }
+    .pb-duality-pill--perf .pb-duality-label { color: var(--ouro); }
     .pb-duality-pill--brand .pb-duality-label { color: var(--violeta-light); }
     .pb-duality-sub {
       font-size: 11px;
@@ -2489,7 +2515,7 @@
       letter-spacing: -0.02em;
       color: var(--white);
     }
-    .pb-duality-result-text .arrow-down { color: var(--teal); }
+    .pb-duality-result-text .arrow-down { color: var(--ouro); }
     .pb-duality-result-text .arrow-up   { color: var(--violeta-light); }
 
     .guia-body { padding-top: 8px; }
@@ -2697,6 +2723,223 @@
     .plano-result-cta { flex-shrink: 0; }
 
     /* ========================================
+       METODO PROTAGONISTA SECTION
+    ======================================== */
+    #metodo {
+      background: var(--noite);
+      padding: 120px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    #metodo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 35% at 88% 4%, rgba(201,168,106,0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 40% at 4% 72%, rgba(123,53,206,0.08) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .metodo-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+    .metodo-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+      margin-bottom: 40px;
+    }
+    .metodo-tese {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-body);
+      padding-top: 16px;
+    }
+    .metodo-tese strong { color: var(--nevoa); font-weight: 700; }
+    .metodo-rigor {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      padding: 26px 30px;
+      margin-bottom: 72px;
+      border: 1px solid rgba(201,168,106,0.16);
+      background: rgba(201,168,106,0.04);
+    }
+    .metodo-rigor svg { flex-shrink: 0; margin-top: 2px; color: var(--ouro); }
+    .metodo-rigor p { font-size: 14.5px; line-height: 1.7; color: var(--text-muted); }
+    .metodo-rigor p strong { color: var(--nevoa); font-weight: 700; }
+
+    .metodo-fases { border-top: 1px solid rgba(255,255,255,0.08); }
+    .metodo-fase {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 56px;
+      padding: 56px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .metodo-fase-num {
+      font-size: 60px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: rgba(201,168,106,0.22);
+      margin-bottom: 18px;
+      transition: color 0.4s var(--ease-out);
+    }
+    .metodo-fase:hover .metodo-fase-num { color: var(--ouro); }
+    .metodo-fase-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(201,168,106,0.08);
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ouro);
+      margin-bottom: 16px;
+    }
+    .metodo-fase-title {
+      font-size: 23px;
+      font-weight: 800;
+      color: var(--nevoa);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .metodo-fase-virada {
+      font-size: 14.5px;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--ouro);
+    }
+    .metodo-fase-why {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-body);
+      margin-bottom: 28px;
+    }
+    .metodo-fase-recebe-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ouro);
+      margin-bottom: 16px;
+    }
+    .metodo-entregas {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 32px;
+    }
+    .metodo-entrega {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      padding-left: 18px;
+      position: relative;
+    }
+    .metodo-entrega::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 9px;
+      height: 1px;
+      background: var(--ouro);
+    }
+    .metodo-entrega strong { color: var(--nevoa); font-weight: 600; }
+    .metodo-fase-sinal {
+      margin-top: 28px;
+      padding: 16px 20px;
+      border-left: 2px solid var(--ouro);
+      background: rgba(255,255,255,0.025);
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+    .metodo-fase-sinal strong {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ouro);
+      margin-bottom: 5px;
+    }
+    .metodo-moat {
+      margin-top: 16px;
+      padding: 16px 20px;
+      border: 1px solid rgba(201,168,106,0.22);
+      background: rgba(201,168,106,0.05);
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+    .metodo-moat strong { color: var(--ouro); font-weight: 700; }
+
+    .metodo-loops { margin-top: 72px; }
+    .metodo-loops-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ouro);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .metodo-loops-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .metodo-loop {
+      padding: 36px 40px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+    }
+    .metodo-loop-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--nevoa);
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+    .metodo-loop-title svg { color: var(--ouro); flex-shrink: 0; }
+    .metodo-loop p { font-size: 14px; line-height: 1.7; color: var(--text-muted); }
+    .metodo-loop p strong { color: var(--nevoa); font-weight: 700; }
+
+    .metodo-bridge { margin-top: 72px; text-align: center; }
+    .metodo-bridge-text {
+      font-size: clamp(20px, 2.2vw, 28px);
+      font-weight: 800;
+      color: var(--nevoa);
+      letter-spacing: -0.02em;
+      line-height: 1.35;
+      margin-bottom: 32px;
+    }
+    .metodo-bridge-text em { font-style: italic; color: var(--ouro); }
+    .metodo-bridge-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 980px) {
+      #metodo { padding: 72px 24px; }
+      .metodo-header { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
+      .metodo-rigor { margin-bottom: 48px; }
+      .metodo-fase { grid-template-columns: 1fr; gap: 28px; padding: 44px 0; }
+      .metodo-fase-num { font-size: 48px; margin-bottom: 14px; }
+      .metodo-entregas { grid-template-columns: 1fr; }
+      .metodo-loops-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ========================================
        TRANSFORMACAO SECTION
     ======================================== */
     #transformacao {
@@ -2710,7 +2953,7 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 55% 55% at 90% 55%, rgba(0,224,184,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 55% at 90% 55%, rgba(224,169,59,0.07) 0%, transparent 60%),
         radial-gradient(ellipse 40% 50% at 5% 45%, rgba(123,53,206,0.14) 0%, transparent 55%);
       pointer-events: none;
     }
@@ -2741,7 +2984,7 @@
     }
     .transf-item:hover {
       background: var(--glass-bg-hover);
-      border-color: rgba(0,224,184,0.18);
+      border-color: rgba(224,169,59,0.18);
       transform: translateY(-4px);
       box-shadow: 0 20px 56px rgba(0,0,0,0.4);
     }
@@ -2758,7 +3001,7 @@
       font-size: 32px;
       margin-bottom: 20px;
       position: relative;
-      color: var(--teal);
+      color: var(--ouro);
       line-height: 0;
     }
     .transf-item-icon svg { width: 30px; height: 30px; stroke-width: 1.5; }
@@ -3156,19 +3399,19 @@
 
     /* ── Atualizar variáveis para o gradiente oficial ─────────────────────── */
     :root {
-      --violeta:        #9730EF;
+      --violeta:        #7B35CE;
       --violeta-deep:   #3F0967;
-      --violeta-light:  #B562F5;
-      --violeta-soft:   rgba(151,48,239,0.08);
+      --violeta-light:  #A878D8;
+      --violeta-soft:   rgba(123,53,206,0.07);
       --purple:         var(--violeta);
       --purple-dark:    var(--violeta-deep);
       --purple-light:   var(--violeta-light);
       --purple-soft:    var(--violeta-soft);
 
       /* Gradiente oficial da marca */
-      --gradient-brand:      linear-gradient(135deg, #9730EF 0%, #9500E0 33%, #42006C 67%, #3F0967 100%);
-      --gradient-brand-h:    linear-gradient(90deg, #9730EF 0%, #9500E0 33%, #42006C 67%, #3F0967 100%);
-      --gradient-brand-anim: linear-gradient(-45deg, #9730EF, #9500E0, #5D0B9F, #42006C, #3F0967, #7B15C9, #9730EF);
+      --gradient-brand:      linear-gradient(135deg, #7B35CE 0%, #6E2DB8 33%, #42006C 67%, #3F0967 100%);
+      --gradient-brand-h:    linear-gradient(90deg, #7B35CE 0%, #6E2DB8 33%, #42006C 67%, #3F0967 100%);
+      --gradient-brand-anim: linear-gradient(-45deg, #7B35CE, #6E2DB8, #5D0B9F, #42006C, #3F0967, #6E2DB8, #7B35CE);
     }
 
     /* ── Keyframes ──────────────────────────────────────────────────────────── */
@@ -3187,14 +3430,14 @@
           0 0 0 0 rgba(151,48,239,0),
           0 0 80px rgba(151,48,239,0.35),
           inset 0 1px 0 rgba(255,255,255,0.12),
-          0 0 0 1px rgba(0,224,184,0.12);
+          0 0 0 1px rgba(224,169,59,0.12);
       }
       50% {
         box-shadow:
           0 0 0 20px rgba(151,48,239,0),
           0 0 130px rgba(151,48,239,0.60),
           inset 0 1px 0 rgba(255,255,255,0.18),
-          0 0 0 2px rgba(0,224,184,0.28);
+          0 0 0 2px rgba(224,169,59,0.28);
       }
     }
     @property --beam-angle {
@@ -3244,7 +3487,7 @@
     /* Gradiente vibrante para legibilidade em fundos escuros                */
     /* Evita #42006C / #3F0967 que são invisíveis sobre --noite              */
     :root {
-      --gradient-text-vibrant: linear-gradient(90deg, #9730EF 0%, #C060FF 38%, #B040FF 72%, #9730EF 100%);
+      --gradient-text-vibrant: linear-gradient(90deg, #7B35CE 0%, #A878D8 38%, #9B66D0 72%, #7B35CE 100%);
     }
 
     /* em tags — fundo escuro: usa gradiente vibrante (sempre legível) */
@@ -3293,8 +3536,8 @@
     /* Restaura no hover (bg gradiente) */
     .founder-card:hover .founder-role {
       background: none;
-      -webkit-text-fill-color: var(--teal);
-      color: var(--teal);
+      -webkit-text-fill-color: var(--ouro);
+      color: var(--ouro);
     }
 
     /* Números de credencial (seção guia) */
@@ -3314,8 +3557,8 @@
     }
     .formula-item:hover .formula-item-icon {
       background: none;
-      -webkit-text-fill-color: var(--teal);
-      color: var(--teal);
+      -webkit-text-fill-color: var(--ouro);
+      color: var(--ouro);
     }
 
     /* Linha vertical da dor-quote */
@@ -3328,7 +3571,7 @@
     #plano .section-label,
     #produtos .section-label,
     #fundadores .section-label {
-      background: linear-gradient(90deg, #9730EF 0%, #B562F5 35%, #9500E0 65%, #9730EF 100%) !important;
+      background: linear-gradient(90deg, #7B35CE 0%, #A878D8 35%, #6E2DB8 65%, #7B35CE 100%) !important;
       background-size: 200% auto !important;
       -webkit-background-clip: text !important;
       -webkit-text-fill-color: transparent !important;
@@ -3338,7 +3581,7 @@
     #plano .section-label::before,
     #produtos .section-label::before,
     #fundadores .section-label::before {
-      background: #9730EF !important;
+      background: #7B35CE !important;
       -webkit-text-fill-color: unset;
       flex-shrink: 0;
     }
@@ -3379,8 +3622,8 @@
       background: conic-gradient(
         from var(--beam-angle) at 50% 50%,
         transparent 0deg,
-        #9730EF 55deg,
-        #9500E0 110deg,
+        #7B35CE 55deg,
+        #6E2DB8 110deg,
         #42006C 165deg,
         transparent 210deg
       );
@@ -3507,13 +3750,13 @@
       background:
         radial-gradient(ellipse 80% 80% at 55% 50%, rgba(151,48,239,0.65) 0%, rgba(63,9,103,0.4) 45%, transparent 70%),
         radial-gradient(ellipse 35% 40% at 5% 45%, rgba(210,205,235,0.10) 0%, transparent 55%),
-        radial-gradient(ellipse 25% 25% at 95% 85%, rgba(0,224,184,0.09) 0%, transparent 50%) !important;
+        radial-gradient(ellipse 25% 25% at 95% 85%, rgba(224,169,59,0.09) 0%, transparent 50%) !important;
     }
     #contato::before {
       background:
         radial-gradient(ellipse 70% 90% at 50% 55%, rgba(151,48,239,0.60) 0%, rgba(63,9,103,0.35) 45%, transparent 65%),
         radial-gradient(ellipse 40% 40% at 15% 20%, rgba(210,205,235,0.08) 0%, transparent 50%),
-        radial-gradient(ellipse 30% 30% at 85% 80%, rgba(0,224,184,0.06) 0%, transparent 50%) !important;
+        radial-gradient(ellipse 30% 30% at 85% 80%, rgba(224,169,59,0.06) 0%, transparent 50%) !important;
     }
 
     /* ── Shadcn/ui — easing refinado em todos os cards ─────────────────── */
@@ -3584,8 +3827,8 @@
       padding: 1.5px;
       background: conic-gradient(
         from var(--beam-angle) at 50% 50%,
-        transparent 0deg, #9730EF 60deg,
-        #9500E0 120deg, transparent 180deg
+        transparent 0deg, #7B35CE 60deg,
+        #6E2DB8 120deg, transparent 180deg
       );
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
@@ -3701,9 +3944,9 @@
     .modal-success-icon {
       width: 68px; height: 68px;
       border-radius: 50%;
-      background: rgba(0,224,184,0.08);
-      border: 1.5px solid rgba(0,224,184,0.35);
-      color: var(--teal);
+      background: rgba(224,169,59,0.08);
+      border: 1.5px solid rgba(224,169,59,0.35);
+      color: var(--ouro);
       font-size: 30px;
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 20px;
@@ -3731,7 +3974,7 @@
       line-height: 1.6;
       display: none;
     }
-    .modal-error-box a { color: var(--teal); text-decoration: underline; }
+    .modal-error-box a { color: var(--ouro); text-decoration: underline; }
 
     @media (max-width: 540px) {
       .modal-card { padding: 40px 24px 32px; }
@@ -3771,7 +4014,7 @@
       <img src="assets/logo-white.svg" alt="Bäche" class="nav-logo-v" />
     </a>
     <ul class="nav-links">
-      <li><a href="#plano">A Metodologia</a></li>
+      <li><a href="#metodo">O Método</a></li>
       <li><a href="#produtos">Serviços</a></li>
       <li><a href="#garantia">Garantia</a></li>
       <li><a href="#fundadores">Time</a></li>
@@ -3788,7 +4031,7 @@
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <div class="mobile-menu-inner">
       <nav class="mobile-nav" aria-label="Menu mobile">
-        <a href="#plano" class="mobile-nav-link">A Metodologia</a>
+        <a href="#metodo" class="mobile-nav-link">O Método</a>
         <a href="#produtos" class="mobile-nav-link">Serviços</a>
         <a href="#garantia" class="mobile-nav-link">Garantia</a>
         <a href="#fundadores" class="mobile-nav-link">Time</a>
@@ -3840,6 +4083,23 @@
             <path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
+      </div>
+
+      <div class="hero-trust" aria-label="Selos de confiança">
+        <span class="hero-trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+          100% CFM &amp; CRM compliant
+        </span>
+        <span class="hero-trust-sep" aria-hidden="true"></span>
+        <span class="hero-trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.4-5.5 9.3-7.3 10.8a1 1 0 0 1-1.4 0C9.5 19.3 4 14.4 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+          Atendimento em todo o Brasil
+        </span>
+        <span class="hero-trust-sep" aria-hidden="true"></span>
+        <span class="hero-trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+          Garantia de resultado em 90 dias
+        </span>
       </div>
     </div>
 
@@ -4068,12 +4328,199 @@
           <div class="plano-result-text">Autoridade de mercado que atrai pacientes particulares —<br/>com resultado acompanhado de perto e 100% CFM-compliant.</div>
         </div>
         <div class="plano-result-cta">
-          <a href="#contato" class="btn-primary" data-modal="diagnostico" style="background: var(--nevoa); color: var(--violeta);">
+          <a href="#contato" class="btn-primary" data-modal="diagnostico">
             Agendar Diagnóstico Gratuito
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       MÉTODO PROTAGONISTA
+  ======================================== -->
+  <section id="metodo" aria-label="O Método Protagonista">
+    <div class="metodo-inner">
+      <div class="metodo-header">
+        <div class="reveal">
+          <div class="section-label">Método Protagonista™</div>
+          <h2 class="section-title">De mais um nome na busca<br/>a <em>protagonista</em> da sua especialidade.</h2>
+        </div>
+        <p class="metodo-tese reveal reveal-delay-2">
+          O paciente não escolhe o médico mais competente — ele não tem como avaliar competência técnica. Ele escolhe o médico que <strong>entende, lembra e confia</strong>. O Método Protagonista são <strong>6 fases, em ordem causal</strong>: a marca reduz seu custo de aquisição, a performance traz pacientes agora — e as duas compõem mês a mês.
+        </p>
+      </div>
+
+      <div class="metodo-rigor reveal">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+        </svg>
+        <p><strong>Rigor clínico.</strong> Nenhum médico prescreve sem examinar — mas é exatamente o que o mercado faz com você quando vende post e tráfego sem diagnóstico. Aqui, seu crescimento é tratado com o mesmo rigor que você aplica aos seus pacientes.</p>
+      </div>
+
+      <div class="metodo-fases">
+
+        <div class="metodo-fase reveal">
+          <div class="metodo-fase-meta">
+            <div class="metodo-fase-num">01</div>
+            <div class="metodo-fase-tag">Gratuito · 2h · via call</div>
+            <div class="metodo-fase-title">Diagnóstico Bäche</div>
+            <p class="metodo-fase-virada">"Paro de adivinhar — sei exatamente onde minha agenda particular trava."</p>
+          </div>
+          <div class="metodo-fase-body">
+            <p class="metodo-fase-why">Sem diagnóstico, qualquer ação é tiro no escuro. Nesta fase isolamos onde sua receita está vazando — posicionamento, percepção, aquisição ou conversão — para que cada movimento seguinte seja mirado, não chutado.</p>
+            <div class="metodo-fase-recebe-label">O que você recebe</div>
+            <ul class="metodo-entregas">
+              <li class="metodo-entrega"><strong>Auditoria completa da presença digital</strong> — o retrato fiel do que existe hoje</li>
+              <li class="metodo-entrega"><strong>Diagnóstico de posicionamento</strong> — você vs. concorrência vs. o que o paciente realmente quer</li>
+              <li class="metodo-entrega"><strong>Brand diagnosis</strong> — o que te torna único e, mais importante, vendável</li>
+              <li class="metodo-entrega"><strong>Plano de ação de 30 dias</strong> — seu, mesmo que não siga conosco</li>
+            </ul>
+            <div class="metodo-fase-sinal"><strong>O sinal de que funcionou</strong>Você termina a call sabendo nomear sua trava nº 1 e os três próximos movimentos concretos.</div>
+          </div>
+        </div>
+
+        <div class="metodo-fase reveal">
+          <div class="metodo-fase-meta">
+            <div class="metodo-fase-num">02</div>
+            <div class="metodo-fase-tag">Base de autoridade</div>
+            <div class="metodo-fase-title">Marca &amp; Mensagem</div>
+            <p class="metodo-fase-virada">"Paro de soar como todo mundo — ocupo um lugar que é só meu."</p>
+          </div>
+          <div class="metodo-fase-body">
+            <p class="metodo-fase-why">Quando todos os perfis dizem as mesmas palavras — "humanização", "excelência", "cuidado" — sobra um único critério de escolha: o preço. Esta fase traduz o que te torna genuinamente único para a língua do paciente, dentro dos limites do CFM.</p>
+            <div class="metodo-fase-recebe-label">O que você recebe</div>
+            <ul class="metodo-entregas">
+              <li class="metodo-entrega"><strong>Persona de autoridade</strong> — quem você é para o mercado, numa identidade que o paciente reconhece</li>
+              <li class="metodo-entrega"><strong>Inimigo comum</strong> — contra o que você se posiciona; todo posicionamento forte tem um adversário</li>
+              <li class="metodo-entrega"><strong>Narrativa central + mensagens-chave</strong> — na língua do paciente, 100% CFM-safe</li>
+              <li class="metodo-entrega"><strong>Oferta e público de alto valor</strong> — definidos antes de qualquer anúncio</li>
+            </ul>
+            <div class="metodo-fase-sinal"><strong>O sinal de que funcionou</strong>Um estranho lê seu posicionamento e diz, em uma frase, por que escolher você — sem citar preço.</div>
+          </div>
+        </div>
+
+        <div class="metodo-fase reveal">
+          <div class="metodo-fase-meta">
+            <div class="metodo-fase-num">03</div>
+            <div class="metodo-fase-tag">O diferencial incopiável</div>
+            <div class="metodo-fase-title">Direção Cênica &amp; Produção</div>
+            <p class="metodo-fase-virada">"Paro de travar na câmera — transmito a autoridade que já tenho."</p>
+          </div>
+          <div class="metodo-fase-body">
+            <p class="metodo-fase-why">Autoridade percebida não é o que você sabe — é como você comunica o que sabe. Entregar uma câmera e mandar "ser natural" produz o oposto. Direção cênica vem do palco: técnica de voz, postura e ritmo que revelam o comunicador que já existe em você.</p>
+            <div class="metodo-fase-recebe-label">O que você recebe</div>
+            <ul class="metodo-entregas">
+              <li class="metodo-entrega"><strong>Roteiros dirigidos por tema</strong> — você conduz, não decora</li>
+              <li class="metodo-entrega"><strong>1 dia de gravação dirigida (≈ 6h)</strong> — 15 a 20 peças, 30 dias de presença</li>
+              <li class="metodo-entrega"><strong>Direção de câmera, postura e fala</strong> — em tempo real, ao seu lado</li>
+              <li class="metodo-entrega"><strong>Edição + calendário de publicação</strong> — você não toca em nada depois de gravar</li>
+            </ul>
+            <div class="metodo-fase-sinal"><strong>O sinal de que funcionou</strong>Você se assiste e não sente vergonha — e grava o mês inteiro num único dia.</div>
+            <div class="metodo-moat"><strong>Por que ninguém copia:</strong> agências têm social media. A Bäche tem direção cênica de verdade — anos de palco e técnica vocal aplicados à câmera. Isso não se compra com ferramenta: ou você é diretor, ou não é.</div>
+          </div>
+        </div>
+
+        <div class="metodo-fase reveal">
+          <div class="metodo-fase-meta">
+            <div class="metodo-fase-num">04</div>
+            <div class="metodo-fase-tag">Presença que converte</div>
+            <div class="metodo-fase-title">Aquisição &amp; Tráfego</div>
+            <p class="metodo-fase-virada">"Paro de pagar para falar com estranhos — sou encontrado por quem já me conhece."</p>
+          </div>
+          <div class="metodo-fase-body">
+            <p class="metodo-fase-why">Tráfego sobre estranho é leilão de preço. Tráfego sobre a marca construída nas fases anteriores alcança quem já te reconhece — e quem reconhece não compara: agenda. Meta cria demanda no topo; Google colhe quem já procura por você.</p>
+            <div class="metodo-fase-recebe-label">O que você recebe</div>
+            <ul class="metodo-entregas">
+              <li class="metodo-entrega"><strong>Campanhas Meta + Google Busca</strong> — setup e gestão, com Google Meu Negócio na sequência</li>
+              <li class="metodo-entrega"><strong>Criativos extraídos das suas gravações</strong> — não banco de imagem genérico</li>
+              <li class="metodo-entrega"><strong>Landing pages por estágio de consciência</strong> — do curioso ao pronto para agendar</li>
+              <li class="metodo-entrega"><strong>Assessoria de imprensa</strong> — terceiros confirmando sua autoridade quando buscam seu nome</li>
+              <li class="metodo-entrega"><strong>Otimização por custo por paciente</strong> — não por clique, não por curtida</li>
+            </ul>
+            <div class="metodo-fase-sinal"><strong>O sinal de que funcionou</strong>Custo por paciente caindo mês a mês — e leads chegando dizendo "já te acompanho".</div>
+          </div>
+        </div>
+
+        <div class="metodo-fase reveal">
+          <div class="metodo-fase-meta">
+            <div class="metodo-fase-num">05</div>
+            <div class="metodo-fase-tag">O contato vira paciente</div>
+            <div class="metodo-fase-title">Conversão &amp; Mensuração</div>
+            <p class="metodo-fase-virada">"Paro de torcer — vejo cada real virar paciente, em tempo real."</p>
+          </div>
+          <div class="metodo-fase-body">
+            <p class="metodo-fase-why">O gargalo raramente está na mídia: está no último metro — o lead que morre no WhatsApp — e na cegueira de dados. Esta fase treina sua equipe para converter e instala o painel que mostra onde cada paciente entrou e onde cada um se perde.</p>
+            <div class="metodo-fase-recebe-label">O que você recebe</div>
+            <ul class="metodo-entregas">
+              <li class="metodo-entrega"><strong>Treinamento comercial + scripts de atendimento</strong> — a secretária vira parte da estratégia</li>
+              <li class="metodo-entrega"><strong>Resposta em menos de 5 minutos</strong> — processo de resposta e agendamento</li>
+              <li class="metodo-entrega"><strong>Dashboard em tempo real</strong> — pacientes por canal, ticket médio, taxa de conversão</li>
+              <li class="metodo-entrega"><strong>Baseline no dia 0 + relatório quinzenal</strong> — e garantia condicional de 90 dias</li>
+            </ul>
+            <div class="metodo-fase-sinal"><strong>O sinal de que funcionou</strong>Você abre o painel e sabe, sem perguntar a ninguém, quantos pacientes vieram, de qual canal e a que custo.</div>
+          </div>
+        </div>
+
+        <div class="metodo-fase reveal">
+          <div class="metodo-fase-meta">
+            <div class="metodo-fase-num">06</div>
+            <div class="metodo-fase-tag">O paciente vira defensor</div>
+            <div class="metodo-fase-title">Fidelização &amp; Multiplicação</div>
+            <p class="metodo-fase-virada">"Paro de recomeçar do zero — colho a base que já conquistei."</p>
+          </div>
+          <div class="metodo-fase-body">
+            <p class="metodo-fase-why">O paciente mais barato é o que você já tem. Quem volta sustenta a receita; quem indica derruba seu custo de captação; quem avalia publicamente vira prova social que realimenta o tráfego — e o método inteiro fica mais barato a cada mês.</p>
+            <div class="metodo-fase-recebe-label">O que você recebe</div>
+            <ul class="metodo-entregas">
+              <li class="metodo-entrega"><strong>Régua de relacionamento pós-consulta</strong> — lembretes, conteúdo e reativação de base inativa</li>
+              <li class="metodo-entrega"><strong>Geração ativa de avaliações</strong> — Google e Doctoralia viram combustível do funil</li>
+              <li class="metodo-entrega"><strong>Estratégia de indicação em duas frentes</strong> — pacientes e rede de encaminhamento profissional, sem comissão (vedado pelo CFM)</li>
+              <li class="metodo-entrega"><strong>Conteúdo de nutrição</strong> — para quem já te segue continuar lembrando de você</li>
+            </ul>
+            <div class="metodo-fase-sinal"><strong>O sinal de que funcionou</strong>Indicações subindo, avaliações 5★ crescendo — e o custo de captação caindo, porque a base trabalha por você.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="metodo-loops reveal">
+        <div class="metodo-loops-label">Por que é ciclo — não linha</div>
+        <div class="metodo-loops-grid">
+          <div class="metodo-loop">
+            <div class="metodo-loop-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/>
+              </svg>
+              Loop de aprendizado
+            </div>
+            <p>O número da Fase 5 responde à pergunta da Fase 1 — onde a receita ainda vaza? O ciclo reinicia, agora mirado por dado real. <strong>O método melhora com o tempo.</strong></p>
+          </div>
+          <div class="metodo-loop">
+            <div class="metodo-loop-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              Loop econômico
+            </div>
+            <p>Indicações e avaliações da Fase 6 realimentam o tráfego da Fase 4. <strong>Quanto mais tempo o método roda, mais barato fica trazer cada paciente.</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="metodo-bridge reveal">
+        <p class="metodo-bridge-text">O Método Protagonista tem 6 fases.<br/><em>Você escolhe por onde começar.</em></p>
+        <div class="metodo-bridge-actions">
+          <a href="#contato" class="btn-primary" data-modal="diagnostico">
+            Agendar Diagnóstico Gratuito
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#produtos" class="btn-ghost">Conhecer os planos</a>
         </div>
       </div>
     </div>
@@ -4103,7 +4550,7 @@
               <th>Direção Cênica</th>
               <th>Foco em Paciente Particular</th>
               <th>Treinamento de Equipe</th>
-              <th style="color: var(--teal);">Bäche</th>
+              <th style="color: var(--ouro);">Bäche</th>
             </tr>
           </thead>
           <tbody>
@@ -4216,7 +4663,7 @@
       </div>
 
       <div class="transformacao-cta reveal">
-        <a href="#contato" class="btn-primary" data-modal="diagnostico" style="background: var(--white); color: var(--purple); font-size: 15px; padding: 20px 48px;">
+        <a href="#contato" class="btn-primary" data-modal="diagnostico" style="font-size: 15px; padding: 20px 48px;">
           Agendar Diagnóstico Gratuito
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -4578,7 +5025,7 @@
         <div class="footer-links-col">
           <div class="footer-links-title">Empresa</div>
           <ul class="footer-links-list">
-            <li><a href="#plano">A Metodologia</a></li>
+            <li><a href="#metodo">O Método Protagonista</a></li>
             <li><a href="#diferenciais">Diferenciais</a></li>
             <li><a href="#garantia">Garantia</a></li>
             <li><a href="#fundadores">O Time</a></li>
@@ -5130,7 +5577,7 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--teal);
+      color: var(--ouro);
       margin: 0 0 10px;
     }
     .modal-title {
