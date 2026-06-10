@@ -5,15 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bäche — Performance Branding para Saúde</title>
   <meta name="description" content="Primeiro estúdio de Performance Branding para saúde do Brasil. Transformamos médicos em marcas que o paciente escolhe antes de pesquisar preço." />
+  <link rel="canonical" href="https://bache.com.br/" />
+  <meta name="theme-color" content="#0D0C14" />
   <meta property="og:title" content="Bäche — Performance Branding para Saúde" />
   <meta property="og:description" content="Transformamos médicos em marcas que o paciente escolhe antes de pesquisar preço." />
-  <meta property="og:image" content="https://bache.com.br/assets/hero-bg.jpg" />
+  <meta property="og:image" content="https://bache.com.br/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Bäche — O paciente escolhe quem ele lembra, não quem cobra menos." />
   <meta property="og:url" content="https://bache.com.br" />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Bäche" />
+  <meta property="og:locale" content="pt_BR" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://bache.com.br/assets/hero-bg.jpg" />
+  <meta name="twitter:title" content="Bäche — Performance Branding para Saúde" />
+  <meta name="twitter:description" content="Transformamos médicos em marcas que o paciente escolhe antes de pesquisar preço." />
+  <meta name="twitter:image" content="https://bache.com.br/assets/og-image.png" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="shortcut icon" href="assets/favicon.svg" />
+
+  <!-- Analytics — preencher os IDs abaixo para ativar (vazio = nada carrega) -->
+  <script>
+    window.BACHE_ANALYTICS = {
+      GA4_ID: '',        // ex.: 'G-XXXXXXXXXX' (GA4 → Administrador → Fluxos de dados)
+      META_PIXEL_ID: ''  // ex.: '1234567890' (Gerenciador de Eventos do Meta)
+    };
+    (function () {
+      var cfg = window.BACHE_ANALYTICS;
+      if (cfg.GA4_ID) {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + cfg.GA4_ID;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        gtag('js', new Date());
+        gtag('config', cfg.GA4_ID, { anonymize_ip: true });
+      }
+      if (cfg.META_PIXEL_ID) {
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', cfg.META_PIXEL_ID);
+        fbq('track', 'PageView');
+      }
+      window.bacheTrack = function (event, params) {
+        if (window.gtag && cfg.GA4_ID) gtag('event', event, params || {});
+        if (window.fbq && cfg.META_PIXEL_ID) {
+          if (event === 'generate_lead') fbq('track', 'Lead');
+          else fbq('trackCustom', event, params || {});
+        }
+      };
+    })();
+  </script>
 
   <!-- GEO / AEO Structured Data -->
   <script type="application/ld+json">
@@ -5829,6 +5871,7 @@
         diagForm.style.display = 'none';
         document.getElementById('modalFormSection').style.display = 'none';
         modalSuccess.style.display = 'block';
+        if (window.bacheTrack) bacheTrack('generate_lead', { method: 'form_diagnostico' });
 
       } catch (err) {
         // Restore button
@@ -5847,7 +5890,17 @@
 
     // Attach modal trigger to all CTA links (script is at end of body, DOM already parsed)
     document.querySelectorAll('[data-modal="diagnostico"]').forEach(el => {
-      el.addEventListener('click', openDiagnosticoModal);
+      el.addEventListener('click', (e) => {
+        if (window.bacheTrack) bacheTrack('abrir_modal_diagnostico');
+        openDiagnosticoModal(e);
+      });
+    });
+
+    // Analytics: cliques em WhatsApp
+    document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
+      a.addEventListener('click', () => {
+        if (window.bacheTrack) bacheTrack('whatsapp_click');
+      });
     });
   </script>
 </body>
