@@ -3865,6 +3865,9 @@
       padding: 52px 48px 44px;
       max-width: 500px;
       width: 100%;
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
       position: relative;
       isolation: isolate;
       transform: translateY(24px) scale(0.97);
@@ -5571,34 +5574,168 @@
     <div class="modal-card" id="modalCard">
       <button class="modal-close" id="modalClose" aria-label="Fechar">✕</button>
 
-      <!-- Header -->
+      <!-- Progresso -->
       <div class="modal-header" id="modalFormSection">
-        <p class="modal-eyebrow">Sem custo · Sem compromisso</p>
-        <h2 class="modal-title" id="modalTitle">Diagnóstico Gratuito</h2>
-        <p class="modal-subtitle">Preencha os dados abaixo. Nossa equipe entra em contato em até 24 horas para agendar sua sessão de 2 horas.</p>
+        <div class="fq-prog">
+          <div class="fq-prog-track"><div class="fq-prog-fill" id="fqFill"></div></div>
+          <span class="fq-prog-label" id="fqLabel">Etapa 1 de 4</span>
+        </div>
       </div>
 
-      <!-- Form -->
+      <!-- Form multi-step (qualificação ICP) -->
       <form id="diagnosticoForm" novalidate>
-        <div class="form-group">
-          <label class="form-label" for="inputNome">Nome completo</label>
-          <input class="form-input" type="text" id="inputNome" name="nome"
-                 placeholder="Dr. João Silva" autocomplete="name" required />
-          <span class="form-error-msg">Por favor, informe seu nome.</span>
+
+        <!-- Etapa 1: médico ou clínica + cidade -->
+        <div class="fq-step is-on" data-k="fork">
+          <p class="modal-eyebrow">Mini-diagnóstico · 60 segundos</p>
+          <h2 class="modal-title" id="modalTitle">Você é médico ou clínica?</h2>
+          <p class="modal-subtitle">O caminho muda conforme o seu negócio. Leva menos de um minuto.</p>
+          <div class="fq-fork" data-group="path">
+            <button type="button" class="fq-fcard" data-path="med">
+              <span class="fq-fi" aria-hidden="true">🩺</span>
+              <b>Sou médico(a)</b><span>Carreira e marca individual</span>
+            </button>
+            <button type="button" class="fq-fcard" data-path="cli">
+              <span class="fq-fi" aria-hidden="true">🏥</span>
+              <b>Represento uma clínica</b><span>Negócio com mais de um profissional</span>
+            </button>
+          </div>
+          <div class="form-group" style="margin-top:16px">
+            <label class="form-label" for="inputCidade">Cidade / UF</label>
+            <input class="form-input" type="text" id="inputCidade" name="cidade" placeholder="Ex: Curitiba / PR" autocomplete="address-level2" />
+          </div>
         </div>
 
-        <div class="form-group">
-          <label class="form-label" for="inputWhatsapp">WhatsApp</label>
-          <input class="form-input" type="tel" id="inputWhatsapp" name="whatsapp"
-                 placeholder="(41) 99999-0000" autocomplete="tel" required />
-          <span class="form-error-msg">Por favor, informe um número válido.</span>
+        <!-- Etapa 2 — Médico -->
+        <div class="fq-step" data-k="p1-med">
+          <p class="modal-eyebrow">Seu consultório · Médico</p>
+          <h2 class="modal-title">Sobre a sua atuação</h2>
+          <div class="form-group">
+            <label class="form-label" for="inputEspec">Sua especialidade</label>
+            <input class="form-input" type="text" id="inputEspec" name="especialidade" placeholder="Ex: Dermatologista, Cardiologista" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Hoje você atende</label>
+            <div class="fq-opts c2" data-group="atend">
+              <button type="button" class="fq-opt" data-v="3">Particular</button>
+              <button type="button" class="fq-opt" data-v="2">Misto</button>
+              <button type="button" class="fq-opt" data-v="2">Convênio, quero migrar</button>
+              <button type="button" class="fq-opt" data-v="0">Só convênio</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Onde você atua</label>
+            <div class="fq-opts c2" data-group="onde">
+              <button type="button" class="fq-opt" data-v="2">Consultório próprio</button>
+              <button type="button" class="fq-opt" data-v="1">Clínica de terceiros</button>
+              <button type="button" class="fq-opt" data-v="1">Hospital</button>
+              <button type="button" class="fq-opt" data-v="1">Mais de um lugar</button>
+            </div>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label class="form-label" for="inputEmail">E-mail</label>
-          <input class="form-input" type="email" id="inputEmail" name="email"
-                 placeholder="joao@clinica.com.br" autocomplete="email" required />
-          <span class="form-error-msg">Por favor, informe um e-mail válido.</span>
+        <!-- Etapa 2 — Clínica -->
+        <div class="fq-step" data-k="p1-cli">
+          <p class="modal-eyebrow">Sua clínica · Clínica</p>
+          <h2 class="modal-title">Sobre a clínica</h2>
+          <div class="form-group">
+            <label class="form-label">Quantos médicos / especialistas atendem</label>
+            <div class="fq-opts c2" data-group="nmed">
+              <button type="button" class="fq-opt" data-v="1">1 a 3</button>
+              <button type="button" class="fq-opt" data-v="2">4 a 10</button>
+              <button type="button" class="fq-opt" data-v="3">Mais de 10</button>
+              <button type="button" class="fq-opt" data-v="2">Só eu, quero crescer</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inputEspecCli">Principais especialidades</label>
+            <input class="form-input" type="text" id="inputEspecCli" name="especialidades" placeholder="Ex: Dermato, Estética, Nutrição" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Seu papel na clínica</label>
+            <div class="fq-opts" data-group="papel">
+              <button type="button" class="fq-opt fq-opt-2l" data-v="3">Dono(a) / sócio(a)<small>Decide o investimento</small></button>
+              <button type="button" class="fq-opt fq-opt-2l" data-v="2">Gestor(a) / marketing<small>Influencia a decisão</small></button>
+              <button type="button" class="fq-opt fq-opt-2l" data-v="0">Sou médico(a) da clínica<small>Não decido o orçamento</small></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Etapa 3 — Médico -->
+        <div class="fq-step" data-k="p2-med">
+          <p class="modal-eyebrow">Onde está o gargalo · Médico</p>
+          <h2 class="modal-title">Sua situação hoje</h2>
+          <div class="form-group">
+            <label class="form-label">Faturamento particular por mês</label>
+            <div class="fq-opts c2" data-group="fat">
+              <button type="button" class="fq-opt" data-v="0">Até R$30k</button>
+              <button type="button" class="fq-opt" data-v="1">R$30–80k</button>
+              <button type="button" class="fq-opt" data-v="2">R$80–200k</button>
+              <button type="button" class="fq-opt" data-v="3">R$200k+</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Você aparece / produz conteúdo?</label>
+            <div class="fq-opts" data-group="content">
+              <button type="button" class="fq-opt fq-opt-2l" data-v="2">Nunca gravei<small>Preciso começar do zero</small></button>
+              <button type="button" class="fq-opt fq-opt-2l" data-v="3">Já tentei, mas travo na câmera<small>É o que a direção cênica resolve</small></button>
+              <button type="button" class="fq-opt fq-opt-2l" data-v="1">Sim, com regularidade<small>Quero profissionalizar</small></button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Seu maior gargalo hoje</label>
+            <div class="fq-opts" data-group="gar"></div>
+          </div>
+        </div>
+
+        <!-- Etapa 3 — Clínica -->
+        <div class="fq-step" data-k="p2-cli">
+          <p class="modal-eyebrow">Onde está o gargalo · Clínica</p>
+          <h2 class="modal-title">Situação da clínica</h2>
+          <div class="form-group">
+            <label class="form-label">Faturamento da clínica por mês</label>
+            <div class="fq-opts c2" data-group="fat">
+              <button type="button" class="fq-opt" data-v="0">Até R$100k</button>
+              <button type="button" class="fq-opt" data-v="1">R$100–300k</button>
+              <button type="button" class="fq-opt" data-v="2">R$300k–1M</button>
+              <button type="button" class="fq-opt" data-v="3">R$1M+</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Equipe de marketing da clínica</label>
+            <div class="fq-opts c2" data-group="mkt">
+              <button type="button" class="fq-opt" data-v="2">Interna / própria</button>
+              <button type="button" class="fq-opt" data-v="2">Agência terceirizada</button>
+              <button type="button" class="fq-opt" data-v="1">Só a secretária</button>
+              <button type="button" class="fq-opt" data-v="1">Ninguém ainda</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Maior gargalo da clínica hoje</label>
+            <div class="fq-opts" data-group="gar"></div>
+          </div>
+        </div>
+
+        <!-- Etapa 4 — Contato (comum) -->
+        <div class="fq-step" data-k="contato">
+          <p class="modal-eyebrow">Último passo</p>
+          <h2 class="modal-title">Pra onde enviamos seu diagnóstico</h2>
+          <p class="modal-subtitle">Nossa equipe entra em contato em até 24 horas para agendar sua sessão de 2 horas, sem custo.</p>
+          <div class="form-group">
+            <label class="form-label" for="inputNome">Nome completo</label>
+            <input class="form-input" type="text" id="inputNome" name="nome" placeholder="Dr. João Silva" autocomplete="name" required />
+            <span class="form-error-msg">Por favor, informe seu nome.</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inputWhatsapp">WhatsApp</label>
+            <input class="form-input" type="tel" id="inputWhatsapp" name="whatsapp" placeholder="(41) 99999-0000" autocomplete="tel" required />
+            <span class="form-error-msg">Por favor, informe um número válido.</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inputEmail">E-mail</label>
+            <input class="form-input" type="email" id="inputEmail" name="email" placeholder="joao@clinica.com.br" autocomplete="email" required />
+            <span class="form-error-msg">Por favor, informe um e-mail válido.</span>
+          </div>
         </div>
 
         <div class="modal-error-box" id="modalErrorBox" aria-live="polite" style="display:none;">
@@ -5608,15 +5745,18 @@
           <span id="modalErrorText">Ocorreu um erro. <a href="https://wa.me/5541998416681" target="_blank" rel="noopener">Fale direto pelo WhatsApp.</a></span>
         </div>
 
-        <button type="submit" class="btn-primary btn-modal-submit" id="modalSubmitBtn">
-          <span id="modalSubmitLabel">Quero meu Diagnóstico Gratuito</span>
-          <svg id="modalSubmitArrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <svg id="modalSubmitSpinner" style="display:none;animation:spin360 0.8s linear infinite" width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5" stroke-dasharray="40 20" opacity="0.85"/>
-          </svg>
-        </button>
+        <div class="fq-nav">
+          <button type="button" class="fq-back" id="fqBack" style="display:none">← Voltar</button>
+          <button type="submit" class="btn-primary btn-modal-submit" id="modalSubmitBtn">
+            <span id="modalSubmitLabel">Continuar</span>
+            <svg id="modalSubmitArrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <svg id="modalSubmitSpinner" style="display:none;animation:spin360 0.8s linear infinite" width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5" stroke-dasharray="40 20" opacity="0.85"/>
+            </svg>
+          </button>
+        </div>
       </form>
 
       <!-- Success state -->
@@ -5685,6 +5825,37 @@
       opacity: 0.7;
       cursor: not-allowed;
     }
+
+    /* ---- Form multi-step (qualificação ICP) ---- */
+    .fq-prog { display: flex; align-items: center; gap: 10px; margin: 2px 0 22px; }
+    .fq-prog-track { flex: 1; height: 5px; border-radius: 3px; background: rgba(255,255,255,0.08); overflow: hidden; }
+    .fq-prog-fill { height: 100%; width: 25%; background: linear-gradient(90deg, var(--violeta), var(--ouro)); transition: width 0.4s var(--ease-out); }
+    .fq-prog-label { font-size: 11px; font-weight: 700; color: var(--text-muted); white-space: nowrap; }
+    .fq-step { display: none; }
+    .fq-step.is-on { display: block; animation: fqFade 0.3s var(--ease-out); }
+    @keyframes fqFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .fq-fork { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .fq-fcard { border: 1.5px solid var(--glass-border); border-radius: 14px; padding: 18px 14px; cursor: pointer; text-align: center; transition: border-color 0.15s var(--ease-out), background 0.15s var(--ease-out), transform 0.15s var(--ease-out); background: transparent; color: var(--nevoa); font-family: inherit; }
+    .fq-fcard:hover { border-color: rgba(201,168,106,0.6); transform: translateY(-2px); }
+    .fq-fcard.is-sel { border-color: var(--ouro); background: rgba(201,168,106,0.08); }
+    .fq-fcard:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
+    .fq-fcard .fq-fi { font-size: 26px; display: block; margin-bottom: 6px; }
+    .fq-fcard b { font-size: 15px; display: block; margin-bottom: 2px; }
+    .fq-fcard span { font-size: 11.5px; color: var(--text-muted); display: block; line-height: 1.35; }
+    .fq-opts { display: grid; gap: 8px; }
+    .fq-opts.c2 { grid-template-columns: 1fr 1fr; }
+    .fq-opt { border: 1px solid var(--glass-border); border-radius: 10px; padding: 11px 13px; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--text-muted); transition: border-color 0.15s var(--ease-out), background 0.15s var(--ease-out), color 0.15s var(--ease-out); background: transparent; font-family: inherit; text-align: left; line-height: 1.3; }
+    .fq-opt:hover { border-color: rgba(201,168,106,0.5); color: var(--nevoa); }
+    .fq-opt.is-sel { border-color: var(--ouro); background: rgba(201,168,106,0.10); color: var(--nevoa); }
+    .fq-opt:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
+    .fq-opt small { display: block; font-weight: 500; color: var(--text-muted); font-size: 11px; margin-top: 2px; }
+    .fq-opts.is-invalid { outline: 1.5px solid rgba(255,107,107,0.55); outline-offset: 5px; border-radius: 12px; }
+    .form-group:has(.fq-opts.is-invalid) .form-label { color: #ff6b6b; }
+    .fq-nav { display: flex; gap: 10px; align-items: center; margin-top: 6px; }
+    .fq-nav .btn-modal-submit { flex: 1; width: auto; margin-top: 0; }
+    .fq-back { background: transparent; border: 1px solid var(--glass-border); color: var(--nevoa); border-radius: 12px; padding: 13px 16px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; flex: 0 0 auto; display: inline-flex; align-items: center; transition: border-color 0.15s var(--ease-out); }
+    .fq-back:hover { border-color: var(--ouro); }
+    @media (prefers-reduced-motion: reduce) { .fq-step.is-on { animation: none; } .fq-prog-fill { transition: none; } }
   </style>
 
   <script>
@@ -5714,8 +5885,8 @@
       modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
       setTimeout(() => {
-        const firstInput = modal.querySelector('.form-input');
-        if (firstInput) firstInput.focus();
+        const firstFocus = modal.querySelector('.fq-step.is-on .fq-fcard, .fq-step.is-on .form-input');
+        if (firstFocus) firstFocus.focus();
       }, 300);
     }
 
@@ -5768,102 +5939,214 @@
       return !invalid;
     }
 
-    // Validate on blur
-    diagForm.querySelectorAll('.form-input').forEach(inp => {
+    // Validação on blur só nos campos de contato (obrigatórios)
+    ['inputNome', 'inputWhatsapp', 'inputEmail'].forEach(id => {
+      const inp = document.getElementById(id);
+      if (!inp) return;
       inp.addEventListener('blur', () => validateField(inp));
-      inp.addEventListener('input', () => {
-        if (inp.classList.contains('is-invalid')) validateField(inp);
+      inp.addEventListener('input', () => { if (inp.classList.contains('is-invalid')) validateField(inp); });
+    });
+
+    // =========================================================
+    //  Multi-step de qualificação (médico × clínica) + soft-score
+    // =========================================================
+    const FQ_GAR = [
+      ['Apareço igual a todo mundo', 'Marca & Mensagem'],
+      ['Travo na câmera / não apareço', 'Direção Cênica'],
+      ['Anúncio traz paciente errado ou nenhum', 'Aquisição'],
+      ['Lead chega no WhatsApp e não fecha', 'Conversão'],
+      ['Não sei meus números (CAC, LTV...)', 'Mensuração'],
+      ['Paciente não volta nem indica', 'Fidelização']
+    ];
+    document.querySelectorAll('#diagnosticoForm [data-group="gar"]').forEach(c => {
+      c.innerHTML = FQ_GAR.map(g => `<button type="button" class="fq-opt fq-opt-2l" data-v="1">${g[0]}<small>${g[1]}</small></button>`).join('');
+    });
+
+    const fqAnswers = {};
+    let fqPath = null;
+
+    // seleção de cards de escolha
+    document.querySelectorAll('#diagnosticoForm .fq-opts').forEach(grp => {
+      grp.addEventListener('click', e => {
+        const opt = e.target.closest('.fq-opt'); if (!opt) return;
+        grp.querySelectorAll('.fq-opt').forEach(o => o.classList.remove('is-sel'));
+        opt.classList.add('is-sel');
+        grp.classList.remove('is-invalid');
+        const label = (opt.querySelector('small') ? opt.firstChild.textContent : opt.textContent).replace(/\s+/g, ' ').trim();
+        fqAnswers[grp.dataset.group] = { v: +opt.dataset.v, label };
       });
     });
 
-    // Form submit
-    diagForm.addEventListener('submit', async e => {
-      e.preventDefault();
+    // fork médico × clínica
+    const fqFork = document.querySelector('#diagnosticoForm .fq-fork');
+    fqFork.addEventListener('click', e => {
+      const c = e.target.closest('.fq-fcard'); if (!c) return;
+      fqFork.querySelectorAll('.fq-fcard').forEach(x => x.classList.remove('is-sel'));
+      c.classList.add('is-sel');
+      fqPath = c.dataset.path;
+      updateNav();
+    });
 
-      const nomeInp  = document.getElementById('inputNome');
-      const wppInp   = document.getElementById('inputWhatsapp');
+    const fqSeq = () => fqPath === 'cli' ? ['fork', 'p1-cli', 'p2-cli', 'contato'] : ['fork', 'p1-med', 'p2-med', 'contato'];
+    let fqStep = 0;
+    const fqFill = document.getElementById('fqFill'), fqLabel = document.getElementById('fqLabel'), fqBack = document.getElementById('fqBack');
+
+    function showStep() {
+      const key = fqSeq()[fqStep];
+      document.querySelectorAll('#diagnosticoForm .fq-step').forEach(s => s.classList.toggle('is-on', s.dataset.k === key));
+      fqFill.style.width = ((fqStep + 1) / 4 * 100) + '%';
+      fqLabel.textContent = 'Etapa ' + (fqStep + 1) + ' de 4';
+      fqBack.style.display = fqStep === 0 ? 'none' : 'inline-flex';
+      modalErrorBox.style.display = 'none';
+      updateNav();
+      const onStep = modal.querySelector('.fq-step.is-on');
+      const focusable = onStep && onStep.querySelector('.fq-fcard, .form-input');
+      if (focusable) setTimeout(() => focusable.focus(), 60);
+    }
+    function updateNav() {
+      submitLabel.textContent = fqStep === 3 ? 'Quero meu Diagnóstico Gratuito' : 'Continuar';
+      submitLabel.style.display = '';
+      submitArrow.style.display = '';
+      submitSpinner.style.display = 'none';
+      submitBtn.disabled = (fqStep === 0 && !fqPath);
+    }
+    fqBack.addEventListener('click', () => { if (fqStep > 0) { fqStep--; showStep(); } });
+
+    function fqBuildLead() {
+      const a = k => fqAnswers[k] || {};
+      const val = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+      let score = (a('fat').v || 0) + (a('gar').v || 0);
+      if (fqPath === 'cli') score += (a('nmed').v || 0) + (a('papel').v || 0) + (a('mkt').v || 0);
+      else score += (a('atend').v || 0) + (a('onde').v || 0) + (a('content').v || 0);
+      return {
+        path: fqPath,
+        cidade: val('inputCidade'),
+        especialidade: fqPath === 'cli' ? val('inputEspecCli') : val('inputEspec'),
+        atendimento: a('atend').label, onde: a('onde').label,
+        nMedicos: a('nmed').label, papel: a('papel').label,
+        faturamento: a('fat').label, marketing: a('mkt').label, conteudo: a('content').label,
+        gargalo: a('gar').label,
+        nome: val('inputNome'), whatsapp: val('inputWhatsapp'), email: val('inputEmail'),
+        score,
+        fit: score >= 8 ? 'quente' : (score >= 5 ? 'morno' : 'frio')
+      };
+    }
+
+    // ===== Adapter de submissão — TEMPORÁRIO (ClickUp). Trocar por Bäche Hub: editar só aqui. =====
+    async function submitToClickUp(lead) {
+      const FIELD_WHATSAPP = '72a107e8-d809-4417-89bf-1036ce89c88a';
+      const FIELD_EMAIL    = 'fd5e499d-be16-4941-b14d-c4bf5dcbe776';
+      const headers = { 'Authorization': CLICKUP_TOKEN, 'Content-Type': 'application/json' };
+      const wppDigits = lead.whatsapp.replace(/\D/g, '');
+      const wppForField = (wppDigits.startsWith('55') ? '+' : '+55') + wppDigits.replace(/^55/, '');
+      const tipo = lead.path === 'cli' ? 'Clínica' : 'Médico';
+      const priority = lead.fit === 'quente' ? 1 : (lead.fit === 'morno' ? 2 : 3);
+      const linhas = [
+        `Lead via Landing Page — ${tipo}`, '',
+        `Fit: ${lead.fit.toUpperCase()} (score ${lead.score})`, '',
+        `Nome: ${lead.nome}`, `WhatsApp: ${lead.whatsapp}`, `E-mail: ${lead.email}`,
+        `Cidade: ${lead.cidade || '—'}`, `Especialidade(s): ${lead.especialidade || '—'}`, ''
+      ];
+      if (lead.path === 'cli') {
+        linhas.push(`Nº de médicos: ${lead.nMedicos || '—'}`, `Papel: ${lead.papel || '—'}`,
+          `Faturamento da clínica: ${lead.faturamento || '—'}`, `Marketing: ${lead.marketing || '—'}`);
+      } else {
+        linhas.push(`Atendimento: ${lead.atendimento || '—'}`, `Onde atua: ${lead.onde || '—'}`,
+          `Faturamento particular: ${lead.faturamento || '—'}`, `Conteúdo/câmera: ${lead.conteudo || '—'}`);
+      }
+      linhas.push(`Maior gargalo: ${lead.gargalo || '—'}`);
+
+      const res = await fetch(`https://api.clickup.com/api/v2/list/${CLICKUP_LIST_ID}/task`, {
+        method: 'POST', headers,
+        body: JSON.stringify({ name: `Sessão Estratégica — ${lead.nome} (${tipo})`, description: linhas.join('\n'), priority })
+      });
+      if (!res.ok) { const e = await res.json().catch(() => ({})); throw new Error(e.err || e.ECODE || `HTTP ${res.status}`); }
+      const task = await res.json();
+      await Promise.allSettled([
+        fetch(`https://api.clickup.com/api/v2/task/${task.id}/field/${FIELD_WHATSAPP}`, { method: 'POST', headers, body: JSON.stringify({ value: wppForField }) }),
+        fetch(`https://api.clickup.com/api/v2/task/${task.id}/field/${FIELD_EMAIL}`, { method: 'POST', headers, body: JSON.stringify({ value: lead.email }) })
+      ]);
+    }
+
+    // Ponto ÚNICO de troca do destino do lead (hoje ClickUp → futuramente Bäche Hub)
+    async function submitLead(lead) {
+      await submitToClickUp(lead);
+      emailjs.send('service_xsb1jsk', 'template_2cgrq5h', { to_name: lead.nome, to_email: lead.email })
+        .catch(err => console.warn('[EmailJS] Falha:', JSON.stringify(err)));
+    }
+
+    async function fqSubmit() {
+      const nomeInp = document.getElementById('inputNome');
+      const wppInp = document.getElementById('inputWhatsapp');
       const emailInp = document.getElementById('inputEmail');
+      const ok = [nomeInp, wppInp, emailInp].map(validateField).every(Boolean);
+      if (!ok) return;
 
-      const valid = [nomeInp, wppInp, emailInp].map(validateField).every(Boolean);
-      if (!valid) return;
-
-      // Loading state
       submitBtn.disabled = true;
       submitLabel.style.display = 'none';
       submitArrow.style.display = 'none';
       submitSpinner.style.display = 'inline-block';
       modalErrorBox.style.display = 'none';
 
-      const nome  = nomeInp.value.trim();
-      const wpp   = wppInp.value.trim();
-      const email = emailInp.value.trim();
-
-      const FIELD_WHATSAPP = '72a107e8-d809-4417-89bf-1036ce89c88a';
-      const FIELD_EMAIL    = 'fd5e499d-be16-4941-b14d-c4bf5dcbe776';
-      const headers = { 'Authorization': CLICKUP_TOKEN, 'Content-Type': 'application/json' };
-
-      const wppDigits = wpp.replace(/\D/g, '');
-      // ClickUp phone field espera número com código do país
-      const wppForField = (wppDigits.startsWith('55') ? '+' : '+55') + wppDigits.replace(/^55/, '');
-
-      const taskPayload = {
-        name: `Sessão Estratégica — ${nome}`,
-        description: `Lead via Landing Page — Diagnóstico Gratuito\n\nNome: ${nome}\nE-mail: ${email}`,
-        priority: 2
-      };
-
+      const lead = fqBuildLead();
       try {
-        // 1. Criar a task
-        const res = await fetch(`https://api.clickup.com/api/v2/list/${CLICKUP_LIST_ID}/task`, {
-          method: 'POST', headers, body: JSON.stringify(taskPayload)
-        });
-        if (!res.ok) {
-          const errBody = await res.json().catch(() => ({}));
-          throw new Error(errBody.err || errBody.ECODE || `HTTP ${res.status}`);
-        }
-        const task = await res.json();
-        const taskId = task.id;
-
-        // 2. Preencher custom fields em paralelo (falha silenciosa — task já criada)
-        await Promise.allSettled([
-          fetch(`https://api.clickup.com/api/v2/task/${taskId}/field/${FIELD_WHATSAPP}`, {
-            method: 'POST', headers, body: JSON.stringify({ value: wppForField })
-          }),
-          fetch(`https://api.clickup.com/api/v2/task/${taskId}/field/${FIELD_EMAIL}`, {
-            method: 'POST', headers, body: JSON.stringify({ value: email })
-          })
-        ]);
-
-        // Enviar email de confirmação para o lead
-        emailjs.send('service_xsb1jsk', 'template_2cgrq5h', {
-          to_name:  nome,
-          to_email: email
-        }).then(() => {
-          console.log('[EmailJS] Email enviado para', email);
-        }).catch(err => {
-          console.warn('[EmailJS] Falha ao enviar email:', JSON.stringify(err));
-        });
-
-        // Sucesso
+        await submitLead(lead);
         diagForm.style.display = 'none';
         document.getElementById('modalFormSection').style.display = 'none';
         modalSuccess.style.display = 'block';
-        if (window.bacheTrack) bacheTrack('generate_lead', { method: 'form_diagnostico' });
-
+        if (window.bacheTrack) bacheTrack('generate_lead', { method: 'form_diagnostico', path: lead.path, fit: lead.fit });
       } catch (err) {
-        // Restore button
         submitBtn.disabled = false;
         submitLabel.style.display = '';
         submitArrow.style.display = '';
         submitSpinner.style.display = 'none';
-
-        const isToken = CLICKUP_TOKEN === 'COLE_SEU_TOKEN_CLICKUP_AQUI';
-        modalErrorText.innerHTML = isToken
-          ? 'Token do ClickUp não configurado. <a href="https://wa.me/5541998416681" target="_blank" rel="noopener">Fale pelo WhatsApp.</a>'
-          : `Erro ao enviar (${err.message}). <a href="https://wa.me/5541998416681" target="_blank" rel="noopener">Fale pelo WhatsApp.</a>`;
+        modalErrorText.innerHTML = `Erro ao enviar (${err.message}). <a href="https://wa.me/5541998416681" target="_blank" rel="noopener">Fale pelo WhatsApp.</a>`;
         modalErrorBox.style.display = 'flex';
       }
+    }
+
+    // Campos obrigatórios por etapa
+    const FQ_REQ = {
+      'fork':   { inputs: ['inputCidade'],    groups: [] },
+      'p1-med': { inputs: ['inputEspec'],     groups: ['atend', 'onde'] },
+      'p1-cli': { inputs: ['inputEspecCli'],  groups: ['nmed', 'papel'] },
+      'p2-med': { inputs: [],                 groups: ['fat', 'content', 'gar'] },
+      'p2-cli': { inputs: [],                 groups: ['fat', 'mkt', 'gar'] }
+    };
+    function validateStep() {
+      const r = FQ_REQ[fqSeq()[fqStep]];
+      if (!r) return true;
+      const onStep = modal.querySelector('.fq-step.is-on');
+      let ok = true;
+      r.inputs.forEach(id => {
+        const el = document.getElementById(id);
+        const bad = !el.value.trim();
+        el.classList.toggle('is-invalid', bad);
+        if (bad) ok = false;
+      });
+      r.groups.forEach(g => {
+        const grp = onStep.querySelector('[data-group="' + g + '"]');
+        const bad = !grp.querySelector('.fq-opt.is-sel');
+        grp.classList.toggle('is-invalid', bad);
+        if (bad) ok = false;
+      });
+      if (!ok) { modalErrorText.textContent = 'Responda os campos para continuar.'; modalErrorBox.style.display = 'flex'; }
+      else modalErrorBox.style.display = 'none';
+      return ok;
+    }
+    // Limpar marca de inválido ao digitar nos campos de texto da qualificação
+    ['inputCidade', 'inputEspec', 'inputEspecCli'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('input', () => el.classList.remove('is-invalid'));
     });
+
+    diagForm.addEventListener('submit', e => {
+      e.preventDefault();
+      if (fqStep < 3) { if (!validateStep()) return; fqStep++; showStep(); }
+      else fqSubmit();
+    });
+
+    showStep();
 
     // Attach modal trigger to all CTA links (script is at end of body, DOM already parsed)
     document.querySelectorAll('[data-modal="diagnostico"]').forEach(el => {
