@@ -2940,26 +2940,73 @@
     }
 
     /* visão macro: framework que condensa o método */
-    .metodo-fw { max-width: 760px; margin: 0 auto 52px; }
-    .metodo-fw-svg { width: 100%; height: auto; display: block; }
-    .metodo-fw text { font-family: var(--font-body); }
-    .fw-ce { font-family: var(--font-body); font-weight: 700; font-size: 8px; fill: var(--ouro); letter-spacing: 0.22em; }
-    .metodo-fw .fw-c1 { font-family: var(--font); font-weight: 700; font-size: 13px; fill: var(--nevoa); letter-spacing: -0.02em; }
-    .fw-c2 { font-weight: 600; font-size: 8.5px; fill: var(--text-muted); letter-spacing: 0.08em; }
-    .fw-num { font-weight: 800; font-size: 10px; fill: var(--ouro); }
-    .fw-fase { font-weight: 700; font-size: 9px; letter-spacing: 0.12em; fill: var(--text-muted); }
-    .fw-name { font-weight: 700; font-size: 12.5px; fill: var(--nevoa); }
-    .fw-node { cursor: pointer; }
-    .fw-node .fw-node-c { transition: stroke 0.2s var(--ease-out), fill 0.2s var(--ease-out), stroke-width 0.2s var(--ease-out); }
-    .fw-node:hover .fw-node-c,
-    .fw-node:focus-visible .fw-node-c,
-    .fw-node.is-active .fw-node-c { stroke: var(--ouro); fill: rgba(201,168,106,0.12); }
-    .fw-node.is-active .fw-node-c { stroke-width: 2; }
+    /* ── Framework macro: ring redesenhado (glass nodes + ciclo) ── */
+    .metodo-fw { max-width: 920px; margin: 0 auto 52px; }
+    .mfw-stage {
+      position: relative; border-radius: 24px; overflow: hidden;
+      border: 1px solid rgba(232,230,245,0.10);
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(123,53,206,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at 50% 100%, rgba(201,168,106,0.07) 0%, transparent 60%),
+        var(--surface);
+      padding: 20px 14px 16px;
+    }
+    .mfw-orb { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0; }
+    .mfw-orb-v { width: 480px; height: 480px; background: radial-gradient(circle, rgba(123,53,206,0.24), transparent 70%); top: 20px; left: -150px; }
+    .mfw-orb-o { width: 360px; height: 360px; background: radial-gradient(circle, rgba(201,168,106,0.13), transparent 70%); bottom: -60px; right: -110px; }
+    .mfw-fit { position: relative; z-index: 1; width: 100%; }
+    .mfw-canvas { position: absolute; top: 0; left: 0; transform-origin: top left; }
+    .mfw-wires { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+    .mfw-diagram { position: absolute; inset: 0; z-index: 3; }
+
+    .fw-node {
+      position: absolute; border-radius: 50%; transform: translate(-50%, -50%);
+      display: flex; align-items: center; justify-content: center; padding: 0;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(232,230,245,0.14);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), 0 14px 38px rgba(0,0,0,0.45);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      cursor: pointer;
+      transition: border-color 0.22s var(--ease-out), background 0.22s var(--ease-out), box-shadow 0.22s var(--ease-out);
+    }
+    .fw-node:hover, .fw-node:focus-visible, .fw-node.is-active {
+      border-color: rgba(201,168,106,0.55);
+      background: rgba(201,168,106,0.10);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.09), 0 16px 44px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,106,0.20);
+    }
     .fw-node:focus { outline: none; }
-    .fw-node:focus-visible .fw-node-c { stroke-width: 2.5; }
-    .metodo-fw-cap { margin-top: 10px; text-align: center; font-size: 12.5px; color: var(--text-muted); }
+    .fw-node:focus-visible { outline: 2px solid var(--ouro); outline-offset: 3px; }
+    .fw-node .fw-ic { color: var(--ouro); display: block; line-height: 0; }
+    .fw-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      border-radius: 50%; background: linear-gradient(150deg, #D8C087, #C9A86A);
+      color: var(--noite); display: flex; align-items: center; justify-content: center;
+      font-family: var(--font); font-weight: 900;
+      box-shadow: 0 5px 16px rgba(201,168,106,0.40), inset 0 1px 0 rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+    .fw-olabel { position: absolute; z-index: 4; pointer-events: none; }
+    .fw-olabel .fw-fase { font-family: var(--font); font-weight: 700; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ouro); margin-bottom: 3px; }
+    .fw-olabel .fw-name { font-family: var(--font); font-weight: 800; font-size: 17px; letter-spacing: -0.01em; color: var(--nevoa); line-height: 1.06; margin-bottom: 3px; }
+    .fw-olabel .fw-desc { font-family: var(--font-body); font-weight: 400; font-size: 12.5px; line-height: 1.4; color: rgba(232,230,245,0.58); }
+    .fw-olabel.right { text-align: left; }
+    .fw-olabel.left { text-align: right; }
+    .fw-olabel.center { text-align: center; }
+
+    .mfw-hub { position: absolute; transform: translate(-50%, -50%); text-align: center; z-index: 2; }
+    .mfw-hub-title { font-family: var(--font); font-weight: 900; font-size: 22px; line-height: 1.04; letter-spacing: -0.01em; color: var(--nevoa); }
+    .mfw-hub-rule { width: 30px; height: 2px; background: var(--ouro); margin: 11px auto; border-radius: 2px; }
+    .mfw-hub-desc { font-family: var(--font-body); font-weight: 400; font-size: 12px; line-height: 1.5; color: rgba(232,230,245,0.58); }
+
+    .metodo-fw-cap { margin-top: 14px; text-align: center; font-size: 12.5px; color: var(--text-muted); }
     .metodo-fw-cap b { color: var(--nevoa); font-weight: 700; }
-    @media (max-width: 980px) { .metodo-fw { max-width: 400px; margin-bottom: 32px; } }
+
+    .metodo-fw.is-compact { max-width: 440px; margin-bottom: 32px; }
+    .metodo-fw.is-compact .mfw-hub-title { font-size: 14px; }
+    .metodo-fw.is-compact .mfw-hub-rule { margin: 8px auto; }
+    .metodo-fw.is-compact .mfw-hub-desc { display: none; }
+
+    @media (prefers-reduced-motion: reduce) { .fw-node { transition: none; } }
 
     .metodo-loops { margin-top: 72px; }
     .metodo-loops-label {
@@ -3862,12 +3909,12 @@
       background: var(--surface);
       border: 1px solid rgba(255,255,255,0.10);
       border-radius: 20px;
-      padding: 52px 48px 44px;
       max-width: 500px;
       width: 100%;
       max-height: calc(100vh - 48px);
-      overflow-y: auto;
-      overscroll-behavior: contain;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
       position: relative;
       isolation: isolate;
       transform: translateY(24px) scale(0.97);
@@ -3898,6 +3945,24 @@
       pointer-events: none;
       z-index: -1;
     }
+
+    .modal-scroll {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding: 52px 48px 44px;
+      border-radius: inherit;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.16) transparent;
+    }
+    .modal-scroll::-webkit-scrollbar { width: 6px; }
+    .modal-scroll::-webkit-scrollbar-track { background: transparent; }
+    .modal-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.16);
+      border-radius: 3px;
+    }
+    .modal-scroll::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.28); }
 
     .modal-close {
       position: absolute;
@@ -4038,7 +4103,7 @@
     .modal-error-box a { color: var(--ouro); text-decoration: underline; }
 
     @media (max-width: 540px) {
-      .modal-card { padding: 40px 24px 32px; }
+      .modal-scroll { padding: 40px 24px 32px; }
       .modal-title { font-size: 22px; }
     }
 
@@ -4346,7 +4411,7 @@
       </div>
 
       <figure class="metodo-fw reveal">
-        <svg class="metodo-fw-svg" id="metodoFw" viewBox="0 0 640 470" role="img" aria-label="As 6 fases do Método Protagonista organizadas em ciclo"></svg>
+        <div class="mfw-stage" id="metodoFw" role="img" aria-label="As 6 fases do Método Protagonista organizadas em ciclo"></div>
         <figcaption class="metodo-fw-cap">Um ciclo, não uma linha. <b>Clique numa fase</b> para abri-la abaixo.</figcaption>
       </figure>
 
@@ -5239,46 +5304,95 @@
       function fel(t, a) { const e = document.createElementNS(NSF, t); for (const k in a) e.setAttribute(k, a[k]); return e; }
       function renderFw(compact) {
         if (!fw) return;
-        fw.innerHTML = '';
-        const VB = compact ? 320 : 640, VBH = compact ? 320 : 470;
-        fw.setAttribute('viewBox', '0 0 ' + VB + ' ' + VBH);
-        const CX = VB / 2, CY = VBH / 2;
-        const R = compact ? 104 : 150, NR = compact ? 34 : 31, CR = compact ? 58 : 64;
-        fw.appendChild(fel('circle', { cx: CX, cy: CY, r: R, fill: 'none', stroke: 'rgba(201,168,106,.22)', 'stroke-width': 1.5, 'stroke-dasharray': '2 7', 'stroke-linecap': 'round' }));
-        fw.appendChild(fel('circle', { cx: CX, cy: CY, r: CR, fill: 'rgba(123,53,206,.14)', stroke: 'rgba(123,53,206,.5)', 'stroke-width': 1.5 }));
-        const ce = fel('text', { x: CX, y: CY - 14, 'text-anchor': 'middle', 'class': 'fw-ce' }); ce.textContent = 'MÉTODO';
-        const c1 = fel('text', { x: CX, y: CY + 5, 'text-anchor': 'middle', 'class': 'fw-c1' }); c1.textContent = 'Protagonista™';
-        fw.appendChild(ce); fw.appendChild(c1);
-        if (!compact) {
-          const c2 = fel('text', { x: CX, y: CY + 25, 'text-anchor': 'middle', 'class': 'fw-c2' }); c2.textContent = '6 FASES · 1 CICLO';
-          fw.appendChild(c2);
+        const fig = fw.closest('.metodo-fw');
+        if (fig) fig.classList.toggle('is-compact', compact);
+
+        const NODE = compact ? 80 : 124, NR = NODE / 2;
+        const R = compact ? 142 : 250, HUB_R = compact ? 66 : 122;
+        const ICSZ = compact ? 28 : 34, BADGE = compact ? 28 : 36;
+        const LBLW = 172, GAP = 20;
+
+        let W, H, CX, CY;
+        if (compact) {
+          W = Math.ceil((R + NR) * 2 + 20); H = W; CX = W / 2; CY = H / 2;
+        } else {
+          const halfX = R * Math.cos(Math.PI / 6) + NR + GAP + LBLW;
+          W = Math.ceil(halfX * 2); CX = W / 2;
+          CY = R + NR + 18; H = Math.ceil(CY + R + NR + 78);
         }
-        [-90, -30, 30, 90, 150, 210].forEach(function (deg, i) {
-          const a = deg * Math.PI / 180, x = CX + R * Math.cos(a), y = CY + R * Math.sin(a);
-          const g = fel('g', { 'class': 'fw-node', tabindex: '0', role: 'button', 'data-i': i, 'aria-label': 'Fase ' + (i + 1) + ': ' + P[i].n });
-          g.appendChild(fel('circle', { cx: x, cy: y, r: NR, fill: '#15131E', stroke: 'rgba(201,168,106,.45)', 'stroke-width': 1.5, 'class': 'fw-node-c' }));
-          const isz = compact ? 24 : 22;
-          const ic = fel('svg', { x: x - isz / 2, y: y - isz / 2 - (compact ? 5 : 2), width: isz, height: isz, viewBox: '0 0 24 24', fill: 'none', stroke: '#C9A86A', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
-          ic.innerHTML = ICONS[i];
-          g.appendChild(ic);
-          const num = fel('text', { x: x, y: y + (compact ? 20 : 18), 'text-anchor': 'middle', 'class': 'fw-num' }); num.textContent = NN(i);
-          g.appendChild(num);
-          if (!compact) {
-            let lx, ly, anchor;
-            if (deg === -90) { lx = x; ly = y - NR - 16; anchor = 'middle'; }
-            else if (deg === 90) { lx = x; ly = y + NR + 22; anchor = 'middle'; }
-            else if (x > CX) { lx = x + NR + 9; ly = y - 2; anchor = 'start'; }
-            else { lx = x - NR - 9; ly = y - 2; anchor = 'end'; }
-            const fa = fel('text', { x: lx, y: ly, 'text-anchor': anchor, 'class': 'fw-fase' }); fa.textContent = 'FASE ' + (i + 1);
-            const nm = fel('text', { x: lx, y: ly + 14, 'text-anchor': anchor, 'class': 'fw-name' }); nm.textContent = P[i].n;
-            g.appendChild(fa); g.appendChild(nm);
-          }
-          function go() { select(i, false); explorer.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-          g.addEventListener('click', go);
-          g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
-          fw.appendChild(g);
+
+        const at = function (i) { const a = (-90 + i * 60) * Math.PI / 180; return { i: i, x: CX + R * Math.cos(a), y: CY + R * Math.sin(a) }; };
+        const N = P.map(function (p, i) { return at(i); });
+
+        // wires (svg string)
+        let sg = '<defs><marker id="fwArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="rgba(232,230,245,0.42)"/></marker></defs>';
+        sg += '<circle cx="' + CX + '" cy="' + CY + '" r="' + HUB_R + '" fill="rgba(123,53,206,0.06)" stroke="rgba(168,101,240,0.42)" stroke-width="1.2" stroke-dasharray="2 8" stroke-linecap="round"/>';
+        N.forEach(function (nd) {
+          var dx = nd.x - CX, dy = nd.y - CY, l = Math.hypot(dx, dy), ux = dx / l, uy = dy / l;
+          var sx = CX + ux * (HUB_R + 10), sy = CY + uy * (HUB_R + 10), ex = nd.x - ux * (NR + 11), ey = nd.y - uy * (NR + 11);
+          sg += '<line x1="' + sx.toFixed(1) + '" y1="' + sy.toFixed(1) + '" x2="' + ex.toFixed(1) + '" y2="' + ey.toFixed(1) + '" stroke="rgba(201,168,106,0.32)" stroke-width="1.2" stroke-dasharray="2 8" stroke-linecap="round"/>';
+          sg += '<circle cx="' + ex.toFixed(1) + '" cy="' + ey.toFixed(1) + '" r="2.6" fill="rgba(201,168,106,0.85)"/>';
         });
+        for (var k = 0; k < N.length; k++) {
+          var a = N[k], b = N[(k + 1) % N.length];
+          var dx2 = b.x - a.x, dy2 = b.y - a.y, l2 = Math.hypot(dx2, dy2), ux2 = dx2 / l2, uy2 = dy2 / l2;
+          var sx2 = a.x + ux2 * (NR + 13), sy2 = a.y + uy2 * (NR + 13), ex2 = b.x - ux2 * (NR + 21), ey2 = b.y - uy2 * (NR + 21);
+          sg += '<line x1="' + sx2.toFixed(1) + '" y1="' + sy2.toFixed(1) + '" x2="' + ex2.toFixed(1) + '" y2="' + ey2.toFixed(1) + '" stroke="rgba(232,230,245,0.34)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#fwArr)"/>';
+        }
+
+        // nodes + labels (html string)
+        var nodes = '';
+        N.forEach(function (nd) {
+          var i = nd.i;
+          nodes += '<button type="button" class="fw-node" data-i="' + i + '" aria-label="Fase ' + (i + 1) + ': ' + P[i].n + '" ' +
+            'style="left:' + nd.x + 'px;top:' + nd.y + 'px;width:' + NODE + 'px;height:' + NODE + 'px">' +
+            '<span class="fw-badge" style="width:' + BADGE + 'px;height:' + BADGE + 'px;font-size:' + (compact ? 13 : 15) + 'px">' + NN(i) + '</span>' +
+            '<span class="fw-ic"><svg width="' + ICSZ + '" height="' + ICSZ + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' + ICONS[i] + '</svg></span>' +
+            '</button>';
+          if (!compact) {
+            var cls, st;
+            if (i === 3) { cls = 'center'; st = 'left:' + nd.x + 'px;top:' + (nd.y + NR + 16) + 'px;transform:translateX(-50%);width:240px'; }
+            else if (nd.x >= CX) { cls = 'right'; st = 'left:' + (nd.x + NR + GAP) + 'px;top:' + nd.y + 'px;transform:translateY(-50%);width:' + LBLW + 'px'; }
+            else { cls = 'left'; st = 'left:' + (nd.x - NR - GAP - LBLW) + 'px;top:' + nd.y + 'px;transform:translateY(-50%);width:' + LBLW + 'px'; }
+            nodes += '<div class="fw-olabel ' + cls + '" style="' + st + '">' +
+              '<div class="fw-fase">Fase ' + (i + 1) + '</div>' +
+              '<div class="fw-name">' + P[i].n + '</div>' +
+              '<div class="fw-desc">' + P[i].tag + '</div></div>';
+          }
+        });
+
+        fw.innerHTML =
+          '<div class="mfw-orb mfw-orb-v"></div><div class="mfw-orb mfw-orb-o"></div>' +
+          '<div class="mfw-fit">' +
+            '<div class="mfw-canvas" data-w="' + W + '" data-h="' + H + '" style="width:' + W + 'px;height:' + H + 'px">' +
+              '<svg class="mfw-wires" viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '">' + sg + '</svg>' +
+              '<div class="mfw-diagram">' + nodes + '</div>' +
+              '<div class="mfw-hub" style="left:' + CX + 'px;top:' + CY + 'px;width:' + (compact ? Math.round(HUB_R * 1.82) : 212) + 'px">' +
+                '<div class="mfw-hub-title">MÉTODO<br>PROTAGONISTA</div>' +
+                '<div class="mfw-hub-rule"></div>' +
+                '<div class="mfw-hub-desc">A marca reduz o CAC. A performance traz pacientes agora. Juntas, compõem mês a mês.</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+
+        fw.querySelectorAll('.fw-node').forEach(function (b) {
+          b.addEventListener('click', function () { select(+b.dataset.i, false); explorer.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+        });
+        fitFw();
       }
+
+      function fitFw() {
+        if (!fw) return;
+        var canvas = fw.querySelector('.mfw-canvas'), fitc = fw.querySelector('.mfw-fit');
+        if (!canvas || !fitc) return;
+        var W = +canvas.dataset.w, H = +canvas.dataset.h;
+        var avail = fitc.clientWidth;
+        var sc = Math.min(avail / W, 1);
+        canvas.style.transform = 'scale(' + sc + ')';
+        canvas.style.left = Math.max(0, (avail - W * sc) / 2) + 'px';
+        fitc.style.height = (H * sc) + 'px';
+      }
+      window.addEventListener('resize', fitFw);
       renderFw(mq.matches);
     })();
 
@@ -5573,6 +5687,7 @@
        aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-card" id="modalCard">
       <button class="modal-close" id="modalClose" aria-label="Fechar">✕</button>
+      <div class="modal-scroll">
 
       <!-- Progresso -->
       <div class="modal-header" id="modalFormSection">
@@ -5771,6 +5886,7 @@
           <strong>Entraremos em contato em até 24 horas</strong> para agendar sua sessão estratégica de 2 horas — sem custo, sem compromisso.
         </p>
       </div>
+      </div>
     </div>
   </div>
 
@@ -5827,7 +5943,7 @@
     }
 
     /* ---- Form multi-step (qualificação ICP) ---- */
-    .fq-prog { display: flex; align-items: center; gap: 10px; margin: 2px 0 22px; }
+    .fq-prog { display: flex; align-items: center; gap: 10px; margin: 2px 0 22px; padding-right: 40px; }
     .fq-prog-track { flex: 1; height: 5px; border-radius: 3px; background: rgba(255,255,255,0.08); overflow: hidden; }
     .fq-prog-fill { height: 100%; width: 25%; background: linear-gradient(90deg, var(--violeta), var(--ouro)); transition: width 0.4s var(--ease-out); }
     .fq-prog-label { font-size: 11px; font-weight: 700; color: var(--text-muted); white-space: nowrap; }
