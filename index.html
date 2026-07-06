@@ -2993,7 +2993,7 @@
     .fw-olabel.left { text-align: right; }
     .fw-olabel.center { text-align: center; }
 
-    .mfw-hub { position: absolute; transform: translate(-50%, -50%); text-align: center; z-index: 2; }
+    .mfw-hub { position: absolute; transform: translate(-50%, -50%); text-align: center; z-index: 2; flex-direction: column; align-items: stretch; justify-content: center; padding: 0 24px; font: inherit; }
     .mfw-hub-title { font-family: var(--font); font-weight: 900; font-size: 22px; line-height: 1.04; letter-spacing: -0.01em; color: var(--nevoa); }
     .mfw-hub-rule { width: 30px; height: 2px; background: var(--ouro); margin: 11px auto; border-radius: 2px; }
     .mfw-hub-desc { font-family: var(--font-body); font-weight: 400; font-size: 12px; line-height: 1.5; color: rgba(232,230,245,0.58); }
@@ -3007,40 +3007,6 @@
     .metodo-fw.is-compact .mfw-hub-desc { display: none; }
 
     @media (prefers-reduced-motion: reduce) { .fw-node { transition: none; } }
-
-    .metodo-loops { margin-top: 72px; }
-    .metodo-loops-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ouro);
-      text-align: center;
-      margin-bottom: 24px;
-    }
-    .metodo-loops-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-    }
-    .metodo-loop {
-      padding: 36px 40px;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-    }
-    .metodo-loop-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 16px;
-      font-weight: 800;
-      color: var(--nevoa);
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
-    }
-    .metodo-loop-title svg { color: var(--ouro); flex-shrink: 0; }
-    .metodo-loop p { font-size: 14px; line-height: 1.7; color: var(--text-muted); }
-    .metodo-loop p strong { color: var(--nevoa); font-weight: 700; }
 
     .metodo-bridge { margin-top: 72px; text-align: center; }
     .metodo-bridge-text {
@@ -3063,7 +3029,6 @@
       #metodo { padding: 72px 24px; }
       .metodo-header { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
       .metodo-rigor { margin-bottom: 48px; }
-      .metodo-loops-grid { grid-template-columns: 1fr; }
     }
 
     /* ========================================
@@ -4386,61 +4351,43 @@
   <!-- ========================================
        MÉTODO PROTAGONISTA
   ======================================== -->
-  <section id="metodo" aria-label="O Método Protagonista">
+  <section id="metodo" aria-label="Como fazemos sua clínica crescer">
     <div class="metodo-inner">
       <div class="metodo-header">
         <div class="reveal">
-          <div class="section-label">Método Protagonista™</div>
-          <h2 class="section-title">De mais um nome na busca<br/>a <em>protagonista</em> da sua especialidade.</h2>
+          <div class="section-label">Como fazemos sua clínica crescer</div>
+          <h2 class="section-title">Não é mais um funil.<br/>É uma <em>roda</em> que gira em torno da sua marca.</h2>
         </div>
-        <p class="metodo-tese reveal reveal-delay-2">
-          O paciente não escolhe o médico mais competente, porque não tem como avaliar competência técnica. Ele escolhe o médico que <strong>entende, lembra e confia</strong>. O Método Protagonista são <strong>6 fases em ordem causal</strong>: a marca reduz seu custo de aquisição, a performance traz pacientes agora e as duas compõem mês a mês.
+        <p class="metodo-tese reveal reveal-delay-1">
+          O paciente não escolhe o médico mais competente, porque não tem como avaliar competência técnica. Ele escolhe o médico que <strong>entende, lembra e confia</strong>. Marca é o eixo. Aquisição, conversão e retenção giram em torno dela, e cada volta fica mais barata que a anterior.
         </p>
+        <div class="metodo-rigor reveal reveal-delay-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg>
+          <span><strong>Rigor clínico.</strong> Nenhum médico prescreve sem examinar, mas é exatamente isso que o mercado faz com você quando vende post e tráfego sem diagnóstico. Aqui, seu crescimento é tratado com o mesmo rigor que você aplica aos seus pacientes.</span>
+        </div>
       </div>
 
-      <div class="metodo-rigor reveal">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-        </svg>
-        <p><strong>Rigor clínico.</strong> Nenhum médico prescreve sem examinar, mas é exatamente isso que o mercado faz com você quando vende post e tráfego sem diagnóstico. Aqui, seu crescimento é tratado com o mesmo rigor que você aplica aos seus pacientes.</p>
-      </div>
-
-      <figure class="metodo-fw reveal">
-        <div class="mfw-stage" id="metodoFw" role="img" aria-label="As 6 fases do Método Protagonista organizadas em ciclo"></div>
-        <figcaption class="metodo-fw-cap">Um ciclo, não uma linha. <b>Clique numa fase</b> para abri-la abaixo.</figcaption>
+      <figure class="metodo-fw">
+        <div class="mfw-stage" id="metodoFw" role="img" aria-label="O mapa de 4 frentes girando em torno da marca"></div>
+        <figcaption>No primeiro ciclo a roda gira com atrito alto: pouca prova, marca ainda jovem. A cada retorno bem-sucedido, o reconhecimento cresce e a volta seguinte exige menos mídia pelo mesmo resultado. <strong>Clique numa frente</strong> para abrir o detalhe abaixo.</figcaption>
       </figure>
 
-      <div class="metodo-explorer reveal" id="metodoExplorer" aria-label="As 6 fases do Método Protagonista"></div>
+      <div class="metodo-explorer" id="metodoExplorer" aria-label="As 4 frentes de crescimento"></div>
 
-      <div class="metodo-loops reveal">
-        <div class="metodo-loops-label">Por que é ciclo, não linha</div>
-        <div class="metodo-loops-grid">
-          <div class="metodo-loop">
-            <div class="metodo-loop-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/>
-              </svg>
-              Loop de aprendizado
-            </div>
-            <p>O número da Fase 5 responde à pergunta da Fase 1: onde a receita ainda vaza? O ciclo reinicia, agora mirado por dado real. <strong>O método melhora com o tempo.</strong></p>
-          </div>
-          <div class="metodo-loop">
-            <div class="metodo-loop-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-              </svg>
-              Loop econômico
-            </div>
-            <p>Indicações e avaliações da Fase 6 realimentam o tráfego da Fase 4. <strong>Quanto mais tempo o método roda, mais barato fica trazer cada paciente.</strong></p>
-          </div>
-        </div>
+      <div class="metodo-incluso reveal">
+        <div class="section-label" style="margin-bottom:10px;">Incluído em todo plano</div>
+        <ul class="mx-list">
+          <li><span class="resp-badge faz">Bäche faz</span> Painel único: custo por paciente, valor no tempo, ocupação, margem</li>
+          <li><span class="resp-badge faz">Bäche faz</span> Reunião quinzenal de leitura dos números, com você na sala</li>
+        </ul>
+        <p style="margin-top:10px;font-size:13px;color:var(--text-secondary);">Nunca é uma frente. É a régua que mede as quatro.</p>
       </div>
 
       <div class="metodo-bridge reveal">
-        <p class="metodo-bridge-text">O Método Protagonista tem 6 fases em ordem causal.<br/><em>Tudo começa pelo Diagnóstico.</em></p>
+        <p class="metodo-bridge-text">O mapa mostra onde mexemos.<br/><em>O motor, na próxima seção, mostra como.</em></p>
         <div class="metodo-bridge-actions">
           <a href="#contato" class="btn-primary" data-modal="diagnostico">
-            Agendar Diagnóstico Gratuito
+            Agendar meu Raio-X gratuito
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -4450,6 +4397,13 @@
       </div>
     </div>
   </section>
+
+  <style>
+    .resp-badge{display:inline-block;padding:3px 9px;border-radius:100px;font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;margin-right:8px;vertical-align:1px;}
+    .resp-badge.faz{background:rgba(123,53,206,0.20);color:var(--violeta-light);border:1px solid rgba(123,53,206,0.30);}
+    .resp-badge.dirige{background:rgba(201,168,106,0.14);color:var(--ouro);border:1px solid rgba(201,168,106,0.30);}
+    .resp-badge.opera{background:rgba(255,255,255,0.06);color:rgba(232,230,245,0.65);border:1px solid rgba(255,255,255,0.14);}
+  </style>
 
   <!-- ========================================
        PROCESSO — como começar (jornada comercial)
@@ -5149,52 +5103,63 @@
 
     reveals.forEach(el => observer.observe(el));
 
-    // ---- Método Protagonista: explorador interativo das 6 fases ----
+    // ---- Mapa de frentes: explorador interativo (Marca/Aquisição/Conversão/Retenção) ----
     (function () {
       const explorer = document.getElementById('metodoExplorer');
       if (!explorer) return;
       const fw = document.getElementById('metodoFw');
 
       const ICONS = [
-        '<path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/>',
         '<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"/>',
-        '<path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"/><path d="m6.2 5.3 3.1 3.9"/><path d="m12.4 3.4 3.1 4"/><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>',
         '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
         '<path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>',
         '<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>'
       ];
-      const P = [
-        { n: 'Diagnóstico', tag: 'Gratuito · 2h · via call', title: 'Diagnóstico Bäche',
-          virada: '"Paro de adivinhar. Sei exatamente onde minha agenda particular trava."',
-          why: 'Sem diagnóstico, toda ação vira tiro no escuro. Primeiro a gente descobre por onde sua receita vaza (posicionamento, percepção, aquisição ou conversão) pra que o próximo passo seja mirado, não chutado.',
-          recebe: ['<strong>Auditoria completa</strong> da sua presença digital: o retrato real de como o paciente te encontra hoje.', '<strong>Auditoria de indicadores</strong> com ROI, CAC, LTV, ticket médio e churn, a foto financeira de onde você está.', '<strong>Diagnóstico de posicionamento</strong> que cruza você, a concorrência e o que o paciente de fato procura.', 'Um <strong>brand diagnosis</strong> que aponta o que te torna único e, principalmente, vendável.', '<strong>Plano de ação de 30 dias</strong> que fica com você, mesmo se não seguir com a gente.'],
-          sinal: 'Você termina a call sabendo nomear sua trava nº 1 e os três próximos movimentos concretos.' },
-        { n: 'Marca & Mensagem', tag: 'Base de autoridade', title: 'Marca & Mensagem',
-          virada: '"Paro de soar como todo mundo. Ocupo um lugar que é só meu."',
-          why: 'Quando todo perfil repete as mesmas palavras (humanização, excelência, cuidado), sobra um único critério de escolha: o preço. Aqui a gente traduz o que te torna único para a língua do paciente, sempre dentro do CFM.',
-          recebe: ['<strong>Persona de autoridade</strong>: quem você é para o mercado, numa identidade que o paciente reconhece e confia.', '<strong>Inimigo comum</strong>, porque todo posicionamento forte precisa de um adversário claro.', '<strong>Narrativa central e mensagens-chave</strong> na língua do paciente, 100% CFM-safe.', '<strong>Oferta e público de alto valor</strong> definidos antes de qualquer anúncio rodar.'],
-          sinal: 'Um estranho lê seu posicionamento e resume, numa frase, por que escolher você. Sem falar em preço.' },
-        { n: 'Direção Cênica', tag: 'O diferencial incopiável', title: 'Direção Cênica & Produção',
-          virada: '"Paro de travar na câmera. Transmito a autoridade que já tenho."',
-          why: 'Autoridade percebida não vem do quanto você sabe, e sim de como você comunica. Direção cênica vem do palco: técnica de voz, postura e ritmo que revelam o comunicador que já existe em você. É o motor de conversão do método inteiro, não um conforto opcional.',
-          recebe: ['<strong>Roteiros dirigidos por tema</strong> que você conduz em vez de decorar.', '<strong>Frameworks e templates de conteúdo</strong> desenhados para o seu nicho.', '<strong>Um dia de gravação dirigida</strong> (cerca de 6h) que rende 15 a 20 peças, um mês inteiro de presença.', '<strong>Direção de câmera, postura e fala</strong> em tempo real, com a gente do seu lado.', '<strong>Edição e calendário de publicação</strong> prontos. Depois de gravar, você não toca em mais nada.'],
-          sinal: 'Você se assiste sem vergonha do resultado e fecha o mês inteiro de conteúdo num único dia.',
-          moat: '<strong>Por que ninguém copia:</strong> agência tem social media. A Bäche tem direção cênica de verdade, anos de palco aplicados à câmera. Isso não se compra com ferramenta. Ou você é diretor, ou não é.' },
-        { n: 'Aquisição', tag: 'Presença que converte', title: 'Aquisição',
-          virada: '"Paro de pagar pra falar com estranho. Sou achado por quem já me conhece."',
-          why: 'Anúncio para estranho é leilão de preço. Anúncio sobre a marca que você construiu nas fases anteriores chega em quem já te reconhece, e quem reconhece não compara: agenda. No topo, o Meta cria a demanda. No fundo, o Google colhe quem já procura por você.',
-          recebe: ['<strong>Campanhas no Meta e no Google Busca</strong>, com setup, gestão e Google Meu Negócio na sequência.', '<strong>Criativos tirados das suas gravações</strong>, nada de banco de imagem genérico.', '<strong>Landing pages por estágio de consciência</strong>, do curioso ao paciente pronto pra agendar.', '<strong>Assessoria de imprensa</strong> que coloca terceiros confirmando você quando buscam seu nome.', '<strong>Otimização por custo por paciente</strong> e retorno sobre a mídia, não por clique e muito menos por curtida.'],
-          sinal: 'Seu custo por paciente cai mês a mês, e os leads começam a chegar dizendo "já te acompanho".' },
-        { n: 'Conversão', tag: 'O contato vira paciente', title: 'Conversão & Mensuração',
-          virada: '"Paro de torcer. Vejo cada real virar paciente, em tempo real."',
-          why: 'O gargalo quase nunca está na mídia. Ele está no último metro, o lead que morre no WhatsApp, e na falta de dados pra enxergar isso. A gente treina sua equipe pra converter e instala o painel que mostra exatamente onde cada paciente se perde.',
-          recebe: ['<strong>Treinamento comercial e scripts de atendimento</strong> que transformam a secretária em parte da estratégia.', '<strong>Resposta em menos de 5 minutos</strong>, com processo claro de atendimento e agendamento.', '<strong>Dashboard em tempo real</strong> com pacientes por canal, ticket médio e taxa de conversão.', '<strong>CRM oficial Bäche®</strong> que acompanha o SLA de atendimento e os KPIs da clínica.', '<strong>Baseline no dia zero e relatório quinzenal</strong>, mais garantia condicional de 90 dias.'],
-          sinal: 'Você abre o painel e sabe, sem perguntar a ninguém, quantos pacientes vieram, de qual canal e a que custo. Resposta ao lead em menos de 5 minutos e taxa de agendamento acima de 40%.' },
-        { n: 'Fidelização', tag: 'O paciente vira defensor', title: 'Fidelização',
-          virada: '"Paro de recomeçar do zero. Colho a base que já conquistei."',
-          why: 'O paciente mais barato é o que você já tem. Quem volta sustenta a receita, quem indica derruba seu custo de captação e quem avalia vira prova social que realimenta o tráfego. No fim, o método inteiro fica mais barato a cada mês.',
-          recebe: ['<strong>Régua de relacionamento pós-consulta</strong> com lembretes, conteúdo e reativação de base parada.', '<strong>Geração ativa de avaliações</strong> no Google e na Doctoralia, que viram combustível do topo de funil.', '<strong>Indicação em duas frentes</strong>: pacientes que indicam pacientes e a rede de encaminhamento profissional, sempre sem comissão (vedado pelo CFM).', '<strong>Conteúdo de nutrição</strong> pra quem já te segue continuar lembrando de você.'],
-          sinal: 'As indicações sobem, as avaliações 5★ crescem e seu custo de captação cai, porque agora a base trabalha por você.' }
+      const TIER_LABEL = { faz: 'Bäche faz', dirige: 'Bäche dirige', opera: 'Sua equipe opera' };
+      const FRENTES = [
+        { n: 'Marca', tag: 'Por que escolhem você', title: 'Marca',
+          virada: '"Aceita convênio?" costuma ser a primeira pergunta, antes do paciente saber o que te torna diferente de qualquer outro especialista da cidade.',
+          why: 'Marca é o que muda a ordem dessa pergunta: ela vem depois da decisão de te escolher, não antes.',
+          recebe: [
+            { txt: 'Posicionamento e mensagem central da clínica', tier: 'faz' },
+            { txt: 'Análise de concorrentes e leitura de mercado', tier: 'faz' },
+            { txt: 'Tom de voz e linha editorial próprios', tier: 'faz' }
+          ],
+          conteudo: [
+            { txt: 'Pauta, roteiro e direção editorial do mês', tier: 'faz' },
+            { txt: 'Treino de câmera do médico', tier: 'faz' },
+            { txt: 'Gravação, edição e postagem, produzidas pela operação Bäche', tier: 'faz' }
+          ],
+          sinal: 'Um estranho lê seu posicionamento e sabe, numa frase, por que te escolher, sem mencionar preço.' },
+        { n: 'Aquisição', tag: 'O paciente certo chega', title: 'Aquisição',
+          virada: 'Você paga pra aparecer, e quem chega é curioso, caçador de desconto ou ninguém.',
+          why: 'Sem marca por trás, todo anúncio vira leilão de preço. Aquisição bem feita alcança quem já reconhece você, e esse não compara: agenda.',
+          recebe: [
+            { txt: 'Estratégia e gestão de tráfego pago (Google e Meta)', tier: 'faz' },
+            { txt: 'Criativos de anúncio: conceito, copy e arte', tier: 'faz' },
+            { txt: 'Parcerias e eventos que encaminham pacientes', tier: 'dirige' }
+          ],
+          sinal: 'Custo por paciente caindo mês a mês, porque a marca faz o anúncio trabalhar menos.' },
+        { n: 'Conversão', tag: 'O contato vira paciente', title: 'Conversão',
+          virada: 'O lead chega no WhatsApp, a secretária demora, informa preço, não agenda.',
+          why: 'O gargalo raramente é a mídia, é o último metro. Conversão instala processo e painel pra fechar essa brecha antes que o paciente esfrie.',
+          recebe: [
+            { txt: 'Landing pages e páginas de conversão', tier: 'faz' },
+            { txt: 'CRM com WhatsApp e agenda: escolha, setup e automações', tier: 'faz' },
+            { txt: 'Script comercial e treinamento da secretária', tier: 'faz' },
+            { txt: 'Régua contra faltas e recuperação de orçamentos parados', tier: 'faz' },
+            { txt: 'Atendimento diário no CRM e no WhatsApp', tier: 'opera' }
+          ],
+          sinal: 'Resposta ao paciente em minutos, não horas, e a secretária virou parte do crescimento, não um gargalo.' },
+        { n: 'Retenção', tag: 'O paciente volta e indica', title: 'Retenção',
+          virada: 'Você paga caro pra trazer o paciente, ele é bem atendido, e some.',
+          why: 'O paciente mais barato é o que você já tem. Retenção transforma quem já veio em quem indica o próximo, derrubando o custo do ciclo seguinte.',
+          recebe: [
+            { txt: 'Régua de pós-consulta e follow-up automatizado', tier: 'faz' },
+            { txt: 'Motor de indicação e avaliações públicas', tier: 'faz' },
+            { txt: 'Campanha de reativação da base parada', tier: 'faz' }
+          ],
+          sinal: 'Percentual de pacientes por indicação subindo, e o custo por paciente caindo porque a base trabalha por você.' }
       ];
 
       const NN = function (i) { return String(i + 1).padStart(2, '0'); };
@@ -5207,18 +5172,21 @@
           '<span class="mx-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>' +
           '</button>';
       }
+      function recebeItem(x) {
+        return '<li><span class="resp-badge ' + x.tier + '">' + TIER_LABEL[x.tier] + '</span>' + x.txt + '</li>';
+      }
       function panelMarkup(p, i) {
         return '<div class="mx-panel" data-i="' + i + '" id="mx-panel-' + i + '" role="region" aria-labelledby="mx-tab-' + i + '" hidden>' +
-          '<div class="mx-bar" style="width:' + ((i + 1) / P.length * 100) + '%"></div>' +
-          '<div class="mx-count">' + NN(i) + ' / 06</div>' +
+          '<div class="mx-bar" style="width:' + ((i + 1) / FRENTES.length * 100) + '%"></div>' +
+          '<div class="mx-count">' + NN(i) + ' / ' + NN(FRENTES.length - 1) + '</div>' +
           '<div class="mx-tag">' + p.tag + '</div>' +
           '<h3 class="mx-title">' + p.title + '</h3>' +
           '<p class="mx-virada">' + p.virada + '</p>' +
           '<p class="mx-why">' + p.why + '</p>' +
           '<div class="mx-recebe-label">O que você recebe</div>' +
-          '<ul class="mx-list">' + p.recebe.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>' +
+          '<ul class="mx-list">' + p.recebe.map(recebeItem).join('') + '</ul>' +
+          (p.conteudo ? '<div class="mx-recebe-label">+ Conteúdo (incluso no Ciclo completo e na Rede)</div><ul class="mx-list">' + p.conteudo.map(recebeItem).join('') + '</ul>' : '') +
           '<div class="mx-sinal"><strong>O sinal de que funcionou</strong>' + p.sinal + '</div>' +
-          (p.moat ? '<div class="mx-moat">' + p.moat + '</div>' : '') +
           '</div>';
       }
 
@@ -5229,13 +5197,13 @@
         explorer.classList.toggle('is-accordion', accordion);
         explorer.classList.toggle('is-split', !accordion);
         if (accordion) {
-          explorer.innerHTML = P.map(function (p, i) {
+          explorer.innerHTML = FRENTES.map(function (p, i) {
             return '<div class="mx-item" data-i="' + i + '">' + tabMarkup(p, i) + panelMarkup(p, i) + '</div>';
           }).join('');
         } else {
           explorer.innerHTML =
-            '<div class="metodo-rail">' + P.map(tabMarkup).join('') + '</div>' +
-            '<div class="metodo-stage">' + P.map(panelMarkup).join('') + '</div>';
+            '<div class="metodo-rail">' + FRENTES.map(tabMarkup).join('') + '</div>' +
+            '<div class="metodo-stage">' + FRENTES.map(panelMarkup).join('') + '</div>';
         }
         applyState(false);
       }
@@ -5294,7 +5262,7 @@
       render(mq.matches);
       mq.addEventListener('change', function (e) { render(e.matches); renderFw(e.matches); });
 
-      // ---- Framework macro (ring que condensa o método, clicável · compacto no mobile) ----
+      // ---- Flywheel (ring com Marca no hub, 3 frentes orbitando, clicável · compacto no mobile) ----
       const NSF = 'http://www.w3.org/2000/svg';
       function fel(t, a) { const e = document.createElementNS(NSF, t); for (const k in a) e.setAttribute(k, a[k]); return e; }
       function renderFw(compact) {
@@ -5306,6 +5274,7 @@
         const R = compact ? 142 : 250, HUB_R = compact ? 66 : 122;
         const ICSZ = compact ? 28 : 34, BADGE = compact ? 28 : 36;
         const LBLW = 172, GAP = 20;
+        const HUB_SIZE = compact ? Math.round(HUB_R * 1.82) : 212;
 
         let W, H, CX, CY;
         if (compact) {
@@ -5316,57 +5285,61 @@
           CY = R + NR + 18; H = Math.ceil(CY + R + NR + 78);
         }
 
-        const at = function (i) { const a = (-90 + i * 60) * Math.PI / 180; return { i: i, x: CX + R * Math.cos(a), y: CY + R * Math.sin(a) }; };
-        const N = P.map(function (p, i) { return at(i); });
+        // index 0 = Marca (hub, fixed at center). Indices 1-3 orbit at 120° apart, starting at top.
+        const ORBIT = [1, 2, 3].map(function (i, k) {
+          const a = (-90 + k * 120) * Math.PI / 180;
+          return { i: i, x: CX + R * Math.cos(a), y: CY + R * Math.sin(a) };
+        });
 
-        // wires (svg string)
+        // wires (svg string): dashed hub-to-node spokes + cycle arrows among the 3 orbiting nodes only
         let sg = '<defs><marker id="fwArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="rgba(232,230,245,0.42)"/></marker></defs>';
         sg += '<circle cx="' + CX + '" cy="' + CY + '" r="' + HUB_R + '" fill="rgba(123,53,206,0.06)" stroke="rgba(168,101,240,0.42)" stroke-width="1.2" stroke-dasharray="2 8" stroke-linecap="round"/>';
-        N.forEach(function (nd) {
+        ORBIT.forEach(function (nd) {
           var dx = nd.x - CX, dy = nd.y - CY, l = Math.hypot(dx, dy), ux = dx / l, uy = dy / l;
           var sx = CX + ux * (HUB_R + 10), sy = CY + uy * (HUB_R + 10), ex = nd.x - ux * (NR + 11), ey = nd.y - uy * (NR + 11);
           sg += '<line x1="' + sx.toFixed(1) + '" y1="' + sy.toFixed(1) + '" x2="' + ex.toFixed(1) + '" y2="' + ey.toFixed(1) + '" stroke="rgba(201,168,106,0.32)" stroke-width="1.2" stroke-dasharray="2 8" stroke-linecap="round"/>';
           sg += '<circle cx="' + ex.toFixed(1) + '" cy="' + ey.toFixed(1) + '" r="2.6" fill="rgba(201,168,106,0.85)"/>';
         });
-        for (var k = 0; k < N.length; k++) {
-          var a = N[k], b = N[(k + 1) % N.length];
+        for (var k = 0; k < ORBIT.length; k++) {
+          var a = ORBIT[k], b = ORBIT[(k + 1) % ORBIT.length];
           var dx2 = b.x - a.x, dy2 = b.y - a.y, l2 = Math.hypot(dx2, dy2), ux2 = dx2 / l2, uy2 = dy2 / l2;
           var sx2 = a.x + ux2 * (NR + 13), sy2 = a.y + uy2 * (NR + 13), ex2 = b.x - ux2 * (NR + 21), ey2 = b.y - uy2 * (NR + 21);
           sg += '<line x1="' + sx2.toFixed(1) + '" y1="' + sy2.toFixed(1) + '" x2="' + ex2.toFixed(1) + '" y2="' + ey2.toFixed(1) + '" stroke="rgba(232,230,245,0.34)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#fwArr)"/>';
         }
 
-        // nodes + labels (html string)
+        // orbiting nodes + labels (html string)
         var nodes = '';
-        N.forEach(function (nd) {
+        ORBIT.forEach(function (nd) {
           var i = nd.i;
-          nodes += '<button type="button" class="fw-node" data-i="' + i + '" aria-label="Fase ' + (i + 1) + ': ' + P[i].n + '" ' +
+          nodes += '<button type="button" class="fw-node" data-i="' + i + '" aria-label="Frente: ' + FRENTES[i].n + '" ' +
             'style="left:' + nd.x + 'px;top:' + nd.y + 'px;width:' + NODE + 'px;height:' + NODE + 'px">' +
             '<span class="fw-badge" style="width:' + BADGE + 'px;height:' + BADGE + 'px;font-size:' + (compact ? 13 : 15) + 'px">' + NN(i) + '</span>' +
             '<span class="fw-ic"><svg width="' + ICSZ + '" height="' + ICSZ + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' + ICONS[i] + '</svg></span>' +
             '</button>';
           if (!compact) {
             var cls, st;
-            if (i === 3) { cls = 'center'; st = 'left:' + nd.x + 'px;top:' + (nd.y + NR + 16) + 'px;transform:translateX(-50%);width:240px'; }
-            else if (nd.x >= CX) { cls = 'right'; st = 'left:' + (nd.x + NR + GAP) + 'px;top:' + nd.y + 'px;transform:translateY(-50%);width:' + LBLW + 'px'; }
+            if (nd.x >= CX) { cls = 'right'; st = 'left:' + (nd.x + NR + GAP) + 'px;top:' + nd.y + 'px;transform:translateY(-50%);width:' + LBLW + 'px'; }
             else { cls = 'left'; st = 'left:' + (nd.x - NR - GAP - LBLW) + 'px;top:' + nd.y + 'px;transform:translateY(-50%);width:' + LBLW + 'px'; }
             nodes += '<div class="fw-olabel ' + cls + '" style="' + st + '">' +
-              '<div class="fw-fase">Fase ' + (i + 1) + '</div>' +
-              '<div class="fw-name">' + P[i].n + '</div>' +
-              '<div class="fw-desc">' + P[i].tag + '</div></div>';
+              '<div class="fw-fase">' + FRENTES[i].tag + '</div>' +
+              '<div class="fw-name">' + FRENTES[i].n + '</div></div>';
           }
         });
+
+        // hub node (Marca): same .fw-node class so click/active-state wiring below applies uniformly
+        var hub = '<button type="button" class="fw-node mfw-hub" data-i="0" aria-label="Frente: Marca" ' +
+          'style="left:' + CX + 'px;top:' + CY + 'px;width:' + HUB_SIZE + 'px;height:' + HUB_SIZE + 'px">' +
+          '<div class="mfw-hub-title">MARCA</div>' +
+          '<div class="mfw-hub-rule"></div>' +
+          '<div class="mfw-hub-desc">O eixo. Aquisição, conversão e retenção giram em torno dela.</div>' +
+          '</button>';
 
         fw.innerHTML =
           '<div class="mfw-orb mfw-orb-v"></div><div class="mfw-orb mfw-orb-o"></div>' +
           '<div class="mfw-fit">' +
             '<div class="mfw-canvas" data-w="' + W + '" data-h="' + H + '" style="width:' + W + 'px;height:' + H + 'px">' +
               '<svg class="mfw-wires" viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '">' + sg + '</svg>' +
-              '<div class="mfw-diagram">' + nodes + '</div>' +
-              '<div class="mfw-hub" style="left:' + CX + 'px;top:' + CY + 'px;width:' + (compact ? Math.round(HUB_R * 1.82) : 212) + 'px">' +
-                '<div class="mfw-hub-title">MÉTODO<br>PROTAGONISTA</div>' +
-                '<div class="mfw-hub-rule"></div>' +
-                '<div class="mfw-hub-desc">A marca reduz o CAC. A performance traz pacientes agora. Juntas, compõem mês a mês.</div>' +
-              '</div>' +
+              '<div class="mfw-diagram">' + nodes + hub + '</div>' +
             '</div>' +
           '</div>';
 
