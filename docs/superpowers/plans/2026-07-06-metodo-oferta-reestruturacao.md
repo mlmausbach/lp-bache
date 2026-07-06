@@ -910,21 +910,21 @@ New string:
         <div class="transf-item stagger-child reveal reveal-delay-1">
           <div class="transf-item-num">02</div>
           <div class="transf-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg></div>
-          <div class="transf-item-title">02 Prescrição <span style="font-weight:400;opacity:.6;font-size:13px;">· Semana 3</span></div>
+          <div class="transf-item-title">Prescrição <span style="font-weight:400;opacity:.6;font-size:13px;">· Semana 3</span></div>
           <p class="transf-item-desc"><em>Plano de tratamento de 90 dias.</em> Poucas apostas, cada uma com meta e responsável. Nada de lista de tarefas genérica.</p>
         </div>
 
         <div class="transf-item stagger-child reveal reveal-delay-2">
           <div class="transf-item-num">03</div>
           <div class="transf-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.4-5.5 9.3-7.3 10.8a1 1 0 0 1-1.4 0C9.5 19.3 4 14.4 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <div class="transf-item-title">03 Tratamento <span style="font-weight:400;opacity:.6;font-size:13px;">· Semanas 4-12</span></div>
+          <div class="transf-item-title">Tratamento <span style="font-weight:400;opacity:.6;font-size:13px;">· Semanas 4-12</span></div>
           <p class="transf-item-desc"><em>Protocolos de cada frente rodando.</em> Leitura quinzenal dos números, você não espera 90 dias pra saber se está funcionando.</p>
         </div>
 
         <div class="transf-item stagger-child reveal reveal-delay-3">
           <div class="transf-item-num">04</div>
           <div class="transf-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></div>
-          <div class="transf-item-title">04 Retorno <span style="font-weight:400;opacity:.6;font-size:13px;">· Semana 13</span></div>
+          <div class="transf-item-title">Retorno <span style="font-weight:400;opacity:.6;font-size:13px;">· Semana 13</span></div>
           <p class="transf-item-desc"><em>Veredito de cada aposta: dobrar, manter ou cancelar.</em> O resultado na mesa desenha o próximo ciclo. A renovação nunca é por inércia.</p>
         </div>
 ```
