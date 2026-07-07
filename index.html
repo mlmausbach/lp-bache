@@ -631,12 +631,10 @@
       position: absolute;
       inset: 0;
       background:
-        /* Véu escuro forte — fundo quase-preto sóbrio, roxo vira atmosfera sutil */
-        radial-gradient(ellipse 100% 100% at 50% 45%, rgba(8,8,14,0.80) 0%, rgba(8,8,14,0.68) 55%, rgba(8,8,14,0.58) 100%),
-        /* Reforçar fundo escuro nas bordas */
-        linear-gradient(to bottom, rgba(8,8,14,0.62) 0%, rgba(8,8,14,0.42) 45%, rgba(8,8,14,0.84) 100%),
+        /* Base escura com leve clareamento no centro (deixa a luz e a foto respirarem) */
+        linear-gradient(to bottom, rgba(7,6,14,0.58) 0%, rgba(7,6,14,0.32) 42%, rgba(7,6,14,0.82) 100%),
         /* Champanhe sutil no canto inferior */
-        radial-gradient(ellipse 30% 25% at 50% 110%, rgba(201,168,106,0.08) 0%, transparent 60%);
+        radial-gradient(ellipse 32% 26% at 50% 112%, rgba(201,168,106,0.07) 0%, transparent 60%);
     }
 
     .hero-grain {
@@ -645,6 +643,24 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none;
       opacity: 0.4;
+    }
+
+    /* Vinheta cinematográfica: escurece bordas, foca o centro (acima das poças de luz) */
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(ellipse 74% 72% at 50% 46%, transparent 46%, rgba(0,0,0,0.78) 100%);
+    }
+
+    /* Mobile: orbs gigantes lavavam a tela estreita. Encolher + escurecer = mantém o cinematográfico */
+    @media (max-width: 768px) {
+      .hero-orb { opacity: 0.5; filter: blur(58px); }
+      .hero-orb-1 { width: 330px; height: 330px; top: -8%; left: -24%; }
+      .hero-orb-2 { width: 380px; height: 380px; bottom: -8%; right: -28%; }
+      .hero-orb-3 { display: none; }
+      .hero-vignette { background: radial-gradient(ellipse 95% 80% at 50% 40%, transparent 26%, rgba(0,0,0,0.90) 100%); }
     }
 
     .hero-eyebrow {
@@ -2124,32 +2140,36 @@
       position: absolute;
       border-radius: 50%;
       pointer-events: none;
-      filter: blur(90px);
-      opacity: 0.20;
-      animation: orbFloat 8s ease-in-out infinite;
+      filter: blur(72px);
+      opacity: 0.85;
+      animation: orbFloat 14s ease-in-out infinite;
     }
 
+    /* Key quente no canto superior esquerdo */
     .hero-orb-1 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(88, 60, 124, 0.55), transparent 70%);
-      top: -10%; left: 5%;
+      width: 680px; height: 680px;
+      background: radial-gradient(circle, rgba(201,168,106,0.30), transparent 60%);
+      top: -22%; left: -12%;
       animation-delay: 0s;
     }
 
+    /* Fill frio (violeta) no canto inferior direito */
     .hero-orb-2 {
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(201,168,106,0.16), transparent 70%);
-      bottom: 5%; right: 5%;
-      animation-delay: -3s;
-      animation-duration: 10s;
+      width: 720px; height: 720px;
+      background: radial-gradient(circle, rgba(123,53,206,0.30), transparent 62%);
+      bottom: -28%; right: -14%;
+      animation-delay: -5s;
+      animation-duration: 16s;
     }
 
+    /* Acento violeta sutil */
     .hero-orb-3 {
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(88,60,124,0.55), transparent 70%);
-      top: 40%; right: 15%;
-      animation-delay: -6s;
-      animation-duration: 12s;
+      width: 340px; height: 340px;
+      background: radial-gradient(circle, rgba(168,101,240,0.16), transparent 70%);
+      top: 40%; right: 16%;
+      animation-delay: -8s;
+      animation-duration: 18s;
+      opacity: 0.55;
     }
 
     @keyframes orbFloat {
@@ -3840,10 +3860,10 @@
 
     /* ── Ambient orbs — cores do gradiente ─────────────────────────────── */
     .hero-orb-1 {
-      background: radial-gradient(circle, rgba(151,48,239,0.85), rgba(63,9,103,0.3) 55%, transparent 70%) !important;
+      background: radial-gradient(circle, rgba(201,168,106,0.32), rgba(172,140,80,0.12) 55%, transparent 70%) !important;
     }
     .hero-orb-3 {
-      background: radial-gradient(circle, rgba(149,0,224,0.90), rgba(66,0,108,0.4) 55%, transparent 70%) !important;
+      background: radial-gradient(circle, rgba(168,101,240,0.30), rgba(66,0,108,0.16) 55%, transparent 72%) !important;
     }
     #dor::before {
       background: radial-gradient(circle, rgba(151,48,239,0.18) 0%, transparent 70%) !important;
@@ -4182,6 +4202,7 @@
     <div class="hero-orb hero-orb-1"></div>
     <div class="hero-orb hero-orb-2"></div>
     <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-vignette"></div>
 
     <div class="hero-content-wrap" id="heroContent">
       <div class="hero-eyebrow">
