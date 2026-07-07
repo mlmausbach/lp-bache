@@ -16,7 +16,7 @@
       "purpose": "any maskable"
     },
     {
-      "src": "/assets/android-chrome-512x512.png",
+      "src": "/assets/android-chrome-512x512.png?v=2",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
