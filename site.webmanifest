@@ -1,0 +1,25 @@
+{
+  "name": "Bäche — Performance Branding para Saúde",
+  "short_name": "Bäche",
+  "description": "Primeiro estúdio de Performance Branding para saúde do Brasil. Transformamos médicos em marcas que o paciente escolhe antes de pesquisar preço.",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "background_color": "#0D0C14",
+  "theme_color": "#0D0C14",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
