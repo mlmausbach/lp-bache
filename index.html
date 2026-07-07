@@ -128,25 +128,25 @@
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Diagnóstico Bäche",
-              "description": "Sessão única de 2 horas para análise completa da presença digital e posicionamento do especialista médico. Inclui mapa de oportunidades e plano de ação.",
+              "name": "Raio-X Bäche",
+              "description": "Diagnóstico comercial gratuito de 2 horas por call. Sai com nota por frente de crescimento e o vazamento de receita mais óbvio apontado.",
               "price": "0",
               "priceCurrency": "BRL"
             },
             {
               "@type": "Offer",
-              "name": "Sprint Ignição",
-              "description": "Projeto de 30 dias para construção das bases de autoridade de marca do especialista médico, incluindo brand audit, arquétipo, posicionamento e 1 dia de gravação com direção cênica."
+              "name": "Essencial",
+              "description": "Para clínicas começando a estruturar marketing: 2 a 3 frentes de crescimento priorizadas no Raio-X, painel único e reuniões quinzenais, foco no vazamento de receita mais óbvio."
             },
             {
               "@type": "Offer",
-              "name": "Retainer Presença",
-              "description": "Gestão mensal completa de presença e performance para médicos e clínicas, com direção cênica mensal, tráfego pago, dashboard de resultados e treinamento de equipe comercial. Inclui garantia de resultado em 90 dias."
+              "name": "Ciclo completo",
+              "description": "As 4 frentes de crescimento (marca, aquisição, conversão, retenção), painel único, reuniões quinzenais, gravação de conteúdo em lote mensal com edição e postagem pela Bäche."
             },
             {
               "@type": "Offer",
-              "name": "Programa Palco",
-              "description": "Programa completo de dominância de mercado para especialistas e clínicas, incluindo rebrand, estratégia multi-canal, vídeo institucional e evento de lançamento."
+              "name": "Rede",
+              "description": "As 4 frentes de crescimento replicadas por unidade, para clínicas com mais de uma unidade ou vários médicos. Relatório consolidado e governança de marca entre unidades."
             }
           ]
         }
@@ -1451,7 +1451,7 @@
 
     .produtos-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 2px;
     }
 
@@ -3013,13 +3013,13 @@
     .fw-olabel.left { text-align: right; }
     .fw-olabel.center { text-align: center; }
 
-    .mfw-hub { position: absolute; transform: translate(-50%, -50%); text-align: center; z-index: 2; }
+    .mfw-hub { position: absolute; transform: translate(-50%, -50%); text-align: center; z-index: 2; flex-direction: column; align-items: stretch; justify-content: center; padding: 0 24px; font: inherit; }
     .mfw-hub-title { font-family: var(--font); font-weight: 900; font-size: 22px; line-height: 1.04; letter-spacing: -0.01em; color: var(--nevoa); }
     .mfw-hub-rule { width: 30px; height: 2px; background: var(--ouro); margin: 11px auto; border-radius: 2px; }
     .mfw-hub-desc { font-family: var(--font-body); font-weight: 400; font-size: 12px; line-height: 1.5; color: rgba(232,230,245,0.58); }
 
     .metodo-fw-cap { margin-top: 14px; text-align: center; font-size: 12.5px; color: var(--text-muted); }
-    .metodo-fw-cap b { color: var(--nevoa); font-weight: 700; }
+    .metodo-fw-cap b, .metodo-fw-cap strong { color: var(--nevoa); font-weight: 700; }
 
     .metodo-fw.is-compact { max-width: 440px; margin-bottom: 32px; }
     .metodo-fw.is-compact .mfw-hub-title { font-size: 14px; }
@@ -3027,40 +3027,6 @@
     .metodo-fw.is-compact .mfw-hub-desc { display: none; }
 
     @media (prefers-reduced-motion: reduce) { .fw-node { transition: none; } }
-
-    .metodo-loops { margin-top: 72px; }
-    .metodo-loops-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ouro);
-      text-align: center;
-      margin-bottom: 24px;
-    }
-    .metodo-loops-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-    }
-    .metodo-loop {
-      padding: 36px 40px;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-    }
-    .metodo-loop-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 16px;
-      font-weight: 800;
-      color: var(--nevoa);
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
-    }
-    .metodo-loop-title svg { color: var(--ouro); flex-shrink: 0; }
-    .metodo-loop p { font-size: 14px; line-height: 1.7; color: var(--text-muted); }
-    .metodo-loop p strong { color: var(--nevoa); font-weight: 700; }
 
     .metodo-bridge { margin-top: 72px; text-align: center; }
     .metodo-bridge-text {
@@ -3083,7 +3049,6 @@
       #metodo { padding: 72px 24px; }
       .metodo-header { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
       .metodo-rigor { margin-bottom: 48px; }
-      .metodo-loops-grid { grid-template-columns: 1fr; }
     }
 
     /* ========================================
@@ -4165,8 +4130,8 @@
       <li><a href="#garantia">Garantia</a></li>
       <li><a href="#fundadores">Time</a></li>
     </ul>
-    <a href="#contato" class="nav-cta" data-modal="diagnostico" aria-label="Agendar Diagnóstico Gratuito">
-      Diagnóstico Gratuito
+    <a href="#contato" class="nav-cta" data-modal="diagnostico" aria-label="Agendar meu Raio-X gratuito">
+      Raio-X gratuito
     </a>
     <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
@@ -4183,7 +4148,7 @@
         <a href="#fundadores" class="mobile-nav-link">Time</a>
       </nav>
       <a href="#contato" class="btn-gold mobile-menu-cta" data-modal="diagnostico">
-        Diagnóstico Gratuito
+        Raio-X gratuito
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -4219,7 +4184,7 @@
 
       <div class="hero-actions">
         <a href="#contato" class="btn-primary" data-modal="diagnostico">
-          Agendar Diagnóstico Gratuito
+          Agendar meu Raio-X gratuito
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -4245,7 +4210,7 @@
         <span class="hero-trust-sep" aria-hidden="true"></span>
         <span class="hero-trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
-          Garantia de resultado em 90 dias
+          Risco compartilhado no resultado
         </span>
       </div>
     </div>
@@ -4257,22 +4222,16 @@
   ======================================== -->
   <section id="stats">
     <div class="stats-grid">
-      <div class="stat-item" data-transition="spring" data-state="entering" data-duration="normal" aria-label="291.362 clínicas disputando o mesmo paciente particular">
-        <div class="stat-number" aria-hidden="true">
-          <span class="counter" data-target="291362" data-format="number">291.362</span>
-        </div>
-        <div class="stat-label" aria-hidden="true">Clínicas disputando<br/>o mesmo paciente particular</div>
+      <div class="stat-item" data-transition="spring" data-state="entering" data-duration="normal" aria-label="Centenas de milhares de clínicas disputando o mesmo paciente particular">
+        <div class="stat-number" aria-hidden="true">Centenas de milhares</div>
+        <div class="stat-label" aria-hidden="true">De clínicas disputando<br/>o mesmo paciente particular</div>
       </div>
-      <div class="stat-item" data-transition="spring" data-state="entering" data-duration="normal" data-delay="2" aria-label="41% das clínicas sem nenhuma estratégia de diferenciação">
-        <div class="stat-number" aria-hidden="true">
-          <span class="counter" data-target="41" data-format="percent">41</span><span class="stat-accent">%</span>
-        </div>
-        <div class="stat-label" aria-hidden="true">Sem nenhuma estratégia<br/>de diferenciação</div>
+      <div class="stat-item" data-transition="spring" data-state="entering" data-duration="normal" data-delay="2" aria-label="Boa parte das clínicas sem nenhuma estratégia de diferenciação">
+        <div class="stat-number" aria-hidden="true">Boa parte</div>
+        <div class="stat-label" aria-hidden="true">Das clínicas sem nenhuma<br/>estratégia de diferenciação</div>
       </div>
-      <div class="stat-item" data-transition="spring" data-state="entering" data-duration="normal" data-delay="4" aria-label="Apenas 25% com marketing que gera pacientes de verdade">
-        <div class="stat-number" aria-hidden="true">
-          <span class="counter" data-target="25" data-format="percent">25</span><span class="stat-accent">%</span>
-        </div>
+      <div class="stat-item" data-transition="spring" data-state="entering" data-duration="normal" data-delay="4" aria-label="Uma minoria com marketing que gera pacientes de verdade">
+        <div class="stat-number" aria-hidden="true">Uma minoria</div>
         <div class="stat-label" aria-hidden="true">Com marketing que<br/>gera pacientes de verdade</div>
       </div>
     </div>
@@ -4286,6 +4245,7 @@
     <div class="dor-inner">
       <div class="dor-left">
         <div class="section-label reveal">Por que o marketing médico não funciona</div>
+        <p class="reveal" style="font-family:var(--font-headline);font-weight:800;font-size:clamp(20px,3vw,28px);color:var(--nevoa);margin:0 0 20px;letter-spacing:-0.01em;">Pare de decidir seu marketing no escuro.</p>
         <h2 class="section-title">Você investe em ads.<br/><em>O custo de cada paciente</em><br/>não para de subir.</h2>
         <blockquote class="dor-quote reveal reveal-delay-2">
           "Performance sem branding é leilão de preço toda semana. Branding sem performance demora demais para converter. A maioria dos médicos escolhe um dos dois — e sofre os dois problemas."
@@ -4400,8 +4360,8 @@
           <div class="guia-cred stagger-child reveal premium-lift reveal-delay-2" data-transition="slide-left" data-state="entering" data-duration="slow" data-delay="4">
             <div class="guia-cred-num">90</div>
             <div class="guia-cred-text">
-              <strong>Dias de garantia de resultado</strong>
-              <span>Mais pacientes particulares em 90 dias ou trabalhamos de graça. Nenhum concorrente oferece isso.</span>
+              <strong>Dias de risco compartilhado</strong>
+              <span>Crescimento medido em 90 dias com risco compartilhado. Nenhum concorrente oferece isso.</span>
             </div>
           </div>
         </div>
@@ -4412,61 +4372,43 @@
   <!-- ========================================
        MÉTODO PROTAGONISTA
   ======================================== -->
-  <section id="metodo" aria-label="O Método Protagonista">
+  <section id="metodo" aria-label="Como fazemos sua clínica crescer">
     <div class="metodo-inner">
       <div class="metodo-header">
         <div class="reveal">
-          <div class="section-label">Método Protagonista™</div>
-          <h2 class="section-title">De mais um nome na busca<br/>a <em>protagonista</em> da sua especialidade.</h2>
+          <div class="section-label">Como fazemos sua clínica crescer</div>
+          <h2 class="section-title">Não é mais um funil.<br/>É uma <em>roda</em> que gira em torno da sua marca.</h2>
         </div>
-        <p class="metodo-tese reveal reveal-delay-2">
-          O paciente não escolhe o médico mais competente, porque não tem como avaliar competência técnica. Ele escolhe o médico que <strong>entende, lembra e confia</strong>. O Método Protagonista são <strong>6 fases em ordem causal</strong>: a marca reduz seu custo de aquisição, a performance traz pacientes agora e as duas compõem mês a mês.
+        <p class="metodo-tese reveal reveal-delay-1">
+          O paciente não escolhe o médico mais competente, porque não tem como avaliar competência técnica. Ele escolhe o médico que <strong>entende, lembra e confia</strong>. Marca é o eixo. Aquisição, conversão e retenção giram em torno dela, e cada volta fica mais barata que a anterior.
         </p>
+        <div class="metodo-rigor reveal reveal-delay-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg>
+          <span><strong>Rigor clínico.</strong> Nenhum médico prescreve sem examinar, mas é exatamente isso que o mercado faz com você quando vende post e tráfego sem diagnóstico. Aqui, seu crescimento é tratado com o mesmo rigor que você aplica aos seus pacientes.</span>
+        </div>
       </div>
 
-      <div class="metodo-rigor reveal">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-        </svg>
-        <p><strong>Rigor clínico.</strong> Nenhum médico prescreve sem examinar, mas é exatamente isso que o mercado faz com você quando vende post e tráfego sem diagnóstico. Aqui, seu crescimento é tratado com o mesmo rigor que você aplica aos seus pacientes.</p>
-      </div>
-
-      <figure class="metodo-fw reveal">
-        <div class="mfw-stage" id="metodoFw" role="img" aria-label="As 6 fases do Método Protagonista organizadas em ciclo"></div>
-        <figcaption class="metodo-fw-cap">Um ciclo, não uma linha. <b>Clique numa fase</b> para abri-la abaixo.</figcaption>
+      <figure class="metodo-fw">
+        <div class="mfw-stage" id="metodoFw" role="img" aria-label="O mapa de 4 frentes girando em torno da marca"></div>
+        <figcaption class="metodo-fw-cap">No primeiro ciclo a roda gira com atrito alto: pouca prova, marca ainda jovem. A cada retorno bem-sucedido, o reconhecimento cresce e a volta seguinte exige menos mídia pelo mesmo resultado. <strong>Clique numa frente</strong> para abrir o detalhe abaixo.</figcaption>
       </figure>
 
-      <div class="metodo-explorer reveal" id="metodoExplorer" aria-label="As 6 fases do Método Protagonista"></div>
+      <div class="metodo-explorer" id="metodoExplorer" aria-label="As 4 frentes de crescimento"></div>
 
-      <div class="metodo-loops reveal">
-        <div class="metodo-loops-label">Por que é ciclo, não linha</div>
-        <div class="metodo-loops-grid">
-          <div class="metodo-loop">
-            <div class="metodo-loop-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/>
-              </svg>
-              Loop de aprendizado
-            </div>
-            <p>O número da Fase 5 responde à pergunta da Fase 1: onde a receita ainda vaza? O ciclo reinicia, agora mirado por dado real. <strong>O método melhora com o tempo.</strong></p>
-          </div>
-          <div class="metodo-loop">
-            <div class="metodo-loop-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-              </svg>
-              Loop econômico
-            </div>
-            <p>Indicações e avaliações da Fase 6 realimentam o tráfego da Fase 4. <strong>Quanto mais tempo o método roda, mais barato fica trazer cada paciente.</strong></p>
-          </div>
-        </div>
+      <div class="metodo-incluso reveal" style="margin-top:40px;">
+        <div class="section-label" style="margin-bottom:10px;">Incluído em todo plano</div>
+        <ul class="mx-list">
+          <li><span class="resp-badge faz">Bäche faz</span> Painel único: custo por paciente, valor no tempo, ocupação, margem</li>
+          <li><span class="resp-badge faz">Bäche faz</span> Reunião quinzenal de leitura dos números, com você na sala</li>
+        </ul>
+        <p style="margin-top:10px;font-size:13px;color:var(--text-muted);">Nunca é uma frente. É a régua que mede as quatro.</p>
       </div>
 
       <div class="metodo-bridge reveal">
-        <p class="metodo-bridge-text">O Método Protagonista tem 6 fases em ordem causal.<br/><em>Tudo começa pelo Diagnóstico.</em></p>
+        <p class="metodo-bridge-text">O mapa mostra onde mexemos.<br/><em>O motor, na próxima seção, mostra como.</em></p>
         <div class="metodo-bridge-actions">
           <a href="#contato" class="btn-primary" data-modal="diagnostico">
-            Agendar Diagnóstico Gratuito
+            Agendar meu Raio-X gratuito
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -4476,6 +4418,13 @@
       </div>
     </div>
   </section>
+
+  <style>
+    .resp-badge{display:inline-block;padding:3px 9px;border-radius:100px;font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;margin-right:8px;vertical-align:1px;}
+    .resp-badge.faz{background:rgba(123,53,206,0.20);color:var(--violeta-light);border:1px solid rgba(123,53,206,0.30);}
+    .resp-badge.dirige{background:rgba(201,168,106,0.14);color:var(--ouro);border:1px solid rgba(201,168,106,0.30);}
+    .resp-badge.opera{background:rgba(255,255,255,0.06);color:rgba(232,230,245,0.65);border:1px solid rgba(255,255,255,0.14);}
+  </style>
 
   <!-- ========================================
        PROCESSO — como começar (jornada comercial)
@@ -4496,7 +4445,7 @@
         <div class="plano-step stagger-child reveal">
           <div class="plano-step-num">01</div>
           <div class="plano-step-tag">Grátis · 2h · via call</div>
-          <div class="plano-step-title">Você faz o Diagnóstico</div>
+          <div class="plano-step-title">Você faz o Raio-X</div>
           <p class="plano-step-desc">Em duas horas a gente acha sua trava de receita e te entrega um plano de ação de 30 dias. É seu, mesmo que não siga com a gente.</p>
           <ul class="plano-step-items">
             <li class="plano-step-item">Onde sua agenda particular trava hoje</li>
@@ -4508,9 +4457,9 @@
           <div class="plano-step-num">02</div>
           <div class="plano-step-tag">No plano que cabe em você</div>
           <div class="plano-step-title">A Bäche dirige</div>
-          <p class="plano-step-desc">Você escolhe entre Sprint e Retainer, e a gente executa as 6 fases do Método: do posicionamento ao tráfego. Você só precisa aparecer, um dia de gravação por mês.</p>
+          <p class="plano-step-desc">Você escolhe o plano que cabe no seu momento, e a gente toca as 4 frentes de crescimento: marca, aquisição, conversão e retenção. Você só precisa aparecer, um dia de gravação por mês.</p>
           <ul class="plano-step-items">
-            <li class="plano-step-item">As 6 fases do Método rodando por você</li>
+            <li class="plano-step-item">As 4 frentes rodando por você</li>
             <li class="plano-step-item">Um dia de gravação vira 30 dias de presença</li>
           </ul>
         </div>
@@ -4534,7 +4483,7 @@
         </div>
         <div class="plano-result-cta">
           <a href="#contato" class="btn-primary" data-modal="diagnostico">
-            Agendar Diagnóstico Gratuito
+            Agendar meu Raio-X gratuito
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -4565,7 +4514,7 @@
             <tr>
               <th>Quem contratam hoje</th>
               <th>CFM-Compliant</th>
-              <th>Direção Cênica</th>
+              <th>Direção sênior, não mão de obra avulsa</th>
               <th>Foco em Paciente Particular</th>
               <th>Treinamento de Equipe</th>
               <th style="color: var(--ouro);">Bäche</th>
@@ -4575,7 +4524,7 @@
             <tr>
               <td><strong>Agência de marketing genérica</strong><br/><span style="font-size:12px;opacity:.55;">posts, ads, relatório de likes</span></td>
               <td data-label="CFM-Compliant"><span class="check no">✕</span></td>
-              <td data-label="Direção Cênica"><span class="check no">✕</span></td>
+              <td data-label="Direção sênior"><span class="check no">✕</span></td>
               <td data-label="Paciente Particular"><span class="check no">✕</span></td>
               <td data-label="Treinamento de Equipe"><span class="check no">✕</span></td>
               <td data-label="Bäche"><span class="check yes">✓</span></td>
@@ -4583,7 +4532,7 @@
             <tr>
               <td><strong>Agência especializada em saúde</strong><br/><span style="font-size:12px;opacity:.55;">conhece o CFM, mas não faz presença</span></td>
               <td data-label="CFM-Compliant"><span class="check yes">✓</span></td>
-              <td data-label="Direção Cênica"><span class="check no">✕</span></td>
+              <td data-label="Direção sênior"><span class="check no">✕</span></td>
               <td data-label="Paciente Particular"><span class="check no">~</span></td>
               <td data-label="Treinamento de Equipe"><span class="check no">✕</span></td>
               <td data-label="Bäche"><span class="check yes">✓</span></td>
@@ -4591,7 +4540,7 @@
             <tr>
               <td><strong>Consultoria de branding</strong><br/><span style="font-size:12px;opacity:.55;">brand book sem execução nem resultado</span></td>
               <td data-label="CFM-Compliant"><span class="check no">✕</span></td>
-              <td data-label="Direção Cênica"><span class="check no">✕</span></td>
+              <td data-label="Direção sênior"><span class="check no">✕</span></td>
               <td data-label="Paciente Particular"><span class="check no">✕</span></td>
               <td data-label="Treinamento de Equipe"><span class="check no">✕</span></td>
               <td data-label="Bäche"><span class="check yes">✓</span></td>
@@ -4599,7 +4548,7 @@
             <tr>
               <td><strong>Coach / mentor de marca pessoal</strong><br/><span style="font-size:12px;opacity:.55;">curso gravado, sem personalização</span></td>
               <td data-label="CFM-Compliant"><span class="check no">✕</span></td>
-              <td data-label="Direção Cênica"><span class="check no">✕</span></td>
+              <td data-label="Direção sênior"><span class="check no">✕</span></td>
               <td data-label="Paciente Particular"><span class="check no">✕</span></td>
               <td data-label="Treinamento de Equipe"><span class="check no">✕</span></td>
               <td data-label="Bäche"><span class="check yes">✓</span></td>
@@ -4607,7 +4556,7 @@
             <tr>
               <td><strong>Freelancer de social media</strong><br/><span style="font-size:12px;opacity:.55;">executa, mas não estrategiza nem converte</span></td>
               <td data-label="CFM-Compliant"><span class="check no">~</span></td>
-              <td data-label="Direção Cênica"><span class="check no">✕</span></td>
+              <td data-label="Direção sênior"><span class="check no">✕</span></td>
               <td data-label="Paciente Particular"><span class="check no">✕</span></td>
               <td data-label="Treinamento de Equipe"><span class="check no">✕</span></td>
               <td data-label="Bäche"><span class="check yes">✓</span></td>
@@ -4627,7 +4576,7 @@
           <div class="attr-card-num">02</div>
           <div class="attr-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div>
           <div class="attr-card-title">Resultados Reais + Garantia de Verdade</div>
-          <div class="attr-card-desc">Dashboard em tempo real: pacientes por canal, taxa de conversão, ticket médio, retorno sobre a mídia. Não seguidores — pacientes. Com garantia de resultado nos primeiros 90 dias.</div>
+          <div class="attr-card-desc">Dashboard em tempo real: pacientes por canal, taxa de conversão, ticket médio, retorno sobre a mídia. Não seguidores — pacientes. Com risco compartilhado no resultado dos primeiros 90 dias.</div>
         </div>
         <div class="attr-card reveal reveal-delay-2">
           <div class="attr-card-num">03</div>
@@ -4642,47 +4591,53 @@
   <!-- ========================================
        TRANSFORMACAO — SB7: Success Vision
   ======================================== -->
-  <section id="transformacao" aria-label="O que muda em 90 dias">
+  <section id="transformacao" aria-label="O motor de 90 dias">
     <div class="transformacao-inner">
       <div class="transformacao-header reveal">
-        <div class="section-label">O que muda</div>
-        <h2 class="section-title">Imagine sua clínica<br/>daqui a <em>90 dias.</em></h2>
-        <p class="transformacao-sub">Especialistas que trabalham com a Bäche relatam essas transformações nos primeiros três meses.</p>
+        <div class="section-label">Como trabalhamos</div>
+        <h2 class="section-title">O motor de<br/><em>90 dias.</em></h2>
+        <p class="transformacao-sub">A Bäche trata a sua clínica como você trata um paciente: diagnóstico completo, prescrição priorizada, tratamento por protocolos e retorno medido, em ciclos de 90 dias.</p>
       </div>
 
       <div class="transformacao-grid stagger-group">
         <div class="transf-item stagger-child reveal">
           <div class="transf-item-num">01</div>
           <div class="transf-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></div>
-          <div class="transf-item-title">Agenda particular com demanda consistente</div>
-          <p class="transf-item-desc"><em>Sem depender de indicação ou convênio para pagar as contas.</em> Pacientes chegam pelo seu posicionamento — antes de ver o preço.</p>
+          <div class="transf-item-title">01 Diagnóstico <span style="font-weight:400;opacity:.6;font-size:13px;">· Semanas 1-2</span></div>
+          <p class="transf-item-desc"><em>Hoje você sabe se a agenda está cheia. Não sabe por quê, nem qual das quatro frentes está segurando o resultado.</em> Exame completo das 4 frentes, com os números da sua clínica na mesa.</p>
         </div>
 
         <div class="transf-item stagger-child reveal reveal-delay-1">
           <div class="transf-item-num">02</div>
           <div class="transf-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg></div>
-          <div class="transf-item-title">Cobrando premium — sem precisar justificar</div>
-          <p class="transf-item-desc"><em>O paciente que chega já conhece seu trabalho.</em> A primeira pergunta não é mais sobre preço ou plano de saúde.</p>
+          <div class="transf-item-title">Prescrição <span style="font-weight:400;opacity:.6;font-size:13px;">· Semana 3</span></div>
+          <p class="transf-item-desc"><em>Plano de tratamento de 90 dias.</em> Poucas apostas, cada uma com meta e responsável. Nada de lista de tarefas genérica.</p>
         </div>
 
         <div class="transf-item stagger-child reveal reveal-delay-2">
           <div class="transf-item-num">03</div>
           <div class="transf-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.4-5.5 9.3-7.3 10.8a1 1 0 0 1-1.4 0C9.5 19.3 4 14.4 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <div class="transf-item-title">Referência reconhecida da especialidade na região</div>
-          <p class="transf-item-desc"><em>Colegas indicam, pacientes procuram, mídia consulta.</em> Sua autoridade chegou antes de você — exatamente onde deve estar.</p>
+          <div class="transf-item-title">Tratamento <span style="font-weight:400;opacity:.6;font-size:13px;">· Semanas 4-12</span></div>
+          <p class="transf-item-desc"><em>Protocolos de cada frente rodando.</em> Leitura quinzenal dos números, você não espera 90 dias pra saber se está funcionando.</p>
         </div>
 
         <div class="transf-item stagger-child reveal reveal-delay-3">
           <div class="transf-item-num">04</div>
           <div class="transf-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></div>
-          <div class="transf-item-title">Equipe que converte — não que apenas informa</div>
-          <p class="transf-item-desc"><em>Resposta ao paciente em menos de 5 minutos. Mais de 40% dos contatos viram consulta agendada.</em> A secretária virou parte da estratégia de crescimento.</p>
+          <div class="transf-item-title">Retorno <span style="font-weight:400;opacity:.6;font-size:13px;">· Semana 13</span></div>
+          <p class="transf-item-desc"><em>Veredito de cada aposta: dobrar, manter ou cancelar.</em> O resultado na mesa desenha o próximo ciclo. A renovação nunca é por inércia.</p>
         </div>
+      </div>
+
+      <div class="transformacao-regua reveal" style="max-width:640px;margin:44px auto 0;text-align:center;">
+        <div class="section-label" style="justify-content:center;margin-bottom:10px;">A régua do motor</div>
+        <p style="color:var(--text-muted);line-height:1.6;">O painel único (custo por paciente, valor do paciente ao longo do tempo, ocupação, margem) é montado no Diagnóstico, lido nas quinzenais do Tratamento e fecha o veredito no Retorno. Cada frente do mapa tem seus indicadores, cada fase do ciclo os lê.</p>
+        <p style="color:var(--nevoa);line-height:1.6;margin-top:12px;"><strong>O retorno abre o próximo ciclo.</strong> A renovação é decidida com o resultado na mesa, nunca por inércia.</p>
       </div>
 
       <div class="transformacao-cta reveal">
         <a href="#contato" class="btn-primary" data-modal="diagnostico" style="font-size: 15px; padding: 20px 48px;">
-          Agendar Diagnóstico Gratuito
+          Agendar meu Raio-X gratuito
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -4698,98 +4653,77 @@
     <div class="produtos-inner">
       <div class="produtos-header">
         <div class="reveal">
-          <div class="section-label">Esteira de Serviços</div>
-          <h2 class="section-title">Escolha onde<br/>começar</h2>
+          <div class="section-label">Planos</div>
+          <h2 class="section-title">Escolha a<br/>abrangência</h2>
         </div>
         <p class="produtos-desc reveal reveal-delay-2">
-          Uma jornada desenhada para especialistas sérios — do primeiro diagnóstico até a autoridade total na sua especialidade, com cada etapa validada e acompanhada de perto.
+          As 4 frentes de crescimento, do jeito que cabe na sua clínica hoje. Sem surpresa de escopo, sem letra miúda.
         </p>
       </div>
 
       <div class="produtos-grid">
 
-        <!-- Diagnóstico -->
+        <!-- Essencial -->
         <div class="product-card reveal">
-          <div class="product-tag">Comece aqui</div>
-          <div class="product-name">Diagnóstico Bäche</div>
-          <div class="product-price-free-wrap">
-            <div class="product-price-strike">R$1.500</div>
-            <div class="product-price-free">Gratuito</div>
-            <div class="product-price-free-note">por tempo limitado</div>
-          </div>
-          <div class="product-price-label" style="margin-top:12px;">sessão única · 2 horas · via call</div>
+          <div class="product-type-label">Porta de entrada</div>
+          <div class="product-tag">Comece a estruturar</div>
+          <div class="product-name">Essencial</div>
+          <div class="product-price-label" style="margin-bottom:24px; font-size:13px; color:rgba(13,12,20,0.50);">Para clínicas começando a estruturar marketing</div>
           <p class="product-desc">
-            Em 2 horas, você entende exatamente o que está impedindo pacientes particulares de chegarem até você — e sai com um plano de ação concreto, independente de seguir conosco.
+            2 a 3 frentes priorizadas no seu Raio-X, painel único e reuniões quinzenais. Foco no vazamento de receita mais óbvio primeiro.
           </p>
           <ul class="product-features">
-            <li class="product-feature">Auditoria completa de presença digital</li>
-            <li class="product-feature">Diagnóstico de posicionamento</li>
-            <li class="product-feature">Mapa de oportunidades</li>
-            <li class="product-feature">Plano de ação 30 dias</li>
+            <li class="product-feature">2 a 3 frentes priorizadas no Raio-X</li>
+            <li class="product-feature">Painel único e reuniões quinzenais</li>
+            <li class="product-feature">Foco no vazamento de receita mais óbvio</li>
+            <li class="product-feature" style="opacity:.5;text-decoration:line-through;">Conteúdo e vídeo</li>
           </ul>
-          <a href="#contato" class="product-cta dark" data-modal="diagnostico">Agendar diagnóstico gratuito</a>
+          <a href="#contato" class="product-cta dark" data-modal="diagnostico">Agendar meu Raio-X gratuito</a>
         </div>
 
-        <!-- Sprint -->
-        <div class="product-card reveal reveal-delay-1">
-          <div class="product-type-label">Projeto único · 30 dias</div>
-          <div class="product-tag">Sprint de Fundação</div>
-          <div class="product-name">Sprint Ignição</div>
-          <div class="product-price-label" style="margin-bottom:24px; font-size:13px; color:rgba(13,12,20,0.50);">Entrega completa em um projeto fechado</div>
-          <p class="product-desc">
-            Construímos as bases da sua autoridade de marca em 30 dias: posicionamento, arquétipo, produção de conteúdo e o primeiro grande banco de autoridade da sua carreira.
-          </p>
-          <ul class="product-features">
-            <li class="product-feature">Brand audit + arquétipo de marca</li>
-            <li class="product-feature">2 sessões de preparação de presença</li>
-            <li class="product-feature">1 dia completo de gravação dirigida</li>
-            <li class="product-feature">Setup de funil + plano 90 dias</li>
-          </ul>
-          <a href="#contato" class="product-cta dark" data-modal="diagnostico">Quero meu Sprint</a>
-        </div>
-
-        <!-- Retainer — FEATURED -->
-        <div class="product-card featured reveal reveal-delay-2">
-          <div class="product-badge">Recomendado para começar</div>
+        <!-- Ciclo completo — FEATURED -->
+        <div class="product-card featured reveal reveal-delay-1">
+          <div class="product-badge">O mais escolhido</div>
           <div class="product-type-label">Retainer mensal</div>
-          <div class="product-tag">Gestão Contínua</div>
-          <div class="product-name">Retainer Presença</div>
-          <div class="product-price-label" style="margin-bottom:24px; color:rgba(255,255,255,0.5); font-size:13px;">Investimento mensal · com garantia de resultado</div>
+          <div class="product-tag">O caso típico da carteira</div>
+          <div class="product-name">Ciclo completo</div>
+          <div class="product-price-label" style="margin-bottom:24px; color:rgba(255,255,255,0.5); font-size:13px;">As 4 frentes rodando junto com você</div>
           <p class="product-desc">
-            Gestão completa da sua presença e performance mês a mês. Você foca na clínica — nós cuidamos da autoridade, dos pacientes e dos números.
+            As 4 frentes de crescimento, painel único e quinzenais, 1 dia de gravação em lote por mês, com gravação, edição e postagem por conta da Bäche.
           </p>
           <ul class="product-features">
-            <li class="product-feature">1 dia/mês de gravação dirigida</li>
-            <li class="product-feature">Tráfego pago + retorno sobre a mídia acompanhado</li>
-            <li class="product-feature">Dashboard de resultados em tempo real</li>
-            <li class="product-feature">Treinamento da equipe comercial</li>
-            <li class="product-feature">Consultoria estratégica quinzenal</li>
-            <li class="product-feature">Garantia de resultado 90 dias</li>
+            <li class="product-feature">As 4 frentes: marca, aquisição, conversão e retenção</li>
+            <li class="product-feature">Painel único e reuniões quinzenais</li>
+            <li class="product-feature">1 dia de gravação em lote por mês</li>
+            <li class="product-feature">Gravação, edição e postagem pela Bäche</li>
+            <li class="product-feature">Direção editorial e treino de câmera</li>
           </ul>
-          <a href="#contato" class="product-cta light" data-modal="diagnostico">Quero o Retainer</a>
+          <a href="#contato" class="product-cta light" data-modal="diagnostico">Agendar meu Raio-X gratuito</a>
         </div>
 
-        <!-- Palco -->
-        <div class="product-card reveal reveal-delay-3">
-          <div class="product-type-label">Setup + Mensal</div>
-          <div class="product-tag">Dominância de Mercado</div>
-          <div class="product-name">Programa Palco</div>
-          <div class="product-price-label" style="margin-bottom:24px; font-size:13px; color:rgba(13,12,20,0.50);">Sob consulta · vagas limitadas</div>
+        <!-- Rede -->
+        <div class="product-card reveal reveal-delay-2">
+          <div class="product-type-label">Multiunidade</div>
+          <div class="product-tag">Rede ou vários médicos</div>
+          <div class="product-name">Rede</div>
+          <div class="product-price-label" style="margin-bottom:24px; font-size:13px; color:rgba(13,12,20,0.50);">As 4 frentes replicadas por unidade</div>
           <p class="product-desc">
-            Para especialistas que querem dominar sua especialidade na cidade. Rebrand completo, estratégia multi-canal e posicionamento de autoridade máxima no mercado.
+            Para rede com mais de uma unidade ou vários médicos. As 4 frentes replicadas, relatório consolidado e governança de marca entre unidades.
           </p>
           <ul class="product-features">
-            <li class="product-feature">Tudo do Retainer Presença</li>
-            <li class="product-feature">Rebrand completo da clínica</li>
-            <li class="product-feature">Estratégia multi-canal</li>
-            <li class="product-feature">Vídeo institucional profissional</li>
-            <li class="product-feature">Preparação para mídia e keynotes</li>
-            <li class="product-feature">Evento de lançamento de marca</li>
+            <li class="product-feature">As 4 frentes replicadas por unidade</li>
+            <li class="product-feature">Relatório consolidado entre unidades</li>
+            <li class="product-feature">Conteúdo centralizado ou por unidade</li>
+            <li class="product-feature">Governança de marca</li>
           </ul>
-          <a href="#contato" class="product-cta dark" data-modal="diagnostico">Quero o Palco</a>
+          <a href="#contato" class="product-cta dark" data-modal="diagnostico">Agendar meu Raio-X gratuito</a>
         </div>
 
       </div>
+
+      <blockquote class="dor-quote reveal" style="margin:56px auto 0;max-width:720px;">
+        Um head de marketing sênior interno custa entre R$15 e 25 mil por mês de salário, mais encargos e o risco de contratar errado. A Bäche entrega esse nível de direção por uma fração, sem vínculo, com método pronto. E parte do que ganhamos está atrelada ao seu resultado.
+      </blockquote>
     </div>
   </section>
 
@@ -4809,10 +4743,10 @@
       <div class="garantia-content">
         <div class="reveal">
           <div class="section-label">Garantia Bäche — clara e por escrito</div>
-          <h2 class="garantia-title">Resultado<br/>mensurável ou<br/>trabalhamos de graça.</h2>
+          <h2 class="garantia-title">Resultado<br/>medido, com<br/>a gente no jogo.</h2>
         </div>
         <p class="garantia-text reveal reveal-delay-1">
-          Se em 90 dias a meta de novos pacientes particulares acordada em contrato não for atingida, <strong>você escolhe</strong>: a Bäche trabalha o mês seguinte sem custo, ou devolve integralmente o último fee.
+          Parte do que ganhamos está atrelada ao seu crescimento. <strong>Não é uma promessa de devolução</strong>; é ter a pele em jogo no mesmo número que você quer ver subir.
         </p>
         <p class="garantia-conditions-title reveal reveal-delay-2" style="font-weight:700;margin:28px 0 14px;font-size:14px;letter-spacing:.01em;">O que faz a garantia valer — acordado no dia 0:</p>
         <ul class="garantia-conditions reveal reveal-delay-2">
@@ -4898,7 +4832,7 @@
           </button>
           <div class="faq-answer" role="region" aria-labelledby="faq-q-1">
             <div class="faq-answer-inner">
-              Sua agência atual provavelmente cobra R$2.000/mês e não gera paciente particular. O Sprint Ignição se paga com 2 novos pacientes — e temos <strong>garantia de resultado em 90 dias</strong>. Nenhum concorrente oferece isso. A pergunta certa não é "quanto custa?" — é "quanto custa continuar igual?".
+              Sua agência atual provavelmente cobra R$2.000 por mês e não gera paciente particular. Com a Bäche, parte do que cobramos está atrelada ao seu resultado, o risco começa com a gente. A pergunta certa não é "quanto custa?", é "quanto custa continuar igual?".
             </div>
           </div>
         </div>
@@ -4958,7 +4892,7 @@
           </button>
           <div class="faq-answer" role="region" aria-labelledby="faq-q-6">
             <div class="faq-answer-inner">
-              Agências especializadas em saúde entendem o CFM — mas não fazem produção de autoridade, não treinam equipe comercial e não têm garantia de resultado. A Bäche é <strong>full-stack</strong>: estratégia de marca, produção de autoridade, tráfego com criativos dirigidos, treinamento de equipe e dashboard de resultados — tudo integrado, tudo medido. Não vendemos partes de uma solução. Vendemos o resultado final.
+              Agências especializadas em saúde entendem o CFM — mas não fazem produção de autoridade, não treinam equipe comercial e não colocam a própria remuneração em jogo pelo resultado. A Bäche é <strong>full-stack</strong>: estratégia de marca, produção de autoridade, tráfego com criativos dirigidos, treinamento de equipe e dashboard de resultados — tudo integrado, tudo medido. Não vendemos partes de uma solução. Vendemos o resultado final.
             </div>
           </div>
         </div>
@@ -4982,12 +4916,12 @@
         <strong>Enquanto você lê isso,</strong> especialistas menos qualificados do que você estão sendo escolhidos por pacientes que pagariam premium — só porque aparecem com autoridade e você ainda não.
       </p>
       <p class="contato-sub reveal reveal-delay-2">
-        Começamos com um Diagnóstico de 2 horas — sem custo, sem compromisso. Você entende exatamente o que está bloqueando sua agenda particular e sai com um plano de ação concreto. Se fizer sentido prosseguir, construímos juntos. Se não, o plano é seu.
+        Começamos com um Raio-X de 2 horas, sem custo, sem compromisso. Você entende exatamente o que está bloqueando sua agenda particular e sai com um plano de ação concreto. Se fizer sentido prosseguir, construímos juntos. Se não, o plano é seu.
       </p>
       <div class="contato-actions reveal reveal-delay-3">
         <a href="#contato" class="btn-gold glow-pulse" data-modal="diagnostico"
-           aria-label="Agendar Diagnóstico Gratuito">
-          Agendar Diagnóstico Gratuito
+           aria-label="Agendar meu Raio-X gratuito">
+          Agendar meu Raio-X gratuito
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -5034,16 +4968,16 @@
         <div class="footer-links-col">
           <div class="footer-links-title">Serviços</div>
           <ul class="footer-links-list">
-            <li><a href="#produtos">Diagnóstico Gratuito</a></li>
-            <li><a href="#produtos">Sprint Ignição</a></li>
-            <li><a href="#produtos">Retainer Presença</a></li>
-            <li><a href="#produtos">Programa Palco</a></li>
+            <li><a href="#contato">Raio-X gratuito</a></li>
+            <li><a href="#produtos">Essencial</a></li>
+            <li><a href="#produtos">Ciclo completo</a></li>
+            <li><a href="#produtos">Rede</a></li>
           </ul>
         </div>
         <div class="footer-links-col">
           <div class="footer-links-title">Empresa</div>
           <ul class="footer-links-list">
-            <li><a href="#metodo">O Método Protagonista</a></li>
+            <li><a href="#metodo">Nosso método</a></li>
             <li><a href="#diferenciais">Diferenciais</a></li>
             <li><a href="#garantia">Garantia</a></li>
             <li><a href="#fundadores">O Time</a></li>
@@ -5052,7 +4986,7 @@
         <div class="footer-links-col">
           <div class="footer-links-title">Contato</div>
           <ul class="footer-links-list">
-            <li><a href="#contato">Agendar Diagnóstico</a></li>
+            <li><a href="#contato">Agendar Raio-X</a></li>
             <li>
               <a href="https://instagram.com/bache.br" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -5175,52 +5109,63 @@
 
     reveals.forEach(el => observer.observe(el));
 
-    // ---- Método Protagonista: explorador interativo das 6 fases ----
+    // ---- Mapa de frentes: explorador interativo (Marca/Aquisição/Conversão/Retenção) ----
     (function () {
       const explorer = document.getElementById('metodoExplorer');
       if (!explorer) return;
       const fw = document.getElementById('metodoFw');
 
       const ICONS = [
-        '<path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/>',
         '<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"/>',
-        '<path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"/><path d="m6.2 5.3 3.1 3.9"/><path d="m12.4 3.4 3.1 4"/><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>',
         '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
         '<path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>',
         '<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>'
       ];
-      const P = [
-        { n: 'Diagnóstico', tag: 'Gratuito · 2h · via call', title: 'Diagnóstico Bäche',
-          virada: '"Paro de adivinhar. Sei exatamente onde minha agenda particular trava."',
-          why: 'Sem diagnóstico, toda ação vira tiro no escuro. Primeiro a gente descobre por onde sua receita vaza (posicionamento, percepção, aquisição ou conversão) pra que o próximo passo seja mirado, não chutado.',
-          recebe: ['<strong>Auditoria completa</strong> da sua presença digital: o retrato real de como o paciente te encontra hoje.', '<strong>Auditoria de indicadores</strong> com ROI, CAC, LTV, ticket médio e churn, a foto financeira de onde você está.', '<strong>Diagnóstico de posicionamento</strong> que cruza você, a concorrência e o que o paciente de fato procura.', 'Um <strong>brand diagnosis</strong> que aponta o que te torna único e, principalmente, vendável.', '<strong>Plano de ação de 30 dias</strong> que fica com você, mesmo se não seguir com a gente.'],
-          sinal: 'Você termina a call sabendo nomear sua trava nº 1 e os três próximos movimentos concretos.' },
-        { n: 'Marca & Mensagem', tag: 'Base de autoridade', title: 'Marca & Mensagem',
-          virada: '"Paro de soar como todo mundo. Ocupo um lugar que é só meu."',
-          why: 'Quando todo perfil repete as mesmas palavras (humanização, excelência, cuidado), sobra um único critério de escolha: o preço. Aqui a gente traduz o que te torna único para a língua do paciente, sempre dentro do CFM.',
-          recebe: ['<strong>Persona de autoridade</strong>: quem você é para o mercado, numa identidade que o paciente reconhece e confia.', '<strong>Inimigo comum</strong>, porque todo posicionamento forte precisa de um adversário claro.', '<strong>Narrativa central e mensagens-chave</strong> na língua do paciente, 100% CFM-safe.', '<strong>Oferta e público de alto valor</strong> definidos antes de qualquer anúncio rodar.'],
-          sinal: 'Um estranho lê seu posicionamento e resume, numa frase, por que escolher você. Sem falar em preço.' },
-        { n: 'Direção Cênica', tag: 'O diferencial incopiável', title: 'Direção Cênica & Produção',
-          virada: '"Paro de travar na câmera. Transmito a autoridade que já tenho."',
-          why: 'Autoridade percebida não vem do quanto você sabe, e sim de como você comunica. Direção cênica vem do palco: técnica de voz, postura e ritmo que revelam o comunicador que já existe em você. É o motor de conversão do método inteiro, não um conforto opcional.',
-          recebe: ['<strong>Roteiros dirigidos por tema</strong> que você conduz em vez de decorar.', '<strong>Frameworks e templates de conteúdo</strong> desenhados para o seu nicho.', '<strong>Um dia de gravação dirigida</strong> (cerca de 6h) que rende 15 a 20 peças, um mês inteiro de presença.', '<strong>Direção de câmera, postura e fala</strong> em tempo real, com a gente do seu lado.', '<strong>Edição e calendário de publicação</strong> prontos. Depois de gravar, você não toca em mais nada.'],
-          sinal: 'Você se assiste sem vergonha do resultado e fecha o mês inteiro de conteúdo num único dia.',
-          moat: '<strong>Por que ninguém copia:</strong> agência tem social media. A Bäche tem direção cênica de verdade, anos de palco aplicados à câmera. Isso não se compra com ferramenta. Ou você é diretor, ou não é.' },
-        { n: 'Aquisição', tag: 'Presença que converte', title: 'Aquisição',
-          virada: '"Paro de pagar pra falar com estranho. Sou achado por quem já me conhece."',
-          why: 'Anúncio para estranho é leilão de preço. Anúncio sobre a marca que você construiu nas fases anteriores chega em quem já te reconhece, e quem reconhece não compara: agenda. No topo, o Meta cria a demanda. No fundo, o Google colhe quem já procura por você.',
-          recebe: ['<strong>Campanhas no Meta e no Google Busca</strong>, com setup, gestão e Google Meu Negócio na sequência.', '<strong>Criativos tirados das suas gravações</strong>, nada de banco de imagem genérico.', '<strong>Landing pages por estágio de consciência</strong>, do curioso ao paciente pronto pra agendar.', '<strong>Assessoria de imprensa</strong> que coloca terceiros confirmando você quando buscam seu nome.', '<strong>Otimização por custo por paciente</strong> e retorno sobre a mídia, não por clique e muito menos por curtida.'],
-          sinal: 'Seu custo por paciente cai mês a mês, e os leads começam a chegar dizendo "já te acompanho".' },
-        { n: 'Conversão', tag: 'O contato vira paciente', title: 'Conversão & Mensuração',
-          virada: '"Paro de torcer. Vejo cada real virar paciente, em tempo real."',
-          why: 'O gargalo quase nunca está na mídia. Ele está no último metro, o lead que morre no WhatsApp, e na falta de dados pra enxergar isso. A gente treina sua equipe pra converter e instala o painel que mostra exatamente onde cada paciente se perde.',
-          recebe: ['<strong>Treinamento comercial e scripts de atendimento</strong> que transformam a secretária em parte da estratégia.', '<strong>Resposta em menos de 5 minutos</strong>, com processo claro de atendimento e agendamento.', '<strong>Dashboard em tempo real</strong> com pacientes por canal, ticket médio e taxa de conversão.', '<strong>CRM oficial Bäche®</strong> que acompanha o SLA de atendimento e os KPIs da clínica.', '<strong>Baseline no dia zero e relatório quinzenal</strong>, mais garantia condicional de 90 dias.'],
-          sinal: 'Você abre o painel e sabe, sem perguntar a ninguém, quantos pacientes vieram, de qual canal e a que custo. Resposta ao lead em menos de 5 minutos e taxa de agendamento acima de 40%.' },
-        { n: 'Fidelização', tag: 'O paciente vira defensor', title: 'Fidelização',
-          virada: '"Paro de recomeçar do zero. Colho a base que já conquistei."',
-          why: 'O paciente mais barato é o que você já tem. Quem volta sustenta a receita, quem indica derruba seu custo de captação e quem avalia vira prova social que realimenta o tráfego. No fim, o método inteiro fica mais barato a cada mês.',
-          recebe: ['<strong>Régua de relacionamento pós-consulta</strong> com lembretes, conteúdo e reativação de base parada.', '<strong>Geração ativa de avaliações</strong> no Google e na Doctoralia, que viram combustível do topo de funil.', '<strong>Indicação em duas frentes</strong>: pacientes que indicam pacientes e a rede de encaminhamento profissional, sempre sem comissão (vedado pelo CFM).', '<strong>Conteúdo de nutrição</strong> pra quem já te segue continuar lembrando de você.'],
-          sinal: 'As indicações sobem, as avaliações 5★ crescem e seu custo de captação cai, porque agora a base trabalha por você.' }
+      const TIER_LABEL = { faz: 'Bäche faz', dirige: 'Bäche dirige', opera: 'Sua equipe opera' };
+      const FRENTES = [
+        { n: 'Marca', tag: 'Por que escolhem você', title: 'Marca',
+          virada: '"Aceita convênio?" costuma ser a primeira pergunta, antes do paciente saber o que te torna diferente de qualquer outro especialista da cidade.',
+          why: 'Marca é o que muda a ordem dessa pergunta: ela vem depois da decisão de te escolher, não antes.',
+          recebe: [
+            { txt: 'Posicionamento e mensagem central da clínica', tier: 'faz' },
+            { txt: 'Análise de concorrentes e leitura de mercado', tier: 'faz' },
+            { txt: 'Tom de voz e linha editorial próprios', tier: 'faz' }
+          ],
+          conteudo: [
+            { txt: 'Pauta, roteiro e direção editorial do mês', tier: 'faz' },
+            { txt: 'Treino de câmera do médico', tier: 'faz' },
+            { txt: 'Gravação, edição e postagem, produzidas pela operação Bäche', tier: 'faz' }
+          ],
+          sinal: 'Um estranho lê seu posicionamento e sabe, numa frase, por que te escolher, sem mencionar preço.' },
+        { n: 'Aquisição', tag: 'O paciente certo chega', title: 'Aquisição',
+          virada: 'Hoje sua agenda depende de convênio e indicação espontânea, sem nenhuma previsibilidade: cheia num mês, vazia no seguinte.',
+          why: 'Sem marca por trás, todo anúncio vira leilão de preço. Aquisição bem feita alcança quem já reconhece você, e esse não compara: agenda.',
+          recebe: [
+            { txt: 'Estratégia e gestão de tráfego pago (Google e Meta)', tier: 'faz' },
+            { txt: 'Criativos de anúncio: conceito, copy e arte', tier: 'faz' },
+            { txt: 'Parcerias e eventos que encaminham pacientes', tier: 'dirige' }
+          ],
+          sinal: 'Custo por paciente caindo mês a mês, porque a marca faz o anúncio trabalhar menos.' },
+        { n: 'Conversão', tag: 'O contato vira paciente', title: 'Conversão',
+          virada: 'O lead chega no WhatsApp, a secretária demora, informa preço, não agenda.',
+          why: 'O gargalo raramente é a mídia, é o último metro. Conversão instala processo e painel pra fechar essa brecha antes que o paciente esfrie.',
+          recebe: [
+            { txt: 'Landing pages e páginas de conversão', tier: 'faz' },
+            { txt: 'CRM com WhatsApp e agenda: escolha, setup e automações', tier: 'faz' },
+            { txt: 'Script comercial e treinamento da secretária', tier: 'faz' },
+            { txt: 'Régua contra faltas e recuperação de orçamentos parados', tier: 'faz' },
+            { txt: 'Atendimento diário no CRM e no WhatsApp', tier: 'opera' }
+          ],
+          sinal: 'Resposta ao paciente em minutos, não horas, e a secretária virou parte do crescimento, não um gargalo.' },
+        { n: 'Retenção', tag: 'O paciente volta e indica', title: 'Retenção',
+          virada: 'Você paga caro pra trazer o paciente, ele é bem atendido, e some.',
+          why: 'O paciente mais barato é o que você já tem. Retenção transforma quem já veio em quem indica o próximo, derrubando o custo do ciclo seguinte.',
+          recebe: [
+            { txt: 'Régua de pós-consulta e follow-up automatizado', tier: 'faz' },
+            { txt: 'Motor de indicação e avaliações públicas', tier: 'faz' },
+            { txt: 'Campanha de reativação da base parada', tier: 'faz' }
+          ],
+          sinal: 'Percentual de pacientes por indicação subindo, e o custo por paciente caindo porque a base trabalha por você.' }
       ];
 
       const NN = function (i) { return String(i + 1).padStart(2, '0'); };
@@ -5233,18 +5178,21 @@
           '<span class="mx-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>' +
           '</button>';
       }
+      function recebeItem(x) {
+        return '<li><span class="resp-badge ' + x.tier + '">' + TIER_LABEL[x.tier] + '</span>' + x.txt + '</li>';
+      }
       function panelMarkup(p, i) {
         return '<div class="mx-panel" data-i="' + i + '" id="mx-panel-' + i + '" role="region" aria-labelledby="mx-tab-' + i + '" hidden>' +
-          '<div class="mx-bar" style="width:' + ((i + 1) / P.length * 100) + '%"></div>' +
-          '<div class="mx-count">' + NN(i) + ' / 06</div>' +
+          '<div class="mx-bar" style="width:' + ((i + 1) / FRENTES.length * 100) + '%"></div>' +
+          '<div class="mx-count">' + NN(i) + ' / ' + NN(FRENTES.length - 1) + '</div>' +
           '<div class="mx-tag">' + p.tag + '</div>' +
           '<h3 class="mx-title">' + p.title + '</h3>' +
           '<p class="mx-virada">' + p.virada + '</p>' +
           '<p class="mx-why">' + p.why + '</p>' +
           '<div class="mx-recebe-label">O que você recebe</div>' +
-          '<ul class="mx-list">' + p.recebe.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>' +
+          '<ul class="mx-list">' + p.recebe.map(recebeItem).join('') + '</ul>' +
+          (p.conteudo ? '<div class="mx-recebe-label">+ Conteúdo (incluso no Ciclo completo e na Rede)</div><ul class="mx-list">' + p.conteudo.map(recebeItem).join('') + '</ul>' : '') +
           '<div class="mx-sinal"><strong>O sinal de que funcionou</strong>' + p.sinal + '</div>' +
-          (p.moat ? '<div class="mx-moat">' + p.moat + '</div>' : '') +
           '</div>';
       }
 
@@ -5255,13 +5203,13 @@
         explorer.classList.toggle('is-accordion', accordion);
         explorer.classList.toggle('is-split', !accordion);
         if (accordion) {
-          explorer.innerHTML = P.map(function (p, i) {
+          explorer.innerHTML = FRENTES.map(function (p, i) {
             return '<div class="mx-item" data-i="' + i + '">' + tabMarkup(p, i) + panelMarkup(p, i) + '</div>';
           }).join('');
         } else {
           explorer.innerHTML =
-            '<div class="metodo-rail">' + P.map(tabMarkup).join('') + '</div>' +
-            '<div class="metodo-stage">' + P.map(panelMarkup).join('') + '</div>';
+            '<div class="metodo-rail">' + FRENTES.map(tabMarkup).join('') + '</div>' +
+            '<div class="metodo-stage">' + FRENTES.map(panelMarkup).join('') + '</div>';
         }
         applyState(false);
       }
@@ -5320,7 +5268,7 @@
       render(mq.matches);
       mq.addEventListener('change', function (e) { render(e.matches); renderFw(e.matches); });
 
-      // ---- Framework macro (ring que condensa o método, clicável · compacto no mobile) ----
+      // ---- Flywheel (ring com Marca no hub, 3 frentes orbitando, clicável · compacto no mobile) ----
       const NSF = 'http://www.w3.org/2000/svg';
       function fel(t, a) { const e = document.createElementNS(NSF, t); for (const k in a) e.setAttribute(k, a[k]); return e; }
       function renderFw(compact) {
@@ -5332,6 +5280,7 @@
         const R = compact ? 142 : 250, HUB_R = compact ? 66 : 122;
         const ICSZ = compact ? 28 : 34, BADGE = compact ? 28 : 36;
         const LBLW = 172, GAP = 20;
+        const HUB_SIZE = compact ? Math.round(HUB_R * 1.82) : 212;
 
         let W, H, CX, CY;
         if (compact) {
@@ -5342,57 +5291,61 @@
           CY = R + NR + 18; H = Math.ceil(CY + R + NR + 78);
         }
 
-        const at = function (i) { const a = (-90 + i * 60) * Math.PI / 180; return { i: i, x: CX + R * Math.cos(a), y: CY + R * Math.sin(a) }; };
-        const N = P.map(function (p, i) { return at(i); });
+        // index 0 = Marca (hub, fixed at center). Indices 1-3 orbit at 120° apart, starting at top.
+        const ORBIT = [1, 2, 3].map(function (i, k) {
+          const a = (-90 + k * 120) * Math.PI / 180;
+          return { i: i, x: CX + R * Math.cos(a), y: CY + R * Math.sin(a) };
+        });
 
-        // wires (svg string)
+        // wires (svg string): dashed hub-to-node spokes + cycle arrows among the 3 orbiting nodes only
         let sg = '<defs><marker id="fwArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="rgba(232,230,245,0.42)"/></marker></defs>';
         sg += '<circle cx="' + CX + '" cy="' + CY + '" r="' + HUB_R + '" fill="rgba(123,53,206,0.06)" stroke="rgba(168,101,240,0.42)" stroke-width="1.2" stroke-dasharray="2 8" stroke-linecap="round"/>';
-        N.forEach(function (nd) {
+        ORBIT.forEach(function (nd) {
           var dx = nd.x - CX, dy = nd.y - CY, l = Math.hypot(dx, dy), ux = dx / l, uy = dy / l;
           var sx = CX + ux * (HUB_R + 10), sy = CY + uy * (HUB_R + 10), ex = nd.x - ux * (NR + 11), ey = nd.y - uy * (NR + 11);
           sg += '<line x1="' + sx.toFixed(1) + '" y1="' + sy.toFixed(1) + '" x2="' + ex.toFixed(1) + '" y2="' + ey.toFixed(1) + '" stroke="rgba(201,168,106,0.32)" stroke-width="1.2" stroke-dasharray="2 8" stroke-linecap="round"/>';
           sg += '<circle cx="' + ex.toFixed(1) + '" cy="' + ey.toFixed(1) + '" r="2.6" fill="rgba(201,168,106,0.85)"/>';
         });
-        for (var k = 0; k < N.length; k++) {
-          var a = N[k], b = N[(k + 1) % N.length];
+        for (var k = 0; k < ORBIT.length; k++) {
+          var a = ORBIT[k], b = ORBIT[(k + 1) % ORBIT.length];
           var dx2 = b.x - a.x, dy2 = b.y - a.y, l2 = Math.hypot(dx2, dy2), ux2 = dx2 / l2, uy2 = dy2 / l2;
           var sx2 = a.x + ux2 * (NR + 13), sy2 = a.y + uy2 * (NR + 13), ex2 = b.x - ux2 * (NR + 21), ey2 = b.y - uy2 * (NR + 21);
           sg += '<line x1="' + sx2.toFixed(1) + '" y1="' + sy2.toFixed(1) + '" x2="' + ex2.toFixed(1) + '" y2="' + ey2.toFixed(1) + '" stroke="rgba(232,230,245,0.34)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#fwArr)"/>';
         }
 
-        // nodes + labels (html string)
+        // orbiting nodes + labels (html string)
         var nodes = '';
-        N.forEach(function (nd) {
+        ORBIT.forEach(function (nd) {
           var i = nd.i;
-          nodes += '<button type="button" class="fw-node" data-i="' + i + '" aria-label="Fase ' + (i + 1) + ': ' + P[i].n + '" ' +
+          nodes += '<button type="button" class="fw-node" data-i="' + i + '" aria-label="Frente: ' + FRENTES[i].n + '" ' +
             'style="left:' + nd.x + 'px;top:' + nd.y + 'px;width:' + NODE + 'px;height:' + NODE + 'px">' +
             '<span class="fw-badge" style="width:' + BADGE + 'px;height:' + BADGE + 'px;font-size:' + (compact ? 13 : 15) + 'px">' + NN(i) + '</span>' +
             '<span class="fw-ic"><svg width="' + ICSZ + '" height="' + ICSZ + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' + ICONS[i] + '</svg></span>' +
             '</button>';
           if (!compact) {
             var cls, st;
-            if (i === 3) { cls = 'center'; st = 'left:' + nd.x + 'px;top:' + (nd.y + NR + 16) + 'px;transform:translateX(-50%);width:240px'; }
-            else if (nd.x >= CX) { cls = 'right'; st = 'left:' + (nd.x + NR + GAP) + 'px;top:' + nd.y + 'px;transform:translateY(-50%);width:' + LBLW + 'px'; }
+            if (nd.x >= CX) { cls = 'right'; st = 'left:' + (nd.x + NR + GAP) + 'px;top:' + nd.y + 'px;transform:translateY(-50%);width:' + LBLW + 'px'; }
             else { cls = 'left'; st = 'left:' + (nd.x - NR - GAP - LBLW) + 'px;top:' + nd.y + 'px;transform:translateY(-50%);width:' + LBLW + 'px'; }
             nodes += '<div class="fw-olabel ' + cls + '" style="' + st + '">' +
-              '<div class="fw-fase">Fase ' + (i + 1) + '</div>' +
-              '<div class="fw-name">' + P[i].n + '</div>' +
-              '<div class="fw-desc">' + P[i].tag + '</div></div>';
+              '<div class="fw-fase">' + FRENTES[i].tag + '</div>' +
+              '<div class="fw-name">' + FRENTES[i].n + '</div></div>';
           }
         });
+
+        // hub node (Marca): same .fw-node class so click/active-state wiring below applies uniformly
+        var hub = '<button type="button" class="fw-node mfw-hub" data-i="0" aria-label="Frente: Marca" ' +
+          'style="left:' + CX + 'px;top:' + CY + 'px;width:' + HUB_SIZE + 'px;height:' + HUB_SIZE + 'px">' +
+          '<div class="mfw-hub-title">MARCA</div>' +
+          '<div class="mfw-hub-rule"></div>' +
+          '<div class="mfw-hub-desc">O eixo. Aquisição, conversão e retenção giram em torno dela.</div>' +
+          '</button>';
 
         fw.innerHTML =
           '<div class="mfw-orb mfw-orb-v"></div><div class="mfw-orb mfw-orb-o"></div>' +
           '<div class="mfw-fit">' +
             '<div class="mfw-canvas" data-w="' + W + '" data-h="' + H + '" style="width:' + W + 'px;height:' + H + 'px">' +
               '<svg class="mfw-wires" viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '">' + sg + '</svg>' +
-              '<div class="mfw-diagram">' + nodes + '</div>' +
-              '<div class="mfw-hub" style="left:' + CX + 'px;top:' + CY + 'px;width:' + (compact ? Math.round(HUB_R * 1.82) : 212) + 'px">' +
-                '<div class="mfw-hub-title">MÉTODO<br>PROTAGONISTA</div>' +
-                '<div class="mfw-hub-rule"></div>' +
-                '<div class="mfw-hub-desc">A marca reduz o CAC. A performance traz pacientes agora. Juntas, compõem mês a mês.</div>' +
-              '</div>' +
+              '<div class="mfw-diagram">' + nodes + hub + '</div>' +
             '</div>' +
           '</div>';
 
@@ -5702,7 +5655,7 @@
   </script>
 
   <!-- =========================================================
-       MODAL — Diagnóstico Gratuito
+       MODAL — Raio-X gratuito
        ========================================================= -->
   <div id="diagnosticoModal" class="modal-overlay" aria-hidden="true" role="dialog"
        aria-modal="true" aria-labelledby="modalTitle">
@@ -5997,7 +5950,7 @@
 
   <script>
     // =========================================================
-    //  MODAL — Diagnóstico Gratuito + ClickUp Integration
+    //  MODAL — Raio-X gratuito + ClickUp Integration
     // =========================================================
 
     // ⚠️  Substitua pelo seu Personal API Token do ClickUp
@@ -6088,12 +6041,12 @@
     //  Multi-step de qualificação (médico × clínica) + soft-score
     // =========================================================
     const FQ_GAR = [
-      ['Apareço igual a todo mundo', 'Marca & Mensagem'],
-      ['Travo na câmera / não apareço', 'Direção Cênica'],
+      ['Apareço igual a todo mundo', 'Marca'],
+      ['Travo na câmera / não apareço', 'Conteúdo'],
       ['Anúncio traz paciente errado ou nenhum', 'Aquisição'],
       ['Lead chega no WhatsApp e não fecha', 'Conversão'],
-      ['Não sei meus números (CAC, LTV...)', 'Mensuração'],
-      ['Paciente não volta nem indica', 'Fidelização']
+      ['Não sei meu custo por paciente nem quanto ele vale', 'Régua do motor'],
+      ['Paciente não volta nem indica', 'Retenção']
     ];
     document.querySelectorAll('#diagnosticoForm [data-group="gar"]').forEach(c => {
       c.innerHTML = FQ_GAR.map(g => `<button type="button" class="fq-opt fq-opt-2l" data-v="1">${g[0]}<small>${g[1]}</small></button>`).join('');
@@ -6141,7 +6094,7 @@
       if (focusable) setTimeout(() => focusable.focus(), 60);
     }
     function updateNav() {
-      submitLabel.textContent = fqStep === 3 ? 'Quero meu Diagnóstico Gratuito' : 'Continuar';
+      submitLabel.textContent = fqStep === 3 ? 'Quero meu Raio-X gratuito' : 'Continuar';
       submitLabel.style.display = '';
       submitArrow.style.display = '';
       submitSpinner.style.display = 'none';
