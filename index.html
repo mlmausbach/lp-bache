@@ -30,37 +30,21 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Analytics — preencher os IDs abaixo para ativar (vazio = nada carrega) -->
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P7VS3KVG');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Camada de tracking — eventos vão para o dataLayer; tags (GA4, Meta) são
+       configuradas no GTM, sem precisar mexer neste arquivo. -->
   <script>
-    window.BACHE_ANALYTICS = {
-      GA4_ID: '',        // ex.: 'G-XXXXXXXXXX' (GA4 → Administrador → Fluxos de dados)
-      META_PIXEL_ID: ''  // ex.: '1234567890' (Gerenciador de Eventos do Meta)
+    window.dataLayer = window.dataLayer || [];
+    window.bacheTrack = function (event, params) {
+      window.dataLayer.push(Object.assign({ event: event }, params || {}));
     };
-    (function () {
-      var cfg = window.BACHE_ANALYTICS;
-      if (cfg.GA4_ID) {
-        var s = document.createElement('script');
-        s.async = true;
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + cfg.GA4_ID;
-        document.head.appendChild(s);
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = function () { dataLayer.push(arguments); };
-        gtag('js', new Date());
-        gtag('config', cfg.GA4_ID, { anonymize_ip: true });
-      }
-      if (cfg.META_PIXEL_ID) {
-        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', cfg.META_PIXEL_ID);
-        fbq('track', 'PageView');
-      }
-      window.bacheTrack = function (event, params) {
-        if (window.gtag && cfg.GA4_ID) gtag('event', event, params || {});
-        if (window.fbq && cfg.META_PIXEL_ID) {
-          if (event === 'generate_lead') fbq('track', 'Lead');
-          else fbq('trackCustom', event, params || {});
-        }
-      };
-    })();
   </script>
 
   <!-- GEO / AEO Structured Data -->
@@ -4277,6 +4261,11 @@
   </script>
 </head>
 <body>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P7VS3KVG"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- Scroll Progress Bar -->
   <div id="scroll-progress"></div>
