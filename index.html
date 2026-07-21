@@ -2838,52 +2838,53 @@
     /* ---- Método: explorador interativo (tela dividida) ---- */
     .metodo-explorer { margin-top: 8px; scroll-margin-top: 100px; }
     .metodo-explorer.is-split {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 24px;
-      align-items: start;
+      display: flex;
+      flex-direction: column;
     }
     .metodo-explorer.is-accordion { display: flex; flex-direction: column; gap: 8px; }
     .metodo-rail {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
     }
     .mx-tab {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      width: 100%;
       text-align: left;
-      padding: 13px 14px;
       border: 1px solid transparent;
-      border-radius: 4px;
-      background: transparent;
+      border-radius: 6px 6px 0 0;
+      background: rgba(255,255,255,0.02);
       color: inherit;
       cursor: pointer;
       position: relative;
       font-family: inherit;
       transition: background 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
     }
-    .mx-tab:hover { background: rgba(255,255,255,0.03); }
+    .metodo-explorer.is-split .mx-tab {
+      display: flex; flex-direction: column; gap: 9px; align-items: flex-start;
+      padding: 15px 15px 14px;
+    }
+    .mx-tab-top { display: flex; align-items: center; gap: 10px; width: 100%; }
+    .mx-tab:hover { background: rgba(255,255,255,0.05); }
     .mx-tab.is-active { background: rgba(201,168,106,0.06); border-color: rgba(201,168,106,0.30); }
-    .mx-tab.is-active::before {
+    .metodo-explorer.is-split .mx-tab.is-active::after {
       content: '';
       position: absolute;
-      left: -1px; top: 14px; bottom: 14px;
-      width: 3px;
+      left: -1px; right: -1px; bottom: -1px;
+      height: 2px;
       background: var(--ouro);
+      z-index: 3;
     }
     .mx-tab:focus-visible { outline: 2px solid var(--ouro); outline-offset: 2px; }
     .mx-tab-num {
+      font-family: var(--font);
       font-size: 11px; font-weight: 800; font-variant-numeric: tabular-nums;
-      color: var(--text-muted); width: 18px; flex-shrink: 0;
+      color: var(--text-muted); margin-left: auto; flex-shrink: 0;
     }
     .mx-tab.is-active .mx-tab-num { color: var(--ouro); }
     .mx-tab-ic {
       width: 38px; height: 38px; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
       border: 1px solid rgba(123,53,206,0.30);
+      border-radius: 8px;
       background: rgba(123,53,206,0.10);
       color: var(--nevoa);
       transition: border-color 0.25s var(--ease-out), background 0.25s var(--ease-out), color 0.25s var(--ease-out);
@@ -2909,9 +2910,8 @@
       position: relative;
       background: var(--surface);
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 4px;
-      padding: 38px 40px 34px;
-      min-height: 470px;
+      border-top: 2px solid var(--ouro);
+      border-radius: 0 0 6px 6px;
       overflow: hidden;
     }
     .mx-bar {
@@ -2921,7 +2921,15 @@
       z-index: 2;
     }
     .mx-panel { display: none; }
-    .mx-panel.is-active { display: block; animation: mxFade 0.45s var(--ease-out); }
+    .metodo-explorer.is-split .mx-panel.is-active { display: grid; grid-template-columns: 1fr 0.9fr; animation: mxFade 0.45s var(--ease-out); }
+    .metodo-explorer.is-accordion .mx-panel.is-active { display: block; animation: none; }
+    .mx-main { padding: 32px 34px 30px; min-width: 0; }
+    .mx-proof {
+      padding: 28px; min-width: 0;
+      background: linear-gradient(160deg, rgba(123,53,206,0.10), rgba(13,12,20,0) 55%);
+      border-left: 1px solid rgba(255,255,255,0.08);
+      display: flex; flex-direction: column; justify-content: center; gap: 12px;
+    }
     @keyframes mxFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
     .mx-count {
       position: absolute; top: 32px; right: 38px;
@@ -2977,20 +2985,19 @@
     /* acordeão (mobile) */
     .metodo-explorer.is-accordion .mx-item { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; transition: border-color 0.25s var(--ease-out), background 0.25s var(--ease-out); }
     .metodo-explorer.is-accordion .mx-item.is-open { border-color: rgba(201,168,106,0.40); background: rgba(201,168,106,0.05); }
-    .metodo-explorer.is-accordion .mx-tab { border: none; border-radius: 0; padding: 14px 15px; }
+    .metodo-explorer.is-accordion .mx-tab { display: flex; flex-direction: row; align-items: center; gap: 13px; border: none; border-radius: 0; padding: 14px 15px; background: transparent; }
     .metodo-explorer.is-accordion .mx-tab.is-active { background: transparent; }
-    .metodo-explorer.is-accordion .mx-tab.is-active::before { display: none; }
     .metodo-explorer.is-accordion .mx-tab-ic { display: none; }
-    .metodo-explorer.is-accordion .mx-chev { display: block; }
+    .metodo-explorer.is-accordion .mx-tab-num { margin-left: 0; }
+    .metodo-explorer.is-accordion .mx-chev { display: flex; margin-left: auto; flex-shrink: 0; color: var(--text-muted); transition: transform 0.25s var(--ease-out); }
     .metodo-explorer.is-accordion .mx-item.is-open .mx-chev { transform: rotate(180deg); color: var(--ouro); }
-    .metodo-explorer.is-accordion .mx-panel { background: transparent; border: none; border-radius: 0; padding: 2px 16px 16px; min-height: 0; }
-    .metodo-explorer.is-accordion .mx-panel.is-active { animation: none; }
-    .metodo-explorer.is-accordion .mx-bar,
-    .metodo-explorer.is-accordion .mx-count { display: none; }
+    .metodo-explorer.is-accordion .mx-panel { background: transparent; border: none; border-radius: 0; padding: 0; min-height: 0; }
+    .metodo-explorer.is-accordion .mx-main { padding: 2px 15px 14px; }
+    .metodo-explorer.is-accordion .mx-proof { border-left: none; border-top: 1px solid var(--line); background: transparent; padding: 12px 15px 14px; }
     .metodo-explorer.is-accordion .mx-title { font-size: 20px; }
     .metodo-explorer.is-accordion .mx-virada { font-size: 14.5px; }
     .metodo-explorer.is-accordion .mx-why { font-size: 13.5px; }
-    .metodo-explorer.is-accordion .mx-list li { font-size: 13px; }
+    .metodo-explorer.is-accordion .mx-ri-tx { font-size: 12.5px; }
 
     @media (prefers-reduced-motion: reduce) {
       .mx-panel.is-active { animation: none; }
@@ -4551,13 +4558,33 @@
         <figcaption class="metodo-fw-cap">No primeiro ciclo a roda gira com atrito alto: pouca prova, marca ainda jovem. A cada retorno bem-sucedido, o reconhecimento cresce e a volta seguinte exige menos mídia pelo mesmo resultado. <strong>Clique numa frente</strong> para abrir o detalhe abaixo.</figcaption>
       </figure>
 
+      <div class="metodo-entrega-lead reveal">
+        <div class="section-label">O que entregamos</div>
+        <p>Cada frente tem entregas concretas, e em cada uma <strong>quem executa fica explícito</strong>. É o que separa a Bäche de uma agência: você compra direção sênior, não mão de obra solta.</p>
+      </div>
+      <div class="metodo-consult reveal">
+        <div class="mc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.3 8 10 4.6-1.7 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <div>
+          <div class="mc-kicker">Acima de tudo · a camada que orienta</div>
+          <h3>Consultoria</h3>
+          <p class="mc-desc"><b>Não é uma frente. É a direção sênior que lê seus números e decide onde mexer:</b> qual frente puxar primeiro, o que dobrar, o que cortar. As 4 frentes abaixo são o que a consultoria comanda a cada ciclo.</p>
+        </div>
+        <div class="mc-tag">Orienta as 4 frentes</div>
+      </div>
+      <div class="metodo-consult-link" aria-hidden="true"><span>dirige</span></div>
+
       <div class="metodo-explorer" id="metodoExplorer" aria-label="As 4 frentes de crescimento"></div>
+      <div class="mx-legend" role="note" aria-label="Quem executa cada entrega">
+        <span class="mx-lg"><i class="mx-lg-dot faz"></i>Bäche faz</span>
+        <span class="mx-lg"><i class="mx-lg-dot dirige"></i>Bäche dirige · um terceiro produz</span>
+        <span class="mx-lg"><i class="mx-lg-dot opera"></i>Sua equipe opera · sob nossa orientação</span>
+      </div>
 
       <div class="metodo-incluso reveal" style="margin-top:40px;">
         <div class="section-label" style="margin-bottom:10px;">Incluído em todo plano</div>
         <ul class="mx-list">
-          <li><span class="resp-badge faz">Bäche faz</span> Painel único: custo por paciente, valor no tempo, ocupação, margem</li>
-          <li><span class="resp-badge faz">Bäche faz</span> Reunião quinzenal de leitura dos números, com você na sala</li>
+          <li>Painel único: custo por paciente, valor no tempo, ocupação, margem</li>
+          <li>Reunião quinzenal de leitura dos números, com você na sala</li>
         </ul>
         <p style="margin-top:10px;font-size:13px;color:var(--text-muted);">Nunca é uma frente. É a régua que mede as quatro.</p>
       </div>
@@ -4582,6 +4609,80 @@
     .resp-badge.faz{background:rgba(123,53,206,0.20);color:var(--violeta-light);border:1px solid rgba(123,53,206,0.30);}
     .resp-badge.dirige{background:rgba(201,168,106,0.14);color:var(--ouro);border:1px solid rgba(201,168,106,0.30);}
     .resp-badge.opera{background:rgba(255,255,255,0.06);color:rgba(232,230,245,0.65);border:1px solid rgba(255,255,255,0.14);}
+  </style>
+
+  <style>
+    /* Entregáveis — lead + camada Consultoria + prova visual (reusa paleta/fontes do site) */
+    .metodo-entrega-lead { max-width: 680px; margin: 4px 0 18px; }
+    .metodo-entrega-lead p { font-size: 15px; line-height: 1.65; color: var(--text-muted); margin: 10px 0 0; }
+    .metodo-entrega-lead p strong { color: var(--nevoa); font-weight: 600; }
+
+    .metodo-consult { position: relative; display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: center; padding: 20px 24px; margin-bottom: 10px; border-radius: 6px; border: 1px solid rgba(201,168,106,0.32); background: linear-gradient(120deg, rgba(201,168,106,0.10), rgba(201,168,106,0.02) 60%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.05); }
+    .metodo-consult .mc-ic { width: 44px; height: 44px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid rgba(201,168,106,0.45); background: rgba(201,168,106,0.10); color: var(--ouro); }
+    .metodo-consult .mc-ic svg { width: 22px; height: 22px; }
+    .metodo-consult .mc-kicker { font-family: var(--font); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ouro); margin-bottom: 4px; }
+    .metodo-consult h3 { font-family: var(--font); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; color: var(--nevoa); margin: 0 0 5px; }
+    .metodo-consult .mc-desc { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--text-muted); }
+    .metodo-consult .mc-desc b { color: var(--nevoa); font-weight: 600; }
+    .metodo-consult .mc-tag { font-family: var(--font); font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ouro); border: 1px solid rgba(201,168,106,0.3); border-radius: 100px; padding: 7px 13px; white-space: nowrap; }
+    .metodo-consult-link { display: flex; justify-content: center; margin: 0 0 20px; }
+    .metodo-consult-link span { font-family: var(--font); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); display: inline-flex; flex-direction: column; align-items: center; gap: 4px; }
+    .metodo-consult-link span::after { content: ''; width: 1px; height: 18px; background: linear-gradient(var(--ouro), transparent); }
+
+    .metodo-explorer.is-split .mx-tab-name { font-size: 15.5px; white-space: normal; }
+    .metodo-explorer.is-split .mx-tab-tag { font-size: 11.5px; white-space: normal; overflow: visible; line-height: 1.3; }
+
+    .mx-recebe { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 0 0 4px; padding: 0; }
+    .mx-recebe li { display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border: 1px solid rgba(255,255,255,0.08); border-radius: 9px; background: rgba(255,255,255,0.02); transition: background 0.2s var(--ease-out), border-color 0.2s var(--ease-out); }
+    .mx-recebe li:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.16); }
+    .mx-ic { width: 34px; height: 34px; flex-shrink: 0; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(123,53,206,0.30); background: rgba(123,53,206,0.10); color: var(--violeta-light); }
+    .mx-ic svg { width: 17px; height: 17px; }
+    .mx-ic.dirige { border-color: rgba(201,168,106,0.35); background: rgba(201,168,106,0.10); color: var(--ouro); }
+    .mx-ic.opera { border-color: rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: rgba(232,230,245,0.7); }
+    .mx-ri-body { display: flex; flex-direction: column; gap: 6px; min-width: 0; padding-top: 1px; }
+    .mx-ri-tx { font-size: 13px; line-height: 1.4; color: var(--nevoa); }
+    .mx-ri-foot { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .mx-logos { display: inline-flex; align-items: center; gap: 6px; }
+    .mx-logo { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 7px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: rgba(232,230,245,0.78); flex-shrink: 0; transition: color 0.2s var(--ease-out), border-color 0.2s var(--ease-out); }
+    .mx-logo svg { width: 15px; height: 15px; display: block; }
+    .mx-recebe li:hover .mx-logo { color: var(--nevoa); border-color: rgba(255,255,255,0.22); }
+    .mx-tier-ex { font-family: var(--font); font-size: 9px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 8px; border-radius: 100px; white-space: nowrap; }
+    .mx-tier-ex.dirige { color: var(--ouro); border: 1px solid rgba(201,168,106,0.30); background: rgba(201,168,106,0.10); }
+    .mx-tier-ex.opera { color: rgba(232,230,245,0.70); border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); }
+
+    .mx-legend { display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: center; margin: 12px 0 0; padding: 13px 16px; border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; background: rgba(255,255,255,0.015); }
+    .mx-legend .mx-lg { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-muted); }
+    .mx-lg-dot { width: 12px; height: 12px; border-radius: 4px; flex-shrink: 0; }
+    .mx-lg-dot.faz { background: rgba(123,53,206,0.30); border: 1px solid rgba(123,53,206,0.60); }
+    .mx-lg-dot.dirige { background: rgba(201,168,106,0.22); border: 1px solid rgba(201,168,106,0.60); }
+    .mx-lg-dot.opera { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.28); }
+
+    .mxp-cap { font-family: var(--font); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); opacity: 0.7; }
+    .mxp-card { border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; background: rgba(255,255,255,0.03); padding: 15px 17px; box-shadow: 0 8px 30px rgba(0,0,0,0.28); }
+    .mxp-card + .mxp-card { margin-top: 2px; }
+    .mxp-pos { font-family: var(--font); font-size: 16px; line-height: 1.35; font-weight: 700; letter-spacing: -0.02em; color: var(--nevoa); }
+    .mxp-pos em { color: var(--ouro); font-style: italic; font-weight: 400; }
+    .mxp-sub { font-size: 11px; color: var(--text-muted); margin-top: 8px; }
+    .mxp-bars { display: flex; align-items: flex-end; gap: 12px; height: 72px; margin: 6px 0 22px; }
+    .mxp-bars i { flex: 1; display: block; background: linear-gradient(var(--violeta-light), var(--violeta)); border-radius: 3px 3px 0 0; position: relative; }
+    .mxp-bars i span { position: absolute; bottom: -17px; left: 0; right: 0; text-align: center; font-size: 9px; color: var(--text-muted); font-family: var(--font); letter-spacing: .04em; }
+    .mxp-note { font-size: 11.5px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+    .mxp-note b { color: var(--ouro); font-weight: 600; }
+    .mxp-chat { display: flex; flex-direction: column; gap: 7px; }
+    .mxp-bub { max-width: 86%; padding: 9px 12px; border-radius: 12px; font-size: 12.5px; line-height: 1.4; }
+    .mxp-bub.them { align-self: flex-start; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); color: var(--nevoa); border-bottom-left-radius: 3px; }
+    .mxp-bub.us { align-self: flex-end; background: rgba(123,53,206,0.22); border: 1px solid rgba(123,53,206,0.35); color: #fff; border-bottom-right-radius: 3px; }
+    .mxp-stars { color: var(--ouro); font-size: 14px; letter-spacing: 2px; }
+    .mxp-quote { font-size: 12.5px; line-height: 1.5; color: var(--nevoa); margin-top: 6px; }
+    .mxp-who { font-size: 10.5px; color: var(--text-muted); margin-top: 6px; }
+    .mxp-ref { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+    .mxp-node { height: 30px; padding: 0 11px; border-radius: 100px; border: 1px solid rgba(201,168,106,0.4); background: rgba(201,168,106,0.08); display: inline-flex; align-items: center; font-family: var(--font); font-weight: 600; font-size: 10.5px; color: var(--ouro); white-space: nowrap; }
+    .mxp-ref .a { color: var(--text-muted); opacity: 0.55; }
+
+    @media (max-width: 980px) {
+      .metodo-consult { grid-template-columns: auto 1fr; gap: 16px; padding: 18px; }
+      .metodo-consult .mc-tag { grid-column: 1 / -1; justify-self: start; }
+    }
   </style>
 
   <!-- ========================================
@@ -5325,49 +5426,84 @@
         '<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>'
       ];
       const TIER_LABEL = { faz: 'Bäche faz', dirige: 'Bäche dirige', opera: 'Sua equipe opera' };
+      const RIC = {
+        target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>',
+        chart: '<path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="7"/><rect x="12" y="7" width="3" height="11"/><rect x="17" y="4" width="3" height="14"/>',
+        voice: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+        clip: '<rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6"/><path d="M9 16h4"/>',
+        camera: '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3.5"/>',
+        film: '<rect x="2" y="3" width="20" height="18" rx="2"/><path d="M7 3v18M17 3v18M2 9h5M2 15h5M17 9h5M17 15h5"/>',
+        mega: '<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>',
+        image: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/>',
+        users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/>',
+        layout: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/>',
+        chat: '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/>',
+        shield: '<path d="M12 2 4 6v6c0 5 3.4 8.3 8 10 4.6-1.7 8-5 8-10V6z"/>',
+        head: '<path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="2" y="14" width="4" height="6" rx="1"/><rect x="18" y="14" width="4" height="6" rx="1"/>',
+        refresh: '<path d="M3 12a9 9 0 1 0 9-9 9 9 0 0 0-6.4 2.6L3 8"/><path d="M3 3v5h5"/>',
+        star: '<path d="M12 2 15 8l6 .9-4.5 4.3 1 6L12 16l-5.5 3.2 1-6L3 8.9 9 8z"/>',
+        bell: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>'
+      };
+      const LOGOS = {
+        google: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>',
+        meta: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.157-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687 1.164-1.526 2.041-1.526z"/></svg>',
+        whatsapp: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>'
+      };
       const FRENTES = [
         { n: 'Marca', tag: 'Por que escolhem você', title: 'Marca',
           virada: '"Aceita convênio?" costuma ser a primeira pergunta, antes do paciente saber o que te torna diferente de qualquer outro especialista da cidade.',
           why: 'Marca é o que muda a ordem dessa pergunta: ela vem depois da decisão de te escolher, não antes.',
           recebe: [
-            { txt: 'Posicionamento e mensagem central da clínica', tier: 'faz' },
-            { txt: 'Análise de concorrentes e leitura de mercado', tier: 'faz' },
-            { txt: 'Tom de voz e linha editorial próprios', tier: 'faz' }
+            { txt: 'Posicionamento e mensagem central da clínica', tier: 'faz', ic: 'target' },
+            { txt: 'Análise de concorrentes e leitura de mercado', tier: 'faz', ic: 'chart' },
+            { txt: 'Tom de voz e linha editorial próprios', tier: 'faz', ic: 'voice' }
           ],
           conteudo: [
-            { txt: 'Pauta, roteiro e direção editorial do mês', tier: 'faz' },
-            { txt: 'Treino de câmera do médico', tier: 'faz' },
-            { txt: 'Gravação, edição e postagem, produzidas pela operação Bäche', tier: 'faz' }
+            { txt: 'Pauta, roteiro e direção editorial do mês', tier: 'faz', ic: 'clip' },
+            { txt: 'Treino de câmera do médico', tier: 'faz', ic: 'camera' },
+            { txt: 'Gravação, edição e postagem, produzidas pela operação Bäche', tier: 'faz', ic: 'film' }
           ],
+          proof: '<div class="mxp-cap">O posicionamento, em uma frase</div>' +
+            '<div class="mxp-card"><div class="mxp-pos">O único que trata <em>enxaqueca crônica</em> com protocolo próprio, e explica cada passo.</div>' +
+            '<div class="mxp-sub">antes: "atendimento humanizado e excelência", igual a todo mundo · exemplo ilustrativo</div></div>',
           sinal: 'Um estranho lê seu posicionamento e sabe, numa frase, por que te escolher, sem mencionar preço.' },
         { n: 'Aquisição', tag: 'O paciente certo chega', title: 'Aquisição',
           virada: 'Hoje sua agenda depende de convênio e indicação espontânea, sem nenhuma previsibilidade: cheia num mês, vazia no seguinte.',
           why: 'Sem marca por trás, todo anúncio vira leilão de preço. Aquisição bem feita alcança quem já reconhece você, e esse não compara: agenda.',
           recebe: [
-            { txt: 'Estratégia e gestão de tráfego pago (Google e Meta)', tier: 'faz' },
-            { txt: 'Criativos de anúncio: conceito, copy e arte', tier: 'faz' },
-            { txt: 'Parcerias e eventos que encaminham pacientes', tier: 'dirige' }
+            { txt: 'Estratégia e gestão de tráfego pago', tier: 'faz', ic: 'mega', logos: ['google', 'meta'] },
+            { txt: 'Criativos de anúncio: conceito, copy e arte', tier: 'faz', ic: 'image' },
+            { txt: 'Parcerias e eventos que encaminham pacientes', tier: 'dirige', ic: 'users' }
           ],
+          proof: '<div class="mxp-cap">A cada volta da roda, o anúncio trabalha menos</div>' +
+            '<div class="mxp-card"><div class="mxp-bars"><i style="height:88%"><span>volta 1</span></i><i style="height:64%"><span>2</span></i><i style="height:44%"><span>3</span></i><i style="height:30%"><span>4</span></i></div>' +
+            '<div class="mxp-note"><b>Custo por paciente cai</b> conforme a marca amadurece · ilustrativo</div></div>',
           sinal: 'Custo por paciente caindo mês a mês, porque a marca faz o anúncio trabalhar menos.' },
         { n: 'Conversão', tag: 'O contato vira paciente', title: 'Conversão',
           virada: 'O lead chega no WhatsApp, a secretária demora, informa preço, não agenda.',
           why: 'O gargalo raramente é a mídia, é o último metro. Conversão instala processo e painel pra fechar essa brecha antes que o paciente esfrie.',
           recebe: [
-            { txt: 'Landing pages e páginas de conversão', tier: 'faz' },
-            { txt: 'CRM com WhatsApp e agenda: escolha, setup e automações', tier: 'faz' },
-            { txt: 'Script comercial e treinamento da secretária', tier: 'faz' },
-            { txt: 'Régua contra faltas e recuperação de orçamentos parados', tier: 'faz' },
-            { txt: 'Atendimento diário no CRM e no WhatsApp', tier: 'opera' }
+            { txt: 'Landing pages e páginas de conversão', tier: 'faz', ic: 'layout' },
+            { txt: 'CRM com WhatsApp e agenda: escolha, setup e automações', tier: 'faz', ic: 'chat', logos: ['whatsapp'] },
+            { txt: 'Script comercial e treinamento da secretária', tier: 'faz', ic: 'clip' },
+            { txt: 'Régua contra faltas e recuperação de orçamentos parados', tier: 'faz', ic: 'shield' },
+            { txt: 'Atendimento diário no CRM e no WhatsApp', tier: 'opera', ic: 'head' }
           ],
+          proof: '<div class="mxp-cap">Resposta na hora, não em horas</div>' +
+            '<div class="mxp-card"><div class="mxp-chat"><div class="mxp-bub them">Oi, queria saber o valor da consulta</div>' +
+            '<div class="mxp-bub us">Oi, Marina! Tenho quinta 9h ou 15h. Qual encaixa?</div></div></div>',
           sinal: 'Resposta ao paciente em minutos, não horas, e a secretária virou parte do crescimento, não um gargalo.' },
         { n: 'Retenção', tag: 'O paciente volta e indica', title: 'Retenção',
           virada: 'Você paga caro pra trazer o paciente, ele é bem atendido, e some.',
           why: 'O paciente mais barato é o que você já tem. Retenção transforma quem já veio em quem indica o próximo, derrubando o custo do ciclo seguinte.',
           recebe: [
-            { txt: 'Régua de pós-consulta e follow-up automatizado', tier: 'faz' },
-            { txt: 'Motor de indicação e avaliações públicas', tier: 'faz' },
-            { txt: 'Campanha de reativação da base parada', tier: 'faz' }
+            { txt: 'Régua de pós-consulta e follow-up automatizado', tier: 'faz', ic: 'refresh' },
+            { txt: 'Motor de indicação e avaliações públicas', tier: 'faz', ic: 'star', logos: ['google'] },
+            { txt: 'Campanha de reativação da base parada', tier: 'faz', ic: 'bell' }
           ],
+          proof: '<div class="mxp-cap">A base vira canal</div>' +
+            '<div class="mxp-card"><div class="mxp-stars">★★★★★</div><div class="mxp-quote">"Explicou tudo com calma. Já indiquei pra duas amigas."</div><div class="mxp-who">avaliação · paciente particular · exemplo ilustrativo</div></div>' +
+            '<div class="mxp-card"><div class="mxp-ref"><span class="mxp-node">1 paciente feliz</span><span class="a">&rarr;</span><span class="mxp-node">indica</span><span class="a">&rarr;</span><span class="mxp-node">novos, quase de graça</span></div></div>',
           sinal: 'Percentual de pacientes por indicação subindo, e o custo por paciente caindo porque a base trabalha por você.' }
       ];
 
@@ -5382,20 +5518,36 @@
           '</button>';
       }
       function recebeItem(x) {
-        return '<li><span class="resp-badge ' + x.tier + '">' + TIER_LABEL[x.tier] + '</span>' + x.txt + '</li>';
+        var logos = (x.logos || []).map(function (k) {
+          return LOGOS[k] ? '<span class="mx-logo" aria-label="' + k + '">' + LOGOS[k] + '</span>' : '';
+        }).join('');
+        var ex = x.tier !== 'faz' ? '<span class="mx-tier-ex ' + x.tier + '">' + TIER_LABEL[x.tier] + '</span>' : '';
+        var foot = (logos || ex) ? '<span class="mx-ri-foot">' + (logos ? '<span class="mx-logos">' + logos + '</span>' : '') + ex + '</span>' : '';
+        return '<li>' +
+          '<span class="mx-ic ' + x.tier + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (RIC[x.ic] || RIC.target) + '</svg></span>' +
+          '<span class="mx-ri-body"><span class="mx-ri-tx">' + x.txt + '</span>' + foot + '</span>' +
+          '</li>';
+      }
+      function tabCard(p, i) {
+        return '<button type="button" class="mx-tab" data-i="' + i + '" id="mx-tab-' + i + '" aria-controls="mx-panel-' + i + '" aria-expanded="false">' +
+          '<span class="mx-tab-top"><span class="mx-tab-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICONS[i] + '</svg></span><span class="mx-tab-num">' + NN(i) + '</span></span>' +
+          '<span class="mx-tab-name">' + p.n + '</span>' +
+          '<span class="mx-tab-tag">' + p.tag + '</span>' +
+          '</button>';
       }
       function panelMarkup(p, i) {
         return '<div class="mx-panel" data-i="' + i + '" id="mx-panel-' + i + '" role="region" aria-labelledby="mx-tab-' + i + '" hidden>' +
-          '<div class="mx-bar" style="width:' + ((i + 1) / FRENTES.length * 100) + '%"></div>' +
-          '<div class="mx-count">' + NN(i) + ' / ' + NN(FRENTES.length - 1) + '</div>' +
-          '<div class="mx-tag">' + p.tag + '</div>' +
-          '<h3 class="mx-title">' + p.title + '</h3>' +
-          '<p class="mx-virada">' + p.virada + '</p>' +
-          '<p class="mx-why">' + p.why + '</p>' +
-          '<div class="mx-recebe-label">O que você recebe</div>' +
-          '<ul class="mx-list">' + p.recebe.map(recebeItem).join('') + '</ul>' +
-          (p.conteudo ? '<div class="mx-recebe-label">+ Conteúdo (incluso no Ciclo completo e na Rede)</div><ul class="mx-list">' + p.conteudo.map(recebeItem).join('') + '</ul>' : '') +
-          '<div class="mx-sinal"><strong>O sinal de que funcionou</strong>' + p.sinal + '</div>' +
+          '<div class="mx-main">' +
+            '<div class="mx-tag">' + p.tag + '</div>' +
+            '<h3 class="mx-title">' + p.title + '</h3>' +
+            '<p class="mx-virada">' + p.virada + '</p>' +
+            '<p class="mx-why">' + p.why + '</p>' +
+            '<div class="mx-recebe-label">O que você recebe</div>' +
+            '<ul class="mx-recebe">' + p.recebe.map(recebeItem).join('') + '</ul>' +
+            (p.conteudo ? '<div class="mx-recebe-label">+ Conteúdo (Ciclo completo e Rede)</div><ul class="mx-recebe">' + p.conteudo.map(recebeItem).join('') + '</ul>' : '') +
+            '<div class="mx-sinal"><strong>O sinal de que funcionou</strong>' + p.sinal + '</div>' +
+          '</div>' +
+          '<div class="mx-proof">' + (p.proof || '') + '</div>' +
           '</div>';
       }
 
@@ -5411,7 +5563,7 @@
           }).join('');
         } else {
           explorer.innerHTML =
-            '<div class="metodo-rail">' + FRENTES.map(tabMarkup).join('') + '</div>' +
+            '<div class="metodo-rail">' + FRENTES.map(tabCard).join('') + '</div>' +
             '<div class="metodo-stage">' + FRENTES.map(panelMarkup).join('') + '</div>';
         }
         applyState(false);
