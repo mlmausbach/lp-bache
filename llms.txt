@@ -12,7 +12,7 @@ O crescimento da clínica é trabalhado em 4 frentes, com a Marca como eixo de l
 - **Conversão** — o contato vira paciente
 - **Retenção** — o paciente volta e indica
 
-As 4 frentes rodam em ciclos de 90 dias (motor): Diagnóstico → Prescrição → Tratamento → Retorno, com painel único de indicadores (custo por paciente, valor do paciente ao longo do tempo, ocupação, margem) lido em reuniões quinzenais.
+As 4 frentes rodam sob o Método 4E: Diagnóstico → Estratégia → Execução → Growth. Diagnóstico e Estratégia definem a direção (raramente refeita); Execução e Growth giram em ciclos de 90 dias (motor), com painel único de indicadores (custo por paciente, valor do paciente ao longo do tempo, ocupação, margem) lido em reuniões quinzenais.
 
 ## Oferta
 
