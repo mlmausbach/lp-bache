@@ -6174,6 +6174,8 @@
             <input class="form-input" type="email" id="inputEmail" name="email" placeholder="joao@clinica.com.br" autocomplete="email" required />
             <span class="form-error-msg">Por favor, informe um e-mail válido.</span>
           </div>
+          <!-- Campo isca: fica fora da tela, humano não preenche, robô sim. A função descarta o pedido. -->
+          <input type="text" id="inputEmpresa" name="empresa" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
         </div>
 
         <div class="modal-error-box" id="modalErrorBox" aria-live="polite" style="display:none;">
@@ -6302,9 +6304,8 @@
     //  MODAL — Raio-X gratuito + ClickUp Integration
     // =========================================================
 
-    // ⚠️  Substitua pelo seu Personal API Token do ClickUp
-    const CLICKUP_TOKEN   = 'pk_78873023_RLFL3MU70N6EN5HV5KYHGJ4T1Z279ADF';
-    const CLICKUP_LIST_ID = '901111231101'; // Sessão Estratégica
+    // O lead vai para /api/lead (functions/api/lead.js), que cria a tarefa no
+    // ClickUp no servidor. Nenhuma chave de API mora nesta página.
 
     const modal       = document.getElementById('diagnosticoModal');
     const modalCard   = document.getElementById('modalCard');
@@ -6471,45 +6472,22 @@
       };
     }
 
-    // ===== Adapter de submissão — TEMPORÁRIO (ClickUp). Trocar por Bäche Hub: editar só aqui. =====
-    async function submitToClickUp(lead) {
-      const FIELD_WHATSAPP = '72a107e8-d809-4417-89bf-1036ce89c88a';
-      const FIELD_EMAIL    = 'fd5e499d-be16-4941-b14d-c4bf5dcbe776';
-      const headers = { 'Authorization': CLICKUP_TOKEN, 'Content-Type': 'application/json' };
-      const wppDigits = lead.whatsapp.replace(/\D/g, '');
-      const wppForField = (wppDigits.startsWith('55') ? '+' : '+55') + wppDigits.replace(/^55/, '');
-      const tipo = lead.path === 'cli' ? 'Clínica' : 'Médico';
-      const priority = lead.fit === 'quente' ? 1 : (lead.fit === 'morno' ? 2 : 3);
-      const linhas = [
-        `Lead via Landing Page — ${tipo}`, '',
-        `Fit: ${lead.fit.toUpperCase()} (score ${lead.score})`, '',
-        `Nome: ${lead.nome}`, `WhatsApp: ${lead.whatsapp}`, `E-mail: ${lead.email}`,
-        `Cidade: ${lead.cidade || '—'}`, `Especialidade(s): ${lead.especialidade || '—'}`, ''
-      ];
-      if (lead.path === 'cli') {
-        linhas.push(`Nº de médicos: ${lead.nMedicos || '—'}`, `Papel: ${lead.papel || '—'}`,
-          `Faturamento da clínica: ${lead.faturamento || '—'}`, `Marketing: ${lead.marketing || '—'}`);
-      } else {
-        linhas.push(`Atendimento: ${lead.atendimento || '—'}`, `Onde atua: ${lead.onde || '—'}`,
-          `Faturamento particular: ${lead.faturamento || '—'}`, `Conteúdo/câmera: ${lead.conteudo || '—'}`);
-      }
-      linhas.push(`Maior gargalo: ${lead.gargalo || '—'}`);
-
-      const res = await fetch(`https://api.clickup.com/api/v2/list/${CLICKUP_LIST_ID}/task`, {
-        method: 'POST', headers,
-        body: JSON.stringify({ name: `Sessão Estratégica — ${lead.nome} (${tipo})`, description: linhas.join('\n'), priority })
+    // ===== Envio do lead: vai para a função do servidor, que fala com o ClickUp.
+    //       Trocar o destino do lead é editar functions/api/lead.js, não esta página. =====
+    async function submitToServidor(lead) {
+      const isca = document.getElementById('inputEmpresa');
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.assign({}, lead, { empresa: isca ? isca.value : '' }))
       });
-      if (!res.ok) { const e = await res.json().catch(() => ({})); throw new Error(e.err || e.ECODE || `HTTP ${res.status}`); }
-      const task = await res.json();
-      await Promise.allSettled([
-        fetch(`https://api.clickup.com/api/v2/task/${task.id}/field/${FIELD_WHATSAPP}`, { method: 'POST', headers, body: JSON.stringify({ value: wppForField }) }),
-        fetch(`https://api.clickup.com/api/v2/task/${task.id}/field/${FIELD_EMAIL}`, { method: 'POST', headers, body: JSON.stringify({ value: lead.email }) })
-      ]);
+      const r = await res.json().catch(() => ({}));
+      if (!res.ok || !r.ok) throw new Error(r.erro || `HTTP ${res.status}`);
     }
 
-    // Ponto ÚNICO de troca do destino do lead (hoje ClickUp → futuramente Bäche Hub)
+    // Ponto ÚNICO de envio do lead
     async function submitLead(lead) {
-      await submitToClickUp(lead);
+      await submitToServidor(lead);
       emailjs.send('service_xsb1jsk', 'template_2cgrq5h', { to_name: lead.nome, to_email: lead.email })
         .catch(err => console.warn('[EmailJS] Falha:', JSON.stringify(err)));
     }
