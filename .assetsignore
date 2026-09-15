@@ -13,9 +13,10 @@
 node_modules
 wrangler.jsonc
 
-# o código do Worker (roda no servidor, não é arquivo do site)
+# o código do Worker (roda no servidor, não é arquivo do site) e os geradores
 worker
 functions
+scripts
 
 # documento interno: spec, plano, brief, modelo de e-mail
 docs

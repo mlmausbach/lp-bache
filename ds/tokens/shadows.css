@@ -1,0 +1,38 @@
+/* ============================================================
+   BÄCHE DESIGN SYSTEM — Shadow Tokens v2
+
+   Superfície é CHAPADA: card separa por FILETE e TOM, não por
+   sombra. Glass, backdrop-filter e glow de ouro saíram do   [v1-doc]
+   sistema em 25/08/2026.
+
+   O que sobra: sombra neutra pra elevação real (modal, dropdown,
+   menu) e um brilho violeta pra hover de botão e foco.
+   ============================================================ */
+
+:root {
+  /* ── Sombra neutra — só elevação real ────────────────── */
+  --sombra-sm: 0 2px 8px   rgba(8, 8, 10, 0.10);
+  --sombra-md: 0 6px 20px  rgba(8, 8, 10, 0.14);
+  --sombra-lg: 0 16px 48px rgba(8, 8, 10, 0.18);
+
+  /* ── Brilho violeta — hover de botão, foco ───────────── */
+  --brilho-violeta-sm: 0 4px 18px rgba(123, 53, 206, 0.24);
+  --brilho-violeta-md: 0 8px 34px rgba(123, 53, 206, 0.32);
+
+  /* ── Filete: o separador real do sistema ─────────────── */
+  --filete:       inset 0 0 0 1px var(--linha-fina);
+  --filete-forte: inset 0 0 0 1px var(--linha);
+}
+
+/* No escuro a sombra precisa de mais opacidade pra existir
+   sobre o preto real.                                       */
+.escuro {
+  --sombra-sm: 0 2px 8px   rgba(0, 0, 0, 0.45);
+  --sombra-md: 0 6px 20px  rgba(0, 0, 0, 0.55);
+  --sombra-lg: 0 16px 48px rgba(0, 0, 0, 0.60);
+}
+
+/* ⚠️ SAÍRAM da v1, não recriar:
+   --shadow-glass, --shadow-glass-hover, --shadow-lift,   [v1-doc]
+   --glow-ouro-sm/md/lg e todo backdrop-filter.           [v1-doc]
+   O --glow-violeta-* virou --brilho-violeta-*.              */

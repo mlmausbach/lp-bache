@@ -1,0 +1,192 @@
+/* ============================================================
+   BÄCHE DESIGN SYSTEM — Color Tokens v2 · "Irmãs"
+   Decidido em 2026-08-25 olhando mockup
+   (_Mockups/01-IRMAS-display-e-ouro.png e 02-CLARO-papel-e-reserva.png).
+
+   Substitui a paleta v1 (violeta + OURO, base --noite, glass).  [v1-doc]
+   NÃO apagar colors.css: peça anterior a 25/08/2026 ainda lê a v1.
+
+   Rumo: IRMÃ da marca pessoal do Murillo. Mesmo esqueleto,
+   matiz e papel separados. O preto é IDÊNTICO ao dela — é a cola.
+   A Bäche é CLARO-PADRÃO; a marca pessoal é ESCURO-PADRÃO.
+   ============================================================ */
+
+:root {
+  /* ══════════════════════════════════════════════════════════
+     PALETA — 4 oficiais + 3 derivadas. Sem exceção.
+  ══════════════════════════════════════════════════════════ */
+  --violeta:  #7B35CE;   /* PRIMARY — a única cor forte           */
+  --preto:    #08080A;   /* BASE escura. Igual à da marca pessoal */
+  --papel:    #F6F5FB;   /* PAPEL — fundo padrão da Bäche         */
+  --nevoa:    #E8E6F5;   /* SUPERFÍCIE no claro. Texto no escuro  */
+
+  /* ── Derivadas (sem cor nova) ─────────────────────────── */
+  --surface:       #15131E;  /* superfície no escuro. Sobrevive da v1 */
+  --violeta-deep:  #5A1FA3;  /* 2º segmento do botão, pressionado     */
+  --violeta-light: #A865F0;  /* VIOLETA DE TEXTO NO ESCURO. Ver abaixo */
+
+  --violeta-suave: rgba(123, 53, 206, 0.10);
+  --violeta-glow:  rgba(123, 53, 206, 0.30);
+
+  /* ══════════════════════════════════════════════════════════
+     MODO CLARO — É O PADRÃO DA BÄCHE.
+     Site, proposta, laudo, apresentação, e-mail, miolo de
+     carrossel. Público é clínica e médico: o gênero que essa
+     audiência reconhece é DOCUMENTO.
+
+     ⚠️ Use SEMPRE --fundo/--superficie em background, nunca
+     --papel/--preto direto: é isso que faz o modo trocar.
+  ══════════════════════════════════════════════════════════ */
+  --fundo:       var(--papel);
+  --superficie:  var(--nevoa);
+
+  --texto:        var(--preto);
+  --texto-medio:  rgba(8, 8, 10, 0.66);
+  --texto-fraco:  rgba(8, 8, 10, 0.46);
+  --texto-marca:  var(--violeta);        /* 5.97:1 sobre papel ✅ */
+
+  /* ── Linhas — a grade é visível, essa é a régua ───────── */
+  --linha:       rgba(8, 8, 10, 0.16);   /* divisor de seção */
+  --linha-fina:  rgba(8, 8, 10, 0.10);   /* divisor interno  */
+  --linha-grade: rgba(8, 8, 10, 0.07);   /* régua de coluna  */
+
+  /* ── Ação ────────────────────────────────────────────── */
+  --acao:         var(--violeta);
+  --acao-texto:   var(--nevoa);   /* névoa sobre violeta. NUNCA preto. */
+  --acao-2:       var(--violeta-deep);
+  --acao-2-texto: var(--nevoa);
+
+  /* ── Bloco de ênfase (o realce do título) ────────────── */
+  --bloco:       var(--violeta);
+  --bloco-texto: var(--nevoa);
+
+  --foco: 0 0 0 2px var(--fundo), 0 0 0 4px var(--violeta);
+}
+
+/* ══════════════════════════════════════════════════════════
+   MODO ESCURO — RESERVADO. Cinco peças, nomeadas:
+   capa de carrossel · thumbnail de reel · story ·
+   abertura de apresentação · manifesto.
+   Aplique .escuro no container ou no <body>.
+
+   ⚠️ A REGRA QUE INVERTE: no claro o violeta puro é texto
+   legível (5.97:1 sobre papel). No escuro ele NÃO É:
+   3.09:1 sobre preto, 2.84:1 sobre surface. Aqui o violeta
+   de texto é --violeta-light (5.51:1), e o --violeta puro
+   só vive em área chapada e display ≥ 24px bold.
+
+   É o espelho da marca pessoal: lá o rosa funciona no escuro
+   e ESCURECE pra --rosa-esc no claro. Aqui o violeta funciona
+   no claro e CLAREIA pra --violeta-light no escuro.
+   Mesmo mecanismo, direção oposta.
+══════════════════════════════════════════════════════════ */
+.escuro {
+  --fundo:       var(--preto);
+  --superficie:  var(--surface);
+
+  --texto:        var(--nevoa);
+  --texto-medio:  rgba(232, 230, 245, 0.66);
+  --texto-fraco:  rgba(232, 230, 245, 0.42);
+  --texto-marca:  var(--violeta-light);   /* NÃO --violeta: 3.09:1 */
+
+  --linha:       rgba(232, 230, 245, 0.14);
+  --linha-fina:  rgba(232, 230, 245, 0.09);
+  --linha-grade: rgba(232, 230, 245, 0.07);
+
+  --acao:         var(--violeta);
+  --acao-texto:   var(--nevoa);
+  --acao-2:       var(--violeta-deep);
+  --acao-2-texto: var(--nevoa);
+
+  background: var(--fundo);
+  color: var(--texto);
+}
+
+/* ══════════════════════════════════════════════════════════
+   MODO VIOLETA — faixa de destaque, bloco de abertura,
+   corte de seção. Violeta chapado com névoa por cima.
+   Funciona igual nos dois modos: é a ponte entre eles.
+   ⚠️ Sujeito ao dial 1: teto de ~15% da área da peça.
+══════════════════════════════════════════════════════════ */
+.violeta {
+  --fundo:       var(--violeta);
+  --superficie:  var(--violeta-deep);
+
+  --texto:        var(--nevoa);
+  --texto-medio:  rgba(232, 230, 245, 0.78);
+  --texto-fraco:  rgba(232, 230, 245, 0.58);
+  --texto-marca:  var(--nevoa);
+
+  --linha:       rgba(232, 230, 245, 0.28);
+  --linha-fina:  rgba(232, 230, 245, 0.18);
+  --linha-grade: rgba(232, 230, 245, 0.12);
+
+  --acao:         var(--nevoa);
+  --acao-texto:   var(--violeta);
+  --acao-2:       var(--preto);
+  --acao-2-texto: var(--nevoa);
+
+  background: var(--fundo);
+  color: var(--texto);
+}
+
+/* ══════════════════════════════════════════════════════════
+   CONTRASTE — medido em WCAG 2.1, não estimado
+   ─────────────────────────────────────────────────────────
+   ── modo claro (papel #F6F5FB) ─────────────────────────
+   preto        sobre papel     18.46:1  ✅ qualquer tamanho
+   preto        sobre névoa     16.26:1  ✅ qualquer tamanho
+   violeta      sobre papel      5.97:1  ✅ corpo
+   violeta      sobre névoa      5.26:1  ✅ corpo
+   violeta-deep sobre papel      8.97:1  ✅ qualquer tamanho
+
+   ── modo escuro (preto #08080A) ────────────────────────
+   névoa         sobre preto    16.26:1  ✅ qualquer tamanho
+   névoa         sobre surface  14.92:1  ✅ qualquer tamanho
+   violeta-light sobre preto     5.51:1  ✅ corpo
+   violeta-light sobre surface   5.06:1  ✅ corpo
+   violeta       sobre preto     3.09:1  ❌ PROIBIDO em corpo
+                                         ⚠️  só bloco e display ≥24px bold
+   violeta       sobre surface   2.84:1  ❌ PROIBIDO, ponto
+
+   ── bloco violeta chapado ──────────────────────────────
+   névoa  sobre violeta          5.26:1  ✅ corpo
+   preto  sobre violeta          3.09:1  ❌ PROIBIDO
+══════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════════
+   REGRAS DURAS
+   1. --violeta CHAPADO, --violeta-light ESCRITO. No escuro,
+      rótulo, dado e link em violeta usam --violeta-light.
+   2. Texto sobre violeta é SEMPRE névoa. Preto sobre violeta
+      dá 3.09:1 e some. É a regra INVERTIDA da marca pessoal,
+      onde texto sobre rosa é sempre preto. Não é copiável.
+   3. UMA COR FORTE SÓ. Ouro, lima e laranja estão fora.
+      O ouro saiu em 25/08: ele existia pra cobrir o buraco
+      do violeta no escuro, não pra acrescentar significado.
+   4. Botão: raio 6px, dois segmentos (rótulo + seta).
+      Pill é geometria da v1.
+   5. Violeta em área chapada e grande. Não em fiapo decorativo,
+      e nunca acima do teto de 15% da peça.
+══════════════════════════════════════════════════════════ */
+
+/* ── ESCALA VIOLETA ──────────────────────────────────────── */
+:root {
+  --violeta-100: #EDE1FA;
+  --violeta-300: #C39CEE;
+  --violeta-500: #7B35CE;   /* ≈ --violeta       */
+  --violeta-700: #5A1FA3;   /* ≈ --violeta-deep  */
+  --violeta-900: #2E0F55;
+}
+
+/* ── ESCALA NEUTRA — calibrada pro preto real ───────────── */
+:root {
+  --neutro-950: #08080A;   /* ≈ --preto   */
+  --neutro-900: #15131E;   /* ≈ --surface */
+  --neutro-800: #221F2E;
+  --neutro-700: #332F42;
+  --neutro-500: #6E6981;
+  --neutro-300: #A9A5B8;
+  --neutro-100: #E8E6F5;   /* ≈ --nevoa   */
+  --neutro-50:  #F6F5FB;   /* ≈ --papel   */
+}

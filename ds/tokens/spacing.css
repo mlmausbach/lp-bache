@@ -1,0 +1,59 @@
+/* ============================================================
+   BÄCHE DESIGN SYSTEM — Spacing, Radius & Z-Index v2
+   Grade de 8pt. A escala de espaço não muda em relação à v1.
+   O que muda é o RAIO: pill sai, raio 6 entra.
+   (A v1 tinha o bloco de section sizing duplicado. Aqui é único.)
+   ============================================================ */
+
+:root {
+  /* ── Espaço — grade de 8pt ───────────────────────────── */
+  --space-0: 0px;      --space-0-5: 4px;   --space-1: 8px;
+  --space-1-5: 12px;   --space-2: 16px;    --space-2-5: 20px;
+  --space-3: 24px;     --space-4: 32px;    --space-5: 40px;
+  --space-6: 48px;     --space-7: 56px;    --space-8: 64px;
+  --space-9: 72px;     --space-10: 80px;   --space-11: 88px;
+  --space-12: 96px;    --space-14: 112px;  --space-15: 120px;
+  --space-16: 128px;   --space-18: 144px;  --space-20: 160px;
+
+  /* ── Seção ───────────────────────────────────────────── */
+  --section-y:    120px;
+  --section-y-sm:  80px;
+  --section-x:     48px;
+  --section-x-sm:  24px;
+  --content-max: 1100px;
+  --content-wide:1200px;
+
+  /* ── Peça de arte ────────────────────────────────────── */
+  --peca-pad:   88px;   /* margem interna de peça 1080px          */
+  --peca-col:  248px;   /* passo da régua de coluna, 4 colunas    */
+
+  /* ══════════════════════════════════════════════════════
+     RAIO — a mudança da v2.
+     A regra da v1 dizia "botão, tag e badge SEMPRE pill
+     (--radius-full)". É o oposto do que vale agora.
+  ══════════════════════════════════════════════════════ */
+  --raio-btn:  6px;    /* botão. Idêntico ao da marca pessoal  */
+  --raio-tag:  4px;    /* tag, badge, etiqueta                 */
+  --raio-card: 6px;    /* card. Mesmo raio do botão            */
+
+  --radius-none: 0;    /* tabela, documento, grade editorial   */
+  --radius-xs:   2px;  /* trilho de barra                      */
+  --radius-sm:   4px;
+  --radius-md:   6px;
+  --radius-lg:  12px;  /* modal, painel                        */
+
+  /* ⚠️ --radius-full (9999px) SAIU do vocabulário. Pill é
+     geometria da v1, reprovada olhando mockup. Sobra só pra
+     avatar redondo, onde 50% é o correto.                    */
+  --raio-avatar: 50%;
+
+  /* ── Z-Index ─────────────────────────────────────────── */
+  --z-below: -1;    --z-base: 0;      --z-raised: 10;
+  --z-overlay: 20;  --z-dropdown: 30; --z-sticky: 40;
+  --z-fixed: 50;    --z-backdrop: 60; --z-modal: 70;
+  --z-popover: 80;  --z-toast: 90;    --z-tooltip: 100;
+
+  /* ── Breakpoints (referência) ────────────────────────── */
+  --bp-xs: 480px;  --bp-sm: 640px;  --bp-md: 768px;
+  --bp-lg: 1024px; --bp-xl: 1280px; --bp-2xl: 1536px;
+}

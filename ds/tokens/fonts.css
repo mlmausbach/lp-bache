@@ -1,0 +1,22 @@
+/* ============================================================
+   bache.com.br · a única peça do DS que não é cópia byte a byte.
+
+   O tokens/fonts.css do Drive declara 13 faces em .otf e .woff2
+   cheios, perto de 1 MB. O site carrega só as 7 faces que usa,
+   subsetadas para latim em woff2 com o fontTools (15/09/2026).
+   Família e peso são os mesmos do DS, então nenhum token muda.
+   Paths resolvem de tokens/ para ../assets/fonts/, como no DS.
+   ============================================================ */
+
+/* ── INTERNACIONAL · título e número grande ─────────────── */
+@font-face{font-family:'Internacional';src:url('../assets/fonts/Internacional-Black.woff2') format('woff2');font-weight:900;font-style:normal;font-display:swap}
+@font-face{font-family:'Internacional';src:url('../assets/fonts/Internacional-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+
+/* ── SATOSHI · corpo e UI ───────────────────────────────── */
+@font-face{font-family:'Satoshi';src:url('../assets/fonts/Satoshi-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Satoshi';src:url('../assets/fonts/Satoshi-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Satoshi';src:url('../assets/fonts/Satoshi-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+
+/* ── JETBRAINS MONO · estrutura ─────────────────────────── */
+@font-face{font-family:'JetBrains Mono';src:url('../assets/fonts/JetBrainsMono-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('../assets/fonts/JetBrainsMono-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}

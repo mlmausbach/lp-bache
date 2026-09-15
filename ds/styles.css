@@ -1,0 +1,310 @@
+/* ============================================================
+   BÄCHE DESIGN SYSTEM v2 — "Irmãs"
+   Ponto de entrada. Importa os tokens na ordem correta e traz
+   os componentes prontos. Quem der @import aqui recebe a v2.
+
+   Violeta #7B35CE sobre papel #F6F5FB. Internacional + Satoshi
+   + JetBrains Mono. CLARO É O PADRÃO; .escuro é reservado a
+   capa, thumbnail, story, abertura e manifesto.
+
+   Irmã do Design System da marca pessoal do Murillo: mesmo
+   esqueleto (preto real, grade à vista, mono estrutural,
+   chapado, raio 6, botão de dois segmentos, faixa de dados),
+   matiz e papel separados.
+
+   A v1 (violeta + ouro, --noite, glass, orbe, grão, pill)   [v1-doc]
+   está em styles-v1.css e só serve pra peça anterior a
+   25/08/2026.
+   ============================================================ */
+
+@import url('./tokens/fonts.css');
+@import url('./tokens/colors.css');
+@import url('./tokens/typography.css');
+@import url('./tokens/spacing.css');
+@import url('./tokens/shadows.css');
+@import url('./tokens/animation.css');
+
+/* ── Reset mínimo ────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte-corpo);
+  font-weight: var(--peso-regular);
+  line-height: var(--lh-relaxed);
+  letter-spacing: var(--track-corpo);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--fonte-display);
+  font-weight: var(--peso-display);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--track-display);
+}
+h1 { font-size: var(--txt-4xl); }
+h2 { font-size: var(--txt-3xl); }
+h3 { font-size: var(--txt-2xl); }
+h4 { font-size: var(--txt-xl); }
+
+p { max-width: 64ch; }
+
+/* Trecho de código e nome de token leem em mono. É o mesmo
+   papel estrutural da mono no resto do sistema.            */
+code, kbd, samp { font-family: var(--fonte-mono); font-size: 0.92em; }
+
+a { color: var(--texto-marca); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+/* botão, tag e card são superfície, não link de texto. Sem isso
+   o botão do sistema sai sublinhado e diferente do do site.    */
+.btn, .tag, .card { text-decoration: none; }
+
+img { max-width: 100%; height: auto; }
+ul, ol { list-style: none; }
+
+::selection { background: var(--violeta); color: var(--nevoa); }
+:focus-visible { outline: 2px solid var(--violeta); outline-offset: 3px; border-radius: var(--radius-xs); }
+
+/* ══════════════════════════════════════════════════════════
+   GRADE À VISTA
+   Régua de coluna. Assinatura estrutural das duas marcas,
+   não decoração. Some abaixo de 900px pra não virar sujeira.
+══════════════════════════════════════════════════════════ */
+.grade { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.grade span { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--linha-grade); }
+@media (max-width: 900px) { .grade { display: none; } }
+
+/* ══════════════════════════════════════════════════════════
+   BOTÃO — raio 6px, DOIS segmentos
+   Nunca pill, nunca canto vivo. Markup:
+   <a class="btn"><span>Rótulo</span><span>&rarr;</span></a>
+══════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; height: 56px; border-radius: var(--raio-btn);
+  overflow: hidden; border: 0; cursor: pointer; padding: 0;
+  transition: transform var(--dur-normal) var(--ease-out),
+              box-shadow var(--dur-normal) var(--ease-out);
+}
+.btn > span:first-child {
+  display: flex; align-items: center; gap: 10px; padding: 0 26px;
+  font-family: var(--fonte-mono); font-weight: var(--peso-bold);
+  font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+  white-space: nowrap; background: var(--acao); color: var(--acao-texto);
+}
+.btn > span:last-child {
+  width: 58px; display: flex; align-items: center; justify-content: center;
+  font-size: 20px; background: var(--acao-2); color: var(--acao-2-texto);
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+/* Dial 5: sobe reto e desacelera. Sem rotação, sem mola. */
+.btn:hover { transform: translateY(-2px); box-shadow: var(--brilho-violeta-md); }
+.btn:hover > span:last-child { background: var(--preto); color: var(--nevoa); }
+.btn:active { transform: translateY(0); }
+.btn svg { width: 17px; height: 17px; flex: none; }
+
+.btn-vazado > span:first-child { background: transparent; color: var(--texto); box-shadow: inset 0 0 0 1px var(--linha); }
+.btn-vazado > span:last-child  { background: transparent; color: var(--texto-marca); box-shadow: inset 0 0 0 1px var(--linha); }
+.btn-vazado:hover > span:first-child { background: var(--violeta); color: var(--nevoa); box-shadow: none; }
+.btn-vazado:hover > span:last-child  { background: var(--violeta-deep); color: var(--nevoa); box-shadow: none; }
+
+/* No modo violeta os dois segmentos precisam continuar
+   distintos: névoa + preto. Violeta sobre violeta some.     */
+.violeta .btn > span:first-child { background: var(--nevoa); color: var(--violeta); }
+.violeta .btn > span:last-child  { background: var(--preto); color: var(--nevoa); }
+
+/* ══════════════════════════════════════════════════════════
+   TAG / ETIQUETA — raio 4
+══════════════════════════════════════════════════════════ */
+.tag {
+  display: inline-flex; align-items: center;
+  font-family: var(--fonte-mono); font-weight: var(--peso-bold);
+  font-size: 11px; text-transform: uppercase; letter-spacing: var(--track-micro);
+  padding: 5px 10px; border-radius: var(--raio-tag);
+  background: var(--violeta); color: var(--nevoa);
+}
+.tag-vazada { background: transparent; color: var(--texto-marca); box-shadow: inset 0 0 0 1px var(--linha); }
+
+/* ══════════════════════════════════════════════════════════
+   OLHO — rótulo de seção, em mono
+   ⚠️ Dial 4: na Bäche o olho é rótulo, não é olho gritado.
+══════════════════════════════════════════════════════════ */
+.olho {
+  display: block;
+  font-family: var(--fonte-mono); font-weight: var(--peso-bold);
+  font-size: 14px; letter-spacing: var(--track-olho);
+  text-transform: uppercase; color: var(--texto-marca);
+}
+
+/* ══════════════════════════════════════════════════════════
+   CARD — raio 6, separa por FILETE E TOM, nunca por sombra
+   nem por blur. Filete violeta entra no hover, de cima
+   pra baixo, no mesmo gesto do índice numerado.
+══════════════════════════════════════════════════════════ */
+.card {
+  position: relative; display: block; padding: 32px;
+  border-radius: var(--raio-card);
+  background: var(--superficie); color: var(--texto);
+  box-shadow: var(--filete);
+  transition: transform var(--dur-normal) var(--ease-out),
+              box-shadow var(--dur-normal) var(--ease-out);
+}
+.card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--violeta); border-radius: var(--raio-card) 0 0 var(--raio-card);
+  transform: scaleY(0); transform-origin: top;
+  transition: transform var(--dur-normal) var(--ease-out);
+}
+.card:hover { transform: translateY(-2px); box-shadow: var(--filete-forte), var(--sombra-md); }
+.card:hover::before { transform: scaleY(1); }
+.card h4 { margin-bottom: 10px; }
+.card p  { color: var(--texto-medio); font-size: var(--txt-base); }
+
+/* ══════════════════════════════════════════════════════════
+   ÍNDICE NUMERADO — os 4E, as rotas, os degraus
+   O número em mono é o que faz a lista ler como protocolo.
+══════════════════════════════════════════════════════════ */
+.indice { display: flex; flex-direction: column; }
+.indice li {
+  display: grid; grid-template-columns: 78px 1fr; gap: 26px;
+  padding: 22px 0; border-top: 1px solid var(--linha-fina);
+}
+.indice li:last-child { border-bottom: 1px solid var(--linha-fina); }
+.indice .n {
+  font-family: var(--fonte-mono); font-weight: var(--peso-bold);
+  font-size: 26px; letter-spacing: var(--track-dado);
+  color: var(--texto-marca); line-height: 1.2;
+}
+.indice .t { display: block; font-family: var(--fonte-display); font-weight: var(--peso-bold);
+  font-size: var(--txt-xl); letter-spacing: var(--track-display); line-height: 1.2; }
+.indice .d { display: block; color: var(--texto-medio); font-size: var(--txt-base); margin-top: 6px; }
+
+/* ══════════════════════════════════════════════════════════
+   DADO — número grande com leitura. Número em MONO, não em
+   display: é o que separa dado de manchete.
+══════════════════════════════════════════════════════════ */
+.dado { display: flex; align-items: flex-end; gap: 20px;
+  padding-top: 26px; border-top: 1px solid var(--linha-fina); }
+.dado b {
+  font-family: var(--fonte-mono); font-weight: var(--peso-bold);
+  font-size: 56px; line-height: 0.8; letter-spacing: -0.04em;
+  color: var(--texto-marca);
+}
+.dado span {
+  font-family: var(--fonte-mono); font-weight: var(--peso-medium);
+  font-size: 15px; line-height: 1.4; letter-spacing: var(--track-dado);
+  text-transform: uppercase; color: var(--texto-fraco);
+  max-width: 24ch; padding-bottom: 3px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   FAIXA DE DADOS — rodapé de três células, em mono.
+   Mesmo componente na peça de rede e no documento. É o item
+   que a Bäche e a marca pessoal têm literalmente igual.
+══════════════════════════════════════════════════════════ */
+.faixa {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px;
+  padding-top: 26px; border-top: 1px solid var(--linha);
+  font-family: var(--fonte-mono); font-weight: var(--peso-medium);
+  font-size: 15px; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.faixa > :nth-child(1) { color: var(--texto-fraco); }
+.faixa > :nth-child(2) { color: var(--texto-marca); font-weight: var(--peso-bold); }
+.faixa > :nth-child(3) { color: var(--texto-fraco); opacity: .7; text-align: right; }
+
+/* ══════════════════════════════════════════════════════════
+   ÊNFASE — bloco violeta chapado com texto névoa.
+   Substitui o itálico em ouro da v1.
+   ⚠️ Precisa de line-height >= 1.13 no título, senão o bloco
+   come o descendente da linha de cima.
+══════════════════════════════════════════════════════════ */
+mark, .marca {
+  background: var(--bloco, var(--violeta)); color: var(--bloco-texto, var(--nevoa));
+  padding: 0 0.14em; border-radius: var(--raio-btn);
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+
+/* ⚠️ Título que CONTÉM realce abre a entrelinha. Sem isto o bloco da linha
+   de baixo é pintado por cima do descendente da linha de cima e a cedilha
+   e o "p" somem. O valor vem de medida, não de gosto: ver --lh-marcado em
+   tokens/typography.css. Título sem realce fica em --lh-tight. */
+h1:has(mark), h2:has(mark), h3:has(mark), h4:has(mark),
+h1:has(em),   h2:has(em),   h3:has(em),   h4:has(em),
+.tipo-titulo:has(mark), .tipo-titulo:has(em) { line-height: var(--lh-marcado); }
+.escuro mark, .escuro .marca { background: var(--violeta); color: var(--nevoa); }
+.violeta mark, .violeta .marca { background: var(--nevoa); color: var(--violeta); }
+
+/* O <em> dentro de titulo recebe o MESMO tratamento do <mark>.
+   Na v1 a enfase canonica era italico em ouro; ela morreu com o ouro, mas o
+   <em> continua espalhado por peca e template antigos. Sem esta regra o browser
+   inclina a Internacional por conta propria e a peca sai com a enfase da v1.
+   Italico da Internacional sobrevive so em citacao dentro de corpo, sem cor. */
+h1 em, h2 em, h3 em, h4 em, .tipo-titulo em {
+  font-style: normal;
+  background: var(--bloco, var(--violeta)); color: var(--bloco-texto, var(--nevoa));
+  padding: 0.03em 0.13em 0.05em; border-radius: var(--raio-btn);
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+.escuro h1 em, .escuro h2 em, .escuro h3 em, .escuro h4 em { background: var(--violeta); color: var(--nevoa); }
+.violeta h1 em, .violeta h2 em, .violeta h3 em, .violeta h4 em { background: var(--nevoa); color: var(--violeta); }
+
+/* ══════════════════════════════════════════════════════════
+   ETAPA — bloco de fase do Método 4E. Filete violeta à
+   esquerda, rótulo em mono, porta de saída no pé.
+══════════════════════════════════════════════════════════ */
+.etapa {
+  position: relative; padding: 26px 30px 26px 34px;
+  background: var(--superficie); border-radius: 0 var(--raio-card) var(--raio-card) 0;
+  border-left: 3px solid var(--violeta);
+}
+.etapa .r { font-family: var(--fonte-mono); font-weight: var(--peso-bold);
+  font-size: 12px; letter-spacing: var(--track-micro); text-transform: uppercase;
+  color: var(--texto-marca); display: block; margin-bottom: 8px; }
+.etapa .porta { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--linha-fina);
+  font-size: var(--txt-base); color: var(--texto-medio); }
+/* Em público escreve-se PORTA DE SAÍDA, nunca "Gate". */
+
+/* ══════════════════════════════════════════════════════════
+   TABELA DE DOCUMENTO — scorecard, comparativo, laudo.
+   Canto reto de propósito: densidade editorial.
+══════════════════════════════════════════════════════════ */
+.tabela { width: 100%; border-collapse: collapse; }
+.tabela th {
+  font-family: var(--fonte-mono); font-weight: var(--peso-bold);
+  font-size: 12px; letter-spacing: var(--track-micro); text-transform: uppercase;
+  color: var(--texto-fraco); text-align: left; padding: 0 0 12px;
+  border-bottom: 1px solid var(--linha);
+}
+.tabela th.num, .tabela td.num { text-align: right; width: 76px; }
+.tabela td {
+  padding: 14px 0; border-bottom: 1px solid var(--linha-fina);
+  font-size: var(--txt-lg); letter-spacing: var(--track-corpo); vertical-align: middle;
+}
+.tabela td.num {
+  font-family: var(--fonte-mono); font-weight: var(--peso-bold);
+  font-size: var(--txt-lg); letter-spacing: 0.02em;
+}
+.tabela tr.corte td:first-child { font-weight: var(--peso-bold); }
+.tabela tr.corte td.num { color: var(--texto-marca); }
+
+.trilho { height: 10px; background: var(--superficie); border-radius: var(--radius-xs);
+  overflow: hidden; box-shadow: var(--filete); }
+.trilho i { display: block; height: 100%; background: var(--violeta); }
+
+/* ══════════════════════════════════════════════════════════
+   SYMBOL — assinatura de peça
+   Máscara CSS, não <img>: assim o símbolo troca de cor sozinho
+   por modo, sem variante de arquivo.
+   ⚠️ Depende de assets/SVG/SYMBOL-BACHE-2026.svg, que AINDA
+   NÃO EXISTE — o favicon.svg de hoje traz o símbolo dentro de
+   um quadrado violeta. Ver §08 do spec.
+   ⚠️ Não serve pra e-mail: cliente de e-mail não roda máscara.
+   aria-label obrigatório: máscara não tem alt.
+══════════════════════════════════════════════════════════ */
+.symbol {
+  display: inline-block; height: 1em; width: 1em;
+  background: var(--texto);
+  mask: url('./assets/SVG/SYMBOL-BACHE-2026.svg') no-repeat center / contain;
+  -webkit-mask: url('./assets/SVG/SYMBOL-BACHE-2026.svg') no-repeat center / contain;
+}

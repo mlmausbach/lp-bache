@@ -84,8 +84,9 @@ export async function lead(request, env) {
     nMedicos: texto(c.nMedicos, 80),
     papel: texto(c.papel, 80),
     faturamento: texto(c.faturamento, 80),
-    marketing: texto(c.marketing, 80),
-    conteudo: texto(c.conteudo, 80),
+    orcamentos: texto(c.orcamentos, 80),
+    origem: texto(c.origem, 80),
+    nota: texto(c.nota, 80),
     gargalo: texto(c.gargalo, 120),
   };
   const digitos = lead.whatsapp.replace(/\D/g, '');
@@ -114,14 +115,17 @@ export async function lead(request, env) {
     `Nome: ${lead.nome}`, `WhatsApp: ${lead.whatsapp}`, `E-mail: ${lead.email}`,
     `Cidade: ${ou(lead.cidade)}`, `Especialidade(s): ${ou(lead.especialidade)}`, '',
   ];
+  /* As perguntas seguem o templates/01: a faixa nos pisos do 16-OFERTAS (o
+     médico é medido pelos orçamentos) e os dois sinais de competência. */
   if (clinica) {
-    linhas.push(`Nº de médicos: ${ou(lead.nMedicos)}`, `Papel: ${ou(lead.papel)}`,
-      `Faturamento da clínica: ${ou(lead.faturamento)}`, `Marketing: ${ou(lead.marketing)}`);
+    linhas.push(`Profissionais: ${ou(lead.nMedicos)}`, `Papel: ${ou(lead.papel)}`,
+      `Faturamento da clínica por mês: ${ou(lead.faturamento)}`);
   } else {
-    linhas.push(`Atendimento: ${ou(lead.atendimento)}`, `Onde atua: ${ou(lead.onde)}`,
-      `Faturamento particular: ${ou(lead.faturamento)}`, `Conteúdo/câmera: ${ou(lead.conteudo)}`);
+    linhas.push(`Atendimento: ${ou(lead.atendimento)}`, `Onde atende: ${ou(lead.onde)}`,
+      `Orçamentos por mês: ${ou(lead.orcamentos)}`);
   }
-  linhas.push(`Maior gargalo: ${ou(lead.gargalo)}`);
+  linhas.push(`Pacientes novos vêm de: ${ou(lead.origem)}`, `Nota no Google: ${ou(lead.nota)}`,
+    `Onde a receita trava: ${ou(lead.gargalo)}`);
 
   const cabecalho = { Authorization: env.CLICKUP_TOKEN, 'Content-Type': 'application/json' };
 

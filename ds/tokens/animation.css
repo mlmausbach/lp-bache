@@ -1,0 +1,53 @@
+/* ============================================================
+   BÄCHE DESIGN SYSTEM — Animation & Transition v2
+
+   DIAL 5: a Bäche CORTA RETO e DESACELERA SECO. Zero mola.
+   A mola (cubic-bezier .34 1.56 .64 1) é a assinatura de
+   movimento da MARCA PESSOAL — é ela que faz o gesto ler como
+   pessoa. Empresa que atende médico não quica.
+
+   O token de mola continua no arquivo, porque componente de
+   terceiro pode pedir, mas SAI do vocabulário de marca da
+   Bäche: nenhum componente deste sistema o usa.
+   ============================================================ */
+
+:root {
+  /* ── Durações ────────────────────────────────────────── */
+  --dur-instant: 0ms;
+  --dur-fast:    150ms;
+  --dur-normal:  250ms;
+  --dur-slow:    400ms;
+  --dur-slower:  600ms;
+  --dur-reveal:  800ms;
+
+  /* ── Curvas ──────────────────────────────────────────── */
+  --ease-out:        cubic-bezier(0.16, 1, 0.3, 1);      /* padrão da marca */
+  --ease-in:         cubic-bezier(0.4, 0, 1, 1);
+  --ease-in-out:     cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --ease-linear:     linear;
+
+  /* ⚠️ Fora do vocabulário de marca. Não usar em componente
+     da Bäche. Ver dial 5.                                   */
+  --ease-mola: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Presets ─────────────────────────────────────────── */
+  --transicao-fast: all var(--dur-fast)   var(--ease-out);
+  --transicao-base: all var(--dur-normal) var(--ease-out);
+  --transicao-slow: all var(--dur-slow)   var(--ease-out);
+
+  /* ── Stagger ─────────────────────────────────────────── */
+  --delay-1: 0.08s; --delay-2: 0.16s; --delay-3: 0.24s;
+  --delay-4: 0.32s; --delay-5: 0.40s; --delay-6: 0.48s;
+}
+
+/* Reveal de scroll: opacidade + 40px, 0.8s, stagger 0.08s.
+   Continua igual à v1. É o movimento certo e já era seco.   */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

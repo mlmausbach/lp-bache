@@ -1,0 +1,128 @@
+/* ============================================================
+   BÄCHE DESIGN SYSTEM — Typography Tokens v2
+   Internacional (título) + Satoshi (corpo) + JetBrains Mono (estrutura)
+
+   A escala e o tracking da v1 sobrevivem inteiros. O que muda:
+   a MONO ganha função estrutural, e o itálico em ouro morre
+   junto com o ouro.
+   ============================================================ */
+
+:root {
+  /* ── Famílias ────────────────────────────────────────── */
+  --fonte-display: 'Internacional', 'Helvetica Neue', Arial, sans-serif;
+  --fonte-corpo:   'Satoshi', 'Helvetica Neue', Arial, sans-serif;
+  --fonte-mono:    'JetBrains Mono', ui-monospace, 'Fira Code', monospace;
+
+  /* ── Tracking ────────────────────────────────────────── */
+  --track-display: -0.050em;   /* Internacional: -50, spec de marca */
+  --track-tight:   -0.040em;
+  --track-corpo:   -0.025em;   /* Satoshi: -25, padrão de corpo     */
+  --track-normal:   0em;
+  --track-olho:     0.200em;   /* olho em mono, caixa alta          */
+  --track-micro:    0.140em;   /* índice e rótulo pequeno em mono   */
+  --track-dado:     0.060em;   /* número e label de dado em mono    */
+
+  /* ── Escala de texto — terça maior (×1.250), base 16px ─ */
+  --txt-xs:   10.24px;
+  --txt-sm:   12.80px;
+  --txt-base: 16.00px;
+  --txt-lg:   20.00px;
+  --txt-xl:   25.00px;
+  --txt-2xl:  31.25px;
+  --txt-3xl:  39.06px;
+  --txt-4xl:  48.83px;
+  --txt-5xl:  61.04px;
+  --txt-6xl:  76.29px;
+
+  /* ── Escala de peça — arte de 1080px de largura ────────
+     Não é continuação da escala acima: são tamanhos de arte.
+     Dial 3: a Bäche para um degrau abaixo da marca pessoal.
+     Título grande sim; cartaz gigante que sangra, não.      */
+  --peca-sm:  64px;
+  --peca-md:  84px;
+  --peca-lg: 104px;
+
+  /* ── Entrelinha ──────────────────────────────────────── */
+  --lh-peca:    1.06;
+  --lh-tight:   1.13;   /* título SEM realce. Internacional aguenta apertado. */
+
+  /* ── ENTRELINHA DE TÍTULO COM REALCE ──────────────────────
+     1.32 não é gosto, é a soma de três medidas da Internacional Black:
+
+       ascendente da caixa   1.060 em
+     + tinta mais funda      0.252 em  (a cedilha, não o "p")
+     = mínimo                1.312 em
+
+     O fundo de um elemento inline ocupa a CAIXA DE CONTEÚDO DA FONTE,
+     que aqui é 1.360 em, e essa altura não muda com a entrelinha. Cada
+     linha pinta fundo e depois texto, na ordem: com entrelinha menor que
+     1.312 o bloco da linha de baixo é pintado POR CIMA do que desceu da
+     linha de cima, e o descendente some.
+
+     A folga no topo da caixa é de só 0.090 em (o acento do Ê sobe a
+     0.970), então aparar o bloco por cima compra quase nada e ainda
+     custa o raio 6. Medido em _Mockups/05-DESCENDENTE-cortado.png.
+
+     Aplicado só onde há realce, via :has() — título sem realce continua
+     em --lh-tight.                                                    */
+  --lh-marcado: 1.32;
+  --lh-snug:    1.25;
+  --lh-normal:  1.50;
+  --lh-relaxed: 1.65;   /* corpo longo */
+  --lh-mono:    1.70;   /* mono precisa respirar mais */
+
+  /* ── Pesos ───────────────────────────────────────────── */
+  --peso-light:    300;
+  --peso-regular:  400;
+  --peso-medium:   500;
+  --peso-semibold: 600;
+  --peso-bold:     700;
+  --peso-display:  900;   /* peso oficial de título: Internacional Black */
+}
+
+/* ── Papéis tipográficos ─────────────────────────────────── */
+.tipo-titulo {
+  font-family: var(--fonte-display); font-weight: var(--peso-display);
+  line-height: var(--lh-tight); letter-spacing: var(--track-display);
+}
+.tipo-numero {
+  font-family: var(--fonte-display); font-weight: var(--peso-display);
+  line-height: 1; letter-spacing: var(--track-display);
+}
+.tipo-olho {
+  font-family: var(--fonte-mono); font-weight: var(--peso-bold);
+  text-transform: uppercase; letter-spacing: var(--track-olho);
+  font-size: var(--txt-sm); color: var(--texto-marca);
+}
+.tipo-corpo {
+  font-family: var(--fonte-corpo); font-weight: var(--peso-regular);
+  line-height: var(--lh-relaxed); letter-spacing: var(--track-corpo);
+}
+.tipo-dado {
+  font-family: var(--fonte-mono); font-weight: var(--peso-medium);
+  letter-spacing: var(--track-dado); line-height: var(--lh-mono);
+}
+.tipo-indice {
+  font-family: var(--fonte-mono); font-weight: var(--peso-bold);
+  text-transform: uppercase; letter-spacing: var(--track-micro);
+  font-size: var(--txt-xs);
+}
+
+/* ══════════════════════════════════════════════════════════
+   REGRAS
+   1. A MONO É ESTRUTURA, NÃO DECORAÇÃO: olho, índice numerado,
+      rótulo de etapa (E1–E4), nota, número de página, etiqueta
+      de prioridade, faixa de dados. Nunca frase inteira, nunca
+      corpo. É ela que faz a peça ler como LAUDO e não como
+      material de agência, e é o componente que a Bäche e a
+      marca pessoal têm literalmente igual.
+   2. Internacional só em título e número grande. Em parágrafo,
+      nunca: é fonte de display.
+   3. ÊNFASE EM TÍTULO É BLOCO VIOLETA CHAPADO, texto névoa,
+      raio 6. O ITÁLICO EM OURO SAI: era a ênfase canônica da v1
+      e morre junto com o ouro. O itálico da Internacional
+      sobrevive só em citação dentro de corpo, sem cor.
+   4. Caixa alta SÓ EM MONO, no olho, no índice e em rótulo de
+      uma palavra. Nunca em Internacional.
+   5. Título em caixa de frase, com ponto final. Exclamação nunca.
+══════════════════════════════════════════════════════════ */
