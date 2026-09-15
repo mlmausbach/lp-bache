@@ -2,17 +2,30 @@
  *
  * Até 15/09/2026 o navegador falava direto com a API do ClickUp, e o token
  * pessoal ficava escrito no HTML público (e no histórico do repo, que é
- * público). Agora o token é secret do Pages (CLICKUP_TOKEN) e só existe
- * dentro desta função, no servidor.
+ * público). Agora o token é secret do Worker (CLICKUP_TOKEN) e só existe
+ * aqui, no servidor.
  *
  * O formulário fala com /api/lead, não com o ClickUp: trocar o destino do
  * lead depois é mexer neste arquivo, não na página.
  */
 
 const API = 'https://api.clickup.com/api/v2';
-const LISTA = '901111231101'; // Sessão Estratégica
-const CAMPO_WHATSAPP = '72a107e8-d809-4417-89bf-1036ce89c88a';
-const CAMPO_EMAIL = 'fd5e499d-be16-4941-b14d-c4bf5dcbe776';
+
+/* A lista "Sessão Estratégica" de junho não existe mais: foi absorvida pela
+   Pipeline Comercial (espaço Comercial), onde já estão os pedidos antigos. */
+const LISTA = '901114014738'; // Pipeline Comercial
+
+const CAMPO_WHATSAPP = '72a107e8-d809-4417-89bf-1036ce89c88a'; // telefone
+const CAMPO_TEMPERATURA = 'db6e7dc9-2dc5-4a9e-aecc-0ff87e80aacd'; // lista suspensa
+const TEMPERATURA = {
+  quente: '41e741c4-dfb6-4780-a93c-002182767592',
+  morno: '050769fb-2fcc-4aad-aa5c-dd0d1fa50671',
+  frio: '6fc03cf9-de82-4751-8248-736ead22b912',
+};
+/* A lista não tem a opção "Site" em Fonte; o pedido pelo site é inbound
+   orgânico, e a descrição da tarefa diz que veio da página. */
+const CAMPO_FONTE = '4820b9b7-0fe3-4e11-9f94-5efa0ee25ecb';
+const FONTE_ORGANICO = '18d19e0c-1642-47f9-b23b-dfa921b2ab6a';
 
 function json(dados, status) {
   return new Response(JSON.stringify(dados), {
@@ -44,9 +57,7 @@ function whatsappInternacional(digitos) {
   return '+55' + digitos;
 }
 
-export async function onRequest({ request, env }) {
-  /* Um handler só. Exportar onRequest e onRequestPost juntos deixa o
-     roteamento do Pages ambíguo. */
+export async function lead(request, env) {
   if (request.method !== 'POST') return json({ ok: false, erro: 'metodo' }, 405);
 
   let c;
@@ -89,8 +100,8 @@ export async function onRequest({ request, env }) {
     return json({ ok: false, erro: 'indisponivel' }, 503);
   }
 
-  /* O score só decide a prioridade da tarefa, então vir do navegador não
-     abre brecha. O fit é recalculado aqui com a mesma régua da página. */
+  /* O score só decide a temperatura e a prioridade da tarefa, então vir do
+     navegador não abre brecha. O fit é recalculado aqui com a régua da página. */
   const score = Number.isFinite(+c.score) ? Math.max(0, Math.min(99, Math.round(+c.score))) : 0;
   const fit = score >= 8 ? 'quente' : (score >= 5 ? 'morno' : 'frio');
   const prioridade = fit === 'quente' ? 1 : (fit === 'morno' ? 2 : 3);
@@ -98,7 +109,7 @@ export async function onRequest({ request, env }) {
   const ou = v => v || '—';
 
   const linhas = [
-    `Lead via Landing Page — ${tipo}`, '',
+    `Pedido de Raio-X pelo site · ${tipo}`, '',
     `Fit: ${fit.toUpperCase()} (score ${score})`, '',
     `Nome: ${lead.nome}`, `WhatsApp: ${lead.whatsapp}`, `E-mail: ${lead.email}`,
     `Cidade: ${ou(lead.cidade)}`, `Especialidade(s): ${ou(lead.especialidade)}`, '',
@@ -120,7 +131,7 @@ export async function onRequest({ request, env }) {
       method: 'POST',
       headers: cabecalho,
       body: JSON.stringify({
-        name: `Sessão Estratégica — ${lead.nome} (${tipo})`,
+        name: `Raio-X · ${lead.nome} (${tipo})`,
         description: linhas.join('\n'),
         priority: prioridade,
       }),
@@ -135,17 +146,15 @@ export async function onRequest({ request, env }) {
 
   const tarefa = await resposta.json().catch(() => null);
   if (tarefa && tarefa.id) {
-    /* Os campos personalizados são conveniência: a descrição já leva
-       WhatsApp e e-mail, então falha aqui não derruba o pedido. */
+    /* Os campos personalizados são conveniência: a descrição já leva tudo,
+       então falha aqui não derruba o pedido. */
+    const campo = (id, value) => fetch(`${API}/task/${tarefa.id}/field/${id}`, {
+      method: 'POST', headers: cabecalho, body: JSON.stringify({ value }),
+    });
     await Promise.allSettled([
-      fetch(`${API}/task/${tarefa.id}/field/${CAMPO_WHATSAPP}`, {
-        method: 'POST', headers: cabecalho,
-        body: JSON.stringify({ value: whatsappInternacional(digitos) }),
-      }),
-      fetch(`${API}/task/${tarefa.id}/field/${CAMPO_EMAIL}`, {
-        method: 'POST', headers: cabecalho,
-        body: JSON.stringify({ value: lead.email }),
-      }),
+      campo(CAMPO_WHATSAPP, whatsappInternacional(digitos)),
+      campo(CAMPO_TEMPERATURA, TEMPERATURA[fit]),
+      campo(CAMPO_FONTE, FONTE_ORGANICO),
     ]);
   }
 

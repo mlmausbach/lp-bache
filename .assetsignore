@@ -1,0 +1,29 @@
+# O Worker publica a raiz do repo como site. Tudo que está aqui fica fora do ar.
+
+# repo, ferramenta e configuração
+.git
+.github
+.gitignore
+.assetsignore
+.claude
+.superpowers
+.worktrees
+.playwright-mcp
+.wrangler
+node_modules
+wrangler.jsonc
+
+# o código do Worker (roda no servidor, não é arquivo do site)
+worker
+functions
+
+# documento interno: spec, plano, brief, modelo de e-mail
+docs
+email-templates
+*.md
+
+# arquivo solto de trabalho que não é do site (o painel tem número de cliente)
+/painel_unit_economics_athlon.html
+/index-framework.html
+/gtm-bache-ga4.json
+/Bäche-Referencia-Web.jpeg

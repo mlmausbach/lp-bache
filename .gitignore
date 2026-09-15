@@ -1,3 +1,12 @@
 .claude/
 .superpowers/
 .worktrees/
+.wrangler/
+.playwright-mcp/
+
+# arquivo de trabalho solto, fora do site (o painel tem número de cliente)
+/painel_unit_economics_athlon.html
+/index-framework.html
+/gtm-bache-ga4.json
+/brief-atualizacao-bache-site.md
+/Bäche-Referencia-Web.jpeg

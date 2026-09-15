@@ -1,0 +1,16 @@
+{
+  // O bache.com.br é o Worker "lp-bache", com o repo publicado como assets.
+  // O push no master dispara o Workers Builds, que roda o deploy com este
+  // arquivo. O nome tem que ser igual ao do Worker no painel.
+  "name": "lp-bache",
+  "main": "worker/index.js",
+  // O runtime local do wrangler 4.114 aceita até 2026-07-29; esta data
+  // deixa o `wrangler dev` rodar igual à produção.
+  "compatibility_date": "2026-07-01",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS"
+  }
+  // O token do ClickUp é secret do Worker (CLICKUP_TOKEN), gravado com
+  // `wrangler secret put`. Nunca entra neste arquivo nem no repo.
+}
