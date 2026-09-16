@@ -3,6 +3,7 @@
 .worktrees/
 .wrangler/
 .playwright-mcp/
+__pycache__/
 
 # arquivo de trabalho solto, fora do site (o painel tem número de cliente)
 /painel_unit_economics_athlon.html

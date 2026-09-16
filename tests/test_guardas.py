@@ -16,7 +16,7 @@ from pagina import RAIZ, ler, texto, todos
 
 PAGINAS = ["index.html", "medicos.html"]
 
-GUARDAS = [r"—", r"\bnós\b", r"\bpremium\b", r"excelência", r"inovação", r"sob medida", r"solução completa",
+GUARDAS = [r"—", r"–", r"\bnós\b", r"\bpremium\b", r"excelência", r"inovação", r"sob medida", r"solução completa",
            r"\bportanto\b", r"\bcontudo\b", r"\btodavia\b", r"\bademais\b", r"\bentretanto\b", r"dessa forma"]
 
 
@@ -56,6 +56,18 @@ class Guardas(unittest.TestCase):
         css = (RAIZ / "assets" / "css" / "site.css").read_text(encoding="utf-8")
         self.assertEqual(re.findall(r"#[0-9a-fA-F]{3,8}\b", css), [])
         self.assertNotIn("rgb(", css)
+
+    def test_guardas_da_voz_no_description(self):
+        for nome in PAGINAS:
+            doc = ler(nome)
+            metas = list(todos(doc, lambda n: n.tag == "meta" and (
+                n.attrs.get("name") == "description" or n.attrs.get("property") == "og:description")))
+            self.assertTrue(metas)
+            for m in metas:
+                t = (m.attrs.get("content") or "").lower()
+                for g in GUARDAS:
+                    with self.subTest(pagina=nome, meta=m.attrs.get("name") or m.attrs.get("property"), guarda=g):
+                        self.assertIsNone(re.search(g, t))
 
 
 if __name__ == "__main__":

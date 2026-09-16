@@ -66,6 +66,14 @@
       if (g.dataset.grupo === 'path') {
         caminho = b.dataset.v;
         form.querySelectorAll('[data-so]').forEach(function (n) { n.hidden = n.dataset.so !== caminho; });
+        /* A troca de caminho pode esconder a opção marcada num grupo já respondido: ela sai do resp também. */
+        form.querySelectorAll('.o-opcoes').forEach(function (og) {
+          var marcado = og.querySelector('.o-op[aria-pressed="true"]');
+          if (marcado && marcado.hidden) {
+            marcado.setAttribute('aria-pressed', 'false');
+            delete resp[og.dataset.grupo];
+          }
+        });
       }
     });
   });
@@ -144,7 +152,8 @@
   }
 
   function enviarPedido() {
-    var f = window.bacheFit(resp);
+    /* Sem o fit.js (falha de rede, bloqueio), o pedido ainda sai, com o fit mais frio. */
+    var f = window.bacheFit ? window.bacheFit(resp) : { fit: 'frio', score: 2 };
     var corpo = {
       path: caminho,
       cidade: valor('rx-cidade'),

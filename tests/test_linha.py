@@ -1,11 +1,27 @@
 """Doc 11, §04 seções 05 e 06, §05 e §07: como funciona, num desenho só."""
 import unittest
 
-from pagina import ler, por_classe, por_id, texto, todos
+from pagina import RAIZ, ler, por_classe, por_id, texto, todos
 
 
 def limpo(t):
     return t.replace("\xa0", " ")
+
+
+def bloco_media(css, largura):
+    """Conteúdo do bloco @media (max-width: <largura>px) { ... }, por contagem de chaves."""
+    marca = f"@media (max-width: {largura}px) {{"
+    i = css.index(marca)
+    ini = i + len(marca)
+    prof = 1
+    j = ini
+    while prof:
+        if css[j] == "{":
+            prof += 1
+        elif css[j] == "}":
+            prof -= 1
+        j += 1
+    return css[ini:j - 1]
 
 
 class LinhaDoTempo(unittest.TestCase):
@@ -74,6 +90,27 @@ class LinhaDoTempo(unittest.TestCase):
         self.assertEqual(por_classe(self.doc, "l-afirmacoes"), [])
         titulos = [texto(h) for h in todos(self.doc, lambda n: n.tag == "h2")]
         self.assertNotIn("O tráfego entra por último.", titulos)
+
+
+class LinhaDoTempoResponsiva(unittest.TestCase):
+    """F1: a linha vertical entra no tablet (até 1100 px), não só no celular (até 900 px)."""
+
+    REGRAS = [
+        ".o-linha__faixas { display: flex; flex-direction: column; gap: 6px; }",
+        ".o-linha__marcos { grid-template-columns: 1fr; margin-left: 6px; border-top: 0; "
+        "border-left: 2px solid var(--texto); }",
+        ".o-marco, .o-marco + .o-marco { padding: 0 0 30px 24px; box-shadow: none; }",
+        ".o-marco::before { top: 3px; left: -7px; }",
+    ]
+
+    def test_regras_no_bloco_de_1100_e_fora_do_900(self):
+        css = (RAIZ / "assets" / "css" / "site.css").read_text(encoding="utf-8")
+        b1100 = bloco_media(css, 1100)
+        b900 = bloco_media(css, 900)
+        for regra in self.REGRAS:
+            with self.subTest(regra=regra):
+                self.assertIn(regra, b1100)
+                self.assertNotIn(regra, b900)
 
 
 if __name__ == "__main__":
