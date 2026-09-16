@@ -14,7 +14,7 @@ import unittest
 
 from pagina import RAIZ, ler, texto, todos
 
-PAGINAS = ["index.html"]
+PAGINAS = ["index.html", "medicos.html"]
 
 GUARDAS = [r"—", r"\bnós\b", r"\bpremium\b", r"excelência", r"inovação", r"sob medida", r"solução completa",
            r"\bportanto\b", r"\bcontudo\b", r"\btodavia\b", r"\bademais\b", r"\bentretanto\b", r"dessa forma"]
