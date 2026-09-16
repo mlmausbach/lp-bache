@@ -70,6 +70,13 @@
     });
   });
 
+  /* Na /medicos o caminho já vem marcado (<body data-caminho="med">). A pessoa ainda pode trocar. */
+  var marcado = d.body.getAttribute('data-caminho');
+  if (marcado) {
+    var op = form.querySelector('.o-opcoes[data-grupo="path"] .o-op[data-v="' + marcado + '"]');
+    if (op) op.click();
+  }
+
   function mostrar() {
     var k = PASSOS[i];
     form.querySelectorAll('.o-passo').forEach(function (p) { p.classList.toggle('is-on', p.dataset.passo === k); });
@@ -92,7 +99,7 @@
     },
     numeros: {
       cli: { grupos: ['fat', 'origem', 'nota', 'gar'] },
-      med: { grupos: ['orc', 'origem', 'nota', 'gar'] }
+      med: { grupos: ['fat', 'origem', 'nota', 'gar'] }
     },
     contato: { campos: ['rx-nome', 'rx-whats', 'rx-email'] }
   };
@@ -120,19 +127,7 @@
     return ok;
   }
 
-  /* O fit decide a temperatura e a prioridade da tarefa. Os pisos são os do
-     16-OFERTAS: R$ 50 mil para o Raio-X, R$ 80 mil para a Instalação; o médico
-     é medido pelos orçamentos. Os dois sinais são os do templates/01. */
-  function calcularFit() {
-    var nivel = caminho === 'cli'
-      ? ({ 'ate-50': 0, '50-80': 1, '80-150': 2, '150+': 2 })[(resp.fat || {}).v]
-      : ({ 'ate-10': 0, '10-30': 1, '30-60': 2, '60+': 2 })[(resp.orc || {}).v];
-    var sinais = ((resp.origem || {}).v === 'indicacao' ? 1 : 0) +
-      (['45+', 'sem'].indexOf((resp.nota || {}).v) >= 0 ? 1 : 0);
-    if (nivel === 2 && sinais === 2) return { fit: 'quente', score: 9 };
-    if (nivel >= 1) return { fit: 'morno', score: 6 };
-    return { fit: 'frio', score: 2 };
-  }
+  /* O fit mora em assets/js/fit.js, que carrega antes deste arquivo. */
   function rotulo(g) { return (resp[g] || {}).rotulo || ''; }
   function valor(id) { var n = el(id); return n ? n.value.trim() : ''; }
 
@@ -149,14 +144,14 @@
   }
 
   function enviarPedido() {
-    var f = calcularFit();
+    var f = window.bacheFit(resp);
     var corpo = {
       path: caminho,
       cidade: valor('rx-cidade'),
       especialidade: caminho === 'cli' ? valor('rx-espec-cli') : valor('rx-espec'),
       nMedicos: rotulo('nmed'), papel: rotulo('papel'),
       atendimento: rotulo('atend'), onde: rotulo('onde'),
-      faturamento: rotulo('fat'), orcamentos: rotulo('orc'),
+      faturamento: rotulo('fat'),
       origem: rotulo('origem'), nota: rotulo('nota'), gargalo: rotulo('gar'),
       nome: valor('rx-nome'), whatsapp: valor('rx-whats'), email: valor('rx-email'),
       score: f.score,

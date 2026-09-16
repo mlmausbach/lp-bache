@@ -563,19 +563,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="o-passo" data-passo="numeros">
         <h2>Os números de hoje</h2>
         <p class="o-sub">Faixa já basta. É com ela que o Raio-X começa pelo lugar certo.</p>
-        <div class="o-campo" data-so="cli"><span class="o-rot" id="rx-l-fat">Faturamento da clínica por mês</span>
+        <div class="o-campo"><span class="o-rot" id="rx-l-fat"><span data-so="cli">Faturamento da clínica por mês</span><span data-so="med">Faturamento do consultório por mês</span></span>
           <div class="o-opcoes" data-grupo="fat" role="group" aria-labelledby="rx-l-fat">
             <button type="button" class="o-op" data-v="ate-50" data-rotulo="Abaixo de R$ 50 mil" aria-pressed="false">Abaixo de R$&nbsp;50 mil</button>
             <button type="button" class="o-op" data-v="50-80" data-rotulo="R$ 50 a 80 mil" aria-pressed="false">R$&nbsp;50 a 80 mil</button>
             <button type="button" class="o-op" data-v="80-150" data-rotulo="R$ 80 a 150 mil" aria-pressed="false">R$&nbsp;80 a 150 mil</button>
             <button type="button" class="o-op" data-v="150+" data-rotulo="Acima de R$ 150 mil" aria-pressed="false">Acima de R$&nbsp;150 mil</button>
-          </div></div>
-        <div class="o-campo" data-so="med"><span class="o-rot" id="rx-l-orc">Orçamentos entregues por mês</span>
-          <div class="o-opcoes" data-grupo="orc" role="group" aria-labelledby="rx-l-orc">
-            <button type="button" class="o-op" data-v="ate-10" data-rotulo="Até 10" aria-pressed="false">Até 10</button>
-            <button type="button" class="o-op" data-v="10-30" data-rotulo="10 a 30" aria-pressed="false">10 a 30</button>
-            <button type="button" class="o-op" data-v="30-60" data-rotulo="30 a 60" aria-pressed="false">30 a 60</button>
-            <button type="button" class="o-op" data-v="60+" data-rotulo="Mais de 60" aria-pressed="false">Mais de 60</button>
           </div></div>
         <div class="o-campo"><span class="o-rot" id="rx-l-origem">De onde vem a maioria dos pacientes novos</span>
           <div class="o-opcoes" data-grupo="origem" role="group" aria-labelledby="rx-l-origem">
@@ -597,7 +590,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <button type="button" class="o-op" data-v="descoberta" data-rotulo="Pouca gente nova me encontra" aria-pressed="false">Pouca gente nova me encontra<small>Antes da decisão</small></button>
             <button type="button" class="o-op" data-v="acesso" data-rotulo="A mensagem chega e demora a ter resposta" aria-pressed="false">A mensagem chega e demora a ter resposta<small>Antes da decisão</small></button>
             <button type="button" class="o-op" data-v="comparecimento" data-rotulo="O paciente marca e falta" aria-pressed="false">O paciente marca e falta<small>Antes da decisão</small></button>
-            <button type="button" class="o-op" data-v="decisao" data-rotulo="O orçamento sai e não fecha" aria-pressed="false">O orçamento sai e não fecha<small>A decisão</small></button>
+            <button type="button" class="o-op" data-so="cli" data-v="decisao" data-rotulo="O orçamento sai e não fecha" aria-pressed="false">O orçamento sai e não fecha<small>A decisão</small></button>
+            <button type="button" class="o-op" data-so="med" data-v="decisao" data-rotulo="O paciente vem à consulta e não segue adiante" aria-pressed="false">O paciente vem à consulta e não segue adiante<small>A decisão</small></button>
             <button type="button" class="o-op" data-v="depois" data-rotulo="O paciente não volta nem indica" aria-pressed="false">O paciente não volta nem indica<small>Depois da decisão</small></button>
             <button type="button" class="o-op" data-v="numeros" data-rotulo="Não sei quanto custa cada paciente novo" aria-pressed="false">Não sei quanto custa cada paciente novo<small>Os números</small></button>
           </div></div>
@@ -630,6 +624,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </dialog>
 
-<script src="/assets/js/site.js?v=20260916a" defer></script>
+<script src="/assets/js/fit.js?v=20260916b" defer></script>
+<script src="/assets/js/site.js?v=20260916b" defer></script>
 </body>
 </html>

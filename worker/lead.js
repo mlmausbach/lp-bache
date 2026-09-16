@@ -84,7 +84,6 @@ export async function lead(request, env) {
     nMedicos: texto(c.nMedicos, 80),
     papel: texto(c.papel, 80),
     faturamento: texto(c.faturamento, 80),
-    orcamentos: texto(c.orcamentos, 80),
     origem: texto(c.origem, 80),
     nota: texto(c.nota, 80),
     gargalo: texto(c.gargalo, 120),
@@ -115,14 +114,15 @@ export async function lead(request, env) {
     `Nome: ${lead.nome}`, `WhatsApp: ${lead.whatsapp}`, `E-mail: ${lead.email}`,
     `Cidade: ${ou(lead.cidade)}`, `Especialidade(s): ${ou(lead.especialidade)}`, '',
   ];
-  /* As perguntas seguem o templates/01: a faixa nos pisos do 16-OFERTAS (o
-     médico é medido pelos orçamentos) e os dois sinais de competência. */
+  /* As perguntas seguem o templates/01: a faixa nos pisos do 16-OFERTAS, igual
+     para clínica e médico desde 16/09/2026 (doc 11, decisão 12), e os dois
+     sinais de competência. */
   if (clinica) {
     linhas.push(`Profissionais: ${ou(lead.nMedicos)}`, `Papel: ${ou(lead.papel)}`,
       `Faturamento da clínica por mês: ${ou(lead.faturamento)}`);
   } else {
     linhas.push(`Atendimento: ${ou(lead.atendimento)}`, `Onde atende: ${ou(lead.onde)}`,
-      `Orçamentos por mês: ${ou(lead.orcamentos)}`);
+      `Faturamento do consultório por mês: ${ou(lead.faturamento)}`);
   }
   linhas.push(`Pacientes novos vêm de: ${ou(lead.origem)}`, `Nota no Google: ${ou(lead.nota)}`,
     `Onde a receita trava: ${ou(lead.gargalo)}`);
