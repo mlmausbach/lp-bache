@@ -393,14 +393,19 @@ html.anim .l-sobe.is-in { opacity: 1; transform: none; }
 }
 
 /* ── Tablet ───────────────────────────────────────────── */
-@media (max-width: 1100px) {
-  .l-duas { gap: 48px; }
-  .l-duas--mesa { grid-template-columns: 1fr; }
-  .l-nav { gap: 22px; }
+/* A linha do tempo vira vertical já em 1200 px: acima disso as cinco colunas
+   ficam estreitas demais para o botão do Raio-X, que invadia a coluna do E1. */
+@media (max-width: 1200px) {
   .o-linha__faixas { display: flex; flex-direction: column; gap: 6px; }
   .o-linha__marcos { grid-template-columns: 1fr; margin-left: 6px; border-top: 0; border-left: 2px solid var(--texto); }
   .o-marco, .o-marco + .o-marco { padding: 0 0 30px 24px; box-shadow: none; }
   .o-marco::before { top: 3px; left: -7px; }
+}
+
+@media (max-width: 1100px) {
+  .l-duas { gap: 48px; }
+  .l-duas--mesa { grid-template-columns: 1fr; }
+  .l-nav { gap: 22px; }
 }
 
 /* ── Celular ──────────────────────────────────────────── */

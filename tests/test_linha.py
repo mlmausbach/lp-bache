@@ -93,7 +93,7 @@ class LinhaDoTempo(unittest.TestCase):
 
 
 class LinhaDoTempoResponsiva(unittest.TestCase):
-    """F1: a linha vertical entra no tablet (até 1100 px), não só no celular (até 900 px)."""
+    """F1: a linha vertical entra já em 1200 px, porque o botão do Raio-X não cabe na coluna abaixo disso."""
 
     REGRAS = [
         ".o-linha__faixas { display: flex; flex-direction: column; gap: 6px; }",
@@ -103,13 +103,15 @@ class LinhaDoTempoResponsiva(unittest.TestCase):
         ".o-marco::before { top: 3px; left: -7px; }",
     ]
 
-    def test_regras_no_bloco_de_1100_e_fora_do_900(self):
+    def test_regras_no_bloco_de_1200_e_fora_do_1100_e_do_900(self):
         css = (RAIZ / "assets" / "css" / "site.css").read_text(encoding="utf-8")
+        b1200 = bloco_media(css, 1200)
         b1100 = bloco_media(css, 1100)
         b900 = bloco_media(css, 900)
         for regra in self.REGRAS:
             with self.subTest(regra=regra):
-                self.assertIn(regra, b1100)
+                self.assertIn(regra, b1200)
+                self.assertNotIn(regra, b1100)
                 self.assertNotIn(regra, b900)
 
 
