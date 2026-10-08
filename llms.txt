@@ -30,6 +30,7 @@ A Bäche garante o trabalho, o prazo de cada entrega e o Marco 1. Não promete n
 
 - [Site principal](https://bache.com.br/): método, ofertas, Marco 1 e o pedido do Raio-X
 - [Diagnóstico de Unit Economics](https://bache.com.br/unit): ferramenta gratuita para a clínica calcular margem, ocupação, falta, conversão, custo por paciente e retorno
+- [Política de Privacidade e Cookies](https://bache.com.br/privacidade): que dados a Bäche usa, com quem divide, por quanto tempo guarda e como pedir a exclusão
 
 ## Conformidade
 

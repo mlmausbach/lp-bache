@@ -29,20 +29,12 @@
 <link rel="preload" href="/ds/assets/fonts/Internacional-Black.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/ds/assets/fonts/Satoshi-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/ds/styles.css?v=20260916a">
-<link rel="stylesheet" href="/assets/css/site.css?v=20260919a">
+<link rel="stylesheet" href="/assets/css/site.css?v=20261008e">
 
 <!-- A entrada das seções só liga com JS e sem pedido de movimento reduzido. ?still=1 desliga, para print. -->
 <script>(function(d){var q=new URLSearchParams(location.search);var calmo=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(!q.has('still')&&!calmo)d.documentElement.classList.add('anim');})(document);</script>
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-P7VS3KVG');</script>
-<!-- End Google Tag Manager -->
-
-<!-- Os eventos vão para o dataLayer; as tags (GA4, Meta) moram no GTM. -->
+<!-- Os eventos vão para o dataLayer. O GTM (hoje só o GA4 mora nele) só carrega depois do consentimento: assets/js/consent.js. -->
 <script>
   window.dataLayer = window.dataLayer || [];
   window.bacheTrack = function (event, params) {
@@ -192,8 +184,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- faq-schema:fim -->
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P7VS3KVG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <a class="l-pular" href="#conteudo">Pular para o conteúdo</a>
 <div class="l-grade" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
@@ -608,7 +598,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     <div class="l-rodape__base">
       <span>Conteúdo produzido conforme a Resolução CFM 2.336/2023, a LGPD e o CDC.</span>
-      <span>© 2026 Bäche</span>
+      <span class="l-rodape__legal"><a href="/privacidade">Política de Privacidade e Cookies</a> · <button type="button" class="l-rodape__btn" data-cookies-abrir>Preferências de cookies</button> · © 2026 Bäche</span>
     </div>
   </div>
 </footer>
@@ -726,7 +716,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="o-campo"><label class="o-rot" for="rx-whats">WhatsApp</label><input type="tel" id="rx-whats" autocomplete="tel" placeholder="(41) 99999-0000"></div>
         <div class="o-campo"><label class="o-rot" for="rx-email">E-mail</label><input type="email" id="rx-email" autocomplete="email" placeholder="ana@clinica.com.br"></div>
         <input type="text" id="rx-empresa" name="empresa" class="o-isca" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <p class="o-lgpd">Seus dados vão só para a equipe da Bäche, para marcar o Raio-X.</p>
+        <p class="o-lgpd">Os dados do formulário servem para a equipe da Bäche responder ao seu pedido e marcar o Raio-X. A <a href="/privacidade">Política de Privacidade e Cookies</a> diz com quem a gente divide e como você pede para apagar.</p>
       </div>
 
       <p class="o-erro" id="rx-erro" role="alert" hidden></p>
@@ -746,6 +736,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </dialog>
 <!-- comum:fim-da-pagina:fim -->
 
+<!-- comum:cookies:inicio · igual na home, na /medicos e na /privacidade; a fonte é este arquivo: python scripts/comum.py -->
+<aside class="o-ck" id="cookies" role="region" aria-label="Aviso de cookies" hidden>
+  <p class="o-ck__txt"><b>Cookies.</b> Os de estatística, do Google Analytics, só ligam se você deixar. Sem eles, o site funciona igual. <a href="/privacidade">Política de Privacidade e Cookies</a></p>
+  <div class="o-ck__acoes">
+    <button type="button" class="o-ck__b o-ck__b--p" data-cookies="aceitar">Aceitar todos</button>
+    <button type="button" class="o-ck__b o-ck__b--s" data-cookies="recusar">Recusar todos</button>
+    <button type="button" class="o-ck__b o-ck__b--t" data-cookies="personalizar">Personalizar</button>
+  </div>
+</aside>
+
+<dialog class="o-modal o-ckp" id="cookies-prefs" aria-labelledby="ckp-t">
+  <div class="o-modal__in">
+    <button type="button" class="o-modal__fechar" data-cookies="fechar" aria-label="Fechar">&times;</button>
+    <h2 id="ckp-t">Preferências de cookies</h2>
+    <p class="o-sub">Escolha o que pode ficar ligado. Você muda isso quando quiser, pelo rodapé de qualquer página.</p>
+    <ul class="o-ckp__lista">
+      <li class="o-ckp__item">
+        <div><label class="o-ckp__t" for="ck-necessarios">Necessários</label><p>Guardam, neste navegador, a escolha que você faz aqui. Não medem nada e não saem do site.</p></div>
+        <input type="checkbox" class="o-ckp__sw" id="ck-necessarios" checked disabled>
+      </li>
+      <li class="o-ckp__item">
+        <div><label class="o-ckp__t" for="ck-estatisticas">Estatísticas</label><p>Google Analytics. Conta as páginas lidas, o tipo de aparelho e os cliques no WhatsApp e no pedido de Raio-X, e o Google recebe esses dados da sua visita. Cookies: _ga e _ga_ZLFQ717WHF.</p></div>
+        <input type="checkbox" class="o-ckp__sw" id="ck-estatisticas" name="estatisticas">
+      </li>
+    </ul>
+    <div class="o-ckp__acoes">
+      <button type="button" class="o-ck__b o-ck__b--o" data-cookies="salvar">Salvar escolhas</button>
+      <button type="button" class="o-ck__b o-ck__b--p" data-cookies="aceitar">Aceitar todos</button>
+      <button type="button" class="o-ck__b o-ck__b--s" data-cookies="recusar">Recusar todos</button>
+    </div>
+    <p class="o-lgpd">O que cada cookie faz, por quanto tempo dura e como pedir a exclusão dos seus dados está na <a href="/privacidade">Política de Privacidade e Cookies</a>.</p>
+  </div>
+</dialog>
+<!-- comum:cookies:fim -->
+
+<script src="/assets/js/consent.js?v=20261008c" defer></script>
 <script src="/assets/js/fit.js?v=20260916b" defer></script>
 <script src="/assets/js/site.js?v=20260916b" defer></script>
 </body>

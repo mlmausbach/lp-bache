@@ -514,3 +514,103 @@ html.anim .l-sobe.is-in { opacity: 1; transform: none; }
   .o-opcoes, .o-bifurca { grid-template-columns: 1fr; }
   .o-bifurca .o-op { min-height: 72px; }
 }
+
+/* ── Cookies: o aviso, o painel e a página da política ─────────────────
+   Doc 12 §8. Preto com texto névoa, como as pontas da página (look C). Aceitar e Recusar têm o
+   mesmo tamanho, o mesmo peso e vêm na mesma linha: recusar custa o mesmo que aceitar. */
+.o-ck, .o-ckp {
+  --fundo: var(--preto);
+  --superficie: var(--surface);
+  --texto: var(--nevoa);
+  --texto-medio: rgba(232, 230, 245, 0.78);
+  --texto-fraco: rgba(232, 230, 245, 0.58);
+  --texto-marca: var(--violeta-light);
+  --linha: rgba(232, 230, 245, 0.18);
+  --foco: 0 0 0 2px var(--preto), 0 0 0 4px var(--violeta-light);
+  background: var(--fundo);
+  color: var(--texto);
+}
+.o-ck { position: fixed; left: 16px; bottom: 16px; z-index: var(--z-toast); width: min(540px, calc(100vw - 32px));
+  padding: 18px 18px 16px; border: 1px solid var(--linha); border-radius: var(--raio-card); box-shadow: var(--sombra-lg); }
+.o-ck__txt { font-size: 15px; line-height: 1.5; color: var(--texto-medio); }
+.o-ck__txt b { color: var(--texto); }
+.o-ck__txt a, .o-ckp .o-lgpd a { color: var(--texto-marca); text-underline-offset: 3px; }
+.o-ck__acoes { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; margin-top: 14px; }
+.o-ck__b { min-height: 44px; padding: 8px 14px; border: 1.5px solid transparent; border-radius: var(--raio-btn);
+  font: inherit; font-weight: var(--peso-bold); font-size: 14px; line-height: 1.2; cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out); }
+.o-ck__b:focus-visible { outline: none; box-shadow: var(--foco); }
+.o-ck__b--p { background: var(--violeta); border-color: var(--violeta); color: var(--nevoa); }
+.o-ck__b--p:hover { background: var(--violeta-deep); border-color: var(--violeta-deep); }
+.o-ck__b--s { background: var(--nevoa); border-color: var(--nevoa); color: var(--preto); }
+.o-ck__b--s:hover { background: color-mix(in srgb, var(--nevoa) 86%, var(--violeta-light)); }
+.o-ck__b--o { background: transparent; border-color: var(--texto-fraco); color: var(--nevoa); }
+.o-ck__b--o:hover { background: rgba(232, 230, 245, 0.10); }
+.o-ck__b--t { background: transparent; color: var(--texto-marca); text-decoration: underline;
+  text-underline-offset: 3px; }
+.o-ck__b--t:hover { color: var(--nevoa); }
+
+.o-ckp { border: 1px solid var(--linha); }
+.o-ckp h2 { margin: 0 48px 8px 0; font-size: 27px; line-height: var(--lh-snug); }
+.o-ckp__lista { list-style: none; margin: 18px 0 0; padding: 0; }
+.o-ckp__item { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; padding: 16px 0;
+  border-top: 1px solid var(--linha); }
+.o-ckp__t { display: block; font-weight: var(--peso-bold); font-size: 16px; }
+.o-ckp__item p { margin-top: 4px; font-size: 14px; line-height: 1.5; color: var(--texto-medio); }
+.o-ckp__sw { appearance: none; -webkit-appearance: none; flex: none; position: relative; width: 48px; height: 28px; margin: 0;
+  border-radius: var(--raio-btn); background: rgba(232, 230, 245, 0.22); cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out); }
+.o-ckp__sw::after { content: ""; position: absolute; top: 4px; left: 4px; width: 20px; height: 20px; border-radius: 3px;
+  background: var(--nevoa); transition: transform var(--dur-fast) var(--ease-out); }
+.o-ckp__sw:checked { background: var(--violeta); }
+.o-ckp__sw:checked::after { transform: translateX(20px); }
+.o-ckp__sw:disabled { opacity: 0.6; cursor: not-allowed; }
+.o-ckp__sw:focus-visible { outline: none; box-shadow: var(--foco); }
+.o-ckp__acoes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 8px;
+  padding-top: 18px; border-top: 1px solid var(--linha); }
+.o-ckp .o-lgpd { color: var(--texto-fraco); }
+
+.l-rodape__legal { display: inline-flex; flex-wrap: wrap; gap: 0 6px; align-items: baseline; }
+.l-rodape__legal a, .l-rodape__btn { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.l-rodape__btn { padding: 0; border: 0; background: none; font: inherit; cursor: pointer; }
+.l-rodape__legal a:hover, .l-rodape__btn:hover { color: var(--violeta-light); }
+.l-rodape__legal a:focus-visible, .l-rodape__btn:focus-visible { outline: none; box-shadow: var(--foco); }
+
+/* A página da política */
+.l-doc { padding-block: 72px 112px; }
+.l-doc__in { max-width: 780px; margin-inline: auto; padding-inline: var(--pad); }
+.l-doc__cab { margin-bottom: 48px; }
+.l-doc__cab h1 { font-size: 48px; line-height: var(--lh-snug); text-wrap: balance; margin: 14px 0 0; }
+.l-doc section { margin-top: 52px; }
+.l-doc h2 { font-size: 28px; line-height: var(--lh-snug); margin-bottom: 16px; }
+.l-doc p, .l-doc li { font-size: 17px; line-height: 1.65; color: var(--texto-medio); }
+.l-doc p + p, .l-doc ul + p, .l-doc p + ul { margin-top: 14px; }
+.l-doc ul { padding-left: 1.2em; list-style: disc; }
+.l-doc li + li { margin-top: 8px; }
+.l-doc b { color: var(--texto); }
+.l-doc code { font-family: var(--fonte-mono); font-size: 0.88em; color: var(--texto); }
+.l-doc a { color: var(--texto-marca); text-underline-offset: 3px; }
+.o-pend { background: var(--violeta-suave); color: var(--texto); padding: 0 4px; border-radius: 3px; }
+.o-tabela { margin-top: 18px; overflow-x: auto; }
+.o-tabela table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; }
+.o-tabela th, .o-tabela td { padding: 12px 14px 12px 0; text-align: left; vertical-align: top; border-top: 1px solid var(--linha);
+  color: var(--texto-medio); }
+.o-tabela thead th { border-top: 0; border-bottom: 1px solid var(--linha); font-family: var(--fonte-mono); font-weight: var(--peso-bold);
+  font-size: 11px; letter-spacing: var(--track-micro); text-transform: uppercase; color: var(--texto-fraco); }
+.o-tabela tbody th { font-weight: var(--peso-bold); color: var(--texto); }
+.o-doc-btn { margin-top: 6px; }
+
+@media (max-width: 640px) {
+  .o-ck { left: 0; right: 0; bottom: 0; width: auto; border-radius: var(--raio-card) var(--raio-card) 0 0; border-inline: 0; border-bottom: 0;
+    padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+  .o-ck__acoes { grid-template-columns: 1fr 1fr; }
+  .o-ck__b--t { grid-column: 1 / -1; }
+  .o-ckp__acoes { grid-template-columns: 1fr; }
+  .l-doc { padding-block: 48px 80px; }
+  .l-doc__cab h1 { font-size: 34px; }
+  .l-doc h2 { font-size: 24px; }
+  .o-tabela table { min-width: 560px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .o-ck__b, .o-ckp__sw, .o-ckp__sw::after { transition: none; }
+}
