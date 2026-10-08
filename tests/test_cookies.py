@@ -149,6 +149,14 @@ class Politica(unittest.TestCase):
         # doc 12 D24: o site não tem valor nem forma de pagamento
         self.assertIsNone(re.search(r"R\$|\bpix\b|parcela|crédito integral|pagamento por", self.t, re.I))
 
+    def test_a_politica_identifica_a_controladora(self):
+        # Dados dados pelo Murillo em 08/10/2026; o CNPJ foi conferido na base pública (ativa, Curitiba, PR)
+        for trecho in ("ZURI EMPREENDIMENTOS LTDA", "23.071.705/0001-03", "falarcom@bache.com.br"):
+            self.assertIn(trecho, self.t)
+        html = (RAIZ / "privacidade.html").read_text(encoding="utf-8")
+        self.assertIn('href="mailto:falarcom@bache.com.br"', html)
+        self.assertIn("24 meses depois do último contato", self.t)
+
     def test_a_politica_nao_tem_dado_pendente(self):
         # Razão social, CNPJ, contato e prazo vêm do Murillo. Enquanto houver [PENDENTE ...] aqui, a página não vai ao ar.
         pendentes = re.findall(r"\[PENDENTE[^\]]*\]", (RAIZ / "privacidade.html").read_text(encoding="utf-8"))
