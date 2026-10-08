@@ -1,4 +1,5 @@
-"""Doc 11 §06: a /medicos conta o processo do especialista, sem orçamento e sem Marco 1."""
+"""Doc 11 §06: a /medicos conta o processo do especialista, sem orçamento. O Marco 1 só aparece na
+pergunta de garantia (doc 12 §7): 16-OFERTAS:67 o dá à Marca Pessoal."""
 import subprocess
 import sys
 import unittest
@@ -40,9 +41,15 @@ class Medicos(unittest.TestCase):
     def test_nenhum_orcamento_no_que_o_medico_le(self):
         self.assertNotIn("orçament", texto(self.corpo, "med").lower())
 
-    def test_sem_marco_1_e_sem_dia_30(self):
+    def test_o_marco_1_so_na_pergunta_de_garantia_e_sem_dia_30(self):
+        # A decisão 7 do doc 11 deixou o Marco 1 de fora "enquanto o 16-OFERTAS só o escreve para a clínica".
+        # A linha 67 do 16-OFERTAS o escreve também para a Marca Pessoal (paga só o E1), então a página o define.
+        faq = por_classe(self.doc, "o-faq")[0]
+        resposta = next(texto(d) for d in todos(faq, lambda n: n.tag == "details") if "garantem" in texto(d))
+        self.assertIn("O Marco 1 é a sua decisão na entrega do Diagnóstico", resposta)
+        self.assertIn("paga só o Diagnóstico", resposta)
         t = texto(self.corpo, "med")
-        self.assertNotIn("Marco 1", t)
+        self.assertEqual(t.count("Marco 1"), resposta.count("Marco 1"))
         self.assertNotIn("dia 30", t.lower())
 
     def test_a_linha_do_tempo_do_medico(self):
@@ -71,6 +78,12 @@ class Medicos(unittest.TestCase):
         r = subprocess.run([sys.executable, str(RAIZ / "scripts" / "comum.py"), "--conferir"],
                            capture_output=True, text=True, encoding="utf-8")
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+
+    def test_o_servico_do_json_ld_usa_a_categoria(self):
+        # §01.2 e §09: a categoria é uma só, e o serviceType do schema não a parafraseia
+        for pagina in ("index.html", "medicos.html"):
+            html = (RAIZ / pagina).read_text(encoding="utf-8")
+            self.assertIn('"serviceType": "Assessoria de Engenharia de Marketing para Saúde"', html, pagina)
 
     def test_a_pagina_esta_no_sitemap(self):
         self.assertIn("<loc>https://bache.com.br/medicos</loc>", (RAIZ / "sitemap.xml").read_text(encoding="utf-8"))
