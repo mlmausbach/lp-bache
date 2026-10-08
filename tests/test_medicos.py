@@ -43,11 +43,11 @@ class Medicos(unittest.TestCase):
 
     def test_o_marco_1_so_na_pergunta_de_garantia_e_sem_dia_30(self):
         # A decisão 7 do doc 11 deixou o Marco 1 de fora "enquanto o 16-OFERTAS só o escreve para a clínica".
-        # A linha 67 do 16-OFERTAS o escreve também para a Marca Pessoal (paga só o E1), então a página o define.
+        # A linha 67 do 16-OFERTAS o escreve também para a Marca Pessoal (paga só o E1), então a página o define, sem a parte do dinheiro (doc 12, D24).
         faq = por_classe(self.doc, "o-faq")[0]
         resposta = next(texto(d) for d in todos(faq, lambda n: n.tag == "details") if "garantem" in texto(d))
-        self.assertIn("O Marco 1 é a sua decisão na entrega do Diagnóstico", resposta)
-        self.assertIn("paga só o Diagnóstico", resposta)
+        self.assertIn("O Marco 1 é a porta de decisão na entrega do Diagnóstico", resposta)
+        self.assertIn("o projeto só continua se você decidir", resposta)
         t = texto(self.corpo, "med")
         self.assertEqual(t.count("Marco 1"), resposta.count("Marco 1"))
         self.assertNotIn("dia 30", t.lower())
@@ -55,7 +55,7 @@ class Medicos(unittest.TestCase):
     def test_a_linha_do_tempo_do_medico(self):
         como = por_id(self.doc, "como-funciona")
         faixas = [texto(n) for n in por_classe(como, "o-linha__faixa")]
-        self.assertEqual(faixas, ["Instalação 4E · Marca Pessoal · 7 semanas · valor na proposta"])
+        self.assertEqual(faixas, ["Instalação 4E · Marca Pessoal · 7 semanas"])
         t = texto(como)
         for parte in ("E1 Diagnóstico", "E2 Estratégia", "E3 Estrutura", "Google Ads no ar", "14 dias de ajuste"):
             self.assertIn(parte, t)

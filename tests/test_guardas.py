@@ -5,6 +5,7 @@
 3. Toda âncora interna leva a algum lugar.
 4. O JSON-LD é JSON válido, e o FAQPage bate com as perguntas visíveis.
 """
+import html
 import json
 import pathlib
 import re
@@ -20,7 +21,33 @@ GUARDAS = [r"—", r"–", r"\bnós\b", r"\bpremium\b", r"excelência", r"inova�
            r"\bportanto\b", r"\bcontudo\b", r"\btodavia\b", r"\bademais\b", r"\bentretanto\b", r"dessa forma"]
 
 
+# Murillo, 08/10/2026: nenhuma informação de pagamento no site, nem forma de pagamento nem valor.
+# Fica de fora a faixa de faturamento da clínica (R$ 50 mil, 50 a 80 mil...), que é critério de quem se atende.
+PAGAMENTO = [r"7\.900", r"crédito integral", r"pagament", r"\bpago por\b", r"\bpaga só\b", r"\bpagar\b",
+             r"recebe de volta", r"parcela", r"\bpix\b", r"cart[ãa]o", r"\bentrada\b", r"valor na proposta",
+             r"investimento", r"reembols", r"devolu", r"verba de mídia", r"mensalidade", r"\bfee\b", r"desconto"]
+
+
+def texto_publico(nome):
+    """O que o leitor e o buscador veem: texto da página, JSON-LD incluso, ou o llms.txt inteiro."""
+    t = (RAIZ / nome).read_text(encoding="utf-8")
+    if nome.endswith(".html"):
+        t = re.sub(r"<style.*?</style>|<script(?![^>]*ld\+json).*?</script>", " ", t, flags=re.S)
+        t = re.sub(r"<[^>]+>", " ", t)
+    return re.sub(r"\s+", " ", html.unescape(t).replace("\xa0", " "))
+
+
 class Guardas(unittest.TestCase):
+    def test_o_site_nao_fala_de_pagamento(self):
+        for nome in PAGINAS + ["llms.txt"]:
+            t = texto_publico(nome)
+            for g in PAGAMENTO:
+                with self.subTest(pagina=nome, termo=g):
+                    self.assertIsNone(re.search(g, t, re.I), re.search(g, t, re.I) and t[re.search(g, t, re.I).start() - 40:][:120])
+            with self.subTest(pagina=nome, termo="R$ fora da faixa de faturamento"):
+                faixas = re.findall(r"R\$\s?\d+(?:\s?a\s?\d+)?\s?mil", t)
+                self.assertEqual(t.count("R$"), len(faixas))
+
     def test_guardas_da_voz(self):
         for nome in PAGINAS:
             corpo = next(todos(ler(nome), lambda n: n.tag == "body"))

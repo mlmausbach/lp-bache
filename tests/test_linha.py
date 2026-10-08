@@ -48,7 +48,7 @@ class LinhaDoTempo(unittest.TestCase):
 
     def test_as_faixas(self):
         faixas = [texto(n) for n in por_classe(self.como, "o-linha__faixa")]
-        self.assertEqual(faixas, ["Instalação 4E · cerca de 120 dias · valor na proposta · pagamento por entrega",
+        self.assertEqual(faixas, ["Instalação 4E · cerca de 120 dias",
                                   "Evolução · 12 meses"])
 
     def test_o_primeiro_mes(self):
@@ -76,8 +76,13 @@ class LinhaDoTempo(unittest.TestCase):
 
     def test_o_diagnostico_avulso_e_a_capacidade(self):
         t = limpo(texto(self.como))
-        self.assertIn("R$ 7.900, com crédito integral na Instalação se você seguir em até 30 dias", t)
+        self.assertIn("O Diagnóstico também se contrata sozinho.", t)
         self.assertIn("A Bäche abre uma Instalação nova por mês", t)
+
+    def test_o_marco_1_da_home_diz_a_consequencia_sem_dinheiro(self):
+        # doc 12 D25: sem o dinheiro (D24), a seção ainda diz o que o Marco 1 dá, nas palavras da cláusula 12.4 (denunciar o contrato)
+        marco = limpo(texto(por_id(self.doc, "marco-1")))
+        self.assertIn("você decide se o projeto continua. Se parar ali, o contrato termina no Diagnóstico.", marco)
 
     def test_o_que_fica_instalado(self):
         inst = por_id(self.doc, "instalado")
